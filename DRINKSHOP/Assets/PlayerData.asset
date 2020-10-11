@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71900fe704b9f08488aacd612c909f84, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  PlayerData:
+    HavetheDrink: 01010101010101010101
+    DrinkSum: 10
+    HavetheStaff: 0100000000
+    StaffSum: 1
+    HavetheClient: 0101010000
+    ClientSum: 3
+    Money: -19880
+    Level: 1
+    DrinkinStock: 0800000008000000060000000500000006000000080000000a000000010000000700000008000000
+    DrinkSell: 0
+    AddStockLimit: 0
+    DeleteAD: 0
+    FirstTime: 0
+    Coin: 1

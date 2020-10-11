@@ -10,17 +10,22 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     private TimeSpan Differ;
     public GameObject time1, time2, differ;
     public GameDataManager Drink;
-    private PlayerDataManager Player = new PlayerDataManager();
+    public PlayerDataManager Player;
     private DrinkControl DrinkControl = new DrinkControl();
+    private ClientControl ClientControl = new ClientControl();
     // Start is called before the first frame update
     void Start()
     {
         Drink.DrinkByChara();
         Drink.ClientByLevel();
-        for (int i = 0; i < Drink.DrinkDataList.Count; i++)
+        /*for (int i = 0; i < Drink.DrinkDataList.Count; i++)
         {
             Player.PlayerData.HavetheDrink.Add(false);
         }
+        for (int i = 0; i < Drink.StaffDataList.Count; i++)
+        {
+            Player.PlayerData.HavetheStaff.Add(false);
+        }*/
         Player.Default();
     }
 
@@ -45,7 +50,9 @@ public class TimeCalculator : MonoBehaviour  //Testing script
            Debug.Log(Player.PlayerData.HavetheDrink[0]);*/
         int Select = DrinkControl.DevelopDrink(Drink,Player);
         Debug.Log(Select);
+        ClientControl.SelltheDrink(Player,Drink);
     }
+    
 
     public void Time1click()
     {

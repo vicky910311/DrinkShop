@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-public class PlayerDataManager
+[CreateAssetMenu(fileName = "PlayerData", menuName = "CreatePlayerData")]
+public class PlayerDataManager : ScriptableObject
 {
     public PlayerData PlayerData = new PlayerData();
     public void Default()
     {
+       PlayerData.DrinkSum = 0;
        PlayerData.HavetheDrink[0] = true;
        PlayerData.HavetheDrink[1] = true;
        PlayerData.HavetheDrink[2] = true;
@@ -22,8 +23,8 @@ public class PlayerDataManager
                PlayerData.DrinkSum++;
        }
 
-      /* PlayerData.HavetheStaff[0] = true;
-
+       PlayerData.StaffSum = 0;
+       PlayerData.HavetheStaff[0] = true;
        for (int i = 1; i < PlayerData.HavetheStaff.Count; i++)
        {
            PlayerData.HavetheStaff[i] = false;
@@ -36,14 +37,14 @@ public class PlayerDataManager
        for (int i = 0; i < PlayerData.HavetheClient.Count; i++)
        {
            PlayerData.HavetheClient[i] = false;
-       }*/
+       }
         PlayerData.ClientSum = 0;
         PlayerData.Money = 12000;
         PlayerData.Level = 1;
-        /*for (int i = 0; i < PlayerData.DrinkinStock.Count; i++)
+        for (int i = 0; i < PlayerData.DrinkinStock.Count; i++)
         {
             PlayerData.DrinkinStock[i] = 10;
-        }*/
+        }
         PlayerData.DrinkSell = 0;
         PlayerData.AddStockLimit = 0;
         PlayerData.DeleteAD = false;

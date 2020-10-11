@@ -21,6 +21,7 @@ public class DrinkControl
         }
         else if (Player.PlayerData.Coin >= 3 && Player.PlayerData.DrinkSum < Drink.DrinkDataList.Count)
         {
+            Player.PlayerData.Coin = 0;
             List<int> NewDrink = new List<int>();
             for (int i = 0; i < Drink.DrinkDataList.Count; i++)
             {
