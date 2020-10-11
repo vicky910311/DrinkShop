@@ -11,6 +11,7 @@ public class GameDataManager : ScriptableObject
     public DrinkUse drinkUse;
     public ClientComeTime ComeTime;
     public List<LevelUpData> LevelUpDataList;
+    public List<LuckyData> LuckyDataList;
 
     public void DrinkByChara()
     {

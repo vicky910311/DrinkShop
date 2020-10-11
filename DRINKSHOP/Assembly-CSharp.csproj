@@ -59,10 +59,14 @@
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\UsageCase.cs" />
     <Compile Include="Assets\script\ClientComeTime.cs" />
     <Compile Include="Assets\script\ClientData.cs" />
+    <Compile Include="Assets\script\DrinkControl.cs" />
     <Compile Include="Assets\script\DrinkData.cs" />
     <Compile Include="Assets\script\DrinkUse.cs" />
     <Compile Include="Assets\script\GameDataManager.cs" />
     <Compile Include="Assets\script\LevelUpData.cs" />
+    <Compile Include="Assets\script\LuckyData.cs" />
+    <Compile Include="Assets\script\PlayerData.cs" />
+    <Compile Include="Assets\script\PlayerDataManager.cs" />
     <Compile Include="Assets\script\StaffData.cs" />
     <Compile Include="Assets\script\TimeCalculator.cs" />
     <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />

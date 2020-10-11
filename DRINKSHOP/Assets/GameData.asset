@@ -53,46 +53,6 @@ MonoBehaviour:
     DevelopTime: 0
     isSpecial: 1
     Narrate: 
-  - Chara: 1
-    Name: "\u679C\u6C41"
-    Image: {fileID: 0}
-    Cost: 0
-    Price: 0
-    DevelopTime: 0
-    isSpecial: 0
-    Narrate: 
-  - Chara: 1
-    Name: "\u6AB8\u6AAC\u6C41"
-    Image: {fileID: 0}
-    Cost: 0
-    Price: 0
-    DevelopTime: 0
-    isSpecial: 1
-    Narrate: 
-  - Chara: 1
-    Name: "\u725B\u5976"
-    Image: {fileID: 0}
-    Cost: 0
-    Price: 0
-    DevelopTime: 0
-    isSpecial: 0
-    Narrate: 
-  - Chara: 2
-    Name: "\u897F\u74DC\u6C41"
-    Image: {fileID: 0}
-    Cost: 0
-    Price: 0
-    DevelopTime: 0
-    isSpecial: 0
-    Narrate: 
-  - Chara: 2
-    Name: "\u725B\u5976"
-    Image: {fileID: 0}
-    Cost: 0
-    Price: 0
-    DevelopTime: 0
-    isSpecial: 0
-    Narrate: 
   ClientDataList:
   - Name: 
     Info: 
@@ -154,3 +114,18 @@ MonoBehaviour:
   - Level: 7
     DrinkSum: 40
     SellSum: 2500
+  LuckyDataList:
+  - PairLevel: 1
+    Image: {fileID: 0}
+  - PairLevel: 2
+    Image: {fileID: 0}
+  - PairLevel: 3
+    Image: {fileID: 0}
+  - PairLevel: 4
+    Image: {fileID: 0}
+  - PairLevel: 5
+    Image: {fileID: 0}
+  - PairLevel: 6
+    Image: {fileID: 0}
+  - PairLevel: 7
+    Image: {fileID: 0}
