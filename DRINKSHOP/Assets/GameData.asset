@@ -19,7 +19,7 @@ MonoBehaviour:
     Cost: 10
     Price: 30
     DevelopTime: 0
-    isSpecial: 1
+    isSpecial: 0
     Narrate: 
   - Chara: 0
     Name: "\u7DA0\u8336"
@@ -35,7 +35,7 @@ MonoBehaviour:
     Cost: 0
     Price: 0
     DevelopTime: 0
-    isSpecial: 1
+    isSpecial: 0
     Narrate: 
   - Chara: 0
     Name: "\u9E79\u9B5A\u725B\u5976"
@@ -51,7 +51,47 @@ MonoBehaviour:
     Cost: 0
     Price: 0
     DevelopTime: 0
-    isSpecial: 1
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: "\u725B\u5976"
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: "\u725B\u5976"
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: "\u725B\u5976"
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: "\u725B\u5976"
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: "\u725B\u5976"
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
     Narrate: 
   - Chara: 0
     Name: "\u725B\u5976"
@@ -124,7 +164,83 @@ MonoBehaviour:
     isSpecial: 0
     Image: {fileID: 0}
     Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 1
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 1
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 1
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 1
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 7
+    isSpecial: 1
+    Image: {fileID: 0}
+    Narrate: 
   StaffDataList:
+  - Name: 
+    Chara: 
+    Info: 
+    Story: {fileID: 0}
+    Image: {fileID: 0}
+    UnlockCost: 0
+    UnlockLevel: 0
+    UnlockTime: 0
+  - Name: 
+    Chara: 
+    Info: 
+    Story: {fileID: 0}
+    Image: {fileID: 0}
+    UnlockCost: 0
+    UnlockLevel: 0
+    UnlockTime: 0
   - Name: 
     Chara: 
     Info: 

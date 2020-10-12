@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   PlayerData:
-    HavetheDrink: 01010101010101010101
-    DrinkSum: 10
+    HavetheDrink: 000000000000000000000000010101
+    DrinkSum: 3
     HavetheStaff: 0100000000
     StaffSum: 1
-    HavetheClient: 0101010000
-    ClientSum: 3
-    Money: -19880
+    HavetheClient: 010101000000000000000000000100
+    ClientSum: 4
+    Money: 12000
     Level: 1
-    DrinkinStock: 0800000008000000060000000500000006000000080000000a000000010000000700000008000000
-    DrinkSell: 0
+    DrinkinStock: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000060000000000000006000000
+    DrinkSell: 18
     AddStockLimit: 0
     DeleteAD: 0
     FirstTime: 0
-    Coin: 1
+    Coin: 0

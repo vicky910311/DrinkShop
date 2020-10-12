@@ -18,14 +18,6 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     {
         Drink.DrinkByChara();
         Drink.ClientByLevel();
-        /*for (int i = 0; i < Drink.DrinkDataList.Count; i++)
-        {
-            Player.PlayerData.HavetheDrink.Add(false);
-        }
-        for (int i = 0; i < Drink.StaffDataList.Count; i++)
-        {
-            Player.PlayerData.HavetheStaff.Add(false);
-        }*/
         Player.Default();
     }
 
@@ -36,8 +28,8 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     }
     public void Click()
     {
-        
-      
+
+
         /*   List<int> SpecialList= new List<int>();
            for (int i=0;i< Drink.DrinkDataList.Count;i++)
            {
@@ -48,21 +40,24 @@ public class TimeCalculator : MonoBehaviour  //Testing script
            Debug.Log(SpecialList[a] + "/"+ Drink.DrinkDataList[SpecialList[a]].isSpecial);
            Debug.Log(Player.PlayerData.FirstTime+"  "+ Player.PlayerData.Money+" " + Player.PlayerData.HavetheDrink.Count);
            Debug.Log(Player.PlayerData.HavetheDrink[0]);*/
-        int Select = DrinkControl.DevelopDrink(Drink,Player);
-        Debug.Log(Select);
-        ClientControl.SelltheDrink(Player,Drink);
+        //int Select = DrinkControl.DevelopDrink(Drink,Player);
+        // Debug.Log(Select);
+        // ClientControl.SelltheDrink(Player,Drink);
+        ClientControl.WhenNotPlayingSell(Player, Drink);
     }
     
 
     public void Time1click()
     {
         Time1 = DateTime.Now;
+        Player.PlayerData.LastEndTime = Time1;
         time1.GetComponent<Text>().text = Time1.ToString();
     }
 
     public void Time2click()
     {
         Time2 = DateTime.Now;
+        Player.PlayerData.ThisOpenTime = Time2;
         time2.GetComponent<Text>().text = Time2.ToString();
     }
 
