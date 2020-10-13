@@ -12,17 +12,7 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     public PlayerData Player;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
-    string missionType;
-    private void OnGUI()
-    {
-        missionType = GUILayout.TextField(missionType);
-        if (GUILayout.Button("DoMission"))
-        {
-            Type t = Type.GetType(missionType);
-            MissionData e = (MissionData)Activator.CreateInstance(t);
-            e.DoEvent(null);
-        }
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
