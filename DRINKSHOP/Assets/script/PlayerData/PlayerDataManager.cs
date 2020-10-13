@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "CreatePlayerData")]
-public class PlayerDataManager : ScriptableObject
+
+public class PlayerDataManager : MonoBehaviour
 {
-    public PlayerData PlayerData = new PlayerData();
+    public PlayerData PlayerData;
     public void Default()
     {
        PlayerData.DrinkSum = 0;

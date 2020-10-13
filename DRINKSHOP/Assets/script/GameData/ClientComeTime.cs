@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 [Serializable]
-public struct ClientComeTime
+public struct ClientComeTime 
 {
     public int NormalMin;
     public int NormalMax;

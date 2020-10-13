@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[CreateAssetMenu(fileName = "PlayerData", menuName = "CreatePlayerData")]
 [Serializable]
-public class PlayerData 
+public class PlayerData : ScriptableObject
 {
     public List<bool> HavetheDrink = new List<bool>();
     public int DrinkSum;
