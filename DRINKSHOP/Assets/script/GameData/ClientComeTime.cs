@@ -13,5 +13,5 @@ public struct ClientComeTime
     public int ManualMax;
     public int ADMin;
     public int ADMax;
-
+    public int Leave;
 }

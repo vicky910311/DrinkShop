@@ -5,7 +5,10 @@ using System;
 
 public class ClientControl 
 {
-   public void SelltheDrink(PlayerData Player,DrinkDataList Drink,ClientDataList Client)
+    public PlayerData Player;
+    public DrinkDataList Drink;
+    public ClientDataList Client;
+   public void SelltheDrink()
     {
         int Select;
         List<int> CanSell = new List<int>();
@@ -39,11 +42,15 @@ public class ClientControl
             }            
         }
     }
-    public void WhenNotPlayingSell(PlayerData Player, DrinkDataList Drink, ClientDataList Client)
+    public void WhenNotPlayingSell()
     {
         TimeSpan T;
         int TempMoney = 0;
         int TempSell = 0;
+        if (Client.ComeTime.Leave <= 0)
+        {
+            Client.ComeTime.Leave = 1;
+        }
         T = Player.ThisOpenTime - Player.LastEndTime;
         List<int> CanSell = new List<int>();
         for (int j = 0; j < Player.HavetheDrink.Count; j++)
@@ -51,7 +58,7 @@ public class ClientControl
             if (Player.HavetheDrink[j])
                 CanSell.Add(j);
         }
-        for (int i = 0; i < (int)T.TotalMinutes/10; i++)
+        for (int i = 0; i < (int)T.TotalMinutes/Client.ComeTime.Leave; i++)
         {
             int Select; 
             int a = UnityEngine.Random.Range(0, CanSell.Count);

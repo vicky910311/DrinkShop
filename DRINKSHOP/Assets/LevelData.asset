@@ -12,5 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f2ebed6c5a17643bf18e1bda47d7c1, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  LevelUpData: []
+  LevelUpData:
+  - Level: 0
+    DrinkSum: 0
+    SellSum: 0
+  - Level: 0
+    DrinkSum: 0
+    SellSum: 0
+  - Level: 0
+    DrinkSum: 0
+    SellSum: 0
+  - Level: 0
+    DrinkSum: 0
+    SellSum: 0
+  - Level: 0
+    DrinkSum: 0
+    SellSum: 0
   LuckyData: []

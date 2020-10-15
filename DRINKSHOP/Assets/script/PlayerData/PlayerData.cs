@@ -7,15 +7,15 @@ using System;
 [Serializable]
 public class PlayerData : ScriptableObject
 {
-    public List<bool> HavetheDrink = new List<bool>();
+    public List<bool> HavetheDrink;
     public int DrinkSum;
-    public List<bool> HavetheStaff = new List<bool>();
+    public List<bool> HavetheStaff;
     public int StaffSum;
-    public List<bool> HavetheClient = new List<bool>();
+    public List<bool> HavetheClient;
     public int ClientSum;
     public int Money;
     public int Level;
-    public List<int> DrinkinStock = new List<int>();
+    public List<int> DrinkinStock;
     public int DrinkSell;
     public int AddStockLimit;
     public bool DeleteAD;
@@ -23,4 +23,6 @@ public class PlayerData : ScriptableObject
     public DateTime ThisOpenTime;
     public bool FirstTime = true;
     public int Coin;
+    public int CatchGhost;
+    public int CatchSleep;
 }

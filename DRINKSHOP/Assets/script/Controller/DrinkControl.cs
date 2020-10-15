@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DrinkControl
 {
-    public int DevelopDrink(DrinkDataList Drink,PlayerData Player)
+    public DrinkDataList Drink;
+    public PlayerData Player;
+    public int DevelopDrink()
     {
         int Select = -1;
         if (Player.Money >= Drink.DrinkUse.DevelopCost)
