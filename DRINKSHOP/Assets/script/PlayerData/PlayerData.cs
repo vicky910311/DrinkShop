@@ -23,6 +23,8 @@ public class PlayerData : ScriptableObject
     public DateTime ThisOpenTime;
     public bool FirstTime = true;
     public int Coin;
+    public List<int> CanMake;
     public int CatchGhost;
     public int CatchSleep;
+    
 }

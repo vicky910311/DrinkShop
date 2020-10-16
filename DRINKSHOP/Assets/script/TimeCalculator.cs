@@ -10,13 +10,26 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     private TimeSpan Differ;
     public GameObject time1, time2, differ;
     public PlayerData Player;
+    public ClientDataList Client;
+    public DrinkDataList Drink;
+    public LevelDataList Level;
+    public StaffDataList Staff;
+    public MissionList Mission;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
-    
+    private StaffControl StaffControl = new StaffControl();
+    private EventControl EventControl = new EventControl();
+
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;
+        DrinkControl.Player = ClientControl.Player = StaffControl.Player = EventControl.Player = Player;
+        ClientControl.Client = Client;
+        EventControl.Level = Level;
+        StaffControl.Staff = Staff;
+        EventControl.Mission = Mission;
        
     }
 

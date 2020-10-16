@@ -2,55 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEditor.Experimental.RestService;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public PlayerData PlayerData;
+    public PlayerData Player;
     public void Default()
     {
-       PlayerData.DrinkSum = 0;
-       PlayerData.HavetheDrink[0] = true;
-       PlayerData.HavetheDrink[1] = true;
-       PlayerData.HavetheDrink[2] = true;
-      for (int i =3;i<PlayerData.HavetheDrink.Count;i++)
+       Player.DrinkSum = 0;
+       Player.HavetheDrink[0] = true;
+       Player.HavetheDrink[1] = true;
+       Player.HavetheDrink[2] = true;
+      for (int i =3;i<Player.HavetheDrink.Count;i++)
        {
-           PlayerData.HavetheDrink[i] = false;
+           Player.HavetheDrink[i] = false;
        }
-       for (int i = 0; i < PlayerData.HavetheDrink.Count; i++)
+       for (int i = 0; i < Player.HavetheDrink.Count; i++)
        {
-           if(PlayerData.HavetheDrink[i] == true)
-               PlayerData.DrinkSum++;
+           if(Player.HavetheDrink[i] == true)
+               Player.DrinkSum++;
        }
 
-       PlayerData.StaffSum = 0;
-       PlayerData.HavetheStaff[0] = true;
-       for (int i = 1; i < PlayerData.HavetheStaff.Count; i++)
+       Player.StaffSum = 0;
+       Player.HavetheStaff[0] = true;
+       for (int i = 1; i < Player.HavetheStaff.Count; i++)
        {
-           PlayerData.HavetheStaff[i] = false;
+           Player.HavetheStaff[i] = false;
        }
-       for (int i = 0; i < PlayerData.HavetheStaff.Count; i++)
+       for (int i = 0; i < Player.HavetheStaff.Count; i++)
        {
-           if (PlayerData.HavetheStaff[i] == true)
-               PlayerData.StaffSum++;
+           if (Player.HavetheStaff[i] == true)
+               Player.StaffSum++;
        }
-       for (int i = 0; i < PlayerData.HavetheClient.Count; i++)
+       for (int i = 0; i < Player.HavetheClient.Count; i++)
        {
-           PlayerData.HavetheClient[i] = false;
+           Player.HavetheClient[i] = false;
        }
-        PlayerData.ClientSum = 0;
-        PlayerData.Money = 12000;
-        PlayerData.Level = 1;
-        for (int i = 0; i < PlayerData.DrinkinStock.Count; i++)
+        Player.ClientSum = 0;
+        Player.Money = 12000;
+        Player.Level = 1;
+        for (int i = 0; i < Player.DrinkinStock.Count; i++)
         {
-            PlayerData.DrinkinStock[i] = 10;
+            Player.DrinkinStock[i] = 10;
         }
-        PlayerData.DrinkSell = 0;
-        PlayerData.AddStockLimit = 0;
-        PlayerData.DeleteAD = false;
-        PlayerData.FirstTime = false;
-        PlayerData.Coin = 0;
-        PlayerData.ThisOpenTime = DateTime.Now;
-        PlayerData.LastEndTime = DateTime.Now;
+        Player.DrinkSell = 0;
+        Player.AddStockLimit = 0;
+        Player.DeleteAD = false;
+        Player.FirstTime = false;
+        Player.Coin = 0;
+        Player.ThisOpenTime = DateTime.Now;
+        Player.LastEndTime = DateTime.Now;
+        Player.CatchGhost = 0;
+        Player.CatchSleep = 0;
+        for (int i = 0; i < Player.HavetheDrink.Count; i++)
+        {
+            if (Player.HavetheDrink[i] == true)
+                Player.CanMake.Add(i);
+        }
     }
 }

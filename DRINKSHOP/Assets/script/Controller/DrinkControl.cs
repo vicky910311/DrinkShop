@@ -16,11 +16,16 @@ public class DrinkControl
                 Player.Money -= Drink.DrinkUse.DevelopCost;
                 Select = Random.Range(0, Drink.DrinkData.Count);
                 if (Player.HavetheDrink[Select] == true)
+                {
                     Player.Coin++;
+                    Debug.Log("代幣增加");
+                }
                 else
                 {
                     Player.HavetheDrink[Select] = true;
                     Player.DrinkSum++;
+                    Player.CanMake.Add(Select);
+                    Debug.Log(Select + "研發成功");
                 }
             }
             else if (Player.Coin >= 3 && Player.DrinkSum < Drink.DrinkData.Count)
@@ -36,6 +41,8 @@ public class DrinkControl
                 Select = NewDrink[A];
                 Player.HavetheDrink[Select] = true;
                 Player.DrinkSum++;
+                Player.CanMake.Add(Select);
+                Debug.Log(Select + "研發成功");
             }
             else
                 Debug.Log("收集完畢");
@@ -46,4 +53,22 @@ public class DrinkControl
         
         return Select;
     }
+    public void MakingDrink(int i)
+    {
+        int Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.DrinkinStock[i];
+        if (Player.Money >= Make * Drink.DrinkData[i].Cost)
+        {
+            Player.DrinkinStock[i] += Make;
+            Player.Money -= Make * Drink.DrinkData[i].Cost;
+        }
+        else
+        {
+            Make = Player.Money / Drink.DrinkData[i].Cost;
+            Player.DrinkinStock[i] += Make;
+            Player.Money -= Make * Drink.DrinkData[i].Cost;
+        }
+        float MakeTime = Make * 0.5f / Player.StaffSum;
+    }
+        
+
 }

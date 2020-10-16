@@ -12,8 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e670b23fbc4ff664682c3f1cf66f15fd, type: 3}
   m_Name: DrinkData
   m_EditorClassIdentifier: 
-  DrinkData: []
+  DrinkData:
+  - Chara: 0
+    Name: 
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: 
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: 
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: 
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
+  - Chara: 0
+    Name: 
+    Image: {fileID: 0}
+    Cost: 0
+    Price: 0
+    DevelopTime: 0
+    isSpecial: 0
+    Narrate: 
   DrinkUse:
-    StockLimit: 0
+    StockLimit: 25
     MakeTime: 0
     DevelopCost: 0

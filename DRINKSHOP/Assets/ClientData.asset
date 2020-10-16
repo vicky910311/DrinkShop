@@ -12,7 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e916c9efb4b7e4648baadad6ce6cbea7, type: 3}
   m_Name: ClientData
   m_EditorClassIdentifier: 
-  ClientData: []
+  ClientData:
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
   ComeTime:
     NormalMin: 0
     NormalMax: 0
@@ -20,3 +38,4 @@ MonoBehaviour:
     ManualMax: 0
     ADMin: 0
     ADMax: 0
+    Leave: 0

@@ -29,7 +29,7 @@ public class ClientControl
         {
             c = UnityEngine.Random.Range(0, Player.Level * 3);
         }
-        Debug.Log(c);
+        Debug.Log(c + "來");
         if (Player.DrinkinStock[Select] > 0 )
         {
             Player.DrinkinStock[Select]--;
@@ -39,7 +39,8 @@ public class ClientControl
             {
                 Player.HavetheClient[c] = true;
                 Player.ClientSum++;
-            }            
+            }
+            Debug.Log(c + "買" + Select);
         }
     }
     public void WhenNotPlayingSell()
