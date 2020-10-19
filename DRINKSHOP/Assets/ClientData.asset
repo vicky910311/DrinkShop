@@ -31,6 +31,18 @@ MonoBehaviour:
     isSpecial: 0
     Image: {fileID: 0}
     Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 0}
+    Narrate: 
   ComeTime:
     NormalMin: 0
     NormalMax: 0
@@ -38,4 +50,4 @@ MonoBehaviour:
     ManualMax: 0
     ADMin: 0
     ADMax: 0
-    Leave: 0
+    Leave: 10

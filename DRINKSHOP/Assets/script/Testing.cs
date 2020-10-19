@@ -6,32 +6,37 @@ using System;
 
 public class Testing : MonoBehaviour
 {
-    public PlayerData Player;
+    private PlayerData Player;
     public ClientDataList Client;
     public DrinkDataList Drink;
     public LevelDataList Level;
     public StaffDataList Staff;
-    public MissionList Mission;
+    private MissionList Mission;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
     private EventControl EventControl = new EventControl();
-    public TimeState TimeData;
+    private SaveandLoad saveandLoad = new SaveandLoad();
+    private TimeState TimeData;
     public float NowTime;
     public float EventHappenTime,EventUseTime;
     // Start is called before the first frame update
     void Start()
     {
+        Player = PlayerDataManager.self.Player;
+        TimeData = Timer.self.TimeData;
+        Mission = MissionState.self.Mission;
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;
-        DrinkControl.Player = ClientControl.Player = StaffControl.Player = EventControl.Player = Player;
+        DrinkControl.Player = ClientControl.Player = StaffControl.Player = EventControl.Player = saveandLoad.Player = Player;
         ClientControl.Client = Client;
         EventControl.Level = Level;
         StaffControl.Staff = Staff;
-        EventControl.Mission = Mission;
+        EventControl.Mission = saveandLoad.Mission = Mission;
+        saveandLoad.Time = TimeData;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
         TimeSpan During = Player.ThisOpenTime - Player.LastEndTime; 
-        if((int)(During).TotalSeconds > 0)
+        if((int)(During).TotalSeconds > 0 && TimeData.DevelopTime > 0)
         {
             TimeData.DevelopTime -= (int)(During).TotalSeconds;
             TimeData.DevelopTime = (int)Mathf.Clamp(TimeData.DevelopTime, 0, 36000f);
@@ -41,7 +46,8 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > NowTime + 1.0f)
+        EventControl.PlayerAchieveMission();
+        if (Time.time > NowTime + 1.0f)
         {
             if (TimeData.DevelopTime > 0)
             {
@@ -71,6 +77,22 @@ public class Testing : MonoBehaviour
             Incidenthappen();
             EventHappenTime = Time.time;
             EventUseTime = UnityEngine.Random.Range(5f,10f);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            saveandLoad.Save();
+            
+            Debug.Log("save");
+            
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            saveandLoad.Load();
+            Player = PlayerDataManager.self.Player =  saveandLoad.Player;
+            Mission = MissionState.self.Mission = saveandLoad.Mission;
+            TimeData = Timer.self.TimeData = saveandLoad.Time;
+
+            Debug.Log("load  " + saveandLoad.Player.CatchGhost +"   "+ Player.CatchGhost+"  "+ PlayerDataManager.self.Player.CatchGhost);
         }
     }
    

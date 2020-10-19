@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Assets\script\Controller\DrinkControl.cs" />
     <Compile Include="Assets\script\MissionData\Mission.cs" />
+    <Compile Include="Assets\script\PlayerData\Timer.cs" />
     <Compile Include="Assets\script\Testing.cs" />
     <Compile Include="Assets\script\GameData\ClientComeTime.cs" />
     <Compile Include="Assets\script\MissionData\MissionB.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\script\GameData\StaffData.cs" />
     <Compile Include="Assets\script\GameData\GameDataManager.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\UsageCase.cs" />
+    <Compile Include="Assets\script\PlayerData\TimeState.cs" />
     <Compile Include="Assets\script\MissionData\BaseMission.cs" />
     <Compile Include="Assets\script\GameData\LevelDataList.cs" />
     <Compile Include="Assets\script\Controller\ClientControl.cs" />
@@ -83,7 +85,8 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
-    <Compile Include="Assets\script\PlayerData\TimeState.cs" />
+    <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
+    <Compile Include="Assets\script\MissionData\MissionState.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />

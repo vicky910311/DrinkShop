@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-[CreateAssetMenu(fileName = "MissionData", menuName = "CreateGameData/MissionDataList")]
-public class MissionList : ScriptableObject
+[Serializable]
+public class MissionList
 {
     public List<Mission> Missions;
-    
+   
 }
 
 

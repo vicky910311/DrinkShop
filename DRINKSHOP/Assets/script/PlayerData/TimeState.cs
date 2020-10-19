@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "TimeData", menuName = "CreateTimeData")]
 [Serializable]
-public class TimeState : ScriptableObject
+public class TimeState 
 {
     public List<int> MakeTime;
     public List<int> StaffUnlockTime;

@@ -6,7 +6,20 @@ using UnityEditor.Experimental.RestService;
 
 public class PlayerDataManager : MonoBehaviour
 {
+    public static PlayerDataManager self;
     public PlayerData Player;
+    private void Awake()
+    {
+        if (self == null)
+        {
+            self = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != self)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void Default()
     {
        Player.DrinkSum = 0;
