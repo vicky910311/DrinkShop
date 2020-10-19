@@ -5,10 +5,10 @@ using System;
 
 public class ClientControl 
 {
-    public PlayerData Player;
+    //public PlayerData Player;
     public DrinkDataList Drink;
     public ClientDataList Client;
-   public void SelltheDrink()
+   public void SelltheDrink(PlayerData Player)
     {
         int Select;
         List<int> CanSell = new List<int>();
@@ -43,7 +43,7 @@ public class ClientControl
             Debug.Log(c + "買" + Select);
         }
     }
-    public void WhenNotPlayingSell()
+    public void WhenNotPlayingSell(PlayerData Player)
     {
         TimeSpan T;
         int TempMoney = 0;

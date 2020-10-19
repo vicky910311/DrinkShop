@@ -5,8 +5,8 @@ using UnityEngine;
 public class DrinkControl
 {
     public DrinkDataList Drink;
-    public PlayerData Player;
-    public int DevelopDrink()
+   // public PlayerData Player;
+    public int DevelopDrink(PlayerData Player)
     {
         int Select = -1;
         if (Player.Money >= Drink.DrinkUse.DevelopCost)
@@ -53,7 +53,7 @@ public class DrinkControl
         
         return Select;
     }
-    public void MakingDrink(int i)
+    public void MakingDrink(int i, PlayerData Player)
     {
         int Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.DrinkinStock[i];
         if (Player.Money >= Make * Drink.DrinkData[i].Cost)

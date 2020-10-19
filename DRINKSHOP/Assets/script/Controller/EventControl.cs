@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class EventControl
 {
-    public PlayerData Player;
-    public MissionList Mission;
+    //public PlayerData Player;
+    //public MissionList Mission;
     public DrinkDataList Drink;
     public LevelDataList Level;
-    public void PlayerAchieveMission()
+    public void PlayerAchieveMission(PlayerData Player,MissionList Mission)
     {
         for (int i = 0;i< Mission.Missions.Count;i++)
         {
@@ -73,7 +73,7 @@ public class EventControl
         }
        
     }
-    public bool CanReward(int i)
+    public bool CanReward(int i, MissionList Mission)
     {
         bool canreward = false;
         if (Mission.Missions[i].isActive == false && Mission.Missions[i].isRewarded == false)
@@ -93,7 +93,7 @@ public class EventControl
         }
         return canreward;
     }
-    public void GetReward(int i)
+    public void GetReward(int i, MissionList Mission,PlayerData Player)
     {
         if (Mission.Missions[i].isActive == false && Mission.Missions[i].isRewarded == false)
         {
@@ -111,7 +111,7 @@ public class EventControl
             Debug.Log("未完成");
         }
     }
-    public void IncidentHappen(int j,string Narrate)
+    public void IncidentHappen(int j,string Narrate,PlayerData Player)
     {
         if (j == 1)
         {
@@ -164,7 +164,7 @@ public class EventControl
         }
         Debug.Log(Narrate);
     }
-    public void LevelUp()
+    public void LevelUp(PlayerData Player)
     {
         int MotoLevel = Player.Level;
         if (Player.DrinkSum >= Level.LevelUpData[4].DrinkSum && Player.DrinkSell >= Level.LevelUpData[4].SellSum)

@@ -23,16 +23,13 @@ public class Testing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = PlayerDataManager.self.Player;
-        TimeData = Timer.self.TimeData;
-        Mission = MissionState.self.Mission;
-        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;
-        DrinkControl.Player = ClientControl.Player = StaffControl.Player = EventControl.Player = saveandLoad.Player = Player;
+        Player = saveandLoad.Player = PlayerDataManager.self.Player;
+        Mission = saveandLoad.Mission = MissionState.self.Mission;
+        TimeData = saveandLoad.Time = Timer.self.TimeData;
+        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;   
         ClientControl.Client = Client;
         EventControl.Level = Level;
         StaffControl.Staff = Staff;
-        EventControl.Mission = saveandLoad.Mission = Mission;
-        saveandLoad.Time = TimeData;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
         TimeSpan During = Player.ThisOpenTime - Player.LastEndTime; 
@@ -46,7 +43,7 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EventControl.PlayerAchieveMission();
+        EventControl.PlayerAchieveMission(Player,Mission);
         if (Time.time > NowTime + 1.0f)
         {
             if (TimeData.DevelopTime > 0)
@@ -82,17 +79,17 @@ public class Testing : MonoBehaviour
         {
             saveandLoad.Save();
             
-            Debug.Log("save");
+            Debug.Log("save" + Player.DrinkinStock[0] + "?" + PlayerDataManager.self.Player.DrinkinStock[0]);
             
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             saveandLoad.Load();
-            Player = PlayerDataManager.self.Player =  saveandLoad.Player;
+            Player = PlayerDataManager.self.Player = saveandLoad.Player;
             Mission = MissionState.self.Mission = saveandLoad.Mission;
             TimeData = Timer.self.TimeData = saveandLoad.Time;
 
-            Debug.Log("load  " + saveandLoad.Player.CatchGhost +"   "+ Player.CatchGhost+"  "+ PlayerDataManager.self.Player.CatchGhost);
+            Debug.Log("load  " + Player.DrinkinStock[0] + "?" + PlayerDataManager.self.Player.DrinkinStock[0]);
         }
     }
    
@@ -100,7 +97,7 @@ public class Testing : MonoBehaviour
     {
         int i = UnityEngine.Random.Range(1, 5);
         string n = "沒事";
-        EventControl.IncidentHappen(i, n);
+        EventControl.IncidentHappen(i, n,Player);
         if(i == 1)
         {
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
@@ -108,11 +105,12 @@ public class Testing : MonoBehaviour
     }
     public void SellDrinks()
     {
-        ClientControl.SelltheDrink();
+        ClientControl.SelltheDrink(Player);
+        Debug.Log(Player.DrinkinStock[0]+"?"+ PlayerDataManager.self.Player.DrinkinStock[0]);
     }
     public void Develop()
     {
-        TimeData.DevelopTemp = DrinkControl.DevelopDrink();
+        TimeData.DevelopTemp = DrinkControl.DevelopDrink(Player);
         if (TimeData.DevelopTemp != -1)
             TimeData.DevelopTime = Drink.DrinkData[TimeData.DevelopTemp].DevelopTime;
     }
@@ -120,7 +118,7 @@ public class Testing : MonoBehaviour
     {
         for (int i = 0;i<Player.CanMake.Count;i++)
         {
-            DrinkControl.MakingDrink(Player.CanMake[i]);
+            DrinkControl.MakingDrink(Player.CanMake[i],Player);
             Debug.Log(Player.CanMake[i] + "補齊了");
         }
     }

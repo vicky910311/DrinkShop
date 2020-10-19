@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80d4278aa0a9e6947ba5bcd540ba1a09, type: 3}
-  m_Name: StaffData
+  m_Name: StaffDataTest
   m_EditorClassIdentifier: 
   StaffData:
   - Name: 

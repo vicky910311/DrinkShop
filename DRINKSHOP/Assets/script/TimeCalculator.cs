@@ -24,12 +24,7 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     // Start is called before the first frame update
     void Start()
     {
-        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;
-        DrinkControl.Player = ClientControl.Player = StaffControl.Player = EventControl.Player = Player;
-        ClientControl.Client = Client;
-        EventControl.Level = Level;
-        StaffControl.Staff = Staff;
-        EventControl.Mission = Mission;
+       
        
     }
 

@@ -5,12 +5,22 @@ using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
 {
-    
+    public static GameDataManager self;
     public DrinkDataList Drink;
     public StaffDataList Staff;
     public ClientDataList Client;
     public LevelDataList Level;
-    public MissionList Mission;
-    
-    
+    private void Awake()
+    {
+        if (self == null)
+        {
+            self = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != self)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

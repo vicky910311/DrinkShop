@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StaffControl 
 {
-    public PlayerData Player;
+   // public PlayerData Player;
     public StaffDataList Staff;
-    void UnlockStaff(int i)
+    void UnlockStaff(int i, PlayerData Player)
     {
         if ( Player.Money >= Staff.StaffData[i].UnlockCost && Player.Level >= Staff.StaffData[i].UnlockLevel)
         {

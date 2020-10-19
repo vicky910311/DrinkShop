@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e670b23fbc4ff664682c3f1cf66f15fd, type: 3}
-  m_Name: DrinkData
+  m_Name: DrinkDataTest
   m_EditorClassIdentifier: 
   DrinkData:
   - Chara: 0
