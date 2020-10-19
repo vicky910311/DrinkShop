@@ -15,7 +15,7 @@ public class DrinkControl
             {
                 Player.Money -= Drink.DrinkUse.DevelopCost;
                 Select = Random.Range(0, Drink.DrinkData.Count);
-                if (Player.HavetheDrink[Select] == true)
+               /* if (Player.HavetheDrink[Select] == true)
                 {
                     Player.Coin++;
                     Debug.Log("代幣增加");
@@ -26,7 +26,7 @@ public class DrinkControl
                     Player.DrinkSum++;
                     Player.CanMake.Add(Select);
                     Debug.Log(Select + "研發成功");
-                }
+                }*/
             }
             else if (Player.Coin >= 3 && Player.DrinkSum < Drink.DrinkData.Count)
             {
@@ -39,10 +39,10 @@ public class DrinkControl
                 }
                 int A = Random.Range(0, NewDrink.Count);
                 Select = NewDrink[A];
-                Player.HavetheDrink[Select] = true;
+               /* Player.HavetheDrink[Select] = true;
                 Player.DrinkSum++;
                 Player.CanMake.Add(Select);
-                Debug.Log(Select + "研發成功");
+                Debug.Log(Select + "研發成功");*/
             }
             else
                 Debug.Log("收集完畢");

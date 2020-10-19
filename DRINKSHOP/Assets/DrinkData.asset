@@ -18,7 +18,7 @@ MonoBehaviour:
     Image: {fileID: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 0
+    DevelopTime: 5
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     Image: {fileID: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 0
+    DevelopTime: 4
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     Image: {fileID: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 0
+    DevelopTime: 3
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
     Image: {fileID: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 0
+    DevelopTime: 2
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     Image: {fileID: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 0
+    DevelopTime: 1
     isSpecial: 0
     Narrate: 
   DrinkUse:

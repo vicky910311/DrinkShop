@@ -158,7 +158,7 @@ public class EventControl
         }
         if (j == 4)
         {
-            int stole =((int)Random.Range(1,6))*100;
+            int stole =((int)Random.Range(1,3))*100;
             Player.Money -= stole;
             Narrate = "被偷了" + stole + "元";
         }

@@ -831,6 +831,10 @@ MonoBehaviour:
   Level: {fileID: 11400000, guid: 048780c238c4f95409ff221de8ac1b69, type: 2}
   Staff: {fileID: 11400000, guid: 9b74a0ca74bcc8544adc1f76081b4019, type: 2}
   Mission: {fileID: 11400000, guid: c53b9b136a4815843b06434ce6d1467b, type: 2}
+  TimeData: {fileID: 11400000, guid: 7e39bb2c32f05d64db4447f0f8db2511, type: 2}
+  NowTime: 0
+  EventHappenTime: 0
+  EventUseTime: 0
 --- !u!4 &1310384416
 Transform:
   m_ObjectHideFlags: 0
@@ -839,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310384414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9589186, y: 4.106159, z: -2.297912}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
