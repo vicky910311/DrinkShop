@@ -567,7 +567,7 @@ MonoBehaviour:
     DevelopTime: -1
     MakeTemp: 
     StaffUnlockTemp: 
-    DevelopTemp: 0
+    DevelopTemp: -1
 --- !u!4 &502338697
 Transform:
   m_ObjectHideFlags: 0
@@ -696,7 +696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player:
     HavetheDrink: 0100000000
-    DrinkSum: 1
     HavetheStaff: 01000000
     StaffSum: 1
     HavetheClient: 0000000000
@@ -936,6 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686558429ccef1e4493fb13d77ed727b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pm: {fileID: 878473494}
   Client: {fileID: 11400000, guid: f63fee10be5adca46963ee58d035b8bf, type: 2}
   Drink: {fileID: 11400000, guid: b7e297ee127359148a95565bd1650b5b, type: 2}
   Level: {fileID: 11400000, guid: 048780c238c4f95409ff221de8ac1b69, type: 2}

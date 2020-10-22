@@ -59,9 +59,11 @@
     <Compile Include="Assets\script\MissionData\Mission.cs" />
     <Compile Include="Assets\script\PlayerData\Timer.cs" />
     <Compile Include="Assets\script\Testing.cs" />
+    <Compile Include="Assets\script\MissionData\MissionState.cs" />
     <Compile Include="Assets\script\GameData\ClientComeTime.cs" />
     <Compile Include="Assets\script\MissionData\MissionB.cs" />
     <Compile Include="Assets\script\MissionData\MissionA.cs" />
+    <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
     <Compile Include="Assets\script\Controller\EventControl.cs" />
     <Compile Include="Assets\script\GameData\LuckyData.cs" />
     <Compile Include="Assets\script\GameData\DrinkData.cs" />
@@ -85,8 +87,9 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
-    <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
-    <Compile Include="Assets\script\MissionData\MissionState.cs" />
+    <Compile Include="Assets\script\Data.cs" />
+    <Compile Include="Assets\script\DataUI.cs" />
+    <Compile Include="Assets\script\ChangeData.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />

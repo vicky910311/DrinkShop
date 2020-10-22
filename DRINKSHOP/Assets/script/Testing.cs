@@ -7,6 +7,7 @@ using System;
 public class Testing : MonoBehaviour
 {
     private PlayerData Player;
+    public PlayerDataManager pm;
     public ClientDataList Client;
     public DrinkDataList Drink;
     public LevelDataList Level;
@@ -20,9 +21,11 @@ public class Testing : MonoBehaviour
     private TimeState TimeData;
     public float NowTime;
     public float EventHappenTime,EventUseTime;
+    
     // Start is called before the first frame update
     void Start()
     {
+        //pm.Player.OnDrinkSumChanged += AddDrinkSum;
         Player = saveandLoad.Player = PlayerDataManager.self.Player;
         Mission = saveandLoad.Mission = MissionState.self.Mission;
         TimeData = saveandLoad.Time = Timer.self.TimeData;
@@ -43,7 +46,7 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EventControl.PlayerAchieveMission(Player,Mission);
+       
         if (Time.time > NowTime + 1.0f)
         {
             if (TimeData.DevelopTime > 0)
@@ -53,20 +56,26 @@ public class Testing : MonoBehaviour
             }
             else if(TimeData.DevelopTime == 0)
             {
-                if (Player.HavetheDrink[TimeData.DevelopTemp] == true)
-                {
-                    Player.Coin++;
-                    Debug.Log("代幣增加");
-                }
-                else if( TimeData.DevelopTemp != -1)
+                if (TimeData.DevelopTemp != -1 && Player.HavetheDrink[TimeData.DevelopTemp] != true)
                 {
                     Player.HavetheDrink[TimeData.DevelopTemp] = true;
-                    Player.DrinkSum++;
+                    AddDrinkSum();
+                    //Player.DrinkSum++;
                     Player.CanMake.Add(TimeData.DevelopTemp);
                     Debug.Log(TimeData.DevelopTemp + "研發成功");
                 }
+                else if (TimeData.DevelopTemp != -1 && Player.HavetheDrink[TimeData.DevelopTemp] == true)
+                {
+                    Player.Coin++;
+                    Debug.Log("代幣增加" + Player.Coin);
+                }
                 TimeData.DevelopTime = -1;
+               
+
+              //  HaveDevelop();
+
             }
+          
             NowTime = Time.time;
         }
         if (Time.time > EventHappenTime + EventUseTime)
@@ -110,9 +119,33 @@ public class Testing : MonoBehaviour
     }
     public void Develop()
     {
-        TimeData.DevelopTemp = DrinkControl.DevelopDrink(Player);
+        TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
         if (TimeData.DevelopTemp != -1)
             TimeData.DevelopTime = Drink.DrinkData[TimeData.DevelopTemp].DevelopTime;
+    }
+    public void AddDrinkSum()
+    {
+        pm.Player.DrinkSum++;
+    }
+    public void HaveDevelop()
+    {
+       
+       if (TimeData.DevelopTemp != -1 && pm.Player.HavetheDrink[TimeData.DevelopTemp] != true)
+        {
+            pm.Player.HavetheDrink[TimeData.DevelopTemp] = true;
+            AddDrinkSum();
+            Player.CanMake.Add(TimeData.DevelopTemp);
+            Debug.Log(TimeData.DevelopTemp + "研發成功");
+            TimeData.DevelopTime = -1;
+        }
+       else if (TimeData.DevelopTemp != -1 && pm.Player.HavetheDrink[TimeData.DevelopTemp] == true)
+        {
+            Player.Coin++;
+            Debug.Log("代幣增加" + Player.Coin);
+            TimeData.DevelopTime = -1;
+        }
+       
+
     }
     public void MakeAll()
     {
