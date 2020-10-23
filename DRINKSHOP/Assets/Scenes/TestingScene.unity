@@ -562,12 +562,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeData:
-    MakeTime: 
-    StaffUnlockTime: 
-    DevelopTime: -1
-    MakeTemp: 
+    maketime: 
+    staffunlocktime: 
+    developtime: -1
+    maketemp: 
+    staffunlocktemp: 
     StaffUnlockTemp: 
-    DevelopTemp: -1
+    developtemp: -1
 --- !u!4 &502338697
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,7 +1252,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mission:
-    Missions: []
+    Missions:
+    - name: 
+      narrate: 
+      isactive: 0
+      isreach: 0
+      isrewarded: 0
+      type: 0
+      needamount: 0
+      reward: 0
 --- !u!4 &1632534175
 Transform:
   m_ObjectHideFlags: 0
