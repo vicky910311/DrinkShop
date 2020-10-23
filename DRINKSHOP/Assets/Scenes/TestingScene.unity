@@ -695,22 +695,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player:
-    HavetheDrink: 0100000000
-    HavetheStaff: 01000000
-    StaffSum: 1
-    HavetheClient: 0000000000
-    ClientSum: 0
-    Money: 12000
-    Level: 1
-    DrinkinStock: 1900000019000000190000001900000019000000
-    DrinkSell: 0
-    AddStockLimit: 0
-    DeleteAD: 0
-    FirstTime: 1
-    Coin: 0
-    CanMake: 00000000
-    CatchGhost: 0
-    CatchSleep: 0
+    havethedrink: 0100000000
+    drinksum: 1
+    havethestaff: 01000000
+    staffsum: 1
+    havetheclient: 0000000000
+    clientsum: 0
+    money: 2000
+    level: 0
+    drinkinstock: 1900000019000000190000001900000019000000
+    drinksell: 0
+    addstocklimit: 0
+    deletead: 0
+    firsttime: 0
+    coin: 0
+    canmake: 00000000
+    catchghost: 0
+    catchsleep: 0
 --- !u!4 &878473495
 Transform:
   m_ObjectHideFlags: 0
@@ -936,10 +937,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pm: {fileID: 878473494}
-  Client: {fileID: 11400000, guid: f63fee10be5adca46963ee58d035b8bf, type: 2}
-  Drink: {fileID: 11400000, guid: b7e297ee127359148a95565bd1650b5b, type: 2}
-  Level: {fileID: 11400000, guid: 048780c238c4f95409ff221de8ac1b69, type: 2}
-  Staff: {fileID: 11400000, guid: 9b74a0ca74bcc8544adc1f76081b4019, type: 2}
+  ms: {fileID: 1632534174}
+  tm: {fileID: 502338696}
+  gm: {fileID: 1767361525}
   NowTime: 0
   EventHappenTime: 0
   EventUseTime: 0
@@ -1265,6 +1265,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767361524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1767361526}
+  - component: {fileID: 1767361525}
+  m_Layer: 0
+  m_Name: GameDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1767361525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767361524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a48f6b634cd494ca50f21a13076bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Drink: {fileID: 11400000, guid: b7e297ee127359148a95565bd1650b5b, type: 2}
+  Staff: {fileID: 11400000, guid: 9b74a0ca74bcc8544adc1f76081b4019, type: 2}
+  Client: {fileID: 11400000, guid: f63fee10be5adca46963ee58d035b8bf, type: 2}
+  Level: {fileID: 11400000, guid: 048780c238c4f95409ff221de8ac1b69, type: 2}
+--- !u!4 &1767361526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767361524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 777.1053, y: 964.86725, z: -1349.1909}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871550177
 GameObject:

@@ -6,40 +6,32 @@ using System;
 
 public class Testing : MonoBehaviour
 {
-    private PlayerData Player;
     public PlayerDataManager pm;
-    public ClientDataList Client;
-    public DrinkDataList Drink;
-    public LevelDataList Level;
-    public StaffDataList Staff;
-    private MissionList Mission;
+    public MissionState ms;
+    public Timer tm;
+    public GameDataManager gm;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
     private EventControl EventControl = new EventControl();
     private SaveandLoad saveandLoad = new SaveandLoad();
-    private TimeState TimeData;
     public float NowTime;
     public float EventHappenTime,EventUseTime;
     
     // Start is called before the first frame update
     void Start()
     {
-        //pm.Player.OnDrinkSumChanged += AddDrinkSum;
-        Player = saveandLoad.Player = PlayerDataManager.self.Player;
-        Mission = saveandLoad.Mission = MissionState.self.Mission;
-        TimeData = saveandLoad.Time = Timer.self.TimeData;
-        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = Drink;   
-        ClientControl.Client = Client;
-        EventControl.Level = Level;
-        StaffControl.Staff = Staff;
+        DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;   
+        ClientControl.Client = gm.Client;
+        EventControl.Level = gm.Level;
+        StaffControl.Staff = gm.Staff;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
-        TimeSpan During = Player.ThisOpenTime - Player.LastEndTime; 
-        if((int)(During).TotalSeconds > 0 && TimeData.DevelopTime > 0)
+        TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime; 
+        if((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
         {
-            TimeData.DevelopTime -= (int)(During).TotalSeconds;
-            TimeData.DevelopTime = (int)Mathf.Clamp(TimeData.DevelopTime, 0, 36000f);
+            tm.TimeData.DevelopTime -= (int)(During).TotalSeconds;
+            tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
         }
         
     }
@@ -49,27 +41,27 @@ public class Testing : MonoBehaviour
        
         if (Time.time > NowTime + 1.0f)
         {
-            if (TimeData.DevelopTime > 0)
+            if (tm.TimeData.DevelopTime > 0)
             {
-                TimeData.DevelopTime--;
-                Debug.Log(TimeData.DevelopTime);
+                tm.TimeData.DevelopTime--;
+                Debug.Log(tm.TimeData.DevelopTime);
             }
-            else if(TimeData.DevelopTime == 0)
+            else if(tm.TimeData.DevelopTime == 0)
             {
-                if (TimeData.DevelopTemp != -1 && Player.HavetheDrink[TimeData.DevelopTemp] != true)
+                if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
                 {
-                    Player.HavetheDrink[TimeData.DevelopTemp] = true;
+                    pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp,true);
                     AddDrinkSum();
                     //Player.DrinkSum++;
-                    Player.CanMake.Add(TimeData.DevelopTemp);
-                    Debug.Log(TimeData.DevelopTemp + "研發成功");
+                    pm.Player.addCanMake(tm.TimeData.DevelopTemp);
+                    Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
                 }
-                else if (TimeData.DevelopTemp != -1 && Player.HavetheDrink[TimeData.DevelopTemp] == true)
+                else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
                 {
-                    Player.Coin++;
-                    Debug.Log("代幣增加" + Player.Coin);
+                    pm.Player.Coin++;
+                    Debug.Log("代幣增加" + pm.Player.Coin);
                 }
-                TimeData.DevelopTime = -1;
+                tm.TimeData.DevelopTime = -1;
                
 
               //  HaveDevelop();
@@ -88,17 +80,17 @@ public class Testing : MonoBehaviour
         {
             saveandLoad.Save();
             
-            Debug.Log("save" + Player.DrinkinStock[0] + "?" + PlayerDataManager.self.Player.DrinkinStock[0]);
+            Debug.Log("save" );
             
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             saveandLoad.Load();
-            Player = PlayerDataManager.self.Player = saveandLoad.Player;
-            Mission = MissionState.self.Mission = saveandLoad.Mission;
-            TimeData = Timer.self.TimeData = saveandLoad.Time;
+            pm.Player = saveandLoad.Player;
+            ms.Mission = saveandLoad.Mission;
+            tm.TimeData  = saveandLoad.Time;
 
-            Debug.Log("load  " + Player.DrinkinStock[0] + "?" + PlayerDataManager.self.Player.DrinkinStock[0]);
+            Debug.Log("load  "+ pm.Player.getDrinkinStock(0));
         }
     }
    
@@ -106,7 +98,7 @@ public class Testing : MonoBehaviour
     {
         int i = UnityEngine.Random.Range(1, 5);
         string n = "沒事";
-        EventControl.IncidentHappen(i, n,Player);
+        EventControl.IncidentHappen(i, n, pm.Player);
         if(i == 1)
         {
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
@@ -114,14 +106,14 @@ public class Testing : MonoBehaviour
     }
     public void SellDrinks()
     {
-        ClientControl.SelltheDrink(Player);
-        Debug.Log(Player.DrinkinStock[0]+"?"+ PlayerDataManager.self.Player.DrinkinStock[0]);
+        ClientControl.SelltheDrink(pm.Player);
+        Debug.Log(pm.Player.getDrinkinStock(0));
     }
     public void Develop()
     {
-        TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
-        if (TimeData.DevelopTemp != -1)
-            TimeData.DevelopTime = Drink.DrinkData[TimeData.DevelopTemp].DevelopTime;
+        tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
+        if (tm.TimeData.DevelopTemp != -1)
+            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
     }
     public void AddDrinkSum()
     {
@@ -130,29 +122,29 @@ public class Testing : MonoBehaviour
     public void HaveDevelop()
     {
        
-       if (TimeData.DevelopTemp != -1 && pm.Player.HavetheDrink[TimeData.DevelopTemp] != true)
+       if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
         {
-            pm.Player.HavetheDrink[TimeData.DevelopTemp] = true;
+            pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp, true);
             AddDrinkSum();
-            Player.CanMake.Add(TimeData.DevelopTemp);
-            Debug.Log(TimeData.DevelopTemp + "研發成功");
-            TimeData.DevelopTime = -1;
+            pm.Player.addCanMake(tm.TimeData.DevelopTemp);
+            Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
+            tm.TimeData.DevelopTime = -1;
         }
-       else if (TimeData.DevelopTemp != -1 && pm.Player.HavetheDrink[TimeData.DevelopTemp] == true)
+       else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
         {
-            Player.Coin++;
-            Debug.Log("代幣增加" + Player.Coin);
-            TimeData.DevelopTime = -1;
+            pm.Player.Coin++;
+            Debug.Log("代幣增加" + pm.Player.Coin);
+            tm.TimeData.DevelopTime = -1;
         }
        
 
     }
     public void MakeAll()
     {
-        for (int i = 0;i<Player.CanMake.Count;i++)
+        for (int i = 0;i< pm.Player.DrinkSum;i++)
         {
-            DrinkControl.MakingDrink(Player.CanMake[i],Player);
-            Debug.Log(Player.CanMake[i] + "補齊了");
+            DrinkControl.MakingDrink(pm.Player.getCanMake(i), pm.Player);
+            Debug.Log(pm.Player.getCanMake(i) + "補齊了");
         }
     }
    

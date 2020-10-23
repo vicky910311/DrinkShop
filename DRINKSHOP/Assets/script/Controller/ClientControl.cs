@@ -12,9 +12,9 @@ public class ClientControl
     {
         int Select;
         List<int> CanSell = new List<int>();
-        for (int i = 0; i<Player.HavetheDrink.Count; i++)
+        for (int i = 0; i<Player.countHavetheDrink(); i++)
         {
-            if (Player.HavetheDrink[i])
+            if (Player.getHavetheDrink(i))
                 CanSell.Add(i);
         }
         int a = UnityEngine.Random.Range(0, CanSell.Count);
@@ -30,14 +30,14 @@ public class ClientControl
             c = UnityEngine.Random.Range(0, Player.Level * 3);
         }
         Debug.Log(c + "來");
-        if (Player.DrinkinStock[Select] > 0 )
+        if (Player.getDrinkinStock(Select) > 0)
         {
-            Player.DrinkinStock[Select]--;
+            Player.setDrinkinStock(Select, Player.getDrinkinStock(Select) - 1);
             Player.DrinkSell++;
             Player.Money += Drink.DrinkData[Select].Price;
-            if (Player.HavetheClient[c] == false)
+            if (Player.getHavetheClient(c) == false)
             {
-                Player.HavetheClient[c] = true;
+                Player.setHavetheClient(c, true);
                 Player.ClientSum++;
             }
             Debug.Log(c + "買" + Select);
@@ -54,9 +54,9 @@ public class ClientControl
         }
         T = Player.ThisOpenTime - Player.LastEndTime;
         List<int> CanSell = new List<int>();
-        for (int j = 0; j < Player.HavetheDrink.Count; j++)
+        for (int j = 0; j < Player.countHavetheDrink(); j++)
         {
-            if (Player.HavetheDrink[j])
+            if (Player.getHavetheDrink(j))
                 CanSell.Add(j);
         }
         for (int i = 0; i < (int)T.TotalMinutes/Client.ComeTime.Leave; i++)
@@ -75,14 +75,14 @@ public class ClientControl
                 c = UnityEngine.Random.Range(0, Player.Level * 3);
             }
             Debug.Log(c);
-            if (Player.DrinkinStock[Select] > 0)
+            if (Player.getDrinkinStock(Select) > 0)
             {
-                Player.DrinkinStock[Select]--;
+                Player.setDrinkinStock(Select, Player.getDrinkinStock(Select)-1);
                 Player.DrinkSell++;
                 Player.Money += Drink.DrinkData[Select].Price;
-                if (Player.HavetheClient[c] == false)
+                if (Player.getHavetheClient(c) == false)
                 {
-                    Player.HavetheClient[c] = true;
+                    Player.setHavetheClient(c,true);
                     Player.ClientSum++;
                 }
             }

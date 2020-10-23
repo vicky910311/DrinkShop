@@ -8,11 +8,12 @@ public class StaffControl
     public StaffDataList Staff;
     void UnlockStaff(int i, PlayerData Player)
     {
-        if ( Player.Money >= Staff.StaffData[i].UnlockCost && Player.Level >= Staff.StaffData[i].UnlockLevel)
+        if (Player.Money >= Staff.StaffData[i].UnlockCost && Player.Level >= Staff.StaffData[i].UnlockLevel)
         {
             Player.Money -= Staff.StaffData[i].UnlockCost;
-            Player.HavetheStaff[i] = true;
+            Player.setHavetheStaff(i, true);
         }
+
         else
         {
             Debug.Log("不符解鎖條件");

@@ -126,9 +126,9 @@ public class EventControl
         {
             int Select;
             List<int> CanSell = new List<int>();
-            for (int i = 0; i < Player.HavetheDrink.Count; i++)
+            for (int i = 0; i < Player.countHavetheDrink(); i++)
             {
-                if (Player.HavetheDrink[i])
+                if (Player.getHavetheDrink(i))
                     CanSell.Add(i);
             }
             int a = UnityEngine.Random.Range(0, CanSell.Count);
@@ -136,19 +136,19 @@ public class EventControl
             if ((int)Random.Range(0,10)>0)
             {
                 Narrate = Select + "被買光了";
-                int buy = Player.DrinkinStock[Select];
-                Player.DrinkinStock[Select] = 0;
+                int buy = Player.getDrinkinStock(Select);
+                Player.setDrinkinStock(Select,0);
                 Player.Money += Drink.DrinkData[Select].Price*buy;
             }
             else
             {
                 Narrate = "全店被買光了";
-                for (int i = 0; i < Player.HavetheDrink.Count; i++)
+                for (int i = 0; i < Drink.DrinkData.Count; i++)
                 {
-                    if (Player.HavetheDrink[i])
+                    if (Player.getHavetheDrink(i))
                     {
-                        int buy = Player.DrinkinStock[i];
-                        Player.DrinkinStock[i] = 0;
+                        int buy = Player.getDrinkinStock(i);
+                        Player.setDrinkinStock(i,0);
                         Player.Money += Drink.DrinkData[i].Price * buy;
                     }
                         
@@ -158,9 +158,12 @@ public class EventControl
         }
         if (j == 4)
         {
-            int stole =((int)Random.Range(1,3))*100;
-            Player.Money -= stole;
-            Narrate = "被偷了" + stole + "元";
+            if (Player.Money >= 1000)
+            {
+                int stole = ((int)Random.Range(1, 3)) * 100;
+                Player.Money -= stole;
+                Narrate = "被偷了" + stole + "元";
+            }  
         }
         Debug.Log(Narrate);
     }

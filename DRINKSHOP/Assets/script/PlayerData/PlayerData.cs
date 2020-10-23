@@ -9,7 +9,6 @@ public class PlayerData
 {
     [SerializeField]
     private List<bool> havethedrink;
-    public List<bool> HavetheDrink;
     public void setHavetheDrink(int i,bool b)
     {
         if (i < havethedrink.Count && i >= 0)
@@ -23,6 +22,10 @@ public class PlayerData
             return havethedrink[i];
         else
             return false;
+    }
+    public int countHavetheDrink()
+    {
+        return havethedrink.Count;
     }
     [SerializeField]
     private int drinksum;
@@ -55,7 +58,6 @@ public class PlayerData
         else
             return false;
     }
-    public List<bool> HavetheStaff;
     [SerializeField]
     private int staffsum;
     public int StaffSum
@@ -87,7 +89,6 @@ public class PlayerData
         else
             return false;
     }
-    public List<bool> HavetheClient;
     [SerializeField]
     private int clientsum;
     public int ClientSum
@@ -151,7 +152,6 @@ public class PlayerData
         else
             return 0;
     }
-    public List<int> DrinkinStock;
     [SerializeField]
     private int drinksell;
     public int DrinkSell
@@ -278,7 +278,6 @@ public class PlayerData
     {
         canmake.Add(n);
     }
-    public List<int> CanMake;
     [SerializeField]
     private int catchghost;
     public int CatchGhost

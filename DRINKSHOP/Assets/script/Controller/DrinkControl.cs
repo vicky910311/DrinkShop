@@ -34,7 +34,7 @@ public class DrinkControl
                 List<int> NewDrink = new List<int>();
                 for (int i = 0; i < Drink.DrinkData.Count; i++)
                 {
-                    if (Player.HavetheDrink[i] != true)
+                    if (Player.getHavetheDrink(i) != true)
                         NewDrink.Add(i);
                 }
                 int A = Random.Range(0, NewDrink.Count);
@@ -55,17 +55,20 @@ public class DrinkControl
     }
     public void MakingDrink(int i, PlayerData Player)
     {
-        int Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.DrinkinStock[i];
+        int Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.getDrinkinStock(i);
         if (Player.Money >= Make * Drink.DrinkData[i].Cost)
         {
-            Player.DrinkinStock[i] += Make;
+            Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
             Player.Money -= Make * Drink.DrinkData[i].Cost;
         }
         else
         {
-            Make = Player.Money / Drink.DrinkData[i].Cost;
-            Player.DrinkinStock[i] += Make;
-            Player.Money -= Make * Drink.DrinkData[i].Cost;
+            if(Drink.DrinkData[i].Cost != 0)
+            {
+                Make = Player.Money / Drink.DrinkData[i].Cost;
+                Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
+                Player.Money -= Make * Drink.DrinkData[i].Cost;
+            }
         }
         float MakeTime = Make * 0.5f / Player.StaffSum;
     }
