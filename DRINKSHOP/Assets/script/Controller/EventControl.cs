@@ -111,7 +111,7 @@ public class EventControl
             Debug.Log("未完成");
         }
     }
-    public void IncidentHappen(int j,string Narrate,PlayerData Player)
+    public void IncidentHappen(int j,ref string Narrate,PlayerData Player)
     {
         if (j == 1)
         {

@@ -5029,7 +5029,30 @@ MonoBehaviour:
   time1: {fileID: 1549272844}
   time2: {fileID: 89981175}
   differ: {fileID: 1059326098}
-  Player: {fileID: 11400000, guid: 8ba48105d8e48a541b81e8e46f9773ea, type: 2}
+  Player:
+    havethedrink: 
+    drinksum: 0
+    havethestaff: 
+    staffsum: 0
+    havetheclient: 
+    clientsum: 0
+    money: 0
+    level: 0
+    drinkinstock: 
+    drinksell: 0
+    addstocklimit: 0
+    deletead: 0
+    firsttime: 0
+    coin: 0
+    canmake: 
+    catchghost: 0
+    catchsleep: 0
+  Client: {fileID: 0}
+  Drink: {fileID: 0}
+  Level: {fileID: 0}
+  Staff: {fileID: 0}
+  Mission:
+    Missions: []
 --- !u!1 &2005819173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5391,7 +5414,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
-  m_StartAxis: 1
+  m_StartAxis: 0
   m_CellSize: {x: 250, y: 400}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1

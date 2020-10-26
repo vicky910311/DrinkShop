@@ -30,7 +30,7 @@ public class PlayerDataManager : MonoBehaviour
         Player.DrinkSell = 0;
         Player.AddStockLimit = 0;
         Player.DeleteAD = false;
-        Player.FirstTime = false;
+        Player.FirstTime = true;
         Player.Coin = 0;
         Player.ThisOpenTime = DateTime.Now;
         Player.LastEndTime = DateTime.Now;

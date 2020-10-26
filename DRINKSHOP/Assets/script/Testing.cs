@@ -3,6 +3,7 @@ using System.Collections.Generic;
 //using System.Diagnostics;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Testing : MonoBehaviour
 {
@@ -17,10 +18,19 @@ public class Testing : MonoBehaviour
     private SaveandLoad saveandLoad = new SaveandLoad();
     public float NowTime;
     public float EventHappenTime,EventUseTime;
-    
+    public GameObject Content,IncidentWindow,Scroll;
     // Start is called before the first frame update
     void Start()
     {
+        pm.Player.ThisOpenTime = DateTime.Now;
+        saveandLoad.Load();
+        pm.Player = saveandLoad.Player;
+        ms.Mission = saveandLoad.Mission;
+        tm.TimeData = saveandLoad.Time;
+        if (pm.Player.FirstTime == false)
+        {
+            ClientControl.WhenNotPlayingSell(pm.Player);
+        }
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;   
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
@@ -94,15 +104,34 @@ public class Testing : MonoBehaviour
         }
     }
    
+    public void OpenIncidentWindow()
+    {
+       if(IncidentWindow.transform.position == new Vector3(540, 960, 0))
+        {
+            IncidentWindow.transform.position = new Vector3(1840, 0, 0);
+        }
+       else
+        {
+            IncidentWindow.transform.position = new Vector3(540, 960, 0);
+        }
+        
+    }
     public void Incidenthappen()
     {
         int i = UnityEngine.Random.Range(1, 5);
         string n = "沒事";
-        EventControl.IncidentHappen(i, n, pm.Player);
+        EventControl.IncidentHappen(i, ref n, pm.Player);
         if(i == 1)
         {
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
         }
+        GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), transform) as GameObject;
+        narrate.transform.SetParent(GameObject.Find("Canvas/Panel/scroll/content").transform);
+        narrate.GetComponent<Text>().text = n;
+        RectTransform rt = Content.GetComponent<RectTransform>();
+        rt.position -= new Vector3(0, 100, 0);
+        rt.sizeDelta += new Vector2(0,200);
+        
     }
     public void SellDrinks()
     {
@@ -147,5 +176,10 @@ public class Testing : MonoBehaviour
             Debug.Log(pm.Player.getCanMake(i) + "補齊了");
         }
     }
-   
+    void OnApplicationPause()
+    {
+        pm.Player.LastEndTime = DateTime.Now;
+        saveandLoad.Save();
+        Debug.Log("save");
+    }
 }
