@@ -22,27 +22,28 @@ public class Testing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pm.Player.ThisOpenTime = DateTime.Now;
+
+        /* if (pm.Player.FirstTime == false)
+         {
         saveandLoad.Load();
-        pm.Player = saveandLoad.Player;
-        ms.Mission = saveandLoad.Mission;
-        tm.TimeData = saveandLoad.Time;
-        if (pm.Player.FirstTime == false)
-        {
-            ClientControl.WhenNotPlayingSell(pm.Player);
-        }
+         pm.Player = saveandLoad.Player;
+         ms.Mission = saveandLoad.Mission;
+         tm.TimeData = saveandLoad.Time;
+         pm.Player.ThisOpenTime = DateTime.Now;
+             ClientControl.WhenNotPlayingSell(pm.Player);
+         }*/
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;   
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
         StaffControl.Staff = gm.Staff;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
-        TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime; 
+        /*TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime; 
         if((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
         {
             tm.TimeData.DevelopTime -= (int)(During).TotalSeconds;
             tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
-        }
+        }*/
         
     }
     // Update is called once per frame
@@ -61,8 +62,7 @@ public class Testing : MonoBehaviour
                 if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
                 {
                     pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp,true);
-                    AddDrinkSum();
-                    //Player.DrinkSum++;
+                    pm.Player.DrinkSum++;
                     pm.Player.addCanMake(tm.TimeData.DevelopTemp);
                     Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
                 }
@@ -106,13 +106,13 @@ public class Testing : MonoBehaviour
    
     public void OpenIncidentWindow()
     {
-       if(IncidentWindow.transform.position == new Vector3(540, 960, 0))
+       if(IncidentWindow.activeSelf == true)
         {
-            IncidentWindow.transform.position = new Vector3(1840, 0, 0);
+            IncidentWindow.SetActive(false);
         }
        else
         {
-            IncidentWindow.transform.position = new Vector3(540, 960, 0);
+            IncidentWindow.SetActive(true);
         }
         
     }
@@ -126,7 +126,7 @@ public class Testing : MonoBehaviour
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
         }
         GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), transform) as GameObject;
-        narrate.transform.SetParent(GameObject.Find("Canvas/Panel/scroll/content").transform);
+        narrate.transform.SetParent(Content.transform);
         narrate.GetComponent<Text>().text = n;
         RectTransform rt = Content.GetComponent<RectTransform>();
         rt.position -= new Vector3(0, 100, 0);
@@ -144,17 +144,14 @@ public class Testing : MonoBehaviour
         if (tm.TimeData.DevelopTemp != -1)
             tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
     }
-    public void AddDrinkSum()
-    {
-        pm.Player.DrinkSum++;
-    }
+   
     public void HaveDevelop()
     {
        
        if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
         {
             pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp, true);
-            AddDrinkSum();
+            pm.Player.DrinkSum++;
             pm.Player.addCanMake(tm.TimeData.DevelopTemp);
             Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
             tm.TimeData.DevelopTime = -1;
@@ -178,8 +175,8 @@ public class Testing : MonoBehaviour
     }
     void OnApplicationPause()
     {
-        pm.Player.LastEndTime = DateTime.Now;
+       /* pm.Player.LastEndTime = DateTime.Now;
         saveandLoad.Save();
-        Debug.Log("save");
+        Debug.Log("save");*/
     }
 }
