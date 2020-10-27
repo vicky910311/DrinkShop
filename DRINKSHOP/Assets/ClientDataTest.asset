@@ -44,10 +44,10 @@ MonoBehaviour:
     Image: {fileID: 0}
     Narrate: 
   ComeTime:
-    NormalMin: 0
-    NormalMax: 0
-    ManualMin: 0
-    ManualMax: 0
-    ADMin: 0
-    ADMax: 0
+    NormalMin: 5
+    NormalMax: 5
+    ManualMin: 4
+    ManualMax: 4
+    ADMin: 3
+    ADMax: 3
     Leave: 10

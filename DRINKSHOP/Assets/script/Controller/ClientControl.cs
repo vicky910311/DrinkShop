@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditorInternal;
 
 public class ClientControl 
 {
@@ -92,5 +93,29 @@ public class ClientControl
                 TempSell++;
             }
         }
+    }
+    public void PromoteSell(ref int Min,ref int Max,PromoteType p)
+    {
+        if (p == PromoteType.Manual)
+        {
+            Min = Client.ComeTime.ManualMin;
+            Max = Client.ComeTime.ManualMax;
+        }
+        else if (p == PromoteType.AD)
+        {
+            Min = Client.ComeTime.ADMin;
+            Max = Client.ComeTime.ADMax;
+        }
+        else
+        {
+            Min = Client.ComeTime.NormalMin;
+            Max = Client.ComeTime.NormalMax;
+        }
+    }
+    public enum PromoteType
+    {
+        Normal,
+        Manual,
+        AD
     }
 }
