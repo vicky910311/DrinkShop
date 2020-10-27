@@ -19,6 +19,8 @@ public class Testing : MonoBehaviour
     public float NowTime;
     public float EventHappenTime,EventUseTime;
     public GameObject Content,IncidentWindow,Scroll;
+    public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText;
+    public bool DrinkhaveDevelop;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,26 +58,11 @@ public class Testing : MonoBehaviour
             {
                 tm.TimeData.DevelopTime--;
                 Debug.Log(tm.TimeData.DevelopTime);
+                DevelopBtn.GetComponentInChildren<Text>().text = tm.TimeData.DevelopTime.ToString();
             }
             else if(tm.TimeData.DevelopTime == 0)
             {
-                if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
-                {
-                    pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp,true);
-                    pm.Player.DrinkSum++;
-                    pm.Player.addCanMake(tm.TimeData.DevelopTemp);
-                    Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
-                }
-                else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
-                {
-                    pm.Player.Coin++;
-                    Debug.Log("代幣增加" + pm.Player.Coin);
-                }
-                tm.TimeData.DevelopTime = -1;
-               
-
-              //  HaveDevelop();
-
+                HaveDevelop();
             }
           
             NowTime = Time.time;
@@ -140,29 +127,49 @@ public class Testing : MonoBehaviour
     }
     public void Develop()
     {
-        tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
-        if (tm.TimeData.DevelopTemp != -1)
-            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
+        if (DrinkhaveDevelop == false)
+        {
+            tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
+            if (tm.TimeData.DevelopTemp != -1)
+                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
+            DevelopBtn.GetComponent<Button>().enabled = false;
+        }
+        else
+        {
+            DrinkhaveDevelop = false;
+            csText.GetComponent<Text>().text = "";
+            DevelopBtn.GetComponentInChildren<Text>().text = "研發";
+            DoneDevelopText.GetComponent<Text>().text = "？？？？？";
+            DrinkDevelop.GetComponent<Image>().sprite = null;
+        }
+       
     }
    
     public void HaveDevelop()
     {
-       
-       if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
+        DrinkhaveDevelop = true;
+        if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
         {
             pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp, true);
             pm.Player.DrinkSum++;
             pm.Player.addCanMake(tm.TimeData.DevelopTemp);
             Debug.Log(tm.TimeData.DevelopTemp + "研發成功");
-            tm.TimeData.DevelopTime = -1;
+            if (gm.Drink.DrinkData[tm.TimeData.DevelopTemp].isSpecial)
+            {
+                csText.GetComponent<Text>().text = "特殊飲料";
+            }
         }
-       else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
+        else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
         {
             pm.Player.Coin++;
             Debug.Log("代幣增加" + pm.Player.Coin);
-            tm.TimeData.DevelopTime = -1;
+            csText.GetComponent<Text>().text = "代幣增加";
         }
-       
+        DrinkDevelop.GetComponent<Image>().sprite = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Image;
+        DoneDevelopText.GetComponent<Text>().text = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Name;
+        tm.TimeData.DevelopTime = -1;
+        DevelopBtn.GetComponentInChildren<Text>().text = "完成";
+        DevelopBtn.GetComponent<Button>().enabled = true;
 
     }
     public void MakeAll()

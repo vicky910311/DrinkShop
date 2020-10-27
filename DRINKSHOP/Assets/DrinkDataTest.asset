@@ -14,44 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrinkData:
   - Chara: 0
-    Name: 
-    Image: {fileID: 0}
+    Name: "\u7D05\u8336"
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 5
     isSpecial: 0
     Narrate: 
   - Chara: 0
-    Name: 
-    Image: {fileID: 0}
+    Name: "\u7DA0\u8336"
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 4
     isSpecial: 0
     Narrate: 
   - Chara: 0
-    Name: 
-    Image: {fileID: 0}
+    Name: "\u70CF\u9F8D\u8336"
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 3
     isSpecial: 0
     Narrate: 
   - Chara: 0
-    Name: 
-    Image: {fileID: 0}
+    Name: "\u725B\u5976"
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 2
     isSpecial: 0
     Narrate: 
   - Chara: 0
-    Name: 
-    Image: {fileID: 0}
+    Name: "\u5C0F\u7C73\u9152"
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 1
-    isSpecial: 0
+    isSpecial: 1
     Narrate: 
   DrinkUse:
     StockLimit: 25
