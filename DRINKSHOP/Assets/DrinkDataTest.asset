@@ -56,4 +56,4 @@ MonoBehaviour:
   DrinkUse:
     StockLimit: 25
     MakeTime: 0
-    DevelopCost: 0
+    DevelopCost: 200

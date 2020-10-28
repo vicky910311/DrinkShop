@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Testing : MonoBehaviour
 {
@@ -18,13 +19,16 @@ public class Testing : MonoBehaviour
     private SaveandLoad saveandLoad = new SaveandLoad();
     public float NowTime;
     public float EventHappenTime,EventUseTime;
-    public GameObject Content,IncidentWindow,Scroll;
+    public GameObject Content,IncidentWindow,Scroll, MenuContent,MakeContent;
     public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText;
     public bool DrinkhaveDevelop;
+    private GameObject[] drinks;
+    private List<GameObject> drinksmake = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-
+        drinks = new GameObject[gm.Drink.DrinkData.Count];
+        
         /* if (pm.Player.FirstTime == false)
          {
         saveandLoad.Load();
@@ -46,7 +50,8 @@ public class Testing : MonoBehaviour
             tm.TimeData.DevelopTime -= (int)(During).TotalSeconds;
             tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
         }*/
-        
+        DrinkMenu();
+        DrinkMakeMenu();
     }
     // Update is called once per frame
     void Update()
@@ -91,18 +96,7 @@ public class Testing : MonoBehaviour
         }
     }
    
-    public void OpenIncidentWindow()
-    {
-       if(IncidentWindow.activeSelf == true)
-        {
-            IncidentWindow.SetActive(false);
-        }
-       else
-        {
-            IncidentWindow.SetActive(true);
-        }
-        
-    }
+   
     public void Incidenthappen()
     {
         int i = UnityEngine.Random.Range(1, 5);
@@ -158,6 +152,8 @@ public class Testing : MonoBehaviour
             {
                 csText.GetComponent<Text>().text = "特殊飲料";
             }
+            AddDrinkMenu(tm.TimeData.DevelopTemp);
+            AddDrinkMakeMenu(tm.TimeData.DevelopTemp);
         }
         else if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) == true)
         {
@@ -176,14 +172,83 @@ public class Testing : MonoBehaviour
     {
         for (int i = 0;i< pm.Player.DrinkSum;i++)
         {
-            DrinkControl.MakingDrink(pm.Player.getCanMake(i), pm.Player);
+            int make = -1, maketime = -1;
+            DrinkControl.MakingDrink(pm.Player.getCanMake(i), pm.Player,ref make,ref maketime);
             Debug.Log(pm.Player.getCanMake(i) + "補齊了");
         }
     }
+    public void DrinkMenu()
+    {
+        
+        for (int i = 0; i<gm.Drink.DrinkData.Count; i++)
+        {
+            drinks[i] = Instantiate(Resources.Load("Prefabs/drink"), transform) as GameObject;
+            drinks[i].transform.SetParent(MenuContent.transform);
+            if (pm.Player.getHavetheDrink(i) == true)
+            {
+                drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
+                drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
+                drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
+            }
+           
+        }
+    }
+    public void AddDrinkMenu(int i)
+    {
+        drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
+        drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
+        drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
+    }
+
+   
+    public void DrinkMakeMenu()
+    {
+        for (int i = 0; i < pm.Player.DrinkSum; i++)
+        {
+            drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
+            drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Image;
+            drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Name;
+            drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Cost.ToString();
+            drinksmake[i].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(pm.Player.getCanMake(i));});
+            drinksmake[i].transform.SetParent(MakeContent.transform);
+            //GameObject root = PrefabUtility.FindPrefabRoot(drinksmake[i]);
+            //PrefabUtility.UnpackPrefabInstance(drinksmake[i], PrefabUnpackMode.Completely, UnityEditor.InteractionMode.AutomatedAction);
+
+        }
+    }
+    public void AddDrinkMakeMenu(int i)
+    {
+        drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
+        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
+        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
+        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();
+        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(i); });
+        drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
+        //GameObject root = PrefabUtility.FindPrefabRoot(drinksmake[pm.Player.DrinkSum - 1]);
+       // PrefabUtility.UnpackPrefabInstance(drinksmake[pm.Player.DrinkSum - 1], PrefabUnpackMode.Completely, UnityEditor.InteractionMode.AutomatedAction);
+
+
+    }
+    public void DrinkMakeOnClick(int i)
+    {
+        int make = -1,maketime = -1;
+        DrinkControl.MakingDrink(i, pm.Player,ref make,ref maketime);
+        tm.TimeData.setMakeTemp(i, make);
+        tm.TimeData.setMakeTime(i, maketime);
+        Debug.Log("補"+i+"  " +pm.Player.getDrinkinStock(i));
+    }
+
     void OnApplicationPause()
     {
        /* pm.Player.LastEndTime = DateTime.Now;
         saveandLoad.Save();
         Debug.Log("save");*/
     }
+    void OnApplicationQuit()
+    {
+        /* pm.Player.LastEndTime = DateTime.Now;
+         saveandLoad.Save();
+         Debug.Log("save");*/
+    }
+
 }
