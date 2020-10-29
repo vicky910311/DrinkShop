@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager self;
+    public GameObject StaffWindow;
     public GameObject DrinkWindow,DevelopWindow,MenuWindow,MakeWindow;
     public GameObject ClientWindow, NormalWindow, SpecialWindow;
     public GameObject IncidentWindow;
@@ -39,8 +40,21 @@ public class UIManager : MonoBehaviour
         NormalWindow.SetActive(false);
         SpecialWindow.SetActive(false);
         ClientWindow.SetActive(false);
-
+        StaffWindow.SetActive(false);
         IncidentWindow.SetActive(false);
+    }
+    public void OpenStaffWindow()
+    {
+        if (StaffWindow.activeSelf == true)
+        {
+            StaffWindow.SetActive(false);
+        }
+        else
+        {
+            shutdownAll();
+            StaffWindow.SetActive(true);
+        }
+
     }
     public void OpenClientWindow()
     {

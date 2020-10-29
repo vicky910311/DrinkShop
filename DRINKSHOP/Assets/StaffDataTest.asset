@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: StaffDataTest
   m_EditorClassIdentifier: 
   StaffData:
-  - Name: 
-    Chara: 
-    Info: 
+  - Name: "\u871C\u67D1"
+    Chara: "\u624B\u6416\u5E97\u7684\u5E97\u9577"
+    Info: "\u539F\u672C\u5728\u4EBA\u985E\u958B\u7684\u624B\u6416\u5E97\u64D4\u7576\u5E97\u8C93\uFF0C\u5C07\u624B\u6416\u676F\u7684\u7F8E\u597D\u5E36\u5230\u52D5\u7269\u4E16\u754C\u3002\u3002"
     Story: {fileID: 0}
-    Image: {fileID: 0}
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     UnlockCost: 0
     UnlockLevel: 0
     UnlockTime: 0
@@ -25,23 +25,23 @@ MonoBehaviour:
     Chara: 
     Info: 
     Story: {fileID: 0}
-    Image: {fileID: 0}
-    UnlockCost: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    UnlockCost: 1
     UnlockLevel: 0
     UnlockTime: 0
   - Name: 
     Chara: 
     Info: 
     Story: {fileID: 0}
-    Image: {fileID: 0}
-    UnlockCost: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    UnlockCost: 1
     UnlockLevel: 0
     UnlockTime: 0
   - Name: 
     Chara: 
     Info: 
     Story: {fileID: 0}
-    Image: {fileID: 0}
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     UnlockCost: 0
     UnlockLevel: 0
     UnlockTime: 0
