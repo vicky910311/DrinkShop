@@ -16,16 +16,16 @@ MonoBehaviour:
   - Chara: 0
     Name: "\u7D05\u8336"
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Cost: 0
-    Price: 0
+    Cost: 10
+    Price: 30
     DevelopTime: 5
     isSpecial: 0
     Narrate: 
   - Chara: 0
     Name: "\u7DA0\u8336"
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Cost: 0
-    Price: 0
+    Cost: 15
+    Price: 45
     DevelopTime: 4
     isSpecial: 0
     Narrate: 

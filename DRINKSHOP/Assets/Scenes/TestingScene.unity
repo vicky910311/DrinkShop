@@ -1735,8 +1735,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player:
-    havethedrink: 0100000000
-    drinksum: 1
+    havethedrink: 0101000000
+    drinksum: 2
     havethestaff: 01000000
     staffsum: 1
     havetheclient: 0000000000
@@ -1749,7 +1749,7 @@ MonoBehaviour:
     deletead: 0
     firsttime: 0
     coin: 0
-    canmake: 00000000
+    canmake: 0000000001000000
     catchghost: 0
     catchsleep: 0
 --- !u!4 &878473495

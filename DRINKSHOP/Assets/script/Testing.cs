@@ -52,6 +52,7 @@ public class Testing : MonoBehaviour
         }*/
         DrinkMenu();
         DrinkMakeMenu();
+       
     }
     // Update is called once per frame
     void Update()
@@ -203,31 +204,28 @@ public class Testing : MonoBehaviour
    
     public void DrinkMakeMenu()
     {
-        for (int i = 0; i < pm.Player.DrinkSum; i++)
-        {
-            drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
-            drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Image;
-            drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Name;
-            drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Cost.ToString();
-            drinksmake[i].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(pm.Player.getCanMake(i));});
-            drinksmake[i].transform.SetParent(MakeContent.transform);
-            //GameObject root = PrefabUtility.FindPrefabRoot(drinksmake[i]);
-            //PrefabUtility.UnpackPrefabInstance(drinksmake[i], PrefabUnpackMode.Completely, UnityEditor.InteractionMode.AutomatedAction);
-
-        }
+         for (int i = 0; i < pm.Player.DrinkSum; i++)
+         {
+             drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
+             drinksmake[i].transform.SetParent(MakeContent.transform);
+             drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Image;
+             drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Name;
+             drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Cost.ToString();
+            int a = pm.Player.getCanMake(i);
+             drinksmake[i].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(a);});
+             Debug.Log(pm.Player.getCanMake(i));
+         }
+      
     }
+    
     public void AddDrinkMakeMenu(int i)
     {
         drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
+        drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(i); });
-        drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
-        //GameObject root = PrefabUtility.FindPrefabRoot(drinksmake[pm.Player.DrinkSum - 1]);
-       // PrefabUtility.UnpackPrefabInstance(drinksmake[pm.Player.DrinkSum - 1], PrefabUnpackMode.Completely, UnityEditor.InteractionMode.AutomatedAction);
-
-
     }
     public void DrinkMakeOnClick(int i)
     {
