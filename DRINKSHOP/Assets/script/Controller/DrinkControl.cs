@@ -57,7 +57,7 @@ public class DrinkControl
         Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.getDrinkinStock(i);
         if (Player.Money >= Make * Drink.DrinkData[i].Cost)
         {
-            Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
+            //Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
             Player.Money -= Make * Drink.DrinkData[i].Cost;
         }
         else
@@ -65,7 +65,7 @@ public class DrinkControl
             if (Drink.DrinkData[i].Cost != 0)
             {
                 Make = Player.Money / Drink.DrinkData[i].Cost;
-                Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
+               // Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
                 Player.Money -= Make * Drink.DrinkData[i].Cost;
             }
         }

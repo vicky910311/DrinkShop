@@ -9,7 +9,7 @@ public class ClientControl
     //public PlayerData Player;
     public DrinkDataList Drink;
     public ClientDataList Client;
-   public void SelltheDrink(PlayerData Player)
+   public void SelltheDrink(PlayerData Player,ref int c,ref bool isnew,ref int d)
     {
         int Select;
         List<int> CanSell = new List<int>();
@@ -21,7 +21,6 @@ public class ClientControl
         int a = UnityEngine.Random.Range(0, CanSell.Count);
         Select = CanSell[a];
         Debug.Log(Select);
-        int c;
         if (Drink.DrinkData[Select].isSpecial == true && (int)UnityEngine.Random.Range(0, 10) == 0)
         {
             c = Select - (Drink.DrinkData.Count - Client.ClientData.Count);
@@ -40,9 +39,14 @@ public class ClientControl
             {
                 Player.setHavetheClient(c, true);
                 Player.ClientSum++;
+                isnew = true;
+                //Testing.self.AddCientMenu(c);
+                Debug.Log("新顧客"+c );
             }
             Debug.Log(c + "買" + Select);
         }
+        d = Select;
+        
     }
     public void WhenNotPlayingSell(PlayerData Player)
     {

@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager self;
     public GameObject DrinkWindow,DevelopWindow,MenuWindow,MakeWindow;
+    public GameObject ClientWindow, NormalWindow, SpecialWindow;
     public GameObject IncidentWindow;
     private void Awake()
     {
@@ -35,7 +36,43 @@ public class UIManager : MonoBehaviour
         DevelopWindow.SetActive(false);
         MenuWindow.SetActive(false);
         DrinkWindow.SetActive(false);
+        NormalWindow.SetActive(false);
+        SpecialWindow.SetActive(false);
+        ClientWindow.SetActive(false);
+
         IncidentWindow.SetActive(false);
+    }
+    public void OpenClientWindow()
+    {
+        if (ClientWindow.activeSelf == true)
+        {
+            ClientWindow.SetActive(false);
+        }
+        else
+        {
+            shutdownAll();
+            ClientWindow.SetActive(true);
+            NormalWindow.SetActive(true);
+        }
+
+    }
+    public void OpenNormalWindow()
+    {
+        if (NormalWindow.activeSelf != true)
+        {
+            shutdownAll();
+            ClientWindow.SetActive(true);
+            NormalWindow.SetActive(true);
+        }
+    }
+    public void OpenSpecialWindow()
+    {
+        if (SpecialWindow.activeSelf != true)
+        {
+            shutdownAll();
+            ClientWindow.SetActive(true);
+            SpecialWindow.SetActive(true);
+        }
     }
     public void OpenDrinkWindow()
     {

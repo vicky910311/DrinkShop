@@ -8,6 +8,11 @@ using UnityEditor;
 
 public class Testing : MonoBehaviour
 {
+    public static Testing self;
+    private void Awake()
+    {
+        self = this;
+    }
     public PlayerDataManager pm;
     public MissionState ms;
     public Timer tm;
@@ -19,16 +24,16 @@ public class Testing : MonoBehaviour
     private SaveandLoad saveandLoad = new SaveandLoad();
     public float NowTime;
     public float EventHappenTime,EventUseTime;
-    public GameObject Content,IncidentWindow,Scroll, MenuContent,MakeContent;
-    public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText;
+    public GameObject Content,IncidentWindow, MenuContent,MakeContent,ClientContent,SCContent;
+    public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText,limitWindow;
     public bool DrinkhaveDevelop;
-    private GameObject[] drinks;
+    private GameObject[] drinks, clients;
     private List<GameObject> drinksmake = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         drinks = new GameObject[gm.Drink.DrinkData.Count];
-        
+        clients = new GameObject[gm.Client.ClientData.Count];
         /* if (pm.Player.FirstTime == false)
          {
         saveandLoad.Load();
@@ -52,7 +57,12 @@ public class Testing : MonoBehaviour
         }*/
         DrinkMenu();
         DrinkMakeMenu();
-       
+        ClientMenu();
+        RectTransform rt = MakeContent.GetComponent<RectTransform>();
+        rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
+        rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
+        
+
     }
     // Update is called once per frame
     void Update()
@@ -70,6 +80,23 @@ public class Testing : MonoBehaviour
             {
                 HaveDevelop();
             }
+            for (int i = 0;i < pm.Player.DrinkSum;i++)
+            {
+                if (tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) > 0)
+                {
+                    tm.TimeData.setMakeTime(pm.Player.getCanMake(i), tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) - 1);
+                    drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作中";
+                    drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = false;
+                }
+                else if (tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) == 0)
+                {
+                    pm.Player.setDrinkinStock(pm.Player.getCanMake(i), tm.TimeData.getMakeTemp(i)+pm.Player.getDrinkinStock(i));
+                    drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作";
+                    drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
+                    tm.TimeData.setMakeTime(i, -1);
+                }
+            }
+            
           
             NowTime = Time.time;
         }
@@ -117,7 +144,14 @@ public class Testing : MonoBehaviour
     }
     public void SellDrinks()
     {
-        ClientControl.SelltheDrink(pm.Player);
+        bool isnew = false;
+        int c = -1, d = -1;
+        ClientControl.SelltheDrink(pm.Player,ref c,ref isnew,ref d);
+        if(isnew == true)
+        {
+            AddCientMenu(c);
+        }
+        isnew = false;
         Debug.Log(pm.Player.getDrinkinStock(0));
     }
     public void Develop()
@@ -178,6 +212,25 @@ public class Testing : MonoBehaviour
             Debug.Log(pm.Player.getCanMake(i) + "補齊了");
         }
     }
+    public void ClientMenu()
+    {
+        for (int i = 0; i < gm.Client.ClientData.Count; i++)
+        {
+            clients[i] = Instantiate(Resources.Load("Prefabs/client"), transform) as GameObject;
+            if (pm.Player.getHavetheClient(i) == true )
+            {
+                clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
+                clients[i].transform.GetChild(1).GetComponent<Text > ().text = gm.Client.ClientData[i].Name;
+            }
+            if (gm.Client.ClientData[i].isSpecial) { clients[i].transform.SetParent(SCContent.transform); }
+            else { clients[i].transform.SetParent(ClientContent.transform); }
+        }
+    }
+    public void AddCientMenu(int i)
+    {
+        clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
+        clients[i].transform.GetChild(1).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
+    }
     public void DrinkMenu()
     {
         
@@ -226,14 +279,29 @@ public class Testing : MonoBehaviour
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(i); });
+        RectTransform rt = MakeContent.GetComponent<RectTransform>();
+        rt.localPosition= new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
+        rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
     }
     public void DrinkMakeOnClick(int i)
+    { 
+        if(pm.Player.getDrinkinStock(i) < pm.Player.AddStockLimit + gm.Drink.DrinkUse.StockLimit)
+        {
+            int make = -1, maketime = -1;
+            DrinkControl.MakingDrink(i, pm.Player, ref make, ref maketime);
+            tm.TimeData.setMakeTemp(i, make);
+            tm.TimeData.setMakeTime(i, maketime);
+            Debug.Log("補" + i + "  " + pm.Player.getDrinkinStock(i));
+        }
+        else
+        {
+            limitWindow.SetActive(true);
+        }
+
+    }
+    public void shutdownlimitWindow()
     {
-        int make = -1,maketime = -1;
-        DrinkControl.MakingDrink(i, pm.Player,ref make,ref maketime);
-        tm.TimeData.setMakeTemp(i, make);
-        tm.TimeData.setMakeTime(i, maketime);
-        Debug.Log("補"+i+"  " +pm.Player.getDrinkinStock(i));
+        limitWindow.SetActive(false);
     }
 
     void OnApplicationPause()

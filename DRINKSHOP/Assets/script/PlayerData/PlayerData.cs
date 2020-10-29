@@ -9,7 +9,7 @@ public class PlayerData
 {
     [SerializeField]
     private List<bool> havethedrink;
-    public void setHavetheDrink(int i,bool b)
+    public void setHavetheDrink(int i, bool b)
     {
         if (i < havethedrink.Count && i >= 0)
         {
@@ -110,7 +110,7 @@ public class PlayerData
     {
         set
         {
-            money = value; 
+            money = value;
             if (OnMoneyChanged != null)
             {
                 OnMoneyChanged();
@@ -180,7 +180,7 @@ public class PlayerData
                 OnAddStockLimitChanged();
             }
         }
-        get { return addstocklimit;  }
+        get { return addstocklimit; }
     }
     public Action OnAddStockLimitChanged;
     [SerializeField]
@@ -230,7 +230,7 @@ public class PlayerData
     public Action OnThisOpenTimeChange;
     [SerializeField]
     private bool firsttime;
-    public bool FirstTime 
+    public bool FirstTime
     {
         set
         {
@@ -309,6 +309,11 @@ public class PlayerData
     }
     public Action OnCatchSleepChange;
 
-
+    /*private RectTransform makewindowrt;
+    public RectTransform MakeWindowRT
+    {
+        set { MakeWindowRT = value; }
+        get { return MakeWindowRT; }
+    }*/
 }
 

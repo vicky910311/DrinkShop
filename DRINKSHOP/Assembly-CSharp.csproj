@@ -64,6 +64,7 @@
     <Compile Include="Assets\script\GameData\ClientComeTime.cs" />
     <Compile Include="Assets\script\MissionData\MissionB.cs" />
     <Compile Include="Assets\script\MissionData\MissionA.cs" />
+    <Compile Include="Assets\script\Controller\PurchaseControl.cs" />
     <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
     <Compile Include="Assets\script\Controller\EventControl.cs" />
     <Compile Include="Assets\script\DataUI.cs" />
@@ -77,11 +78,13 @@
     <Compile Include="Assets\script\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\script\MissionData\MissionList.cs" />
     <Compile Include="Assets\script\GameData\StaffDataList.cs" />
+    <Compile Include="Assets\script\UIManager.cs" />
     <Compile Include="Assets\script\GameData\StaffData.cs" />
     <Compile Include="Assets\script\GameData\GameDataManager.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\UsageCase.cs" />
     <Compile Include="Assets\script\PlayerData\TimeState.cs" />
     <Compile Include="Assets\script\MissionData\BaseMission.cs" />
+    <Compile Include="Assets\script\GameManager.cs" />
     <Compile Include="Assets\script\GameData\LevelDataList.cs" />
     <Compile Include="Assets\script\Controller\ClientControl.cs" />
     <Compile Include="Assets\script\GameData\DrinkDataList.cs" />
@@ -90,9 +93,7 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
-    <Compile Include="Assets\script\Controller\PurchaseControl.cs" />
-    <Compile Include="Assets\script\GameManager.cs" />
-    <Compile Include="Assets\script\UIManager.cs" />
+    <Compile Include="Assets\script\GhostUse.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />
