@@ -17,6 +17,7 @@ public class Testing : MonoBehaviour
     public MissionState ms;
     public Timer tm;
     public GameDataManager gm;
+    public UIManager ui;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
@@ -25,13 +26,14 @@ public class Testing : MonoBehaviour
     public float NowTime;
     public float EventHappenTime,EventUseTime;
     public GameObject Content,IncidentWindow, MenuContent,MakeContent,ClientContent,SCContent;
-    public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText,limitWindow;
+    public GameObject DevelopBtn,DrinkDevelop,DoneDevelopText,csText,limitWindow,coinText;
     public bool DrinkhaveDevelop;
     private GameObject[] drinks, clients;
     private List<GameObject> drinksmake = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        pm.Player.OnCoinChange += CoinChange;
         drinks = new GameObject[gm.Drink.DrinkData.Count];
         clients = new GameObject[gm.Client.ClientData.Count];
         /* if (pm.Player.FirstTime == false)
@@ -61,7 +63,7 @@ public class Testing : MonoBehaviour
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
-        
+        coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
 
     }
     // Update is called once per frame
@@ -154,16 +156,27 @@ public class Testing : MonoBehaviour
         isnew = false;
         Debug.Log(pm.Player.getDrinkinStock(0));
     }
-    public void Develop()
+    public void PressDevelop()
     {
-        if (DrinkhaveDevelop == false)
+        if (DrinkhaveDevelop == false && pm.Player.DrinkSum < gm.Drink.DrinkData.Count)
         {
-            tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
-            if (tm.TimeData.DevelopTemp != -1)
-                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
-            DevelopBtn.GetComponent<Button>().enabled = false;
+            ui.OpenDevelopCost();
+            ui.developcostWindow.GetComponentInChildren<Text>().text = "需花費" + gm.Drink.DrinkUse.DevelopCost;
+            if (pm.Player.Money < gm.Drink.DrinkUse.DevelopCost)
+            {
+                ui.developcostWindow.transform.GetChild(1).GetComponent<Button>().interactable = false;
+                ui.developcostWindow.GetComponentInChildren<Text>().text += "\n(金額不足)";
+            }
+            else
+            {
+                ui.developcostWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+            }
         }
-        else
+        else if (DrinkhaveDevelop == false && pm.Player.DrinkSum == gm.Drink.DrinkData.Count)
+        {
+           ui.OpenDevelopLimit();
+        }
+        else if (DrinkhaveDevelop == true)
         {
             DrinkhaveDevelop = false;
             csText.GetComponent<Text>().text = "";
@@ -171,6 +184,18 @@ public class Testing : MonoBehaviour
             DoneDevelopText.GetComponent<Text>().text = "？？？？？";
             DrinkDevelop.GetComponent<Image>().sprite = null;
         }
+    }
+    public void Develop()
+    {
+        ui.shutdownLittle();
+        if (DrinkhaveDevelop == false)
+        {
+            tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
+            if (tm.TimeData.DevelopTemp != -1)
+                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
+            DevelopBtn.GetComponent<Button>().enabled = false;
+        }
+        
        
     }
    
@@ -202,6 +227,10 @@ public class Testing : MonoBehaviour
         DevelopBtn.GetComponentInChildren<Text>().text = "完成";
         DevelopBtn.GetComponent<Button>().enabled = true;
 
+    }
+    public void CoinChange()
+    {
+        coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
     }
     public void MakeAll()
     {

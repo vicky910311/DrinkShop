@@ -44,6 +44,7 @@ public class DrinkControl
         }
         else if (Player.DrinkSum == Drink.DrinkData.Count)
         {
+            
             Debug.Log("收集完畢");
         }
         else
@@ -71,6 +72,5 @@ public class DrinkControl
         }
          MakeTime = (int)(Make * 0.5f / Player.StaffSum);
     }
-
-
+    
 }

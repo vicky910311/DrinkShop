@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public MissionState ms;
     public Timer tm;
     public GameDataManager gm;
+    public UIManager ui;
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
     private EventControl EventControl = new EventControl();
     private SaveandLoad saveandLoad = new SaveandLoad();
+    private PurchaseControl PurchaseControl = new PurchaseControl();
     public GameObject[] staffs;
     public GameObject StaffContent;
     // Start is called before the first frame update
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
     public void StaffMenu()
     {
         for (int i=0;i<gm.Staff.StaffData.Count;i++)
@@ -98,4 +101,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("條件不符");
         }
     }
+    public void Purchase(int type)
+    {
+        if(type >= 10000)
+        {
+            PurchaseControl.AddtheMoney(pm.Player, type);
+        }
+        else if(type == 1)
+        {
+            PurchaseControl.DeletingAD(pm.Player);
+        }
+        else if(type == 2)
+        {
+            PurchaseControl.AddingStockLimit(pm.Player);
+        }
+    }
+    
 }
+
