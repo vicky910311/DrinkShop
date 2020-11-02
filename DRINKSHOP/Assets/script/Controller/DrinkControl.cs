@@ -70,7 +70,7 @@ public class DrinkControl
                 Player.Money -= Make * Drink.DrinkData[i].Cost;
             }
         }
-         MakeTime = (int)(Make * 0.5f / Player.StaffSum);
+         MakeTime = (int)(Make/(Player.StaffSum + 10) + 1);
     }
     
 }

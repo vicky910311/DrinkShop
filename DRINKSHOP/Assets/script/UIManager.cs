@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject StaffWindow;
     public GameObject DrinkWindow,DevelopWindow,MenuWindow,MakeWindow;
     public GameObject ClientWindow, NormalWindow, SpecialWindow;
-    public GameObject IncidentWindow;
+    public GameObject IncidentWindow, MissionWindow, EventWindow;
     public GameObject PurchaseWindow;
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow;
     private void Awake()
@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
         ClientWindow.SetActive(false);
         StaffWindow.SetActive(false);
         IncidentWindow.SetActive(false);
+        MissionWindow.SetActive(false);
+        EventWindow.SetActive(false);
         PurchaseWindow.SetActive(false);
     }
     public void OpenPurchaseWindow()
@@ -161,13 +163,34 @@ public class UIManager : MonoBehaviour
     }
     public void OpenIncidentWindow()
     {
-        if (IncidentWindow.activeSelf == true)
+        if (IncidentWindow.activeSelf != true)
         {
-            IncidentWindow.SetActive(false);
+            shutdownAll();
+            EventWindow.SetActive(true);
+            IncidentWindow.SetActive(true);
+        }
+
+    }
+    public void OpenMissionWindow()
+    {
+        if (MissionWindow.activeSelf != true)
+        {
+            shutdownAll();
+            EventWindow.SetActive(true);
+            MissionWindow.SetActive(true);
+        }
+
+    }
+    public void OpenEventWindow()
+    {
+        if (EventWindow.activeSelf == true)
+        {
+            EventWindow.SetActive(false);
         }
         else
         {
             shutdownAll();
+            EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);
         }
 

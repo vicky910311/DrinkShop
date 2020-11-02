@@ -136,8 +136,8 @@ public class Testing : MonoBehaviour
         {
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
         }
-        GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), transform) as GameObject;
-        narrate.transform.SetParent(Content.transform);
+        GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
+        //narrate.transform.SetParent(Content.transform);
         narrate.GetComponent<Text>().text = n;
         RectTransform rt = Content.GetComponent<RectTransform>();
         rt.position -= new Vector3(0, 100, 0);
@@ -161,7 +161,15 @@ public class Testing : MonoBehaviour
         if (DrinkhaveDevelop == false && pm.Player.DrinkSum < gm.Drink.DrinkData.Count)
         {
             ui.OpenDevelopCost();
-            ui.developcostWindow.GetComponentInChildren<Text>().text = "需花費" + gm.Drink.DrinkUse.DevelopCost;
+            if (pm.Player.Coin >= 3)
+            {
+                ui.developcostWindow.GetComponentInChildren<Text>().text = "可免費抽一次\n(花費三枚代幣)";
+            }
+            else
+            {
+                ui.developcostWindow.GetComponentInChildren<Text>().text = "需花費" + gm.Drink.DrinkUse.DevelopCost;
+            }
+            
             if (pm.Player.Money < gm.Drink.DrinkUse.DevelopCost)
             {
                 ui.developcostWindow.transform.GetChild(1).GetComponent<Button>().interactable = false;
@@ -265,8 +273,8 @@ public class Testing : MonoBehaviour
         
         for (int i = 0; i<gm.Drink.DrinkData.Count; i++)
         {
-            drinks[i] = Instantiate(Resources.Load("Prefabs/drink"), transform) as GameObject;
-            drinks[i].transform.SetParent(MenuContent.transform);
+            drinks[i] = Instantiate(Resources.Load("Prefabs/drink"), MenuContent.transform) as GameObject;
+            //drinks[i].transform.SetParent(MenuContent.transform);
             if (pm.Player.getHavetheDrink(i) == true)
             {
                 drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
@@ -288,8 +296,8 @@ public class Testing : MonoBehaviour
     {
          for (int i = 0; i < pm.Player.DrinkSum; i++)
          {
-             drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
-             drinksmake[i].transform.SetParent(MakeContent.transform);
+             drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), MakeContent.transform) as GameObject);
+             //drinksmake[i].transform.SetParent(MakeContent.transform);
              drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Image;
              drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Name;
              drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Cost.ToString();
@@ -302,8 +310,8 @@ public class Testing : MonoBehaviour
     
     public void AddDrinkMakeMenu(int i)
     {
-        drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), transform) as GameObject);
-        drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
+        drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), MakeContent.transform) as GameObject);
+        //drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();

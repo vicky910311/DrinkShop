@@ -63,6 +63,7 @@ public class EventControl
                         {
                             Debug.Log("急難救助金  財產低於 " + Mission.Missions[i].NeedAmount + " 元");
                             Mission.Missions[i].isActive = false;
+                            Mission.Missions[i].isReach = true;
                         }
                     }
                 }
@@ -139,6 +140,7 @@ public class EventControl
                 int buy = Player.getDrinkinStock(Select);
                 Player.setDrinkinStock(Select,0);
                 Player.Money += Drink.DrinkData[Select].Price*buy;
+                Player.DrinkSell += buy;
             }
             else
             {
@@ -150,6 +152,7 @@ public class EventControl
                         int buy = Player.getDrinkinStock(i);
                         Player.setDrinkinStock(i,0);
                         Player.Money += Drink.DrinkData[i].Price * buy;
+                        Player.DrinkSell += buy;
                     }
                         
                 }

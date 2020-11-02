@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
     private EventControl EventControl = new EventControl();
     private SaveandLoad saveandLoad = new SaveandLoad();
     private PurchaseControl PurchaseControl = new PurchaseControl();
-    public GameObject[] staffs;
-    public GameObject StaffContent;
+    public GameObject[] staffs,missions;
+    public GameObject StaffContent,MissionContent;
+    public Text moneytext, selltext, leveltext;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -39,6 +40,18 @@ public class GameManager : MonoBehaviour
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
         StaffControl.Staff = gm.Staff;
+        headerInfo();
+        pm.Player.OnDrinkSellChanged += headerInfo;
+        pm.Player.OnMoneyChanged += headerInfo;
+        pm.Player.OnDrinkSellChanged += headerInfo;
+        checkMission();
+        pm.Player.OnCatchGhostChange += checkMission;
+        pm.Player.OnCatchSleepChange += checkMission;
+        pm.Player.OnDrinkSellChanged += checkMission;
+        pm.Player.OnClientSumChanged += checkMission;
+        pm.Player.OnMoneyChanged += checkMission;
+        missions = new GameObject[ms.Mission.Missions.Count];
+        MissiomMenu();
         staffs = new GameObject[gm.Staff.StaffData.Count];
         StaffMenu();
     }
@@ -48,7 +61,75 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
+    public void headerInfo()
+    {
+        moneytext.text = "資金：" + pm.Player.Money;
+        selltext.text = "已賣出 " + pm.Player.DrinkSell;
+        leveltext.text = "等級：" + pm.Player.Level;
+    }
+    public void checkMission()
+    {
+        EventControl.PlayerAchieveMission(pm.Player,ms.Mission);
+        for(int i = 0; i<ms.Mission.Missions.Count; i++)
+        {
+            if (ms.Mission.Missions[i].isReach == true)
+            {
+                //ui按鈕晃動
+                ChangeMissionMenu(i);
+            }
+        }
+        
+    }
+    public void MissiomMenu()
+    {
+        for (int i = 0; i < ms.Mission.Missions.Count; i++)
+        {
+            missions[i] = Instantiate(Resources.Load("Prefabs/mission"), MissionContent.transform) as GameObject;
+            missions[i].transform.GetChild(0).GetComponent<Text>().text = ms.Mission.Missions[i].Name;
+            missions[i].transform.GetChild(1).GetComponent<Text>().text = ms.Mission.Missions[i].Narrate;
+            int a = i;
+            missions[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { missionreward(a); });
+            missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
+            if (EventControl.CanReward(i,ms.Mission))
+            {
+                missions[i].transform.SetSiblingIndex(0);
+                missions[i].transform.GetChild(2).GetComponent<Button>().enabled = true;
+            }
+            MissionBtnText(i);
+        }
+    }
+    public void missionreward(int i)
+    {
+        if (EventControl.CanReward(i, ms.Mission))
+        {
+            EventControl.GetReward(i,ms.Mission,pm.Player);
+            missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
+            missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
+        }
+    }
+        
+    public void ChangeMissionMenu(int i)
+    {
+        missions[i].transform.SetSiblingIndex(0);
+        if (EventControl.CanReward(i, ms.Mission))
+            missions[i].transform.GetChild(2).GetComponent<Button>().enabled = true;
+        MissionBtnText(i);
+    }
+    public void MissionBtnText(int i)
+    {
+        if (EventControl.CanReward(i,ms.Mission))
+        {
+            missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "領獎";
+        }
+        else if (ms.Mission.Missions[i].isActive == false && ms.Mission.Missions[i].isRewarded == true)
+        {
+            missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
+        }
+        else
+        {
+            missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "未完成";
+        }
+    }
     public void StaffMenu()
     {
         for (int i=0;i<gm.Staff.StaffData.Count;i++)
