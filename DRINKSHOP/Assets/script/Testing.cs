@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using UnityEditor;
+
 
 public class Testing : MonoBehaviour
 {
