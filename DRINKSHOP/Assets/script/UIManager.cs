@@ -9,8 +9,10 @@ public class UIManager : MonoBehaviour
     public GameObject DrinkWindow,DevelopWindow,MenuWindow,MakeWindow;
     public GameObject ClientWindow, NormalWindow, SpecialWindow;
     public GameObject IncidentWindow, MissionWindow, EventWindow;
+    public GameObject SettingWindow;
     public GameObject PurchaseWindow;
-    public GameObject stocklimitWindow, developlimitWindow, developcostWindow;
+    public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow;
+    public GameObject manualBtn, adBtn;
     private void Awake()
     {
         if (self == null)
@@ -38,13 +40,27 @@ public class UIManager : MonoBehaviour
         stocklimitWindow.SetActive(false);
         developlimitWindow.SetActive(false);
         developcostWindow.SetActive(false);
+        lookadWindow.SetActive(false);
+        objectWindow.SetActive(false);
+    }
+    public void OpenObject()
+    {
+        shutdownLittle();
+        objectWindow.SetActive(true);
+    }
+    public void OpenLookAD()
+    {
+        shutdownLittle();
+        lookadWindow.SetActive(true);
     }
     public void OpenDevelopCost()
     {
+        shutdownLittle();
         developcostWindow.SetActive(true);
     }
     public void OpenDevelopLimit()
     {
+        shutdownLittle();
         developlimitWindow.SetActive(true);
     }
     public void shutdownAll()
@@ -61,6 +77,20 @@ public class UIManager : MonoBehaviour
         MissionWindow.SetActive(false);
         EventWindow.SetActive(false);
         PurchaseWindow.SetActive(false);
+        SettingWindow.SetActive(false);
+    }
+    public void OpenSettingWindow()
+    {
+        if (SettingWindow.activeSelf == true)
+        {
+            SettingWindow.SetActive(false);
+        }
+        else
+        {
+            shutdownLittle();
+            shutdownAll();
+            SettingWindow.SetActive(true);
+        }
     }
     public void OpenPurchaseWindow()
     {
@@ -70,6 +100,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            shutdownLittle();
             shutdownAll();
             PurchaseWindow.SetActive(true);
         }
@@ -83,6 +114,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            shutdownLittle();
             shutdownAll();
             StaffWindow.SetActive(true);
         }
@@ -96,6 +128,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            shutdownLittle();
             shutdownAll();
             ClientWindow.SetActive(true);
             NormalWindow.SetActive(true);
@@ -106,6 +139,7 @@ public class UIManager : MonoBehaviour
     {
         if (NormalWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             ClientWindow.SetActive(true);
             NormalWindow.SetActive(true);
@@ -115,6 +149,7 @@ public class UIManager : MonoBehaviour
     {
         if (SpecialWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             ClientWindow.SetActive(true);
             SpecialWindow.SetActive(true);
@@ -128,6 +163,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            shutdownLittle();
             shutdownAll();
             DrinkWindow.SetActive(true);
             MenuWindow.SetActive(true);
@@ -138,6 +174,7 @@ public class UIManager : MonoBehaviour
     {
         if (DevelopWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             DrinkWindow.SetActive(true);
             DevelopWindow.SetActive(true);
@@ -147,6 +184,7 @@ public class UIManager : MonoBehaviour
     {
         if (MenuWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             DrinkWindow.SetActive(true);
             MenuWindow.SetActive(true);
@@ -156,6 +194,7 @@ public class UIManager : MonoBehaviour
     {
         if (MakeWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             DrinkWindow.SetActive(true);
             MakeWindow.SetActive(true);
@@ -165,6 +204,7 @@ public class UIManager : MonoBehaviour
     {
         if (IncidentWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);
@@ -175,6 +215,7 @@ public class UIManager : MonoBehaviour
     {
         if (MissionWindow.activeSelf != true)
         {
+            shutdownLittle();
             shutdownAll();
             EventWindow.SetActive(true);
             MissionWindow.SetActive(true);
@@ -189,6 +230,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            shutdownLittle();
             shutdownAll();
             EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);

@@ -14,4 +14,6 @@ public struct ClientComeTime
     public int ADMin;
     public int ADMax;
     public int Leave;
+    public float adpromoteTime;
+    public float manualpromoteTime;
 }

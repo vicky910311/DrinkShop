@@ -44,10 +44,12 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Narrate: 
   ComeTime:
-    NormalMin: 5
+    NormalMin: 4
     NormalMax: 5
-    ManualMin: 4
+    ManualMin: 3
     ManualMax: 4
-    ADMin: 3
+    ADMin: 2
     ADMax: 3
     Leave: 10
+    adpromoteTime: 10
+    manualpromoteTime: 5

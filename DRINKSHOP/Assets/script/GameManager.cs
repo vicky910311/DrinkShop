@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] staffs,missions;
     public GameObject StaffContent,MissionContent;
     public Text moneytext, selltext, leveltext;
+    public float sellTime,promoteTime, promotelasting, sellbetweenTime;
+    public int ComeTimeMin, ComeTimeMax;
+    public float TimerTime, EventHappenTime, EventUseTime;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
         StaffControl.Staff = gm.Staff;
+        ComeTimeMin = gm.Client.ComeTime.NormalMin;
+        ComeTimeMax = gm.Client.ComeTime.NormalMax;
         headerInfo();
         pm.Player.OnDrinkSellChanged += headerInfo;
         pm.Player.OnMoneyChanged += headerInfo;
@@ -54,18 +59,54 @@ public class GameManager : MonoBehaviour
         MissiomMenu();
         staffs = new GameObject[gm.Staff.StaffData.Count];
         StaffMenu();
+        sellTime = Time.time;
+        sellbetweenTime = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time > sellTime + sellbetweenTime)
+        {
+            Debug.Log("賣飲料");
+            sellTime = Time.time;
+            sellbetweenTime = Random.Range((float)ComeTimeMin, (float)ComeTimeMax);
+            Debug.Log(sellbetweenTime);
+        }
+        if(Time.time > promoteTime + promotelasting)
+        {
+            ClientControl.PromoteSell(ref ComeTimeMin, ref ComeTimeMax, ClientControl.PromoteType.Normal);
+            ui.adBtn.GetComponent<Button>().interactable = true;
+            ui.manualBtn.GetComponent<Button>().interactable = true;
+        }
     }
     public void headerInfo()
     {
         moneytext.text = "資金：" + pm.Player.Money;
         selltext.text = "已賣出 " + pm.Player.DrinkSell;
         leveltext.text = "等級：" + pm.Player.Level;
+    }
+   
+    public void PressADpromote()
+    {
+        ui.OpenLookAD();
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); adpromote(); });
+    }
+    public void adpromote() 
+    {
+        promoteTime = Time.time;
+        promotelasting = gm.Client.ComeTime.adpromoteTime;
+        ClientControl.PromoteSell(ref ComeTimeMin,ref ComeTimeMax, ClientControl.PromoteType.AD);
+        ui.adBtn.GetComponent<Button>().interactable = false;
+        ui.manualBtn.GetComponent<Button>().interactable = false;
+        Debug.Log("來客秒數" + ComeTimeMin + "~" + ComeTimeMax);
+    }
+    public void manualpromote()
+    {
+        promoteTime = Time.time;
+        promotelasting = gm.Client.ComeTime.manualpromoteTime;
+        ClientControl.PromoteSell(ref ComeTimeMin, ref ComeTimeMax, ClientControl.PromoteType.Manual);
+        Debug.Log("來客秒數" + ComeTimeMin + "~" + ComeTimeMax);
     }
     public void checkMission()
     {
