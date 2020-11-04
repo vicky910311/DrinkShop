@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
+    
     // Start is called before the first frame update
     private void Awake()
     {
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         StaffMenu();
         sellTime = Time.time;
         sellbetweenTime = 5f;
+        
     }
 
     // Update is called once per frame

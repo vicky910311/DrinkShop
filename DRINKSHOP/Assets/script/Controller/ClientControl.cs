@@ -40,7 +40,7 @@ public class ClientControl
                 Player.setHavetheClient(c, true);
                 Player.ClientSum++;
                 isnew = true;
-                //Testing.self.AddCientMenu(c);
+                Testing.self.AddCientMenu(c);
                 Debug.Log("新顧客"+c );
             }
             Debug.Log(c + "買" + Select);
@@ -48,14 +48,13 @@ public class ClientControl
         d = Select;
         
     }
-    public void WhenNotPlayingSell(PlayerData Player)
+    public void WhenNotPlayingSell(PlayerData Player,ref int TempMoney,ref int TempSell,ref string narrate)
     {
         TimeSpan T;
-        int TempMoney = 0;
-        int TempSell = 0;
+        int newsell = 0, newc = 0, newearn = 0;
         if (Client.ComeTime.Leave <= 0)
         {
-            Client.ComeTime.Leave = 1;
+            Client.ComeTime.Leave = 10;
         }
         T = Player.ThisOpenTime - Player.LastEndTime;
         List<int> CanSell = new List<int>();
@@ -64,31 +63,38 @@ public class ClientControl
             if (Player.getHavetheDrink(j))
                 CanSell.Add(j);
         }
-        for (int i = 0; i < (int)T.TotalMinutes/Client.ComeTime.Leave; i++)
+        int LeaveSell = Mathf.Clamp((int)(T.TotalMinutes / Client.ComeTime.Leave),0,500);
+
+        for (int i = 0; i < LeaveSell; i++)
         {
             int Select; 
             int a = UnityEngine.Random.Range(0, CanSell.Count);
             Select = CanSell[a];
-            Debug.Log(Select);
+            //Debug.Log(Select);
             int c;
-            if (Drink.DrinkData[Select].isSpecial == true && (int)UnityEngine.Random.Range(0, 10) == 0)
-            {
-                c = Select - (Drink.DrinkData.Count - Client.ClientData.Count);
-            }
-            else
-            {
-                c = UnityEngine.Random.Range(0, Player.Level * 3);
-            }
-            Debug.Log(c);
+
+            //Debug.Log(c);
             if (Player.getDrinkinStock(Select) > 0)
             {
+                if (Drink.DrinkData[Select].isSpecial == true && (int)UnityEngine.Random.Range(0, 10) == 0)
+                {
+                    c = Select - (Drink.DrinkData.Count - Client.ClientData.Count);
+                }
+                else
+                {
+                    c = UnityEngine.Random.Range(0, Player.Level * 3);
+                }
                 Player.setDrinkinStock(Select, Player.getDrinkinStock(Select)-1);
-                Player.DrinkSell++;
-                Player.Money += Drink.DrinkData[Select].Price;
+                
+                newsell++;
+               
+                newearn += Drink.DrinkData[Select].Price;
                 if (Player.getHavetheClient(c) == false)
                 {
+                    newc++;
+                    Testing.self.AddCientMenu(c);
                     Player.setHavetheClient(c,true);
-                    Player.ClientSum++;
+                    
                 }
             }
             else
@@ -97,6 +103,11 @@ public class ClientControl
                 TempSell++;
             }
         }
+        Player.DrinkSell += newsell;
+        Player.Money += newearn;
+        Player.ClientSum += newc;
+        narrate = "賣出" + newsell +"杯，賺了"+ newearn + "，新客人" + newc +"位\n因為庫存不足少賺"+ TempMoney;
+        Debug.Log(narrate);
     }
     public void PromoteSell(ref int Min,ref int Max,PromoteType p)
     {

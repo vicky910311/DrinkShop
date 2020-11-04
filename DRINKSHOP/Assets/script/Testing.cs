@@ -30,6 +30,8 @@ public class Testing : MonoBehaviour
     public bool DrinkhaveDevelop;
     private GameObject[] drinks, clients;
     private List<GameObject> drinksmake = new List<GameObject>();
+    public int TempMoney, TempSell;
+    public string LeaveNarrate;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,14 @@ public class Testing : MonoBehaviour
         rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
         coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
+        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref TempSell,ref LeaveNarrate);
+        Debug.Log("少賺：" + TempMoney);
+        ui.OpenNotice();
+        /*for (int i=0;i < gm.Drink.DrinkData.Count;i++ )
+        {
+            pm.Player.OnDrinkinStockChanged[i] += StockAmount;
+        }*/
+        StockAmount();
 
     }
     // Update is called once per frame
@@ -96,6 +106,7 @@ public class Testing : MonoBehaviour
                     drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作";
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
                     tm.TimeData.setMakeTime(i, -1);
+                    //drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(i).ToString();
                 }
             }
             
@@ -125,8 +136,13 @@ public class Testing : MonoBehaviour
             Debug.Log("load  "+ pm.Player.getDrinkinStock(0));
         }
     }
-   
-   
+    
+    public void Recapture()
+    {
+        //播放廣告
+        ui.shutdownLittle();
+        pm.Player.Money += TempMoney;
+    }
     public void Incidenthappen()
     {
         int i = UnityEngine.Random.Range(1, 5);
@@ -137,7 +153,6 @@ public class Testing : MonoBehaviour
             GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
         }
         GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
-        //narrate.transform.SetParent(Content.transform);
         narrate.GetComponent<Text>().text = n;
         RectTransform rt = Content.GetComponent<RectTransform>();
         rt.position -= new Vector3(0, 100, 0);
@@ -251,16 +266,15 @@ public class Testing : MonoBehaviour
     }
     public void ClientMenu()
     {
-        for (int i = 0; i < gm.Client.ClientData.Count; i++)
+       for (int i = 0; i < gm.Client.ClientData.Count; i++)
         {
-            clients[i] = Instantiate(Resources.Load("Prefabs/client"), transform) as GameObject;
+            clients[i] = Instantiate(Resources.Load("Prefabs/client"), ClientContent.transform) as GameObject;
             if (pm.Player.getHavetheClient(i) == true )
             {
                 clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
                 clients[i].transform.GetChild(1).GetComponent<Text > ().text = gm.Client.ClientData[i].Name;
             }
             if (gm.Client.ClientData[i].isSpecial) { clients[i].transform.SetParent(SCContent.transform); }
-            else { clients[i].transform.SetParent(ClientContent.transform); }
         }
     }
     public void AddCientMenu(int i)
@@ -301,17 +315,25 @@ public class Testing : MonoBehaviour
              drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Image;
              drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Name;
              drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[pm.Player.getCanMake(i)].Cost.ToString();
-            int a = pm.Player.getCanMake(i);
+             int a = pm.Player.getCanMake(i);
              drinksmake[i].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(a);});
              Debug.Log(pm.Player.getCanMake(i));
-         }
+             drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(a).ToString();
+             Debug.Log(i +"/" + pm.Player.getDrinkinStock(a));
+        }
       
     }
-    
+    public void StockAmount()
+    {
+       // for (int i = 0; i < pm.Player.DrinkSum; i++)
+       // {
+           // int a = pm.Player.getCanMake(i);
+          //  drinksmake[0].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(3).ToString();
+       // }   
+    }
     public void AddDrinkMakeMenu(int i)
     {
         drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), MakeContent.transform) as GameObject);
-        //drinksmake[pm.Player.DrinkSum - 1].transform.SetParent(MakeContent.transform);
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject IncidentWindow, MissionWindow, EventWindow;
     public GameObject SettingWindow;
     public GameObject PurchaseWindow;
-    public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow;
+    public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
     public GameObject manualBtn, adBtn;
     private void Awake()
     {
@@ -42,6 +43,13 @@ public class UIManager : MonoBehaviour
         developcostWindow.SetActive(false);
         lookadWindow.SetActive(false);
         objectWindow.SetActive(false);
+        noticeWindow.SetActive(false);
+    }
+    public void OpenNotice()
+    {
+        shutdownLittle();
+        noticeWindow.SetActive(true);
+        noticeWindow.transform.GetChild(0).GetComponent<Text>().text = Testing.self.LeaveNarrate;
     }
     public void OpenObject()
     {

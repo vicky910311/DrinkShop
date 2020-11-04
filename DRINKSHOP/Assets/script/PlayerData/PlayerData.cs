@@ -143,8 +143,13 @@ public class PlayerData
         if (i < drinkinstock.Count && i >= 0)
         {
             drinkinstock[i] = n;
+            if (OnDrinkinStockChanged[i] != null)
+            {
+                OnDrinkinStockChanged[i]();
+            }
         }
     }
+    public Action[] OnDrinkinStockChanged = new Action[30];
     public int getDrinkinStock(int i)
     {
         if (i < drinkinstock.Count && i >= 0)
