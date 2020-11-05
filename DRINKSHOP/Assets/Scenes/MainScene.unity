@@ -5589,7 +5589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.7177124, y: 117.78003}
+  m_AnchoredPosition: {x: -4, y: 118}
   m_SizeDelta: {x: -185.04565, y: -1195.4276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749679288
@@ -6521,7 +6521,7 @@ MonoBehaviour:
     deletead: 0
     firsttime: 0
     coin: 3
-    canmake: 01000000000000000200000003000000
+    canmake: 03000000020000000100000000000000
     catchghost: 0
     catchsleep: 0
 --- !u!4 &878473495
