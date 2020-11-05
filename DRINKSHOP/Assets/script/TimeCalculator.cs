@@ -8,7 +8,7 @@ public class TimeCalculator : MonoBehaviour  //Testing script
 {
     private DateTime Time1, Time2;
     private TimeSpan Differ;
-    public GameObject time1, time2, differ;
+   /* public GameObject time1, time2, differ;
     public PlayerData Player;
     public ClientDataList Client;
     public DrinkDataList Drink;
@@ -18,7 +18,7 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     private DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
-    private EventControl EventControl = new EventControl();
+    private EventControl EventControl = new EventControl();*/
 
 
     // Start is called before the first frame update
@@ -44,20 +44,23 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     public void Time1click()
     {
         Time1 = DateTime.Now;
-        Player.LastEndTime = Time1;
-        time1.GetComponent<Text>().text = Time1.ToString();
+        PlayerDataManager.self.Player.LastEndTime = Time1;
+        Testing.self.Back = true;
+        Debug.Log(Time1);
+        //time1.GetComponent<Text>().text = Time1.ToString();
     }
 
     public void Time2click()
     {
         Time2 = DateTime.Now;
-        Player.ThisOpenTime = Time2;
-        time2.GetComponent<Text>().text = Time2.ToString();
+        PlayerDataManager.self.Player.ThisOpenTime = Time2;
+        Debug.Log(Time2);
+        //time2.GetComponent<Text>().text = Time2.ToString();
     }
 
     public void Differclick()
     {
         Differ = Time2 - Time1;
-        differ.GetComponent<Text>().text = ((int)Differ.TotalSeconds).ToString();
+        //differ.GetComponent<Text>().text = ((int)Differ.TotalSeconds).ToString();
     }
 }

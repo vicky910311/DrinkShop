@@ -94,6 +94,15 @@
      <Compile Include="Assets\script\GameData\LevelUpData.cs" />
      <Compile Include="Assets\script\GameData\ClientDataList.cs" />
      <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
+     <Compile Include="Assets\script\Scrollsnap.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+     <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/unityworks/DrinkShop/DRINKSHOP/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -337,6 +346,9 @@
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>D:/unityworks/DrinkShop/DRINKSHOP/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>D:/unityworks/DrinkShop/DRINKSHOP/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/unity/2020.1.8f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
