@@ -5,7 +5,6 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-
 public class Testing : MonoBehaviour
 {
     public static Testing self;
@@ -32,7 +31,7 @@ public class Testing : MonoBehaviour
     private List<GameObject> drinksmake = new List<GameObject>();
     public int TempMoney, TempSell;
     public string LeaveNarrate;
-    // Start is called before the first frame update
+    public bool Back;
     void Start()
     {
         pm.Player.OnCoinChange += CoinChange;
@@ -47,6 +46,7 @@ public class Testing : MonoBehaviour
          pm.Player.ThisOpenTime = DateTime.Now;
              ClientControl.WhenNotPlayingSell(pm.Player);
          }*/
+        pm.Player.ThisOpenTime = DateTime.Now;
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;   
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
@@ -79,7 +79,17 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pm.Player.LastEndTime> pm.Player.ThisOpenTime)
+        {
+            if (Back == true)
+            {
+                Invoke("leaveback", 0.5f);
+            }
+            Back = false;
+            
+        }
        
+
         if (Time.time > NowTime + 1.0f)
         {
             if (tm.TimeData.DevelopTime > 0)
@@ -138,6 +148,14 @@ public class Testing : MonoBehaviour
         }
     }
     
+    public void leaveback()
+    {
+        Back = false;
+        pm.Player.ThisOpenTime = DateTime.Now;
+        Debug.Log(pm.Player.ThisOpenTime);
+        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref TempSell, ref LeaveNarrate);
+        ui.OpenNotice();
+    }
     public void Recapture()
     {
         //播放廣告
@@ -366,9 +384,10 @@ public class Testing : MonoBehaviour
 
     void OnApplicationPause()
     {
-       /* pm.Player.LastEndTime = DateTime.Now;
+        Back = true;
+        pm.Player.LastEndTime = DateTime.Now;
         saveandLoad.Save();
-        Debug.Log("save");*/
+        Debug.Log("save");
     }
     void OnApplicationQuit()
     {
