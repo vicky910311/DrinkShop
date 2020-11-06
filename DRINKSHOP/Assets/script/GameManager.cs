@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
         pm.Player.OnDrinkSellChanged += checkMission;
         pm.Player.OnClientSumChanged += checkMission;
         pm.Player.OnMoneyChanged += checkMission;
+        checkLevel();
+        pm.Player.OnDrinkSumChanged += checkLevel;
+        pm.Player.OnDrinkSellChanged += checkLevel;
         missions = new GameObject[ms.Mission.Missions.Count];
         MissiomMenu();
         staffs = new GameObject[gm.Staff.StaffData.Count];
@@ -109,6 +112,13 @@ public class GameManager : MonoBehaviour
         promotelasting = gm.Client.ComeTime.manualpromoteTime;
         ClientControl.PromoteSell(ref ComeTimeMin, ref ComeTimeMax, ClientControl.PromoteType.Manual);
         Debug.Log("來客秒數" + ComeTimeMin + "~" + ComeTimeMax);
+    }
+    public void checkLevel()
+    {
+        if (EventControl.LevelUp(pm.Player))
+        {
+            ui.OpenLevelup();
+        }  
     }
     public void checkMission()
     {

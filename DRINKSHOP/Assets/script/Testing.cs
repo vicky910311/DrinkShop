@@ -83,12 +83,10 @@ public class Testing : MonoBehaviour
         {
             if (Back == true)
             {
-                Invoke("leaveback", 0.5f);
+                leaveback();
             }
-            Back = false;
-            
         }
-       
+        Back = false;
 
         if (Time.time > NowTime + 1.0f)
         {
@@ -150,7 +148,6 @@ public class Testing : MonoBehaviour
     
     public void leaveback()
     {
-        Back = false;
         pm.Player.ThisOpenTime = DateTime.Now;
         Debug.Log(pm.Player.ThisOpenTime);
         ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref TempSell, ref LeaveNarrate);
@@ -173,6 +170,7 @@ public class Testing : MonoBehaviour
         }
         GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
         narrate.GetComponent<Text>().text = n;
+        narrate.transform.SetSiblingIndex(0);
         RectTransform rt = Content.GetComponent<RectTransform>();
         rt.position -= new Vector3(0, 100, 0);
         rt.sizeDelta += new Vector2(0,200);
@@ -382,10 +380,13 @@ public class Testing : MonoBehaviour
         limitWindow.SetActive(false);
     }
 
-    void OnApplicationPause()
+    public void OnApplicationPause()
     {
+       if(Back == false)
+        {
+            pm.Player.LastEndTime = DateTime.Now;
+        }
         Back = true;
-        pm.Player.LastEndTime = DateTime.Now;
         saveandLoad.Save();
         Debug.Log("save");
     }

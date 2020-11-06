@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventControl
 {
@@ -169,7 +170,7 @@ public class EventControl
         }
         Debug.Log(Narrate);
     }
-    public void LevelUp(PlayerData Player)
+    public bool LevelUp(PlayerData Player)
     {
         int MotoLevel = Player.Level;
         if (Player.DrinkSum >= Level.LevelUpData[4].DrinkSum && Player.DrinkSell >= Level.LevelUpData[4].SellSum)
@@ -195,6 +196,12 @@ public class EventControl
         if (Player.Level> MotoLevel)
         {
             Debug.Log("升級了");
+            UIManager.self.levelupWindow.transform.GetChild(0).GetComponent<Text>().text = "升級了\n"+MotoLevel+" > "+ Player.Level;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -7,9 +7,9 @@ using System;
 public class TimeCalculator : MonoBehaviour  //Testing script
 {
     private DateTime Time1, Time2;
-    private TimeSpan Differ;
-   /* public GameObject time1, time2, differ;
-    public PlayerData Player;
+    //private TimeSpan Differ;
+    public GameObject time1, time2/*, differ*/;
+   /* public PlayerData Player;
     public ClientDataList Client;
     public DrinkDataList Drink;
     public LevelDataList Level;
@@ -24,14 +24,16 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     // Start is called before the first frame update
     void Start()
     {
-       
-       
+        Time();
+        PlayerDataManager.self.Player.OnLastEndTimeChanged += Time;
+        PlayerDataManager.self.Player.OnThisOpenTimeChange += Time;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
     public void Click()
     {
@@ -40,14 +42,20 @@ public class TimeCalculator : MonoBehaviour  //Testing script
  
     }
     
-
+    public void Time()
+    {
+        Time1 = PlayerDataManager.self.Player.LastEndTime;
+        time1.GetComponent<Text>().text = Time1.ToString();
+        Time2 = PlayerDataManager.self.Player.ThisOpenTime;
+        time2.GetComponent<Text>().text = Time2.ToString();
+    }
     public void Time1click()
     {
         Time1 = DateTime.Now;
         PlayerDataManager.self.Player.LastEndTime = Time1;
         Testing.self.Back = true;
         Debug.Log(Time1);
-        //time1.GetComponent<Text>().text = Time1.ToString();
+        time1.GetComponent<Text>().text = Time1.ToString();
     }
 
     public void Time2click()
@@ -55,12 +63,12 @@ public class TimeCalculator : MonoBehaviour  //Testing script
         Time2 = DateTime.Now;
         PlayerDataManager.self.Player.ThisOpenTime = Time2;
         Debug.Log(Time2);
-        //time2.GetComponent<Text>().text = Time2.ToString();
+        time2.GetComponent<Text>().text = Time2.ToString();
     }
 
     public void Differclick()
     {
-        Differ = Time2 - Time1;
+        //Differ = Time2 - Time1;
         //differ.GetComponent<Text>().text = ((int)Differ.TotalSeconds).ToString();
     }
 }

@@ -13,19 +13,29 @@ MonoBehaviour:
   m_Name: LevelDataTest
   m_EditorClassIdentifier: 
   LevelUpData:
-  - Level: 0
+  - Level: 1
     DrinkSum: 0
     SellSum: 0
-  - Level: 0
-    DrinkSum: 0
-    SellSum: 0
-  - Level: 0
-    DrinkSum: 0
-    SellSum: 0
-  - Level: 0
-    DrinkSum: 0
-    SellSum: 0
-  - Level: 0
-    DrinkSum: 0
-    SellSum: 0
-  LuckyData: []
+  - Level: 2
+    DrinkSum: 1
+    SellSum: 2
+  - Level: 3
+    DrinkSum: 2
+    SellSum: 4
+  - Level: 4
+    DrinkSum: 3
+    SellSum: 12
+  - Level: 5
+    DrinkSum: 4
+    SellSum: 50
+  LuckyData:
+  - PairLevel: 0
+    Image: {fileID: 0}
+  - PairLevel: 0
+    Image: {fileID: 0}
+  - PairLevel: 0
+    Image: {fileID: 0}
+  - PairLevel: 0
+    Image: {fileID: 0}
+  - PairLevel: 0
+    Image: {fileID: 0}

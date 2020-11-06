@@ -40,7 +40,67 @@ MonoBehaviour:
   - Name: 
     Info: 
     UnlockLevel: 0
-    isSpecial: 1
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
+    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Narrate: 
+  - Name: 
+    Info: 
+    UnlockLevel: 0
+    isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Narrate: 
   ComeTime:
