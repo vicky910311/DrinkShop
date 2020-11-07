@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
+    public int storynum;
     
     // Start is called before the first frame update
     private void Awake()
@@ -197,7 +198,8 @@ public class GameManager : MonoBehaviour
             {
                 staffs[i] = Instantiate(Resources.Load("Prefabs/unlockstaff"), StaffContent.transform) as GameObject;
                 staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
-                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ;/*storyBtn*/ });
+                int a = i;
+                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(a); });
                 staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate {;/*frontBtn*/ });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text =gm.Staff.StaffData[i].Info;
                 staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
@@ -221,7 +223,7 @@ public class GameManager : MonoBehaviour
         staffs[i] = Instantiate(Resources.Load("Prefabs/unlockstaff"), StaffContent.transform) as GameObject;
         staffs[i].transform.SetSiblingIndex(i);
         staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
-        staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {;/*storyBtn*/ });
+        staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(i); });
         staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate {;/*frontBtn*/ });
         staffs[i].transform.GetChild(3).GetComponent<Text>().text = gm.Staff.StaffData[i].Info;
         staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
@@ -256,6 +258,13 @@ public class GameManager : MonoBehaviour
             PurchaseControl.AddingStockLimit(pm.Player);
         }
     }
-    
+    public void ReadStory(int i)
+    {
+        storynum = i;
+        UIManager.self.OpenStory();
+       /* UsageCase.self.number = i;
+        UsageCase.self.Reading = false;*/
+    }
+
 }
 

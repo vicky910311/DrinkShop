@@ -7,6 +7,7 @@ public class Scrollsnap : MonoBehaviour
 {
     bool Move = false;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,30 +38,30 @@ public class Scrollsnap : MonoBehaviour
         {
             Move = false;
         }
-        if (Move == false)
+        if (Move == false )
         {
-            Debug.Log(rt.localPosition.x);
+           
             if (rt.localPosition.x >1080)
             {
-                transform.DOLocalMoveX(1620, 0.2f);
+               
+                transform.DOLocalMoveX(1620, 0.2f) ;
             }
-            if (rt.localPosition.x <= 1080 && rt.localPosition.x > 0)
+            else if (rt.localPosition.x <= 1080 && rt.localPosition.x > 0f)
             {
-                transform.DOLocalMoveX(540, 0.2f);
+                
+                transform.DOLocalMoveX(540, 0.2f) ;
             }
-            if(rt.localPosition.x <= 0 && rt.localPosition.x > -1080)
+            else if(rt.localPosition.x <= 0 && rt.localPosition.x > -1080)
             {
-                transform.DOLocalMoveX(-540, 0.2f);
+                
+                transform.DOLocalMoveX(-540, 0.2f) ;
             }
-            if(rt.localPosition.x <= -1080)
+            else if(rt.localPosition.x <= -1080)
             {
-                transform.DOLocalMoveX(-1620, 0.2f);
+               
+                transform.DOLocalMoveX(-1620, 0.2f) ;
             }
         }
         
     }
-    /*public void movetrue()
-    {
-        Move = true;
-    }*/
 }

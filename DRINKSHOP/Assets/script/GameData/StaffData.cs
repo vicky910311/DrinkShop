@@ -10,6 +10,7 @@ public struct StaffData
     public string Chara;
     public string Info;
     public TextAsset Story;
+    public Sprite StoryImage;
     public Sprite Image;
     public int UnlockCost;
     public int UnlockLevel;

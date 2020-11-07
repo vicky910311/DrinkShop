@@ -383,10 +383,10 @@ public class Testing : MonoBehaviour
         }
 
     }
-    public void shutdownlimitWindow()
+    /*public void shutdownlimitWindow()
     {
         limitWindow.SetActive(false);
-    }
+    }*/
 
     public void OnApplicationPause()
     {
@@ -395,6 +395,9 @@ public class Testing : MonoBehaviour
             pm.Player.LastEndTime = DateTime.Now;
         }
         Back = true;
+        ui.shutdownLittle();
+        ui.shutdownAll();
+        ui.shutdownLevelup();
         saveandLoad.Save();
         Debug.Log("save");
     }

@@ -44,10 +44,21 @@ public class UIManager : MonoBehaviour
         developcostWindow.SetActive(false);
         lookadWindow.SetActive(false);
         objectWindow.SetActive(false);
-        noticeWindow.SetActive(false);
-        levelupWindow.SetActive(false);
-        storyWindow.SetActive(false);
+        //noticeWindow.SetActive(false);
+        //levelupWindow.SetActive(false);
+        if(storyWindow.transform.childCount > 0)
+            Destroy(storyWindow.transform.GetChild(0).gameObject);
+        
     }
+    public void shutdownLevelup()
+    {
+        levelupWindow.SetActive(false);
+    }
+    public void shutdownNotice()
+    {
+        noticeWindow.SetActive(false);
+    }
+    
     public void OpenLevelup()
     {
         levelupWindow.SetActive(true);
@@ -57,6 +68,7 @@ public class UIManager : MonoBehaviour
     {
         shutdownLittle();
         storyWindow.SetActive(true);
+        GameObject STORY = Instantiate(Resources.Load("Prefabs/story"), storyWindow.transform) as GameObject ;
     }
     public void OpenNotice()
     {
@@ -131,6 +143,7 @@ public class UIManager : MonoBehaviour
     {
         if (StaffWindow.activeSelf == true)
         {
+            shutdownLittle();
             StaffWindow.SetActive(false);
         }
         else

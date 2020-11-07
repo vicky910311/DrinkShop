@@ -17,17 +17,17 @@ MonoBehaviour:
     DrinkSum: 0
     SellSum: 0
   - Level: 2
-    DrinkSum: 1
-    SellSum: 2
+    DrinkSum: 2
+    SellSum: 20
   - Level: 3
     DrinkSum: 2
-    SellSum: 4
+    SellSum: 40
   - Level: 4
     DrinkSum: 3
-    SellSum: 12
+    SellSum: 120
   - Level: 5
     DrinkSum: 4
-    SellSum: 50
+    SellSum: 500
   LuckyData:
   - PairLevel: 0
     Image: {fileID: 0}
