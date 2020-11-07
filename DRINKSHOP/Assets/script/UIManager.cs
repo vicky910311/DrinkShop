@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject SettingWindow;
     public GameObject PurchaseWindow;
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
-    public GameObject levelupWindow;
+    public GameObject levelupWindow, storyWindow;
     public GameObject manualBtn, adBtn;
     private void Awake()
     {
@@ -46,11 +46,17 @@ public class UIManager : MonoBehaviour
         objectWindow.SetActive(false);
         noticeWindow.SetActive(false);
         levelupWindow.SetActive(false);
+        storyWindow.SetActive(false);
     }
     public void OpenLevelup()
     {
         levelupWindow.SetActive(true);
         
+    }
+    public void OpenStory()
+    {
+        shutdownLittle();
+        storyWindow.SetActive(true);
     }
     public void OpenNotice()
     {

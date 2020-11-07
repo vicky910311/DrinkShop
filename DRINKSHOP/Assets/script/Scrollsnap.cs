@@ -37,24 +37,24 @@ public class Scrollsnap : MonoBehaviour
         {
             Move = false;
         }
-       if (Move == false)
+        if (Move == false)
         {
             Debug.Log(rt.localPosition.x);
             if (rt.localPosition.x >1080)
             {
-                transform.DOLocalMoveX(1620, 0.5f).SetEase(Ease.Linear);
+                transform.DOLocalMoveX(1620, 0.2f);
             }
             if (rt.localPosition.x <= 1080 && rt.localPosition.x > 0)
             {
-                transform.DOLocalMoveX(540, 0.5f).SetEase(Ease.Linear);
+                transform.DOLocalMoveX(540, 0.2f);
             }
             if(rt.localPosition.x <= 0 && rt.localPosition.x > -1080)
             {
-                transform.DOLocalMoveX(-540, 0.5f).SetEase(Ease.Linear);
+                transform.DOLocalMoveX(-540, 0.2f);
             }
             if(rt.localPosition.x <= -1080)
             {
-                transform.DOLocalMoveX(-1620, 0.5f).SetEase(Ease.Linear);
+                transform.DOLocalMoveX(-1620, 0.2f);
             }
         }
         

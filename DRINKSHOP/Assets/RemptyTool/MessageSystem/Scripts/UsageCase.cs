@@ -8,9 +8,10 @@ public class UsageCase : MonoBehaviour
 {
     private ES_MessageSystem msgSys;
     public UnityEngine.UI.Text uiText;
-    public TextAsset textAsset;
+    public TextAsset textAsset,mikan,burado,anchi,abei;
     private List<string> textList = new List<string>();
     private int textIndex = 0;
+    
 
     void Start()
     {
@@ -24,11 +25,16 @@ public class UsageCase : MonoBehaviour
 
         //add special chars and functions in other component.
         msgSys.AddSpecialCharToFuncMap("UsageCase", CustomizedFunction);
+        msgSys.AddSpecialCharToFuncMap("end", End);
     }
 
     private void CustomizedFunction()
     {
         Debug.Log("Hi! This is called by CustomizedFunction!");
+    }
+    private void End()
+    {
+        UIManager.self.storyWindow.SetActive(false);
     }
 
     private void ReadTextDataFromAsset(TextAsset _textAsset)
@@ -73,4 +79,8 @@ public class UsageCase : MonoBehaviour
             textIndex++;
         }
     }
+    public void Click()
+    {
+        msgSys.Next();
+    } 
 }

@@ -10,7 +10,15 @@ public class Testing : MonoBehaviour
     public static Testing self;
     private void Awake()
     {
-        self = this;
+        if (self == null)
+        {
+            self = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (this != self)
+        {
+            Destroy(gameObject);
+        }
     }
     public PlayerDataManager pm;
     public MissionState ms;
@@ -29,7 +37,7 @@ public class Testing : MonoBehaviour
     public bool DrinkhaveDevelop;
     private GameObject[] drinks, clients;
     private List<GameObject> drinksmake = new List<GameObject>();
-    public int TempMoney, TempSell;
+    public int TempMoney;
     public string LeaveNarrate;
     public bool Back;
     void Start()
@@ -66,7 +74,7 @@ public class Testing : MonoBehaviour
         rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
         coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
-        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref TempSell,ref LeaveNarrate);
+        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney,ref LeaveNarrate);
         Debug.Log("少賺：" + TempMoney);
         ui.OpenNotice();
         for (int i=0;i < gm.Drink.DrinkData.Count;i++ )
@@ -150,7 +158,7 @@ public class Testing : MonoBehaviour
     {
         pm.Player.ThisOpenTime = DateTime.Now;
         Debug.Log(pm.Player.ThisOpenTime);
-        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref TempSell, ref LeaveNarrate);
+        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
         ui.OpenNotice();
     }
     public void Recapture()
@@ -181,12 +189,12 @@ public class Testing : MonoBehaviour
         bool isnew = false;
         int c = -1, d = -1;
         ClientControl.SelltheDrink(pm.Player,ref c,ref isnew,ref d);
-        if(isnew == true)
+        /*if(isnew == true)
         {
             AddCientMenu(c);
         }
-        isnew = false;
-        Debug.Log(pm.Player.getDrinkinStock(0));
+        isnew = false;*/
+        
     }
     public void PressDevelop()
     {

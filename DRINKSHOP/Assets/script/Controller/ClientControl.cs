@@ -48,10 +48,11 @@ public class ClientControl
         d = Select;
         
     }
-    public void WhenNotPlayingSell(PlayerData Player,ref int TempMoney,ref int TempSell,ref string narrate)
+    public void WhenNotPlayingSell(PlayerData Player,ref int TempMoney,ref string narrate)
     {
         TimeSpan T;
         int newsell = 0, newc = 0, newearn = 0;
+        TempMoney = 0;
         if (Client.ComeTime.Leave <= 0)
         {
             Client.ComeTime.Leave = 10;
@@ -100,7 +101,7 @@ public class ClientControl
             else
             {
                 TempMoney += (Drink.DrinkData[Select].Price - Drink.DrinkData[Select].Cost);
-                TempSell++;
+                //TempSell++;
             }
         }
         Player.DrinkSell += newsell;

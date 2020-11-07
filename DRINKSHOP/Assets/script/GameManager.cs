@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         headerInfo();
         pm.Player.OnDrinkSellChanged += headerInfo;
         pm.Player.OnMoneyChanged += headerInfo;
-        pm.Player.OnDrinkSellChanged += headerInfo;
+        pm.Player.OnLevelChanged += headerInfo;
         checkMission();
         pm.Player.OnCatchGhostChange += checkMission;
         pm.Player.OnCatchSleepChange += checkMission;
@@ -73,10 +73,10 @@ public class GameManager : MonoBehaviour
     {
         if (Time.time > sellTime + sellbetweenTime)
         {
-            Debug.Log("賣飲料");
+            sellDrinks();
             sellTime = Time.time;
             sellbetweenTime = Random.Range((float)ComeTimeMin, (float)ComeTimeMax);
-            Debug.Log(sellbetweenTime);
+            Debug.Log("賣飲料" + sellbetweenTime);
         }
         if(Time.time > promoteTime + promotelasting)
         {
@@ -84,6 +84,12 @@ public class GameManager : MonoBehaviour
             ui.adBtn.GetComponent<Button>().interactable = true;
             ui.manualBtn.GetComponent<Button>().interactable = true;
         }
+    }
+    public void sellDrinks()
+    {
+        bool isnew = false;
+        int c = -1, d = -1;
+        ClientControl.SelltheDrink(pm.Player, ref c, ref isnew, ref d);
     }
     public void headerInfo()
     {
