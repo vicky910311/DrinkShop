@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject SettingWindow;
     public GameObject PurchaseWindow;
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
-    public GameObject levelupWindow, storyWindow;
+    public GameObject levelupWindow, storyWindow, quitWindow;
     public GameObject manualBtn, adBtn;
     private void Awake()
     {
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
         developcostWindow.SetActive(false);
         lookadWindow.SetActive(false);
         objectWindow.SetActive(false);
+        quitWindow.SetActive(false);
         //noticeWindow.SetActive(false);
         //levelupWindow.SetActive(false);
         if(storyWindow.transform.childCount > 0)
@@ -58,7 +59,10 @@ public class UIManager : MonoBehaviour
     {
         noticeWindow.SetActive(false);
     }
-    
+    public void OpenQuit()
+    {
+        quitWindow.SetActive(true);
+    }
     public void OpenLevelup()
     {
         levelupWindow.SetActive(true);

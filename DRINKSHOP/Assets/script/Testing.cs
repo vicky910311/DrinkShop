@@ -19,6 +19,14 @@ public class Testing : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave"))!= null)
+        {
+            saveandLoad.Load();
+            pm.Player = saveandLoad.Player;
+            ms.Mission = saveandLoad.Mission;
+            tm.TimeData = saveandLoad.Time;
+            Debug.Log("Loading");
+        }
     }
     public PlayerDataManager pm;
     public MissionState ms;
@@ -40,6 +48,7 @@ public class Testing : MonoBehaviour
     public int TempMoney;
     public string LeaveNarrate;
     public bool Back;
+    public GameObject ghostin;
     void Start()
     {
         pm.Player.OnCoinChange += CoinChange;
@@ -92,9 +101,26 @@ public class Testing : MonoBehaviour
             if (Back == true)
             {
                 leaveback();
+                TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
+                if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
+                {
+                    tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
+                    tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
+                }
             }
         }
         Back = false;
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            saveandLoad.Load();
+            pm.Player = saveandLoad.Player;
+            ms.Mission = saveandLoad.Mission;
+            tm.TimeData = saveandLoad.Time;
+        }
 
         if (Time.time > NowTime + 1.0f)
         {
@@ -136,22 +162,9 @@ public class Testing : MonoBehaviour
             EventHappenTime = Time.time;
             EventUseTime = UnityEngine.Random.Range(5f,10f);
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            saveandLoad.Save();
+        
+        
             
-            Debug.Log("save" );
-            
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            saveandLoad.Load();
-            pm.Player = saveandLoad.Player;
-            ms.Mission = saveandLoad.Mission;
-            tm.TimeData  = saveandLoad.Time;
-
-            Debug.Log("load  "+ pm.Player.getDrinkinStock(0));
-        }
     }
     
     public void leaveback()
@@ -174,7 +187,7 @@ public class Testing : MonoBehaviour
         EventControl.IncidentHappen(i, ref n, pm.Player);
         if(i == 1)
         {
-            GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
+            GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), ghostin.transform) as GameObject;
         }
         GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
         narrate.GetComponent<Text>().text = n;
@@ -398,14 +411,21 @@ public class Testing : MonoBehaviour
         ui.shutdownLittle();
         ui.shutdownAll();
         ui.shutdownLevelup();
-        saveandLoad.Save();
+        saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
         Debug.Log("save");
     }
     void OnApplicationQuit()
     {
-        /* pm.Player.LastEndTime = DateTime.Now;
-         saveandLoad.Save();
-         Debug.Log("save");*/
+        if (Back == false)
+        {
+            pm.Player.LastEndTime = DateTime.Now;
+        }
+        Back = true;
+        ui.shutdownLittle();
+        ui.shutdownAll();
+        ui.shutdownLevelup();
+        saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
+        Debug.Log("save");
     }
 
 }

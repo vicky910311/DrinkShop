@@ -72,6 +72,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ui.OpenQuit();
+        }
         if (Time.time > sellTime + sellbetweenTime)
         {
             sellDrinks();
@@ -262,9 +266,11 @@ public class GameManager : MonoBehaviour
     {
         storynum = i;
         UIManager.self.OpenStory();
-       /* UsageCase.self.number = i;
-        UsageCase.self.Reading = false;*/
+      
     }
-
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
 

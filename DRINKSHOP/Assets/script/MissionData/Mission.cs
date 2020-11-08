@@ -31,9 +31,17 @@ public class Mission
     private bool isreach = false;
     public bool isReach
     {
-        set { isreach = value; }
+        set 
+        {
+            isreach = value;
+            if (OnIsReachChange != null)
+            {
+                OnIsReachChange();
+            }
+        }
         get { return isreach; }
     }
+    public Action OnIsReachChange;
     [SerializeField]
     private bool isrewarded = false;
     public bool isRewarded
