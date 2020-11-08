@@ -164,7 +164,7 @@ public class Testing : MonoBehaviour
     public void Recapture()
     {
         //播放廣告
-        ui.shutdownLittle();
+        ui.shutdownNotice();
         pm.Player.Money += TempMoney;
     }
     public void Incidenthappen()
