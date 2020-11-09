@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Testing : MonoBehaviour
 {
+    
     public static Testing self;
     private void Awake()
     {
@@ -19,16 +20,16 @@ public class Testing : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave"))!= null)
+       /*if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave"))!= null)
         {
             saveandLoad.Load();
             pm.Player = saveandLoad.Player;
             ms.Mission = saveandLoad.Mission;
             tm.TimeData = saveandLoad.Time;
             Debug.Log("Loading");
-        }
+        }*/
     }
-    public PlayerDataManager pm;
+    /*public PlayerDataManager pm;
     public MissionState ms;
     public Timer tm;
     public GameDataManager gm;
@@ -37,7 +38,7 @@ public class Testing : MonoBehaviour
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
     private EventControl EventControl = new EventControl();
-    private SaveandLoad saveandLoad = new SaveandLoad();
+    public SaveandLoad saveandLoad = new SaveandLoad();
     public float NowTime;
     public float EventHappenTime,EventUseTime;
     public GameObject Content,IncidentWindow, MenuContent,MakeContent,ClientContent,SCContent;
@@ -48,21 +49,27 @@ public class Testing : MonoBehaviour
     public int TempMoney;
     public string LeaveNarrate;
     public bool Back;
-    public GameObject ghostin;
+    public GameObject ghostin;*/
     void Start()
     {
-        pm.Player.OnCoinChange += CoinChange;
+        GameManager.self.drinks = new GameObject[GameManager.self.gm.Drink.DrinkData.Count];
+        GameManager.self.clients = new GameObject[GameManager.self.gm.Client.ClientData.Count];
+        GameManager.self.missions = new GameObject[GameManager.self.ms.Mission.Missions.Count];
+        GameManager.self.DrinkMenu();
+        GameManager.self.DrinkMakeMenu();
+        GameManager.self.ClientMenu();
+        GameManager.self.MissiomMenu();
+        GameManager.self.staffs = new GameObject[GameManager.self.gm.Staff.StaffData.Count];
+        GameManager.self.StaffMenu();
+        for (int i = 0; i < GameManager.self.gm.Drink.DrinkData.Count; i++)
+        {
+            GameManager.self.pm.Player.OnDrinkinStockChanged[i] += GameManager.self.StockAmount;
+        }
+        GameManager.self.StockAmount();
+        /*pm.Player.OnCoinChange += CoinChange;
         drinks = new GameObject[gm.Drink.DrinkData.Count];
         clients = new GameObject[gm.Client.ClientData.Count];
-        /* if (pm.Player.FirstTime == false)
-         {
-        saveandLoad.Load();
-         pm.Player = saveandLoad.Player;
-         ms.Mission = saveandLoad.Mission;
-         tm.TimeData = saveandLoad.Time;
-         pm.Player.ThisOpenTime = DateTime.Now;
-             ClientControl.WhenNotPlayingSell(pm.Player);
-         }*/
+        
         pm.Player.ThisOpenTime = DateTime.Now;
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;   
         ClientControl.Client = gm.Client;
@@ -70,12 +77,7 @@ public class Testing : MonoBehaviour
         StaffControl.Staff = gm.Staff;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
-        /*TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime; 
-        if((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
-        {
-            tm.TimeData.DevelopTime -= (int)(During).TotalSeconds;
-            tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
-        }*/
+        
         DrinkMenu();
         DrinkMakeMenu();
         ClientMenu();
@@ -91,9 +93,16 @@ public class Testing : MonoBehaviour
             pm.Player.OnDrinkinStockChanged[i] += StockAmount;
         }
         StockAmount();
+        Back = true;
+       
+        GameManager.self.missions = new GameObject[ms.Mission.Missions.Count];
+        GameManager.self.MissiomMenu();
+        GameManager.self.staffs = new GameObject[gm.Staff.StaffData.Count];
+        GameManager.self.StaffMenu();*/
 
     }
     // Update is called once per frame
+    /*
     void Update()
     {
         if(pm.Player.LastEndTime> pm.Player.ThisOpenTime)
@@ -187,7 +196,14 @@ public class Testing : MonoBehaviour
         EventControl.IncidentHappen(i, ref n, pm.Player);
         if(i == 1)
         {
-            GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), ghostin.transform) as GameObject;
+            if(ghostin.transform.childCount < 10)
+            {
+                GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), ghostin.transform) as GameObject;
+            }
+            else
+            {
+                n = "幽靈人口過剩";
+            }
         }
         GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
         narrate.GetComponent<Text>().text = n;
@@ -202,11 +218,7 @@ public class Testing : MonoBehaviour
         bool isnew = false;
         int c = -1, d = -1;
         ClientControl.SelltheDrink(pm.Player,ref c,ref isnew,ref d);
-        /*if(isnew == true)
-        {
-            AddCientMenu(c);
-        }
-        isnew = false;*/
+       
         
     }
     public void PressDevelop()
@@ -396,22 +408,20 @@ public class Testing : MonoBehaviour
         }
 
     }
-    /*public void shutdownlimitWindow()
-    {
-        limitWindow.SetActive(false);
-    }*/
+    
 
     public void OnApplicationPause()
     {
        if(Back == false)
         {
             pm.Player.LastEndTime = DateTime.Now;
+            saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
         }
         Back = true;
         ui.shutdownLittle();
         ui.shutdownAll();
         ui.shutdownLevelup();
-        saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
+       
         Debug.Log("save");
     }
     void OnApplicationQuit()
@@ -427,5 +437,5 @@ public class Testing : MonoBehaviour
         saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
         Debug.Log("save");
     }
-
+    */
 }

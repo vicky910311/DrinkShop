@@ -10,6 +10,7 @@ public class GameDataManager : MonoBehaviour
     public StaffDataList Staff;
     public ClientDataList Client;
     public LevelDataList Level;
+    
     private void Awake()
     {
         if (self == null)

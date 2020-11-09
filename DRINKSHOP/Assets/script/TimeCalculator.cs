@@ -53,7 +53,7 @@ public class TimeCalculator : MonoBehaviour  //Testing script
     {
         Time1 = DateTime.Now;
         PlayerDataManager.self.Player.LastEndTime = Time1;
-        Testing.self.Back = true;
+        GameManager.self.Back = true;
         Debug.Log(Time1);
         time1.GetComponent<Text>().text = Time1.ToString();
     }

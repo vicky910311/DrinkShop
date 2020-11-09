@@ -40,7 +40,7 @@ public class ClientControl
                 Player.setHavetheClient(c, true);
                 Player.ClientSum++;
                 isnew = true;
-                Testing.self.AddCientMenu(c);
+                GameManager.self.AddCientMenu(c);
                 Debug.Log("新顧客"+c );
             }
             Debug.Log(c + "買" + Select);
@@ -93,7 +93,7 @@ public class ClientControl
                 if (Player.getHavetheClient(c) == false)
                 {
                     newc++;
-                    Testing.self.AddCientMenu(c);
+                    GameManager.self.AddCientMenu(c);
                     Player.setHavetheClient(c,true);
                     
                 }

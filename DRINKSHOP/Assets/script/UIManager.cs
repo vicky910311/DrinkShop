@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
     {
         shutdownLittle();
         noticeWindow.SetActive(true);
-        noticeWindow.transform.GetChild(0).GetComponent<Text>().text = Testing.self.LeaveNarrate;
+        noticeWindow.transform.GetChild(0).GetComponent<Text>().text = GameManager.self.LeaveNarrate;
     }
     public void OpenObject()
     {

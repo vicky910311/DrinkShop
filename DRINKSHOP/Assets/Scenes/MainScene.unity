@@ -851,8 +851,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1310384415}
-        m_TargetAssemblyTypeName: Testing, Assembly-CSharp
+      - m_Target: {fileID: 396331565}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: PressDevelop
         m_Mode: 1
         m_Arguments:
@@ -3410,6 +3410,26 @@ MonoBehaviour:
   EventHappenTime: 0
   EventUseTime: 0
   storynum: 0
+  NowTime: 0
+  Content: {fileID: 2104334118}
+  MenuContent: {fileID: 404802376}
+  MakeContent: {fileID: 1837811120}
+  ClientContent: {fileID: 1866266578}
+  SCContent: {fileID: 1643785507}
+  DevelopBtn: {fileID: 53101825}
+  DrinkDevelop: {fileID: 1243026557}
+  DoneDevelopText: {fileID: 1345555028}
+  csText: {fileID: 1248792854}
+  limitWindow: {fileID: 1125901118}
+  coinText: {fileID: 1290979877}
+  DrinkhaveDevelop: 0
+  drinks: []
+  clients: []
+  drinksmake: []
+  TempMoney: 0
+  LeaveNarrate: 
+  Back: 0
+  ghostin: {fileID: 319982986}
 --- !u!4 &396331566
 Transform:
   m_ObjectHideFlags: 0
@@ -3862,7 +3882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &478252925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7113,7 +7133,7 @@ MonoBehaviour:
   m_Content: {fileID: 1837811121}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -9018,8 +9038,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1310384415}
-        m_TargetAssemblyTypeName: Testing, Assembly-CSharp
+      - m_Target: {fileID: 396331565}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Recapture
         m_Mode: 1
         m_Arguments:
@@ -10472,31 +10492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686558429ccef1e4493fb13d77ed727b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 878473494}
-  ms: {fileID: 1632534174}
-  tm: {fileID: 502338696}
-  gm: {fileID: 1767361525}
-  ui: {fileID: 1921481984}
-  NowTime: 0
-  EventHappenTime: 0
-  EventUseTime: 0
-  Content: {fileID: 2104334118}
-  IncidentWindow: {fileID: 1408398610}
-  MenuContent: {fileID: 404802376}
-  MakeContent: {fileID: 1837811120}
-  ClientContent: {fileID: 1866266578}
-  SCContent: {fileID: 1643785507}
-  DevelopBtn: {fileID: 53101825}
-  DrinkDevelop: {fileID: 1243026557}
-  DoneDevelopText: {fileID: 1345555028}
-  csText: {fileID: 1248792854}
-  limitWindow: {fileID: 1125901118}
-  coinText: {fileID: 1290979877}
-  DrinkhaveDevelop: 0
-  TempMoney: 0
-  LeaveNarrate: 
-  Back: 0
-  ghostin: {fileID: 319982986}
 --- !u!4 &1310384416
 Transform:
   m_ObjectHideFlags: 0
@@ -11716,9 +11711,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1310384415}
-        m_TargetAssemblyTypeName: Testing, Assembly-CSharp
-        m_MethodName: SellDrinks
+      - m_Target: {fileID: 396331565}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: sellDrinks
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15969,8 +15964,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1310384415}
-        m_TargetAssemblyTypeName: Testing, Assembly-CSharp
+      - m_Target: {fileID: 396331565}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Develop
         m_Mode: 1
         m_Arguments:
