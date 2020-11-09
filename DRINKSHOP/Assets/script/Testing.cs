@@ -52,7 +52,7 @@ public class Testing : MonoBehaviour
     public GameObject ghostin;*/
     void Start()
     {
-        GameManager.self.drinks = new GameObject[GameManager.self.gm.Drink.DrinkData.Count];
+        /*GameManager.self.drinks = new GameObject[GameManager.self.gm.Drink.DrinkData.Count];
         GameManager.self.clients = new GameObject[GameManager.self.gm.Client.ClientData.Count];
         GameManager.self.missions = new GameObject[GameManager.self.ms.Mission.Missions.Count];
         GameManager.self.DrinkMenu();
@@ -65,7 +65,7 @@ public class Testing : MonoBehaviour
         {
             GameManager.self.pm.Player.OnDrinkinStockChanged[i] += GameManager.self.StockAmount;
         }
-        GameManager.self.StockAmount();
+        GameManager.self.StockAmount();*/
         /*pm.Player.OnCoinChange += CoinChange;
         drinks = new GameObject[gm.Drink.DrinkData.Count];
         clients = new GameObject[gm.Client.ClientData.Count];

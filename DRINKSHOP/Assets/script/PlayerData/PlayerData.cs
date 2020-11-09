@@ -313,12 +313,7 @@ public class PlayerData
         get { return catchsleep; }
     }
     public Action OnCatchSleepChange;
-
-    /*private RectTransform makewindowrt;
-    public RectTransform MakeWindowRT
-    {
-        set { MakeWindowRT = value; }
-        get { return MakeWindowRT; }
-    }*/
+    public string Endtimestring;
+    
 }
 

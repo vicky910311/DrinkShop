@@ -27,7 +27,7 @@ MonoBehaviour:
     SellSum: 120
   - Level: 5
     DrinkSum: 4
-    SellSum: 500
+    SellSum: 400
   LuckyData:
   - PairLevel: 0
     Image: {fileID: 0}

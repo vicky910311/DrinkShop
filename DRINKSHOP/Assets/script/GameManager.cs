@@ -49,14 +49,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-       /* if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
+       if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
         {
             saveandLoad.Load();
             pm.Player = saveandLoad.Player;
             ms.Mission = saveandLoad.Mission;
             tm.TimeData = saveandLoad.Time;
             Debug.Log("Loading");
-        }*/
+        }
+        Back = true;
+        if (pm.Player.Endtimestring != null)
+            pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
     }
     void Start()
     {
@@ -72,29 +75,24 @@ public class GameManager : MonoBehaviour
         pm.Player.OnDrinkSellChanged += headerInfo;
         pm.Player.OnMoneyChanged += headerInfo;
         pm.Player.OnLevelChanged += headerInfo;
-        checkMission();
-        pm.Player.OnCatchGhostChange += checkMission;
-        pm.Player.OnCatchSleepChange += checkMission;
-        pm.Player.OnDrinkSellChanged += checkMission;
-        pm.Player.OnClientSumChanged += checkMission;
-        pm.Player.OnMoneyChanged += checkMission;
         checkLevel();
         pm.Player.OnDrinkSumChanged += checkLevel;
         pm.Player.OnDrinkSellChanged += checkLevel;
-       /* missions = new GameObject[ms.Mission.Missions.Count];
+        
+        missions = new GameObject[ms.Mission.Missions.Count];
         MissiomMenu();
         staffs = new GameObject[gm.Staff.StaffData.Count];
-        StaffMenu();*/
+        StaffMenu();
         sellTime = Time.time;
         sellbetweenTime = 5f;
         EventUseTime = UnityEngine.Random.Range(5f, 10f);
         NowTime = EventHappenTime = Time.time;
         pm.Player.OnCoinChange += CoinChange;
-       /* drinks = new GameObject[gm.Drink.DrinkData.Count];
+        drinks = new GameObject[gm.Drink.DrinkData.Count];
         clients = new GameObject[gm.Client.ClientData.Count];
         DrinkMenu();
         DrinkMakeMenu();
-        ClientMenu();*/
+        ClientMenu();
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
@@ -102,12 +100,19 @@ public class GameManager : MonoBehaviour
         ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
         Debug.Log("少賺：" + TempMoney);
         ui.OpenNotice();
-        /*for (int i = 0; i < gm.Drink.DrinkData.Count; i++)
+        for (int i = 0; i < gm.Drink.DrinkData.Count; i++)
         {
             pm.Player.OnDrinkinStockChanged[i] += StockAmount;
         }
-        StockAmount();*/
+        StockAmount();
         Back = true;
+        checkMission();
+        pm.Player.OnCatchGhostChange += checkMission;
+        pm.Player.OnCatchSleepChange += checkMission;
+        pm.Player.OnDrinkSellChanged += checkMission;
+        pm.Player.OnClientSumChanged += checkMission;
+        pm.Player.OnMoneyChanged += checkMission;
+
     }
 
     // Update is called once per frame
@@ -237,7 +242,8 @@ public class GameManager : MonoBehaviour
         if (EventControl.LevelUp(pm.Player))
         {
             ui.OpenLevelup();
-        }  
+        }
+        Debug.Log("checkLevel");
     }
     public void checkMission()
     {
@@ -389,6 +395,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quit()
     {
+       
         Application.Quit();
     }
     public void leaveback()
@@ -641,11 +648,9 @@ public class GameManager : MonoBehaviour
     }
     void OnApplicationQuit()
     {
-        if (Back == false)
-        {
-            pm.Player.LastEndTime = DateTime.Now;
-        }
-        Back = true;
+        pm.Player.LastEndTime = DateTime.Now;
+        pm.Player.Endtimestring = pm.Player.LastEndTime.ToString();
+        Debug.Log(" pm.Player.LastEndTime" + pm.Player.Endtimestring);
         ui.shutdownLittle();
         ui.shutdownAll();
         ui.shutdownLevelup();
