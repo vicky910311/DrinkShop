@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Loading");
         }
         Back = true;
-        if (pm.Player.Endtimestring != null)
+        if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
             pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
     }
     void Start()

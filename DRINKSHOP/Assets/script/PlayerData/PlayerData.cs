@@ -313,7 +313,13 @@ public class PlayerData
         get { return catchsleep; }
     }
     public Action OnCatchSleepChange;
-    public string Endtimestring;
+    [SerializeField]
+    private string endtimestring;
+    public string Endtimestring
+    {
+        set { endtimestring = value; }
+        get { return endtimestring; }
+    }
     
 }
 
