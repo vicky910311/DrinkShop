@@ -543,6 +543,8 @@ public class GameManager : MonoBehaviour
             clients[i] = Instantiate(Resources.Load("Prefabs/client"), ClientContent.transform) as GameObject;
             if (pm.Player.getHavetheClient(i) == true)
             {
+                int a = i;
+                clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(a, objectType.Client); });
                 clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
                 clients[i].transform.GetChild(1).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
             }
@@ -551,6 +553,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddCientMenu(int i)
     {
+        clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Client); });
         clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
         clients[i].transform.GetChild(1).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
     }
@@ -563,6 +566,8 @@ public class GameManager : MonoBehaviour
             //drinks[i].transform.SetParent(MenuContent.transform);
             if (pm.Player.getHavetheDrink(i) == true)
             {
+                int a = i;
+                drinks[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(a, objectType.Drink); });
                 drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
                 drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
                 drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
@@ -572,9 +577,28 @@ public class GameManager : MonoBehaviour
     }
     public void AddDrinkMenu(int i)
     {
+        drinks[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Drink); });
         drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
         drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
+    }
+    public void PressObject(int i,objectType T)
+    {
+        if( T == objectType.Client)
+        {
+            ui.objectWindow.transform.GetChild(1).GetComponent<Text>().text = "顧客";
+            ui.objectWindow.transform.GetChild(2).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
+            ui.objectWindow.transform.GetChild(3).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
+            ui.objectWindow.transform.GetChild(4).GetComponent<Text>().text = gm.Client.ClientData[i].Info;
+        }
+        else if( T == objectType.Drink)
+        {
+            ui.objectWindow.transform.GetChild(1).GetComponent<Text>().text = "飲料";
+            ui.objectWindow.transform.GetChild(2).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
+            ui.objectWindow.transform.GetChild(3).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
+            ui.objectWindow.transform.GetChild(4).GetComponent<Text>().text = gm.Drink.DrinkData[i].Narrate;
+        }
+        ui.OpenObject();
     }
 
 
@@ -637,6 +661,7 @@ public class GameManager : MonoBehaviour
         if (Back == false)
         {
             pm.Player.LastEndTime = DateTime.Now;
+            pm.Player.Endtimestring = pm.Player.LastEndTime.ToString();
             saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
         }
         Back = true;
@@ -655,7 +680,12 @@ public class GameManager : MonoBehaviour
         ui.shutdownAll();
         ui.shutdownLevelup();
         saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
-        Debug.Log("save");
+        Debug.Log("Save");
     }
 }
 
+public enum objectType
+{
+    Client,
+    Drink
+}

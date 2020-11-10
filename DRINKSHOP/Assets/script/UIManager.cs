@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
         developcostWindow.SetActive(false);
         lookadWindow.SetActive(false);
         objectWindow.SetActive(false);
-        quitWindow.SetActive(false);
+        //quitWindow.SetActive(false);
         //noticeWindow.SetActive(false);
         //levelupWindow.SetActive(false);
         if(storyWindow.transform.childCount > 0)
@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
     public void shutdownNotice()
     {
         noticeWindow.SetActive(false);
+    }
+    public void shutdownQuit()
+    {
+        quitWindow.SetActive(false);
     }
     public void OpenQuit()
     {

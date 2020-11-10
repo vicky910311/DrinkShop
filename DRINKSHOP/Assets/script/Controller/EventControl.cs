@@ -166,7 +166,11 @@ public class EventControl
                 int stole = ((int)Random.Range(1, 3)) * 100;
                 Player.Money -= stole;
                 Narrate = "被偷了" + stole + "元";
-            }  
+            }
+            else
+            {
+                Narrate = "小偷不偷窮人";
+            }
         }
         Debug.Log(Narrate);
     }
