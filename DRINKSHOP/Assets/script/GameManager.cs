@@ -148,7 +148,8 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        Back = false;
+        if (Back == true)
+            Back = false;
         if (Input.GetKeyDown(KeyCode.S))
         {
             saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
