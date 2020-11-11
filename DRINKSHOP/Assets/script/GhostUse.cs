@@ -48,9 +48,9 @@ public class GhostUse : MonoBehaviour
             }
         }
     }
-    void OnMouseDown()
+    void OnMouseUp()
     {
-        if (uiListener.isUIOverride/* && EventSystem.current.currentSelectedGameObject.layer == 5*/)
+        if (uiListener.isUIOverride)
         {
             Debug.Log("Cancelled OnMouseDown! A UI element has override this object!");
         }

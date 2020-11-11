@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 //using System.Collections;
 
 public class MyUIHoverListener : MonoBehaviour
 {
-    public bool isUIOverride { get; private set; }
+    public GraphicRaycaster m_Raycaster;
+    public Camera uicamera;
+    [SerializeField]
+    private bool uiOverride;
+    public bool isUIOverride { get { return uiOverride; } private set { uiOverride = value; } }
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
-        isUIOverride = EventSystem.current.IsPointerOverGameObject();
-        GameObject g;
-        /*g = EventSystem.current.currentSelectedGameObject;
-        if (EventSystem.current.currentSelectedGameObject == null || g.layer != 5)
-        {
-            isUIOverride = false;
-        }
-        */
+        List<RaycastResult> results = new List<RaycastResult>();
+        PointerEventData PointerEventData = new PointerEventData(EventSystem.current);
+        PointerEventData.position = Input.mousePosition;
+        m_Raycaster.Raycast(PointerEventData, results);
+        isUIOverride = results.Count != 0 ? true : false;
         //  isUIOverride = EventSystem.current.IsPointerOverGameObject();
-       //  Debug.Log(isUIOverride);
+        //  Debug.Log(isUIOverride);
     }
 }
