@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject PurchaseWindow;
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
-    public GameObject manualBtn, adBtn;
+    public GameObject manualBtn, adBtn, developfastBtn;
     private void Awake()
     {
         if (self == null)

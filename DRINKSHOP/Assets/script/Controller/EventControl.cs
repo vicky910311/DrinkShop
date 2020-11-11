@@ -136,11 +136,21 @@ public class EventControl
             Select = CanSell[a];
             if ((int)Random.Range(0,10)>0)
             {
-                Narrate = Select + "被買光了";
+                
                 int buy = Player.getDrinkinStock(Select);
-                Player.setDrinkinStock(Select,0);
-                Player.Money += Drink.DrinkData[Select].Price*buy;
-                Player.DrinkSell += buy;
+                if(buy > 0)
+                {
+                    Narrate = Drink.DrinkData[Select].Name + "被買光了";
+                    Player.setDrinkinStock(Select, 0);
+                    Player.Money += Drink.DrinkData[Select].Price * buy;
+                    Player.DrinkSell += buy;
+                }
+                else
+                {
+                    Narrate = "有人想買下全部的" + Drink.DrinkData[Select].Name + "但沒貨了";
+                }
+                
+                
             }
             else
             {

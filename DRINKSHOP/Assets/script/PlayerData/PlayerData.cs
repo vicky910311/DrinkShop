@@ -320,6 +320,20 @@ public class PlayerData
         set { endtimestring = value; }
         get { return endtimestring; }
     }
-    
+    [SerializeField]
+    private int frontstaff;
+    public int FrontStaff
+    {
+        set
+        {
+            frontstaff = value;
+            if (OnFrontStaffChange != null)
+            {
+                OnFrontStaffChange();
+            }
+        }
+        get { return frontstaff; }
+    }
+    public Action OnFrontStaffChange;
 }
 

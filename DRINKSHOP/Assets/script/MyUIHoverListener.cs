@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class MyUIHoverListener : MonoBehaviour
 {
+    public static MyUIHoverListener self;
+    private void Awake()
+    {
+        self = this;
+    }
     public GraphicRaycaster m_Raycaster;
     public Camera uicamera;
     [SerializeField]

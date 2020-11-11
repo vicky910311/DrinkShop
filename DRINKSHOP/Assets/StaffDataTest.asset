@@ -30,7 +30,7 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     UnlockCost: 1
     UnlockLevel: 0
-    UnlockTime: 0
+    UnlockTime: 360
   - Name: 
     Chara: 
     Info: 
@@ -39,7 +39,7 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     UnlockCost: 1
     UnlockLevel: 0
-    UnlockTime: 0
+    UnlockTime: 400
   - Name: 
     Chara: 
     Info: 
@@ -48,4 +48,4 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     UnlockCost: 0
     UnlockLevel: 0
-    UnlockTime: 0
+    UnlockTime: 600

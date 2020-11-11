@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     public string LeaveNarrate;
     public bool Back;
     public GameObject ghostin;
+    int[] UST;
 
     // Start is called before the first frame update
     private void Awake()
@@ -49,17 +51,17 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-       if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
+       /*if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
         {
             saveandLoad.Load();
             pm.Player = saveandLoad.Player;
             ms.Mission = saveandLoad.Mission;
             tm.TimeData = saveandLoad.Time;
             Debug.Log("Loading");
-        }
+        }*/
         Back = true;
-        if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
-            pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
+        /*if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
+            pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);*/
     }
     void Start()
     {
@@ -112,7 +114,15 @@ public class GameManager : MonoBehaviour
         pm.Player.OnDrinkSellChanged += checkMission;
         pm.Player.OnClientSumChanged += checkMission;
         pm.Player.OnMoneyChanged += checkMission;
-
+        if (tm.TimeData.DevelopTime > 30)
+        {
+            ui.developfastBtn.SetActive(true);
+        }
+        else
+        {
+            ui.developfastBtn.SetActive(false);
+        }
+        UST = new int[gm.Staff.StaffData.Count];
     }
 
     // Update is called once per frame
@@ -162,16 +172,34 @@ public class GameManager : MonoBehaviour
             tm.TimeData = saveandLoad.Time;
         }
 
+        if (tm.TimeData.DevelopTime > 0)
+        {
+            
+            DrinkDevelop.transform.Rotate(0, 0, -0.4f);
+        }
+        else if (tm.TimeData.DevelopTime == 0)
+        {
+            DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f);
+        }
         if (Time.time > NowTime + 1.0f)
         {
             if (tm.TimeData.DevelopTime > 0)
             {
                 tm.TimeData.DevelopTime--;
                 Debug.Log(tm.TimeData.DevelopTime);
-                DevelopBtn.GetComponentInChildren<Text>().text = tm.TimeData.DevelopTime.ToString();
+                int T = tm.TimeData.DevelopTime;
+                DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");
+                if (tm.TimeData.DevelopTime <= 30)
+                {
+                    ui.developfastBtn.SetActive(false);
+                }
             }
             else if (tm.TimeData.DevelopTime == 0)
             {
+                if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && ui.levelupWindow.activeSelf == false)
+                {
+                    GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Star"), transform) as GameObject;
+                }
                 HaveDevelop();
             }
             for (int i = 0; i < pm.Player.DrinkSum; i++)
@@ -190,6 +218,26 @@ public class GameManager : MonoBehaviour
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
                     tm.TimeData.setMakeTime(a, -1);
                     //drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(i).ToString();
+                }
+            }
+            for(int i = 0; i < gm.Staff.StaffData.Count; i++)
+            {
+                
+                if (tm.TimeData.getStaffUnlockTime(i) > 0)
+                {
+                    tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
+                    UST[i] = tm.TimeData.getStaffUnlockTime(i);
+                    staffs[i].transform.GetChild(2).GetComponentInChildren<Text>().text = (UST[i] / 3600).ToString("00") + ":" + (UST[i] % 3600 / 60).ToString("00") + ":" + (UST[i] % 3600 % 60).ToString("00");
+                    if (tm.TimeData.getStaffUnlockTime(i)>30)
+                    {
+                        staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
+                    }
+                
+                }
+                else if(tm.TimeData.getStaffUnlockTime(i) == 0)
+                {
+                    tm.TimeData.setStaffUnlockTime(i, -1);
+                    AddStaffMenu(i);
                 }
             }
 
@@ -338,9 +386,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 staffs[i] = Instantiate(Resources.Load("Prefabs/lockstaff"), StaffContent.transform) as GameObject;
-                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {;/*fastBtn*/ });
+                staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
                 int a = i;
-                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AddStaffMenu(a); });
+                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { unlockstaffFast(a); });
+                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { UnlockStaff(a); });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text = "解鎖條件\n"+gm.Staff.StaffData[i].UnlockLevel+"星\n"+"資金"+gm.Staff.StaffData[i].UnlockCost;
             }
             
@@ -373,6 +422,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("條件不符");
         }
     }
+    public void unlockstaffFast(int i)
+    {
+        tm.TimeData.setStaffUnlockTime(i,tm.TimeData.getStaffUnlockTime(i)/120);
+    }
+    
     public void Purchase(int type)
     {
         if(type >= 10000)
@@ -436,16 +490,17 @@ public class GameManager : MonoBehaviour
         rt.sizeDelta += new Vector2(0, 200);
 
     }
-    public void SellDrinks()
+    /*public void SellDrinks()
     {
         bool isnew = false;
         int c = -1, d = -1;
         ClientControl.SelltheDrink(pm.Player, ref c, ref isnew, ref d);
 
 
-    }
+    }*/
     public void PressDevelop()
     {
+        ui.developfastBtn.SetActive(true);
         if (DrinkhaveDevelop == false && pm.Player.DrinkSum < gm.Drink.DrinkData.Count)
         {
             ui.OpenDevelopCost();
@@ -494,10 +549,16 @@ public class GameManager : MonoBehaviour
 
 
     }
-
+    public void developFast()
+    {
+        //ad
+        tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
+        ui.developfastBtn.SetActive(false);
+    }
     public void HaveDevelop()
     {
         DrinkhaveDevelop = true;
+       
         if (tm.TimeData.DevelopTemp != -1 && pm.Player.getHavetheDrink(tm.TimeData.DevelopTemp) != true)
         {
             pm.Player.setHavetheDrink(tm.TimeData.DevelopTemp, true);
@@ -517,6 +578,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("代幣增加" + pm.Player.Coin);
             csText.GetComponent<Text>().text = "代幣增加";
         }
+        
         DrinkDevelop.GetComponent<Image>().sprite = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Image;
         DoneDevelopText.GetComponent<Text>().text = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Name;
         tm.TimeData.DevelopTime = -1;

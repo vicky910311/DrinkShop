@@ -18,7 +18,7 @@ public class GhostUse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uiListener = GameObject.Find("Canvas").GetComponent<MyUIHoverListener>();
+        uiListener = MyUIHoverListener.self;// GameObject.Find("Canvas").GetComponent<MyUIHoverListener>();
         now = Time.time;
         move = 2.5f;
     }
@@ -57,12 +57,18 @@ public class GhostUse : MonoBehaviour
         else
         {
             PlayerDataManager.self.Player.CatchGhost++;
-            Destroy(gameObject);
+            GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Poof"), transform) as GameObject;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Invoke("dissapear",0.3f);
             Debug.Log(name.ToString() + "被點了一下");
-            Debug.Log("Object OnMouseDown");
+            
         }
         //PerformRaycast();
         
+    }
+    void dissapear()
+    {
+        Destroy(gameObject);
     }
     /*void PerformRaycast()
     {
