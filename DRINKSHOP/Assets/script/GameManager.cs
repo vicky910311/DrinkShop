@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
+using UnityEngine.XR.WSA.Input;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +38,21 @@ public class GameManager : MonoBehaviour
     public bool Back;
     public GameObject ghostin;
     int[] UST;
-
+    private int replenishamount = 25;
+    public int ReplenishAmount
+    {
+        set
+        {
+            replenishamount = value;
+            if (OnRAChange != null)
+            {
+                OnRAChange();
+            }
+        }
+        get { return replenishamount; }
+    }
+    public Action OnRAChange;
+    public GameObject Replenishment;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -114,6 +129,10 @@ public class GameManager : MonoBehaviour
         pm.Player.OnDrinkSellChanged += checkMission;
         pm.Player.OnClientSumChanged += checkMission;
         pm.Player.OnMoneyChanged += checkMission;
+        CanReplenish();
+        pm.Player.OnAddStockLimitChanged += CanReplenish;
+        RAColor();
+        OnRAChange += RAColor;
         if (tm.TimeData.DevelopTime > 30)
         {
             ui.developfastBtn.SetActive(true);
@@ -389,7 +408,7 @@ public class GameManager : MonoBehaviour
                 staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
                 int a = i;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { unlockstaffFast(a); });
-                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { UnlockStaff(a); });
+                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PressUnlock(a); });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text = "解鎖條件\n"+gm.Staff.StaffData[i].UnlockLevel+"星\n"+"資金"+gm.Staff.StaffData[i].UnlockCost;
             }
             
@@ -407,6 +426,21 @@ public class GameManager : MonoBehaviour
         staffs[i].transform.GetChild(3).GetComponent<Text>().text = gm.Staff.StaffData[i].Info;
         staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
         staffs[i].transform.GetChild(5).GetComponent<Text>().text = gm.Staff.StaffData[i].Name;
+    }
+    public void PressUnlock(int i)
+    {
+        ui.OpenStaffCost();
+        ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {UnlockStaff(i); });
+        if (pm.Player.Money >= gm.Staff.StaffData[i].UnlockCost && pm.Player.Level >= gm.Staff.StaffData[i].UnlockLevel)
+        {
+            ui.staffcostWindow.GetComponentInChildren<Text>().text = "需花費" + gm.Staff.StaffData[i].UnlockCost;
+            ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            ui.staffcostWindow.GetComponentInChildren<Text>().text = "條件不足";
+            ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().interactable = false;
+        }
     }
     public void UnlockStaff(int i)
     {
@@ -716,6 +750,40 @@ public class GameManager : MonoBehaviour
             limitWindow.SetActive(true);
         }
 
+    }
+    
+    public void CanReplenish()
+    {
+        Replenishment.transform.GetChild(0).GetComponent<Button>().interactable = true;
+        Replenishment.transform.GetChild(1).GetComponent<Button>().interactable = false;
+        Replenishment.transform.GetChild(2).GetComponent<Button>().interactable = false;
+        Replenishment.transform.GetChild(3).GetComponent<Button>().interactable = false;
+        if (pm.Player.AddStockLimit >= 25)
+        {
+            Replenishment.transform.GetChild(1).GetComponent<Button>().interactable = true;
+        }
+        if (pm.Player.AddStockLimit >= 50)
+        {
+            Replenishment.transform.GetChild(2).GetComponent<Button>().interactable = true;
+        }
+        if (pm.Player.AddStockLimit >= 75)
+        {
+            Replenishment.transform.GetChild(3).GetComponent<Button>().interactable = true;
+        }
+    }
+    public void Setreplenish(int i)
+    {
+        ReplenishAmount = i;
+    }
+    public void RAColor()
+    {
+        Replenishment.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        Replenishment.transform.GetChild(1).GetComponent<Image>().color = Color.white;
+        Replenishment.transform.GetChild(2).GetComponent<Image>().color = Color.white;
+        Replenishment.transform.GetChild(3).GetComponent<Image>().color = Color.white;
+        int a = ReplenishAmount / 25 - 1;
+        Replenishment.transform.GetChild(a).GetComponent<Image>().color = Color.yellow;
+       
     }
 
 

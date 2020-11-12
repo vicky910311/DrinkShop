@@ -14,11 +14,13 @@ public class GhostUse : MonoBehaviour
     float now, move;
     float MinX = -1.5f, MinY = -1.4f, MaxX = 1.5f, MaxY = 1.4f;
     private MyUIHoverListener uiListener;
+    private Animator anima;
 
     // Start is called before the first frame update
     void Start()
     {
         uiListener = MyUIHoverListener.self;// GameObject.Find("Canvas").GetComponent<MyUIHoverListener>();
+        anima = GetComponent<Animator>();
         now = Time.time;
         move = 2.5f;
     }
@@ -58,7 +60,8 @@ public class GhostUse : MonoBehaviour
         {
             PlayerDataManager.self.Player.CatchGhost++;
             GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Poof"), transform) as GameObject;
-            this.GetComponent<SpriteRenderer>().enabled = false;
+            anima.SetTrigger("click");
+            //this.GetComponent<SpriteRenderer>().enabled = false;
             Invoke("dissapear",0.3f);
             Debug.Log(name.ToString() + "被點了一下");
             

@@ -28,8 +28,8 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    UnlockCost: 1
-    UnlockLevel: 0
+    UnlockCost: 100
+    UnlockLevel: 1
     UnlockTime: 360
   - Name: 
     Chara: 
@@ -37,8 +37,8 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    UnlockCost: 1
-    UnlockLevel: 0
+    UnlockCost: 5
+    UnlockLevel: 400
     UnlockTime: 400
   - Name: 
     Chara: 
@@ -46,6 +46,6 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    UnlockCost: 0
-    UnlockLevel: 0
+    UnlockCost: 1
+    UnlockLevel: 80000
     UnlockTime: 600

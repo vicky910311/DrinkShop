@@ -55,7 +55,7 @@ public class DrinkControl
     }
     public void MakingDrink(int i, PlayerData Player,ref int Make,ref int MakeTime)
     {
-        Make = Drink.DrinkUse.StockLimit + Player.AddStockLimit - Player.getDrinkinStock(i);
+        Make = GameManager.self.ReplenishAmount - Player.getDrinkinStock(i);
         if (Player.Money >= Make * Drink.DrinkData[i].Cost)
         {
             //Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);

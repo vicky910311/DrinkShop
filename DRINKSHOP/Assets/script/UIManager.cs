@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject SettingWindow;
     public GameObject PurchaseWindow;
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
+    public GameObject staffcostWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
     public GameObject manualBtn, adBtn, developfastBtn;
     private void Awake()
@@ -44,10 +45,11 @@ public class UIManager : MonoBehaviour
         developcostWindow.SetActive(false);
         lookadWindow.SetActive(false);
         objectWindow.SetActive(false);
+        staffcostWindow.SetActive(false);
         //quitWindow.SetActive(false);
         //noticeWindow.SetActive(false);
         //levelupWindow.SetActive(false);
-        if(storyWindow.transform.childCount > 0)
+        if (storyWindow.transform.childCount > 0)
             Destroy(storyWindow.transform.GetChild(0).gameObject);
         
     }
@@ -103,6 +105,11 @@ public class UIManager : MonoBehaviour
     {
         shutdownLittle();
         developlimitWindow.SetActive(true);
+    }
+    public void OpenStaffCost()
+    {
+        shutdownLittle();
+        staffcostWindow.SetActive(true);
     }
     public void shutdownAll()
     {
