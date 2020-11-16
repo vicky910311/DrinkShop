@@ -43,16 +43,18 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            GameObject _go = new GameObject("sounds" + i + "_" + sounds[i].name);
+            _go.transform.SetParent(this.transform);
+            sounds[i].SetSource(_go.AddComponent<AudioSource>());
+            sounds[i].volume = 0;
+        }
     }
     
     void Start()
     {
-        for (int i = 0; i < sounds.Length; i++)
-        {
-            GameObject _go = new GameObject("sounds" + i +"_" +sounds[i].name);
-            _go.transform.SetParent(this.transform);
-            sounds[i].SetSource(_go.AddComponent<AudioSource>());
-        }
+        
     }
      public void PlaySound(string _name)
     {
@@ -65,5 +67,18 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    
+    public void SEoff()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].volume = 0f;
+        }
+    }
+    public void SEon()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].volume = 1f;
+        }
+    }
 }

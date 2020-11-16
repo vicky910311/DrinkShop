@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
-using UnityEngine.XR.WSA.Input;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
-    public GameObject DevelopBtn, DrinkDevelop, DoneDevelopText, csText, limitWindow, coinText;
+    public GameObject DevelopBtn, DrinkDevelop, DoneDevelopText, csText,  coinText;
     public bool DrinkhaveDevelop;
     public GameObject[] drinks, clients;
     public List<GameObject> drinksmake = new List<GameObject>();
@@ -142,6 +142,8 @@ public class GameManager : MonoBehaviour
             ui.developfastBtn.SetActive(false);
         }
         UST = new int[gm.Staff.StaffData.Count];
+        SEContent();
+        pm.Player.OnSEChange += SEContent;
     }
 
     // Update is called once per frame
@@ -199,6 +201,10 @@ public class GameManager : MonoBehaviour
         else if (tm.TimeData.DevelopTime == 0)
         {
             DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f);
+            if (ui.DevelopWindow.activeSelf == false)
+            {
+                ui.drinkNotify.SetActive(true);
+            }
         }
         if (Time.time > NowTime + 1.0f)
         {
@@ -218,6 +224,7 @@ public class GameManager : MonoBehaviour
                 if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && ui.levelupWindow.activeSelf == false)
                 {
                     GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Star"), transform) as GameObject;
+                    AudioManager.self.PlaySound("Developdone");
                 }
                 HaveDevelop();
             }
@@ -247,6 +254,7 @@ public class GameManager : MonoBehaviour
                     tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
                     UST[i] = tm.TimeData.getStaffUnlockTime(i);
                     staffs[i].transform.GetChild(2).GetComponentInChildren<Text>().text = (UST[i] / 3600).ToString("00") + ":" + (UST[i] % 3600 / 60).ToString("00") + ":" + (UST[i] % 3600 % 60).ToString("00");
+                    staffs[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
                     if (tm.TimeData.getStaffUnlockTime(i)>30)
                     {
                         staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = true;
@@ -257,6 +265,7 @@ public class GameManager : MonoBehaviour
                 {
                     tm.TimeData.setStaffUnlockTime(i, -1);
                     AddStaffMenu(i);
+                    
                 }
             }
 
@@ -300,6 +309,7 @@ public class GameManager : MonoBehaviour
     }
     public void manualpromote()
     {
+        AudioManager.self.PlaySound("Promote");
         promoteTime = Time.time;
         promotelasting = gm.Client.ComeTime.manualpromoteTime;
         ClientControl.PromoteSell(ref ComeTimeMin, ref ComeTimeMax, ClientControl.PromoteType.Manual);
@@ -320,7 +330,11 @@ public class GameManager : MonoBehaviour
         {
             if (ms.Mission.Missions[i].isReach == true)
             {
-                //ui按鈕晃動
+                if (ui.EventWindow.activeSelf == false)
+                {
+                    ui.EventNotify();
+                }
+                ms.Mission.Missions[i].isReach = false;
                 ChangeMissionMenu(i);
             }
         }
@@ -407,7 +421,7 @@ public class GameManager : MonoBehaviour
                 staffs[i] = Instantiate(Resources.Load("Prefabs/lockstaff"), StaffContent.transform) as GameObject;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
                 int a = i;
-                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { unlockstaffFast(a); });
+                staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { pressUnlockfast(a); });
                 staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { PressUnlock(a); });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text = "解鎖條件\n"+gm.Staff.StaffData[i].UnlockLevel+"星\n"+"資金"+gm.Staff.StaffData[i].UnlockCost;
             }
@@ -416,6 +430,10 @@ public class GameManager : MonoBehaviour
     }
     public void AddStaffMenu(int i)
     {
+        if (ui.StaffWindow.activeSelf == false)
+        {
+            ui.staffNotify.SetActive(true);
+        }
         pm.Player.setHavetheStaff(i, true);
         Destroy(staffs[i].gameObject);
         staffs[i] = Instantiate(Resources.Load("Prefabs/unlockstaff"), StaffContent.transform) as GameObject;
@@ -430,7 +448,7 @@ public class GameManager : MonoBehaviour
     public void PressUnlock(int i)
     {
         ui.OpenStaffCost();
-        ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {UnlockStaff(i); });
+        ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {UnlockStaff(i); ui.shutdownLittle(); });
         if (pm.Player.Money >= gm.Staff.StaffData[i].UnlockCost && pm.Player.Level >= gm.Staff.StaffData[i].UnlockLevel)
         {
             ui.staffcostWindow.GetComponentInChildren<Text>().text = "需花費" + gm.Staff.StaffData[i].UnlockCost;
@@ -454,6 +472,18 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("條件不符");
+        }
+    }
+    public void pressUnlockfast(int i)
+    {
+        if (pm.Player.DeleteAD == false)
+        {
+            ui.OpenLookAD();
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); unlockstaffFast(i); });
+        }
+        else
+        {
+            unlockstaffFast(i);
         }
     }
     public void unlockstaffFast(int i)
@@ -502,6 +532,10 @@ public class GameManager : MonoBehaviour
     }
     public void Incidenthappen()
     {
+        if (ui.EventWindow.activeSelf == false)
+        {
+            ui.EventNotify();
+        }
         int i = UnityEngine.Random.Range(1, 5);
         string n = "沒事";
         EventControl.IncidentHappen(i, ref n, pm.Player);
@@ -510,6 +544,7 @@ public class GameManager : MonoBehaviour
             if (ghostin.transform.childCount < 10)
             {
                 GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), ghostin.transform) as GameObject;
+                
             }
             else
             {
@@ -563,6 +598,7 @@ public class GameManager : MonoBehaviour
         }
         else if (DrinkhaveDevelop == true)
         {
+            AudioManager.self.PlaySound("Click");
             DrinkhaveDevelop = false;
             csText.GetComponent<Text>().text = "";
             DevelopBtn.GetComponentInChildren<Text>().text = "研發";
@@ -582,6 +618,18 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+    public void pressDevelopFast()
+    {
+        if (pm.Player.DeleteAD == false)
+        {
+            ui.OpenLookAD();
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); developFast(); });
+        }
+        else
+        {
+            developFast();
+        }
     }
     public void developFast()
     {
@@ -650,6 +698,10 @@ public class GameManager : MonoBehaviour
     }
     public void AddCientMenu(int i)
     {
+        if (ui.ClientWindow.activeSelf == false)
+        {
+            ui.clientNotify.SetActive(true);
+        }
         clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Client); });
         clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
         clients[i].transform.GetChild(1).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
@@ -737,17 +789,18 @@ public class GameManager : MonoBehaviour
     }
     public void DrinkMakeOnClick(int i)
     {
-        if (pm.Player.getDrinkinStock(i) < pm.Player.AddStockLimit + gm.Drink.DrinkUse.StockLimit)
+
+        if (pm.Player.getDrinkinStock(i) < ReplenishAmount)
         {
+            AudioManager.self.PlaySound("Replenish");
             int make = -1, maketime = -1;
             DrinkControl.MakingDrink(i, pm.Player, ref make, ref maketime);
             tm.TimeData.setMakeTemp(i, make);
             tm.TimeData.setMakeTime(i, maketime);
-            Debug.Log("補" + i + "  " + pm.Player.getDrinkinStock(i));
         }
         else
         {
-            limitWindow.SetActive(true);
+            ui.OpenStockLimit();
         }
 
     }
@@ -785,7 +838,26 @@ public class GameManager : MonoBehaviour
         Replenishment.transform.GetChild(a).GetComponent<Image>().color = Color.yellow;
        
     }
-
+    public void SEContent()
+    {
+        if (PlayerDataManager.self.Player.SEswitch == true)
+        {
+            ui.SEBtn.GetComponentInChildren<Text>().text = "ON";
+            ui.SEBtn.GetComponent<Image>().color = Color.yellow;
+            AudioManager.self.SEon();
+        }
+        else
+        {
+            ui.SEBtn.GetComponentInChildren<Text>().text = "OFF";
+            ui.SEBtn.GetComponent<Image>().color = Color.gray;
+            AudioManager.self.SEoff();
+        }
+    }
+    public void PressSEBtn()
+    {
+        AudioManager.self.PlaySound("Click");
+        pm.Player.SEswitch = !pm.Player.SEswitch;
+    }
 
     public void OnApplicationPause()
     {

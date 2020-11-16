@@ -113,6 +113,7 @@ public class UsageCase : MonoBehaviour
     }
     public void Click()
     {
+        AudioManager.self.PlaySound("Click");
         msgSys.Next();
     } 
 }

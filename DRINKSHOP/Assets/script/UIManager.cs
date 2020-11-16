@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class UIManager : MonoBehaviour
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
     public GameObject staffcostWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
-    public GameObject manualBtn, adBtn, developfastBtn;
+    public GameObject manualBtn, adBtn, developfastBtn, SEBtn;
+    public GameObject drinkNotify, clientNotify, staffNotify;
+    public GameObject EventBtn;
+    
     private void Awake()
     {
         if (self == null)
@@ -38,6 +42,11 @@ public class UIManager : MonoBehaviour
     {
         
     }
+    
+    public void EventNotify()
+    {
+        EventBtn.transform.DOLocalMoveX(-300,0.5f).OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
+    }
     public void shutdownLittle()
     {
         stocklimitWindow.SetActive(false);
@@ -51,23 +60,28 @@ public class UIManager : MonoBehaviour
         //levelupWindow.SetActive(false);
         if (storyWindow.transform.childCount > 0)
             Destroy(storyWindow.transform.GetChild(0).gameObject);
-        
+        AudioManager.self.PlaySound("Click");
+
     }
     public void shutdownLevelup()
     {
         levelupWindow.SetActive(false);
+        AudioManager.self.PlaySound("Click");
     }
     public void shutdownNotice()
     {
         noticeWindow.SetActive(false);
+        AudioManager.self.PlaySound("Click");
     }
     public void shutdownQuit()
     {
         quitWindow.SetActive(false);
+        AudioManager.self.PlaySound("Click");
     }
     public void OpenQuit()
     {
         quitWindow.SetActive(true);
+        AudioManager.self.PlaySound("Click");
     }
     public void OpenLevelup()
     {
@@ -111,6 +125,11 @@ public class UIManager : MonoBehaviour
         shutdownLittle();
         staffcostWindow.SetActive(true);
     }
+    public void OpenStockLimit()
+    {
+        shutdownLittle();
+        stocklimitWindow.SetActive(true);
+    }
     public void shutdownAll()
     {
         MakeWindow.SetActive(false);
@@ -126,11 +145,13 @@ public class UIManager : MonoBehaviour
         EventWindow.SetActive(false);
         PurchaseWindow.SetActive(false);
         SettingWindow.SetActive(false);
+        
     }
     public void OpenSettingWindow()
     {
         if (SettingWindow.activeSelf == true)
         {
+            shutdownLittle();
             SettingWindow.SetActive(false);
         }
         else
@@ -144,6 +165,7 @@ public class UIManager : MonoBehaviour
     {
         if (PurchaseWindow.activeSelf == true)
         {
+            shutdownLittle();
             PurchaseWindow.SetActive(false);
         }
         else
@@ -163,6 +185,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            staffNotify.SetActive(false);
             shutdownLittle();
             shutdownAll();
             StaffWindow.SetActive(true);
@@ -173,10 +196,12 @@ public class UIManager : MonoBehaviour
     {
         if (ClientWindow.activeSelf == true)
         {
+            shutdownLittle();
             ClientWindow.SetActive(false);
         }
         else
         {
+            clientNotify.SetActive(false);
             shutdownLittle();
             shutdownAll();
             ClientWindow.SetActive(true);
@@ -208,6 +233,7 @@ public class UIManager : MonoBehaviour
     {
         if (DrinkWindow.activeSelf == true)
         {
+            shutdownLittle();
             DrinkWindow.SetActive(false);
         }
         else
@@ -223,6 +249,7 @@ public class UIManager : MonoBehaviour
     {
         if (DevelopWindow.activeSelf != true)
         {
+            drinkNotify.SetActive(false);
             shutdownLittle();
             shutdownAll();
             DrinkWindow.SetActive(true);

@@ -15,6 +15,7 @@ public class GhostUse : MonoBehaviour
     float MinX = -1.5f, MinY = -1.4f, MaxX = 1.5f, MaxY = 1.4f;
     private MyUIHoverListener uiListener;
     private Animator anima;
+    bool appear = true;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,13 @@ public class GhostUse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > now + move)
+        if (appear == true)
+        {
+            AudioManager.self.PlaySound("YURE");
+        }
+        appear = false;
+       
+        if (Time.time > now + move)
         {
             float X = Random.Range(0f, 1f);
             float Y = Random.Range(0f, 1f);
@@ -63,6 +70,7 @@ public class GhostUse : MonoBehaviour
             anima.SetTrigger("click");
             //this.GetComponent<SpriteRenderer>().enabled = false;
             Invoke("dissapear",0.3f);
+            AudioManager.self.PlaySound("Pong");
             Debug.Log(name.ToString() + "被點了一下");
             
         }

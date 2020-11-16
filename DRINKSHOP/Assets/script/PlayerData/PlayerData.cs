@@ -335,5 +335,20 @@ public class PlayerData
         get { return frontstaff; }
     }
     public Action OnFrontStaffChange;
+    [SerializeField]
+    private bool seswitch;
+    public bool SEswitch
+    {
+        set
+        {
+            seswitch = value;
+            if (OnSEChange != null)
+            {
+                OnSEChange();
+            }
+        }
+        get { return seswitch; }
+    }
+    public Action OnSEChange;
 }
 
