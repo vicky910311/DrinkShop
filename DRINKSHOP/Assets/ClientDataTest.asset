@@ -18,94 +18,79 @@ MonoBehaviour:
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    Narrate: 
   ComeTime:
-    NormalMin: 4
-    NormalMax: 5
+    NormalMin: 10
+    NormalMax: 11
     ManualMin: 3
     ManualMax: 4
     ADMin: 2

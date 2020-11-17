@@ -9,7 +9,7 @@ public class ClientControl
     //public PlayerData Player;
     public DrinkDataList Drink;
     public ClientDataList Client;
-   public void SelltheDrink(PlayerData Player,ref int c,ref bool isnew,ref int d)
+   public void SelltheDrink(PlayerData Player,ref int c,ref bool isnew,ref int d,ref bool havestock)
     {
         int Select;
         List<int> CanSell = new List<int>();
@@ -30,8 +30,10 @@ public class ClientControl
             c = UnityEngine.Random.Range(0, Player.Level * 3);
         }
         Debug.Log(c + "來");
+        havestock = false;
         if (Player.getDrinkinStock(Select) > 0)
         {
+            havestock = true;
             Player.setDrinkinStock(Select, Player.getDrinkinStock(Select) - 1);
             Player.DrinkSell++;
             Player.Money += Drink.DrinkData[Select].Price;

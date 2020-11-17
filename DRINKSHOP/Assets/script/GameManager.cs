@@ -289,7 +289,12 @@ public class GameManager : MonoBehaviour
     {
         bool isnew = false;
         int c = -1, d = -1;
-        ClientControl.SelltheDrink(pm.Player, ref c, ref isnew, ref d);
+        bool hs = false;
+        ClientControl.SelltheDrink(pm.Player, ref c, ref isnew, ref d,ref hs);
+        SellingAnime.self.havestock = hs;
+        SellingAnime.self.C = c;
+        SellingAnime.self.D = d;
+        SellingAnime.self.Come();
     }
     public void headerInfo()
     {
