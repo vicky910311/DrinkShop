@@ -37,10 +37,10 @@ public class ClientControl
             Player.Money += Drink.DrinkData[Select].Price;
             if (Player.getHavetheClient(c) == false)
             {
-                Player.setHavetheClient(c, true);
                 Player.ClientSum++;
                 isnew = true;
                 GameManager.self.AddCientMenu(c);
+                Player.setHavetheClient(c, true);
                 Debug.Log("新顧客"+c );
             }
             Debug.Log(c + "買" + Select);

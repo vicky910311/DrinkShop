@@ -214,6 +214,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log(tm.TimeData.DevelopTime);
                 int T = tm.TimeData.DevelopTime;
                 DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");
+                ui.developfastBtn.SetActive(true);
                 if (tm.TimeData.DevelopTime <= 30)
                 {
                     ui.developfastBtn.SetActive(false);
@@ -227,6 +228,10 @@ public class GameManager : MonoBehaviour
                     AudioManager.self.PlaySound("Developdone");
                 }
                 HaveDevelop();
+            }
+            else if (tm.TimeData.DevelopTime < 0)
+            {
+                ui.developfastBtn.SetActive(false);
             }
             for (int i = 0; i < pm.Player.DrinkSum; i++)
             {
@@ -569,7 +574,7 @@ public class GameManager : MonoBehaviour
     }*/
     public void PressDevelop()
     {
-        ui.developfastBtn.SetActive(true);
+        
         if (DrinkhaveDevelop == false && pm.Player.DrinkSum < gm.Drink.DrinkData.Count)
         {
             ui.OpenDevelopCost();
@@ -698,9 +703,10 @@ public class GameManager : MonoBehaviour
     }
     public void AddCientMenu(int i)
     {
-        if (ui.ClientWindow.activeSelf == false)
+        if (ui.ClientWindow.activeSelf == false && pm.Player.getHavetheClient(i) == false)
         {
             ui.clientNotify.SetActive(true);
+            Debug.Log( i + "客來了");
         }
         clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Client); });
         clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
