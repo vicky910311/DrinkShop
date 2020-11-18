@@ -8391,6 +8391,7 @@ MonoBehaviour:
   DrinkAni: {fileID: 1987286128}
   ClientAni: {fileID: 2088079870}
   ArmAni: {fileID: 1827494967}
+  StaffAni: {fileID: 176651892171420306}
   havestock: 0
   D: 0
   C: 0
@@ -8399,6 +8400,8 @@ MonoBehaviour:
   Client: {fileID: 2088079867}
   Staff: {fileID: 176651892171420303}
   Speak: {fileID: 1352578977}
+  selling: 0
+  sleeping: 0
 --- !u!4 &1017199340
 Transform:
   m_ObjectHideFlags: 0
@@ -16699,25 +16702,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881714020}
   m_CullTransparentMesh: 0
---- !u!95 &1909035299
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176651892171420303}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26ccf2837add37c449d5ac2ecddfc647, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1921481983
 GameObject:
   m_ObjectHideFlags: 0
@@ -18632,32 +18616,36 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f12fcae09bb4c1e449b9b8ff1a8d5184, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: YURE
     clip: {fileID: 8300000, guid: 0a9d502c14d513045b1b35445344ea01, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Pong
     clip: {fileID: 8300000, guid: ef721784a5595c84c8638f07e5ed1eb7, type: 3}
     volume: 1
     pitch: 1.19
-    loop: 0
   - name: Replenish
     clip: {fileID: 8300000, guid: 096715cda1d37a244954c7dbceb7d53c, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Developdone
     clip: {fileID: 8300000, guid: e9e8ff6a8ab19fc49a6429eedc70bcf0, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Promote
     clip: {fileID: 8300000, guid: 3769bb357ff48104e94717a058a0a976, type: 3}
     volume: 1
     pitch: 1.5
-    loop: 0
+  - name: Drop
+    clip: {fileID: 8300000, guid: 3f756922fdf017a41bfdff5a7b5f95c8, type: 3}
+    volume: 1
+    pitch: 1
+  bgm:
+    name: 
+    clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
 --- !u!4 &2110880660
 Transform:
   m_ObjectHideFlags: 0
@@ -18977,7 +18965,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6991221833148084317}
   - component: {fileID: 8197261857370150007}
-  - component: {fileID: 1909035299}
+  - component: {fileID: 176651892171420304}
+  - component: {fileID: 176651892171420305}
+  - component: {fileID: 176651892171420306}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -18985,6 +18975,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!61 &176651892171420304
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176651892171420303}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0581377, y: 3.5852375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 11.77, y: 19.77}
+    newSize: {x: 11.77, y: 19.77}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.638225, y: 10.983643}
+  m_EdgeRadius: 0
+--- !u!114 &176651892171420305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176651892171420303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5acd13ffb71534f8d2329fe3369e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &176651892171420306
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176651892171420303}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 537695819b7971c439338a36aa31632c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4931224627583010542
 GameObject:
   m_ObjectHideFlags: 0

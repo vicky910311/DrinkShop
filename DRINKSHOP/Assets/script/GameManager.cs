@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
         }
         else if (tm.TimeData.DevelopTime == 0)
         {
-            DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f);
+            DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f).SetEase(Ease.OutCubic);
             if (ui.DevelopWindow.activeSelf == false)
             {
                 ui.drinkNotify.SetActive(true);
@@ -359,7 +359,7 @@ public class GameManager : MonoBehaviour
             missions[i].transform.GetChild(0).GetComponent<Text>().text = ms.Mission.Missions[i].Name;
             missions[i].transform.GetChild(1).GetComponent<Text>().text = ms.Mission.Missions[i].Narrate;
             int a = i;
-            missions[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { missionreward(a); });
+            missions[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click");  missionreward(a); });
             missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
             if (EventControl.CanReward(i,ms.Mission))
             {
@@ -421,7 +421,7 @@ public class GameManager : MonoBehaviour
                 staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
                 int a = i;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(a); });
-                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate {;/*frontBtn*/ });
+                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(a); });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text =gm.Staff.StaffData[i].Info;
                 staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
                 staffs[i].transform.GetChild(5).GetComponent<Text>().text = gm.Staff.StaffData[i].Name;
@@ -450,13 +450,14 @@ public class GameManager : MonoBehaviour
         staffs[i].transform.SetSiblingIndex(i);
         staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
         staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(i); });
-        staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate {;/*frontBtn*/ });
+        staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(i); });
         staffs[i].transform.GetChild(3).GetComponent<Text>().text = gm.Staff.StaffData[i].Info;
         staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
         staffs[i].transform.GetChild(5).GetComponent<Text>().text = gm.Staff.StaffData[i].Name;
     }
     public void PressUnlock(int i)
     {
+        AudioManager.self.PlaySound("Click");
         ui.OpenStaffCost();
         ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {UnlockStaff(i); ui.shutdownLittle(); });
         if (pm.Player.Money >= gm.Staff.StaffData[i].UnlockCost && pm.Player.Level >= gm.Staff.StaffData[i].UnlockLevel)
@@ -503,7 +504,8 @@ public class GameManager : MonoBehaviour
     
     public void Purchase(int type)
     {
-        if(type >= 10000)
+        AudioManager.self.PlaySound("Click");
+        if (type >= 10000)
         {
             PurchaseControl.AddtheMoney(pm.Player, type);
         }
@@ -536,9 +538,11 @@ public class GameManager : MonoBehaviour
     }
     public void Recapture()
     {
-        //播放廣告
+        AudioManager.self.PlaySound("Click");
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); pm.Player.Money += TempMoney; });
+        ui.OpenLookAD();
         ui.shutdownNotice();
-        pm.Player.Money += TempMoney;
+        
     }
     public void Incidenthappen()
     {
@@ -837,6 +841,7 @@ public class GameManager : MonoBehaviour
     }
     public void Setreplenish(int i)
     {
+        AudioManager.self.PlaySound("Click");
         ReplenishAmount = i;
     }
     public void RAColor()

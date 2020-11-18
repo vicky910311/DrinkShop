@@ -12,6 +12,7 @@ public struct StaffData
     public TextAsset Story;
     public Sprite StoryImage;
     public Sprite Image;
+    public Sprite sleepImage;
     public int UnlockCost;
     public int UnlockLevel;
     public int UnlockTime;

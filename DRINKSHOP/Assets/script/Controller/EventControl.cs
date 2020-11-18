@@ -121,7 +121,16 @@ public class EventControl
         }
         if (j == 2)
         {
-            Narrate = "店員睡著了";
+            if (SellingAnime.self.selling == false)
+            {
+                SellingAnime.self.Staffgosleep();
+                Narrate = "店員睡著了";
+            }
+            else
+            {
+                Narrate = "店員想睡覺";
+            }
+           
         }
         if (j == 3)
         {

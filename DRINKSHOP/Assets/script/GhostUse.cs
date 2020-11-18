@@ -20,10 +20,10 @@ public class GhostUse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uiListener = MyUIHoverListener.self;// GameObject.Find("Canvas").GetComponent<MyUIHoverListener>();
+        uiListener = MyUIHoverListener.self;
         anima = GetComponent<Animator>();
         now = Time.time;
-        move = 2.5f;
+        move = 0f;
     }
 
     // Update is called once per frame
@@ -37,8 +37,8 @@ public class GhostUse : MonoBehaviour
        
         if (Time.time > now + move)
         {
-            float X = Random.Range(0f, 1f);
-            float Y = Random.Range(0f, 1f);
+            float X = Random.Range(0f, 2f);
+            float Y = Random.Range(0f, 2f);
             int Dx = Random.Range(0, 2) == 1 ? -1 : 1;
             int Dy = Random.Range(0, 2) == 1 ? -1 : 1;
 
@@ -49,12 +49,13 @@ public class GhostUse : MonoBehaviour
 
             Vector3 Go = new Vector3(GoX, GoY, 0);
             float Dis = Vector3.Distance(Go, transform.position);
-            if (Dis > 0.7f)
+            if (Dis > 1.5f)
             {
                 this.GetComponent<SpriteRenderer>().flipX = Go.x - transform.position.x > 0 ? true : false;
                 transform.DOMove(Go, 2f).SetEase(Ease.Linear);
                 now = Time.time;
             }
+            move = 2.5f;
         }
     }
     void OnMouseUp()

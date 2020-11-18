@@ -11,4 +11,7 @@ public struct ClientData
     public int UnlockLevel;
     public bool isSpecial;
     public Sprite Image;
+    public Sprite angryImage;
+    public Sprite happyImage;
+    public Sprite backImage;
 }

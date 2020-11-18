@@ -19,6 +19,7 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 21300000, guid: 26323655fcef24e4e951080504e873e5, type: 3}
     Image: {fileID: 21300000, guid: a0a0b857df55a524897c6b10980cc2f5, type: 3}
+    sleepImage: {fileID: 21300000, guid: cc0fc913b19077c479243e9a0bf70b27, type: 3}
     UnlockCost: 0
     UnlockLevel: 0
     UnlockTime: 0
@@ -28,6 +29,7 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: 4d9025cc2e8aacb45badeb81b63b9f43, type: 3}
+    sleepImage: {fileID: 21300000, guid: 17ed46dfa9f2791439c117a875c17f7a, type: 3}
     UnlockCost: 100
     UnlockLevel: 1
     UnlockTime: 360
@@ -37,6 +39,7 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    sleepImage: {fileID: 0}
     UnlockCost: 400
     UnlockLevel: 5
     UnlockTime: 400
@@ -46,6 +49,7 @@ MonoBehaviour:
     Story: {fileID: 0}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    sleepImage: {fileID: 0}
     UnlockCost: 80000
     UnlockLevel: 1
     UnlockTime: 600

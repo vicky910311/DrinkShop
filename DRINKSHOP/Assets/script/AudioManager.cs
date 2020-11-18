@@ -24,14 +24,40 @@ public class Sounds
         source.Play();
     }
 
+    
+}
+[System.Serializable]
+public class BGM
+{
+    public string name;
+    public AudioClip clip;
+    private AudioSource source;
+    [Range(0f, 1f)]
+    public float volume = 1f;
+    [Range(0.5f, 1.5f)]
+    public float pitch = 1f;
+    public void SetSource(AudioSource _source)
+    {
+        source = _source;
+        source.clip = clip;
+    }
+    public void Play()
+    {
+        source.volume = volume;
+        source.pitch = pitch;
+        source.loop = loop;
+        source.Play();
+    }
+
     public bool loop;
 }
-
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager self;
     [SerializeField]
     Sounds[] sounds;
+    [SerializeField]
+    BGM bgm;
     private void Awake()
     {
         if (self == null)
@@ -50,11 +76,14 @@ public class AudioManager : MonoBehaviour
             sounds[i].SetSource(_go.AddComponent<AudioSource>());
             sounds[i].volume = 0;
         }
+        GameObject _bgm = new GameObject("bgm"  + bgm.name);
+        _bgm.transform.SetParent(this.transform);
+        bgm.SetSource(_bgm.AddComponent<AudioSource>());
     }
     
     void Start()
     {
-        
+        bgm.Play();
     }
      public void PlaySound(string _name)
     {

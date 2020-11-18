@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class SellingAnime : MonoBehaviour
 {
     public static SellingAnime self;
-    public Animator DrinkAni, ClientAni, ArmAni;
+    public Animator DrinkAni, ClientAni, ArmAni, StaffAni;
     public bool havestock;
     public int D, C, S;
     public GameObject Drink, Client, Staff, Speak;
+    public bool selling,sleeping;
     private void Awake()
     {
         self = this;
@@ -20,6 +21,8 @@ public class SellingAnime : MonoBehaviour
         S = PlayerDataManager.self.Player.FrontStaff;
         Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
         Speak.SetActive(false);
+        selling = false;
+        sleeping = false;
     }
 
     // Update is called once per frame
@@ -34,17 +37,20 @@ public class SellingAnime : MonoBehaviour
     }
     public void Staffgosleep()
     {
-
+        sleeping = true;
+        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].sleepImage;
     }
     public void StaffWakeup()
     {
-
+        StaffAni.SetTrigger("wake");
+        sleeping = false;
+        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
     }
     
     public void Come()
     {
         ClientAni.SetTrigger("come");
-        Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].Image;
+        Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].backImage;
         Client.transform.GetChild(0).gameObject.SetActive(false);
         Client.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
         Drink.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
@@ -52,17 +58,31 @@ public class SellingAnime : MonoBehaviour
     }
     public void SellBegin()
     {
+        selling = true;
+        if (sleeping == true)
+        {
+            StaffWakeup();
+        }
         Speak.SetActive(true);
         DrinkAni.SetTrigger("appear");
         ArmAni.SetTrigger("appear");
     }
     public void SellDone()
     {
+        selling = false;
         DrinkAni.SetTrigger("disappear");
         ArmAni.SetTrigger("disappear");
     }
     public void Go()
     {
+        if (havestock)
+        {
+            Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].happyImage;
+        }
+        else
+        {
+            Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].angryImage;
+        }
         Client.transform.GetChild(0).gameObject.SetActive(havestock ? true : false);
         ClientAni.SetTrigger("go");
     }

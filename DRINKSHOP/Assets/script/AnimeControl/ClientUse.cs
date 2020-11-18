@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class ClientUse : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
         
     }
-
+    
     public void haveCome()
     {
         if (SellingAnime.self.havestock)
@@ -28,6 +24,7 @@ public class ClientUse : MonoBehaviour
         }
        
     } 
+    
     public void Speaknostock()
     {
         if (!SellingAnime.self.havestock)
