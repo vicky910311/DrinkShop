@@ -23,7 +23,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 0
     Name: "\u7DA0\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 15
     Price: 45
     DevelopTime: 4
@@ -39,7 +39,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 0
     Name: "\u725B\u5976"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 2
@@ -47,7 +47,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 0
     Name: "\u5C0F\u7C73\u9152"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
     DevelopTime: 601

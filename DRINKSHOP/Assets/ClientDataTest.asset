@@ -22,12 +22,12 @@ MonoBehaviour:
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
@@ -90,11 +90,11 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   ComeTime:
     NormalMin: 10
-    NormalMax: 11
-    ManualMin: 3
-    ManualMax: 4
-    ADMin: 2
-    ADMax: 3
+    NormalMax: 25
+    ManualMin: 8
+    ManualMax: 15
+    ADMin: 5
+    ADMax: 6
     Leave: 10
-    adpromoteTime: 10
-    manualpromoteTime: 5
+    adpromoteTime: 60
+    manualpromoteTime: 30
