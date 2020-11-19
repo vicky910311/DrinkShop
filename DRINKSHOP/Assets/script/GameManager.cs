@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public GameObject ghostin;
     int[] UST;
     private int replenishamount = 25;
+    bool star = false;
     public int ReplenishAmount
     {
         set
@@ -194,16 +195,47 @@ public class GameManager : MonoBehaviour
             ms.Mission = saveandLoad.Mission;
             tm.TimeData = saveandLoad.Time;
         }
-
-        if (tm.TimeData.DevelopTime > 0)
+        
+        if (tm.TimeData.DevelopTime > 0 )
         {
+            if (ui.DevelopWindow.activeSelf)
+                DrinkDevelop.transform.Rotate(0, 0, -0.5f *100* Time.deltaTime);
             
-            DrinkDevelop.transform.Rotate(0, 0, -0.4f);
         }
-        else if (tm.TimeData.DevelopTime == 0)
+        else if (tm.TimeData.DevelopTime <= 0)
         {
-            DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f).SetEase(Ease.OutCubic);
-            if (ui.DevelopWindow.activeSelf == false)
+            if ((DrinkDevelop.transform.rotation.z  <= -3.14f * 3f / 360f || DrinkDevelop.transform.rotation.z  >= 3.14f * 3f / 360f) && ui.DevelopWindow.activeSelf)
+            {
+                DrinkDevelop.transform.Rotate(0, 0, -0.7f *100* Time.deltaTime);
+            }  
+            else if(DrinkDevelop.transform.rotation.z >= -3.14f * 3f / 360f && DrinkDevelop.transform.rotation.z <= 3.14f * 3f / 360f)
+            {
+                DrinkDevelop.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (DrinkhaveDevelop == true && tm.TimeData.DevelopTime <= 0)
+                {
+                    DevelopBtn.GetComponentInChildren<Text>().text = "完成";
+                }
+                DevelopBtn.GetComponent<Button>().enabled = true;
+
+                if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && ui.levelupWindow.activeSelf == false && star == true)
+                {
+                    GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Star"), transform) as GameObject;
+                    AudioManager.self.PlaySound("Developdone");
+                    star = false;
+                }
+            }
+            else if (!ui.DevelopWindow.activeSelf)
+            {
+                if (DrinkhaveDevelop == true)
+                {
+                    DevelopBtn.GetComponentInChildren<Text>().text = "完成";
+                }
+                DevelopBtn.GetComponent<Button>().enabled = true;
+                DrinkDevelop.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+               
+            //DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f).SetEase(Ease.OutCubic);
+            if (tm.TimeData.DevelopTime == 0 && ui.DevelopWindow.activeSelf == false)
             {
                 ui.drinkNotify.SetActive(true);
             }
@@ -224,11 +256,8 @@ public class GameManager : MonoBehaviour
             }
             else if (tm.TimeData.DevelopTime == 0)
             {
-                if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && ui.levelupWindow.activeSelf == false)
-                {
-                    GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Star"), transform) as GameObject;
-                    AudioManager.self.PlaySound("Developdone");
-                }
+                DevelopBtn.GetComponentInChildren<Text>().text = "00:00:00";
+                star = true;
                 HaveDevelop();
             }
             else if (tm.TimeData.DevelopTime < 0)
@@ -620,6 +649,7 @@ public class GameManager : MonoBehaviour
             DevelopBtn.GetComponentInChildren<Text>().text = "研發";
             DoneDevelopText.GetComponent<Text>().text = "？？？？？";
             DrinkDevelop.GetComponent<Image>().sprite = null;
+            star = false;
         }
     }
     public void Develop()
@@ -640,7 +670,10 @@ public class GameManager : MonoBehaviour
         if (pm.Player.DeleteAD == false)
         {
             ui.OpenLookAD();
-            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); developFast(); });
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle();if(tm.TimeData.DevelopTime>30) developFast(); });
+           // int T = tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
+           // DevelopBtn.GetComponentInChildren<Text>().text = (T / 3600).ToString("00") + ":" + (T % 3600 / 60).ToString("00") + ":" + (T % 3600 % 60).ToString("00");
+
         }
         else
         {
@@ -650,7 +683,9 @@ public class GameManager : MonoBehaviour
     public void developFast()
     {
         //ad
-        tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
+        Debug.Log("未加速" + tm.TimeData.DevelopTime);
+        tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 60;
+        Debug.Log("加速"+tm.TimeData.DevelopTime);
         ui.developfastBtn.SetActive(false);
     }
     public void HaveDevelop()
@@ -680,8 +715,8 @@ public class GameManager : MonoBehaviour
         DrinkDevelop.GetComponent<Image>().sprite = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Image;
         DoneDevelopText.GetComponent<Text>().text = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Name;
         tm.TimeData.DevelopTime = -1;
-        DevelopBtn.GetComponentInChildren<Text>().text = "完成";
-        DevelopBtn.GetComponent<Button>().enabled = true;
+        //DevelopBtn.GetComponentInChildren<Text>().text = "完成";
+        //DevelopBtn.GetComponent<Button>().enabled = true;
 
     }
     public void CoinChange()
@@ -895,6 +930,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.self.PlaySound("Click");
         pm.Player.BGMswitch = !pm.Player.BGMswitch;
+        Debug.Log("BGM"+ pm.Player.BGMswitch);
     }
 
     public void OnApplicationPause()

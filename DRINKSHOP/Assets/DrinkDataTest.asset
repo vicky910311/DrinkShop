@@ -18,7 +18,7 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 10
     Price: 30
-    DevelopTime: 5
+    DevelopTime: 105
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 15
     Price: 45
-    DevelopTime: 4
+    DevelopTime: 400
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 3
+    DevelopTime: 300
     isSpecial: 0
     Narrate: 
   - Chara: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
     Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     Cost: 0
     Price: 0
-    DevelopTime: 2
+    DevelopTime: 200
     isSpecial: 0
     Narrate: 
   - Chara: 0

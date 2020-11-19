@@ -41,98 +41,98 @@ MonoBehaviour:
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
     UnlockLevel: 0
     isSpecial: 0
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-    angryImage: {fileID: 0}
-    happyImage: {fileID: 0}
-    backImage: {fileID: 0}
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   ComeTime:
     NormalMin: 10
     NormalMax: 25

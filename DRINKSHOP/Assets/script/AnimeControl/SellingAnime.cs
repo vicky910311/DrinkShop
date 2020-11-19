@@ -23,6 +23,7 @@ public class SellingAnime : MonoBehaviour
         Speak.SetActive(false);
         selling = false;
         sleeping = false;
+        Staffgosleep();
     }
 
     // Update is called once per frame
@@ -50,6 +51,10 @@ public class SellingAnime : MonoBehaviour
     public void Come()
     {
         ClientAni.SetTrigger("come");
+        if (sleeping == true)
+        {
+            Invoke("StaffWakeup",1f);
+        }
         Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].backImage;
         Client.transform.GetChild(0).gameObject.SetActive(false);
         Client.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
@@ -59,10 +64,7 @@ public class SellingAnime : MonoBehaviour
     public void SellBegin()
     {
         selling = true;
-        if (sleeping == true)
-        {
-            StaffWakeup();
-        }
+    
         Speak.SetActive(true);
         DrinkAni.SetTrigger("appear");
         ArmAni.SetTrigger("appear");

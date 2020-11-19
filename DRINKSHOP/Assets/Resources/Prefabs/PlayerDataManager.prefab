@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4444792395562280790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4444792395562280788}
+  - component: {fileID: 4444792395562280789}
+  m_Layer: 0
+  m_Name: PlayerDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4444792395562280788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444792395562280790}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.012299, y: -1.9555664, z: -1222.1099}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4444792395562280789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444792395562280790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71900fe704b9f08488aacd612c909f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+    havethedrink: 0100000000
+    drinksum: 1
+    havethestaff: 01000000
+    staffsum: 1
+    havetheclient: 000000000000000000000000000000
+    clientsum: 1
+    money: 3000
+    level: 1
+    drinkinstock: 1900000009000000000000000d00000019000000
+    drinksell: 0
+    addstocklimit: 0
+    deletead: 0
+    firsttime: 0
+    coin: 3
+    canmake: 00000000
+    catchghost: 0
+    catchsleep: 0
+    endtimestring: 
+    frontstaff: 0
+    seswitch: 1
+    bgmswitch: 1
