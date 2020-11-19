@@ -81,6 +81,10 @@ public class SellingAnime : MonoBehaviour
         }
         else
         {
+            if (sleeping == true)
+            {
+                StaffWakeup();
+            }
             Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].angryImage;
         }
         Client.transform.GetChild(0).gameObject.SetActive(havestock ? true : false);

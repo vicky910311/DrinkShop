@@ -144,6 +144,8 @@ public class GameManager : MonoBehaviour
         UST = new int[gm.Staff.StaffData.Count];
         SEContent();
         pm.Player.OnSEChange += SEContent;
+        BGMContent();
+        pm.Player.OnBGMChange += BGMContent;
     }
 
     // Update is called once per frame
@@ -539,9 +541,9 @@ public class GameManager : MonoBehaviour
     public void Recapture()
     {
         AudioManager.self.PlaySound("Click");
-        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); pm.Player.Money += TempMoney; });
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate 
+        { ui.shutdownNotice(); ui.shutdownLittle(); pm.Player.Money += TempMoney; });
         ui.OpenLookAD();
-        ui.shutdownNotice();
         
     }
     public void Incidenthappen()
@@ -873,6 +875,26 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.self.PlaySound("Click");
         pm.Player.SEswitch = !pm.Player.SEswitch;
+    }
+    public void BGMContent()
+    {
+        if (PlayerDataManager.self.Player.BGMswitch == true)
+        {
+            ui.BGMBtn.GetComponentInChildren<Text>().text = "ON";
+            ui.BGMBtn.GetComponent<Image>().color = Color.yellow;
+            AudioManager.self.BGMon();
+        }
+        else
+        {
+            ui.BGMBtn.GetComponentInChildren<Text>().text = "OFF";
+            ui.BGMBtn.GetComponent<Image>().color = Color.gray;
+            AudioManager.self.BGMoff();
+        }
+    }
+    public void PressBGMBtn()
+    {
+        AudioManager.self.PlaySound("Click");
+        pm.Player.BGMswitch = !pm.Player.BGMswitch;
     }
 
     public void OnApplicationPause()

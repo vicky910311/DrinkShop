@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
     public GameObject staffcostWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
-    public GameObject manualBtn, adBtn, developfastBtn, SEBtn;
+    public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
     public GameObject drinkNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
     

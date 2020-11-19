@@ -350,5 +350,20 @@ public class PlayerData
         get { return seswitch; }
     }
     public Action OnSEChange;
+    [SerializeField]
+    private bool bgmswitch;
+    public bool BGMswitch
+    {
+        set
+        {
+            bgmswitch = value;
+            if (OnBGMChange != null)
+            {
+                OnBGMChange();
+            }
+        }
+        get { return bgmswitch; }
+    }
+    public Action OnBGMChange;
 }
 

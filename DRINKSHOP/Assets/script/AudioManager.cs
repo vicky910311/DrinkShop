@@ -48,7 +48,10 @@ public class BGM
         source.loop = loop;
         source.Play();
     }
-
+    public void Pause()
+    {
+        source.Pause();
+    }
     public bool loop;
 }
 public class AudioManager : MonoBehaviour
@@ -95,6 +98,14 @@ public class AudioManager : MonoBehaviour
                 return;
             }
         }
+    }
+    public void BGMon()
+    {
+        bgm.Play();
+    }
+    public void BGMoff()
+    {
+        bgm.Pause();
     }
     public void SEoff()
     {
