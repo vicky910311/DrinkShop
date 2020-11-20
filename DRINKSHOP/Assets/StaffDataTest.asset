@@ -16,40 +16,44 @@ MonoBehaviour:
   - Name: "\u871C\u67D1"
     Chara: "\u624B\u6416\u5E97\u7684\u5E97\u9577"
     Info: "\u539F\u672C\u5728\u4EBA\u985E\u958B\u7684\u624B\u6416\u5E97\u64D4\u7576\u5E97\u8C93\uFF0C\u5C07\u624B\u6416\u676F\u7684\u7F8E\u597D\u5E36\u5230\u52D5\u7269\u4E16\u754C\u3002\u3002"
-    Story: {fileID: 0}
+    Story: {fileID: 4900000, guid: 6b32334c6b3a7ed478abc932a6ac2aac, type: 3}
     StoryImage: {fileID: 21300000, guid: 26323655fcef24e4e951080504e873e5, type: 3}
     Image: {fileID: 21300000, guid: a0a0b857df55a524897c6b10980cc2f5, type: 3}
     sleepImage: {fileID: 21300000, guid: cc0fc913b19077c479243e9a0bf70b27, type: 3}
+    ArmImage: {fileID: 21300000, guid: c19777f6549b11a409d76727e686afbd, type: 3}
     UnlockCost: 0
     UnlockLevel: 0
     UnlockTime: 0
   - Name: 
     Chara: 
     Info: 
-    Story: {fileID: 0}
+    Story: {fileID: 4900000, guid: 0d5b7542705e9e142ba9cc8da5941bfa, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: 4d9025cc2e8aacb45badeb81b63b9f43, type: 3}
     sleepImage: {fileID: 21300000, guid: 17ed46dfa9f2791439c117a875c17f7a, type: 3}
+    ArmImage: {fileID: 21300000, guid: c19777f6549b11a409d76727e686afbd, type: 3}
     UnlockCost: 100
     UnlockLevel: 1
     UnlockTime: 360
   - Name: 
     Chara: 
     Info: 
-    Story: {fileID: 0}
+    Story: {fileID: 4900000, guid: 4c25dc83b09f60f4392091db5d195fa1, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     sleepImage: {fileID: 0}
+    ArmImage: {fileID: 21300000, guid: c19777f6549b11a409d76727e686afbd, type: 3}
     UnlockCost: 400
     UnlockLevel: 5
     UnlockTime: 400
   - Name: 
     Chara: 
     Info: 
-    Story: {fileID: 0}
+    Story: {fileID: 4900000, guid: a4a0d83074a280e489114c6687972f93, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     sleepImage: {fileID: 0}
+    ArmImage: {fileID: 21300000, guid: c19777f6549b11a409d76727e686afbd, type: 3}
     UnlockCost: 80000
     UnlockLevel: 1
     UnlockTime: 600

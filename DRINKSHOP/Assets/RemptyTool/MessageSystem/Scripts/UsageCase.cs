@@ -41,7 +41,11 @@ public class UsageCase : MonoBehaviour
             Debug.LogError("UIText Component not assign.");
         }
         else
+        {
+            story[number] = GameDataManager.self.Staff.StaffData[number].Story;
             ReadTextDataFromAsset(story[number]);
+        }
+           
        // msgSys.SetText("故事開始[w]");
         //add special chars and functions in other component.
         msgSys.AddSpecialCharToFuncMap("UsageCase", CustomizedFunction);

@@ -9,7 +9,7 @@ public class SellingAnime : MonoBehaviour
     public Animator DrinkAni, ClientAni, ArmAni, StaffAni;
     public bool havestock;
     public int D, C, S;
-    public GameObject Drink, Client, Staff, Speak;
+    public GameObject Drink, Client, Staff, Speak, Arm;
     public bool selling,sleeping;
     private void Awake()
     {
@@ -20,6 +20,7 @@ public class SellingAnime : MonoBehaviour
     {
         S = PlayerDataManager.self.Player.FrontStaff;
         Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+        Arm.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].ArmImage;
         Speak.SetActive(false);
         selling = false;
         sleeping = false;
@@ -35,6 +36,7 @@ public class SellingAnime : MonoBehaviour
     {
         S = PlayerDataManager.self.Player.FrontStaff = i;
         Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+        Arm.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].ArmImage;
     }
     public void Staffgosleep()
     {

@@ -8413,6 +8413,7 @@ MonoBehaviour:
   Client: {fileID: 2088079867}
   Staff: {fileID: 176651892171420303}
   Speak: {fileID: 1352578977}
+  Arm: {fileID: 1827494964}
   selling: 0
   sleeping: 0
 --- !u!4 &1017199340

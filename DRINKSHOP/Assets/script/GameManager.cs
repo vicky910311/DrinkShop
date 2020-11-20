@@ -538,7 +538,7 @@ public class GameManager : MonoBehaviour
     }
     public void unlockstaffFast(int i)
     {
-        tm.TimeData.setStaffUnlockTime(i,tm.TimeData.getStaffUnlockTime(i)/120);
+        tm.TimeData.setStaffUnlockTime(i,tm.TimeData.getStaffUnlockTime(i)/60);
     }
     
     public void Purchase(int type)
