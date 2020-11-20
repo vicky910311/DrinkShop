@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
                 }
                 DevelopBtn.GetComponent<Button>().enabled = true;
 
-                if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && ui.levelupWindow.activeSelf == false && star == true)
+                if (ui.DrinkWindow.activeSelf == true && ui.DevelopWindow.activeSelf == true && !ui.checkLittleActive() && star == true)
                 {
                     GameObject FX = Instantiate(Resources.Load("Prefabs/CFX_Star"), transform) as GameObject;
                     AudioManager.self.PlaySound("Developdone");
@@ -235,10 +235,10 @@ public class GameManager : MonoBehaviour
             }
                
             //DrinkDevelop.transform.DORotate(new Vector3(0, 0, 0), 1.5f).SetEase(Ease.OutCubic);
-            if (tm.TimeData.DevelopTime == 0 && ui.DevelopWindow.activeSelf == false)
+           /* if (tm.TimeData.DevelopTime == 0 && ui.DevelopWindow.activeSelf == false)
             {
                 ui.drinkNotify.SetActive(true);
-            }
+            }*/
         }
         if (Time.time > NowTime + 1.0f)
         {
@@ -259,6 +259,10 @@ public class GameManager : MonoBehaviour
                 DevelopBtn.GetComponentInChildren<Text>().text = "00:00:00";
                 star = true;
                 HaveDevelop();
+                if (ui.DrinkWindow.activeSelf == false || ui.DevelopWindow.activeSelf == false)
+                {
+                    ui.drinkNotify.SetActive(true);
+                }
             }
             else if (tm.TimeData.DevelopTime < 0)
             {
@@ -337,11 +341,13 @@ public class GameManager : MonoBehaviour
     public void PressADpromote()
     {
         ui.OpenLookAD();
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); adpromote(); });
     }
     public void adpromote() 
     {
         promoteTime = Time.time;
+        sellbetweenTime = gm.Client.ComeTime.ADMin;
         promotelasting = gm.Client.ComeTime.adpromoteTime;
         ClientControl.PromoteSell(ref ComeTimeMin,ref ComeTimeMax, ClientControl.PromoteType.AD);
         ui.adBtn.GetComponent<Button>().interactable = false;
@@ -490,6 +496,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.self.PlaySound("Click");
         ui.OpenStaffCost();
+        ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.staffcostWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {UnlockStaff(i); ui.shutdownLittle(); });
         if (pm.Player.Money >= gm.Staff.StaffData[i].UnlockCost && pm.Player.Level >= gm.Staff.StaffData[i].UnlockLevel)
         {
@@ -521,6 +528,7 @@ public class GameManager : MonoBehaviour
         if (pm.Player.DeleteAD == false)
         {
             ui.OpenLookAD();
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); unlockstaffFast(i); });
         }
         else
@@ -570,6 +578,7 @@ public class GameManager : MonoBehaviour
     public void Recapture()
     {
         AudioManager.self.PlaySound("Click");
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate 
         { ui.shutdownNotice(); ui.shutdownLittle(); pm.Player.Money += TempMoney; });
         ui.OpenLookAD();
@@ -670,6 +679,7 @@ public class GameManager : MonoBehaviour
         if (pm.Player.DeleteAD == false)
         {
             ui.OpenLookAD();
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle();if(tm.TimeData.DevelopTime>30) developFast(); });
            // int T = tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
            // DevelopBtn.GetComponentInChildren<Text>().text = (T / 3600).ToString("00") + ":" + (T % 3600 / 60).ToString("00") + ":" + (T % 3600 % 60).ToString("00");

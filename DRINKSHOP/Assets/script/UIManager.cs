@@ -8,18 +8,18 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager self;
     public GameObject StaffWindow;
-    public GameObject DrinkWindow,DevelopWindow,MenuWindow,MakeWindow;
+    public GameObject DrinkWindow, DevelopWindow, MenuWindow, MakeWindow;
     public GameObject ClientWindow, NormalWindow, SpecialWindow;
     public GameObject IncidentWindow, MissionWindow, EventWindow;
     public GameObject SettingWindow;
     public GameObject PurchaseWindow;
-    public GameObject stocklimitWindow, developlimitWindow, developcostWindow,lookadWindow, objectWindow, noticeWindow;
+    public GameObject stocklimitWindow, developlimitWindow, developcostWindow, lookadWindow, objectWindow, noticeWindow;
     public GameObject staffcostWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
     public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
     public GameObject drinkNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
-    
+
     private void Awake()
     {
         if (self == null)
@@ -34,15 +34,38 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
-   
+
     void Update()
     {
-        
+
     }
-    
+    public bool checkLittleActive()
+    {
+        if (noticeWindow.activeSelf)
+            return true;
+        else if (lookadWindow.activeSelf)
+            return true;
+        else if (levelupWindow.activeSelf)
+            return true;
+        else if (quitWindow.activeSelf)
+            return true;
+        else if (objectWindow.activeSelf)
+            return true;
+        else if (stocklimitWindow.activeSelf)
+            return true;
+        else if (developlimitWindow.activeSelf)
+            return true;
+        else if (developcostWindow.activeSelf)
+            return true;
+        else if (staffcostWindow.activeSelf)
+            return true;
+        else
+            return false;
+    }
+
     public void EventNotify()
     {
         EventBtn.transform.DOLocalMoveX(-300,0.5f).OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
