@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-       
+        SceneFade.self.Fadein();
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;

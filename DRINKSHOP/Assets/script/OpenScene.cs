@@ -8,16 +8,13 @@ public class OpenScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            AudioManager.self.BGMon();
+        AudioManager.self.BGMon();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-           AudioManager.self.PlaySound("Click");
-        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -25,6 +22,16 @@ public class OpenScene : MonoBehaviour
     }
     public void pressStart()
     {
-        SceneManager.LoadScene("MainScene");
+        AudioManager.self.PlaySound("Click");
+        SceneFade.self.Fadeout();
+
+    }
+    public void LoadScene()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+        
     }
 }

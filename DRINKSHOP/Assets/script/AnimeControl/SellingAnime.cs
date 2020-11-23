@@ -66,7 +66,10 @@ public class SellingAnime : MonoBehaviour
     public void SellBegin()
     {
         selling = true;
-    
+        if (sleeping == true)
+        {
+            StaffWakeup();
+        }
         Speak.SetActive(true);
         DrinkAni.SetTrigger("appear");
         ArmAni.SetTrigger("appear");
