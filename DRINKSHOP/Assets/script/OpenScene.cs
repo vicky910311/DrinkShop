@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class OpenScene : MonoBehaviour
 {
+    private SaveandLoad saveandLoad = new SaveandLoad();
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.self.BGMon();
+        if (PlayerDataManager.self.Player.BGMswitch)
+            AudioManager.self.BGMon();
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class OpenScene : MonoBehaviour
     }
     public void pressStart()
     {
-        AudioManager.self.PlaySound("Click");
+        if(PlayerDataManager.self.Player.SEswitch)
+            AudioManager.self.PlaySound("Click");
         SceneFade.self.Fadeout();
 
     }
@@ -33,5 +36,10 @@ public class OpenScene : MonoBehaviour
             SceneManager.LoadScene("MainScene");
         }
         
+    }
+    void OnApplicationQuit()
+    {
+        saveandLoad.SavePlayer(PlayerDataManager.self.Player);
+        Debug.Log("Save");
     }
 }

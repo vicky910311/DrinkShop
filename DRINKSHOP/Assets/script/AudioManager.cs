@@ -56,6 +56,7 @@ public class BGM
 }
 public class AudioManager : MonoBehaviour
 {
+    //public Audiosave audioSave;
     public static AudioManager self;
     [SerializeField]
     Sounds[] sounds;
@@ -120,5 +121,32 @@ public class AudioManager : MonoBehaviour
         {
             sounds[i].volume = 1f;
         }
+    }
+    public void PressOnOff()
+    {
+        if (PlayerDataManager.self.Player.BGMswitch == true)
+        {
+            PlayerDataManager.self.Player.BGMswitch = false;
+            PlayerDataManager.self.Player.SEswitch = false;
+            SEoff();
+            BGMoff();
+        }
+        else
+        {
+            PlayerDataManager.self.Player.BGMswitch = true;
+            PlayerDataManager.self.Player.SEswitch = true;
+            SEon();
+            BGMon();
+        }
+        /*if (audioSave.BGMswitch == true)
+        {
+            audioSave.BGMswitch = false;
+            audioSave.SEswitch = false;
+        }
+        else
+        {
+            audioSave.BGMswitch = true;
+            audioSave.SEswitch = true;
+        }*/
     }
 }

@@ -7,6 +7,7 @@ using System;
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager self;
+    private SaveandLoad saveandLoad = new SaveandLoad();
     public PlayerData Player;
     private void Awake()
     {
@@ -19,6 +20,12 @@ public class PlayerDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+       if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
+       {
+           saveandLoad.Load();
+           Player = saveandLoad.Player;
+           Debug.Log("Loading");
+       }
     }
     public void Default()
     {

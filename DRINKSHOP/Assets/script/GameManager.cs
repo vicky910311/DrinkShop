@@ -9,7 +9,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager self;
-    public PlayerDataManager pm;
+    private PlayerDataManager pm;
     public MissionState ms;
     public Timer tm;
     public GameDataManager gm;
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public int TempMoney;
     public string LeaveNarrate;
     public bool Back;
-    public GameObject ghostin;
+    public GameObject ghostin, Lucky;
     int[] UST;
     private int replenishamount = 25;
     bool star = false;
@@ -66,18 +66,20 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-       /*if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null)
+        pm = PlayerDataManager.self;
+        if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("jsonplayersave")) != null&&
+            JsonUtility.FromJson<MissionList>(PlayerPrefs.GetString("jsonmissionsave"))!= null)
         {
             saveandLoad.Load();
-            pm.Player = saveandLoad.Player;
+            //pm.Player = saveandLoad.Player;
             ms.Mission = saveandLoad.Mission;
             tm.TimeData = saveandLoad.Time;
             Debug.Log("Loading");
-        }*/
+        }
         Back = true;
-        /*if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
-            pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);*/
+        if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
+            pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
+       
     }
     void Start()
     {
@@ -88,7 +90,8 @@ public class GameManager : MonoBehaviour
         StaffControl.Staff = gm.Staff;
         ComeTimeMin = gm.Client.ComeTime.NormalMin;
         ComeTimeMax = gm.Client.ComeTime.NormalMax;
-
+        lucky();
+        pm.Player.OnLevelChanged += lucky;
         headerInfo();
         pm.Player.OnDrinkSellChanged += headerInfo;
         pm.Player.OnMoneyChanged += headerInfo;
@@ -171,7 +174,7 @@ public class GameManager : MonoBehaviour
         }
         if (pm.Player.LastEndTime > pm.Player.ThisOpenTime)
         {
-            if (Back == true)
+            if (Back == true && pm.Player.FirstTime == false)
             {
                 leaveback();
                 TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
@@ -319,6 +322,11 @@ public class GameManager : MonoBehaviour
             EventUseTime = UnityEngine.Random.Range(5f, 10f);
         }
 
+    }
+    public void lucky()
+    {
+        int L = pm.Player.Level-1;
+        Lucky.GetComponent<SpriteRenderer>().sprite = gm.Level.LuckyData[L].Image;
     }
     public void sellDrinks()
     {

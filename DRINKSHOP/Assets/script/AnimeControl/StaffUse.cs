@@ -26,7 +26,12 @@ public class StaffUse : MonoBehaviour
         else if(SellingAnime.self.selling == false)
         {
             AudioManager.self.PlaySound("Drop");
+            if (SellingAnime.self.sleeping == true)
+            {
+                PlayerDataManager.self.Player.CatchSleep++;
+            }
             SellingAnime.self.StaffWakeup();
+            
         }
 
 

@@ -7,6 +7,7 @@ public class SaveandLoad
     public PlayerData Player;
     public MissionList Mission;
     public TimeState Time;
+    public Audiosave Audio;
     public void Save(PlayerData Player, MissionList Mission, TimeState Time)
     {
         PlayerPrefs.SetString("jsonplayersave", JsonUtility.ToJson(Player));
@@ -20,5 +21,17 @@ public class SaveandLoad
         Mission = JsonUtility.FromJson<MissionList>(PlayerPrefs.GetString("jsonmissionsave"));
         Time = JsonUtility.FromJson<TimeState>(PlayerPrefs.GetString("jsontimesave"));
         Debug.Log("Load");
+    }
+    public void SavePlayer(PlayerData Player)
+    {
+        PlayerPrefs.SetString("jsonplayersave", JsonUtility.ToJson(Player));
+    }
+    public void saveAudiosetting(Audiosave audio)
+    {
+        PlayerPrefs.SetString("jsonaudiosave", JsonUtility.ToJson(audio));
+    }
+    public void loadAudiosetting()
+    {
+        Audio = JsonUtility.FromJson<Audiosave>(PlayerPrefs.GetString("jsonaudiosave"));
     }
 }

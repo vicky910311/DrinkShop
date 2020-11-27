@@ -55,8 +55,8 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_Translate.cs" />
     <Compile Include="Assets\script\GhostUse.cs" />
     <Compile Include="Assets\script\Controller\DrinkControl.cs" />
     <Compile Include="Assets\script\Data.cs" />
@@ -67,34 +67,36 @@
     <Compile Include="Assets\script\MissionData\MissionState.cs" />
     <Compile Include="Assets\script\AnimeControl\StaffUse.cs" />
     <Compile Include="Assets\script\MyUIHoverListener.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+    <Compile Include="Assets\script\SceneFade.cs" />
     <Compile Include="Assets\script\GameData\ClientComeTime.cs" />
     <Compile Include="Assets\script\MissionData\MissionB.cs" />
     <Compile Include="Assets\script\MissionData\MissionA.cs" />
     <Compile Include="Assets\script\Controller\PurchaseControl.cs" />
+    <Compile Include="Assets\script\GameFace.cs" />
     <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\script\Controller\EventControl.cs" />
     <Compile Include="Assets\script\DataUI.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDir.cs" />
     <Compile Include="Assets\script\GameData\LuckyData.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
     <Compile Include="Assets\script\ChangeData.cs" />
     <Compile Include="Assets\script\GameData\DrinkData.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\script\Controller\StaffControl.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
     <Compile Include="Assets\script\PlayerData\PlayerDataManager.cs" />
     <Compile Include="Assets\script\TimeCalculator.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\script\GameData\ClientData.cs" />
     <Compile Include="Assets\script\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\script\MissionData\MissionList.cs" />
     <Compile Include="Assets\script\Scrollsnap.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_New.cs" />
     <Compile Include="Assets\script\GameData\StaffDataList.cs" />
     <Compile Include="Assets\script\UIManager.cs" />
     <Compile Include="Assets\script\GameData\StaffData.cs" />
@@ -110,7 +112,7 @@
     <Compile Include="Assets\script\MissionData\BaseMission.cs" />
     <Compile Include="Assets\script\GameManager.cs" />
     <Compile Include="Assets\script\GameData\LevelDataList.cs" />
-    <Compile Include="Assets\Scenes\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
     <Compile Include="Assets\script\AnimeControl\ClientUse.cs" />
     <Compile Include="Assets\script\Controller\ClientControl.cs" />
     <Compile Include="Assets\script\GameData\DrinkDataList.cs" />
@@ -119,18 +121,18 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
-    <Compile Include="Assets\script\SceneFade.cs" />
+    <Compile Include="Assets\script\Audiosave.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\Scenes\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
-     <None Include="Assets\Scenes\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Free.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween.XML" />
      <None Include="Assets\RemptyTool\MessageSystem\abei.txt" />
-     <None Include="Assets\Scenes\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween.dll" />
      <None Include="Assets\RemptyTool\MessageSystem\mikan.txt" />
      <None Include="Assets\RemptyTool\MessageSystem\anchi.txt" />
-     <None Include="Assets\Scenes\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFXM_MobileParticleAdd_Alpha8.shader" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\RemptyTool\MessageSystem\burado.txt" />
      <None Include="Assets\RemptyTool\MessageSystem\textfile.txt" />
