@@ -15,7 +15,7 @@ MonoBehaviour:
   ClientData:
   - Name: "\u767D\u767D"
     Info: 
-    UnlockLevel: 0
+    UnlockLevel: 1
     isSpecial: 0
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
@@ -23,7 +23,7 @@ MonoBehaviour:
     backImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
-    UnlockLevel: 0
+    UnlockLevel: 1
     isSpecial: 0
     Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -31,7 +31,31 @@ MonoBehaviour:
     backImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
-    UnlockLevel: 0
+    UnlockLevel: 1
+    isSpecial: 0
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Name: 
+    Info: 
+    UnlockLevel: 2
+    isSpecial: 0
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Name: 
+    Info: 
+    UnlockLevel: 2
+    isSpecial: 0
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Name: 
+    Info: 
+    UnlockLevel: 2
     isSpecial: 0
     Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -111,24 +135,40 @@ MonoBehaviour:
     backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
-    UnlockLevel: 0
-    isSpecial: 0
+    UnlockLevel: 1
+    isSpecial: 1
     Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
-    UnlockLevel: 0
-    isSpecial: 0
+    UnlockLevel: 1
+    isSpecial: 1
     Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - Name: 
     Info: 
-    UnlockLevel: 0
-    isSpecial: 0
+    UnlockLevel: 1
+    isSpecial: 1
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Name: 
+    Info: 
+    UnlockLevel: 1
+    isSpecial: 1
+    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    backImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - Name: 
+    Info: 
+    UnlockLevel: 1
+    isSpecial: 1
     Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     angryImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     happyImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
@@ -142,4 +182,4 @@ MonoBehaviour:
     ADMax: 6
     Leave: 10
     adpromoteTime: 60
-    manualpromoteTime: 30
+    manualpromoteTime: 20

@@ -2691,8 +2691,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 342102545}
+  m_Children: []
   m_Father: {fileID: 1276246173}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2828,12 +2827,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331527384}
   m_CullTransparentMesh: 0
---- !u!4 &342102545 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1133368520}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &343838128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4260,12 +4253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeData:
-    maketime: 0000000000000000000000000000000000000000
+    maketime: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     staffunlocktime: ffffffffffffffffffffffffffffffff
     developtime: -1
-    maketemp: 0000000000000000000000000000000000000000
-    staffunlocktemp: 
-    StaffUnlockTemp: 00000000
+    maketemp: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    staffunlocktemp: 00000000
     developtemp: -1
 --- !u!4 &502338697
 Transform:
@@ -9320,80 +9312,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125901118}
   m_CullTransparentMesh: 0
---- !u!1001 &1133368520
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 319982987}
-    m_Modifications:
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562142264221266202, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3655379116413297921, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_Name
-      value: yure
-      objectReference: {fileID: 0}
-    - target: {fileID: 4452877613370309645, guid: bee4d152f629283449dc15726fee85fd,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bee4d152f629283449dc15726fee85fd, type: 3}
 --- !u!1 &1143015077
 GameObject:
   m_ObjectHideFlags: 0
@@ -14343,22 +14261,126 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mission:
     Missions:
-    - name: "\u9B54\u9B3C\u524B\u661F"
-      narrate: "\u6293\u9B3C 10 \u6B21"
+    - name: "\u4EBA\u6293\u9B3C"
+      narrate: "\u6293\u9B3C 1 \u6B21"
       isactive: 1
       isreach: 0
       isrewarded: 0
       type: 0
-      needamount: 10
-      reward: 100
-    - name: "\u8CE3\u98F2\u6599"
-      narrate: "\u8CE310\u676F"
+      needamount: 1
+      reward: 300
+    - name: "\u4E0D\u8981\u6417\u86CB"
+      narrate: "\u6293\u9B3C 5 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 0
+      needamount: 5
+      reward: 800
+    - name: "\u9A45\u9B54\u9054\u4EBA"
+      narrate: "\u6293\u9B3C 20 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 0
+      needamount: 20
+      reward: 1500
+    - name: "\u9B54\u9B3C\u524B\u661F"
+      narrate: "\u6293\u9B3C 100 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 0
+      needamount: 100
+      reward: 2500
+    - name: "\u5225\u7761\u4E86"
+      narrate: "\u53EB\u9192 1 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 1
+      needamount: 1
+      reward: 300
+    - name: "\u8D77\u5E8A\uFF01"
+      narrate: "\u53EB\u9192 5 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 1
+      needamount: 5
+      reward: 800
+    - name: "\u6B50\u55E8\u5537"
+      narrate: "\u53EB\u9192 20 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 1
+      needamount: 20
+      reward: 1500
+    - name: "\u518D\u898B\u5468\u516C"
+      narrate: "\u53EB\u9192 100 \u6B21"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 1
+      needamount: 100
+      reward: 2500
+    - name: "\u98F2\u6599\u5C0F\u8CA9"
+      narrate: "\u8CE3 50 \u676F\u98F2\u6599"
       isactive: 1
       isreach: 0
       isrewarded: 0
       type: 2
+      needamount: 50
+      reward: 500
+    - name: "\u98F2\u6599\u5927\u4EA8"
+      narrate: "\u8CE3 500 \u676F\u98F2\u6599"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 2
+      needamount: 500
+      reward: 1000
+    - name: "\u98F2\u6599\u5929\u570B"
+      narrate: "\u8CE3 2000 \u676F\u98F2\u6599"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 2
+      needamount: 2000
+      reward: 4500
+    - name: "\u98F2\u6599\u50B3\u5947"
+      narrate: "\u8CE3 5000 \u676F\u98F2\u6599"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 2
+      needamount: 5000
+      reward: 8000
+    - name: "\u5C0F\u6709\u540D\u6C23"
+      narrate: "\u89E3\u9396 10 \u9867\u5BA2"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 3
       needamount: 10
-      reward: 100
+      reward: 1000
+    - name: "\u9AD8\u670B\u6EFF\u5EA7"
+      narrate: "\u89E3\u9396 20 \u9867\u5BA2"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 2
+      needamount: 20
+      reward: 2000
+    - name: "\u6025\u96E3\u6551\u52A9\u91D1"
+      narrate: "\u91D1\u9322\u4F4E\u65BC 200"
+      isactive: 1
+      isreach: 0
+      isrewarded: 0
+      type: 4
+      needamount: 200
+      reward: 10000
 --- !u!4 &1632534175
 Transform:
   m_ObjectHideFlags: 0
@@ -18745,9 +18767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8067ea2c174605f4d93f03888b048a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSave:
-    seswitch: 0
-    bgmswitch: 0
   sounds:
   - name: Click
     clip: {fileID: 8300000, guid: f12fcae09bb4c1e449b9b8ff1a8d5184, type: 3}

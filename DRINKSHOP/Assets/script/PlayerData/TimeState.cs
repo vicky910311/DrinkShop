@@ -69,7 +69,7 @@ public class TimeState
         else
             return false;
     }
-    public List<bool> StaffUnlockTemp;
+    //public List<bool> StaffUnlockTemp;
     [SerializeField]
     private int developtemp;
     public int DevelopTemp

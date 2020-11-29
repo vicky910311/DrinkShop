@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
+    private float eventmin = 120f, eventmax = 180f;
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
         StaffMenu();
         sellTime = Time.time;
         sellbetweenTime = 5f;
-        EventUseTime = UnityEngine.Random.Range(5f, 10f);
+        EventUseTime = UnityEngine.Random.Range(eventmin, eventmax);
         NowTime = EventHappenTime = Time.time;
         pm.Player.OnCoinChange += CoinChange;
         drinks = new GameObject[gm.Drink.DrinkData.Count];
@@ -118,9 +119,9 @@ public class GameManager : MonoBehaviour
         rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
         coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
-        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
+        /*ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
         Debug.Log("少賺：" + TempMoney);
-        ui.OpenNotice();
+        ui.OpenNotice();*/
         for (int i = 0; i < gm.Drink.DrinkData.Count; i++)
         {
             pm.Player.OnDrinkinStockChanged[i] += StockAmount;
@@ -150,6 +151,7 @@ public class GameManager : MonoBehaviour
         pm.Player.OnSEChange += SEContent;
         BGMContent();
         pm.Player.OnBGMChange += BGMContent;
+        //saveandLoad.saveDefault(pm.Player, ms.Mission, tm.TimeData);
     }
 
     // Update is called once per frame
@@ -319,9 +321,20 @@ public class GameManager : MonoBehaviour
         {
             Incidenthappen();
             EventHappenTime = Time.time;
-            EventUseTime = UnityEngine.Random.Range(5f, 10f);
+            EventUseTime = UnityEngine.Random.Range(eventmin, eventmax);
         }
 
+    }
+    public void LoadDefaultMT()
+    {
+        if (JsonUtility.FromJson<MissionList>(PlayerPrefs.GetString("defaultmissionsave"))!= null)
+        {
+            saveandLoad.loadDefault();
+            pm.Player = saveandLoad.Player;
+            ms.Mission = saveandLoad.Mission;
+            tm.TimeData = saveandLoad.Time;
+        }
+        
     }
     public void lucky()
     {
@@ -953,6 +966,10 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationPause()
     {
+        if (pm.Player.FirstTime == true && Back == false)
+        {
+            pm.Player.FirstTime = false;
+        }
         if (Back == false)
         {
             pm.Player.LastEndTime = DateTime.Now;
@@ -968,6 +985,10 @@ public class GameManager : MonoBehaviour
     }
     void OnApplicationQuit()
     {
+        if (pm.Player.FirstTime == true)
+        {
+            pm.Player.FirstTime = false;
+        }
         pm.Player.LastEndTime = DateTime.Now;
         pm.Player.Endtimestring = pm.Player.LastEndTime.ToString();
         Debug.Log(" pm.Player.LastEndTime" + pm.Player.Endtimestring);

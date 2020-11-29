@@ -37,6 +37,15 @@ public class OpenScene : MonoBehaviour
         }
         
     }
+    public void LoadDefault()
+    {
+        if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("defaultplayersave"))!= null)
+        {
+            saveandLoad.loadDefault();
+            PlayerDataManager.self.Player = saveandLoad.Player;
+        } 
+    }
+
     void OnApplicationQuit()
     {
         saveandLoad.SavePlayer(PlayerDataManager.self.Player);

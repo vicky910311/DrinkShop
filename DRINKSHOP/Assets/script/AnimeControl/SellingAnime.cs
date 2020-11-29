@@ -24,7 +24,7 @@ public class SellingAnime : MonoBehaviour
         Speak.SetActive(false);
         selling = false;
         sleeping = false;
-        Staffgosleep();
+        //Staffgosleep();
     }
 
     // Update is called once per frame

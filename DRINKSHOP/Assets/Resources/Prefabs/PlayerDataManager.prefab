@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805746267571990567}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.012299, y: -1.9555664, z: -1222.1099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -44,20 +44,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player:
-    havethedrink: 0100000000
+    havethedrink: 010000000000000000000000000000000000000000000000000000000000
     drinksum: 1
     havethestaff: 01000000
     staffsum: 1
-    havetheclient: 000000000000000000000000000000
-    clientsum: 1
-    money: 3000
+    havetheclient: 0000000000000000000000000000000000000000
+    clientsum: 0
+    money: 12000
     level: 1
-    drinkinstock: 1900000009000000000000000d00000019000000
+    drinkinstock: 190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000190000001900000019000000
     drinksell: 0
     addstocklimit: 0
     deletead: 0
-    firsttime: 0
-    coin: 3
+    firsttime: 1
+    coin: 0
     canmake: 00000000
     catchghost: 0
     catchsleep: 0

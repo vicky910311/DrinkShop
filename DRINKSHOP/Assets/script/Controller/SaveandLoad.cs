@@ -22,6 +22,20 @@ public class SaveandLoad
         Time = JsonUtility.FromJson<TimeState>(PlayerPrefs.GetString("jsontimesave"));
         Debug.Log("Load");
     }
+    public void saveDefault(PlayerData Player, MissionList Mission, TimeState Time)
+    {
+        PlayerPrefs.SetString("defaultplayersave", JsonUtility.ToJson(Player));
+        PlayerPrefs.SetString("defaultmissionsave", JsonUtility.ToJson(Mission));
+        PlayerPrefs.SetString("defaulttimesave", JsonUtility.ToJson(Time));
+        Debug.Log("saveDefault");
+    }
+    public void loadDefault()
+    {
+        Player = JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("defaultplayersave"));
+        Mission = JsonUtility.FromJson<MissionList>(PlayerPrefs.GetString("defaultmissionsave"));
+        Time = JsonUtility.FromJson<TimeState>(PlayerPrefs.GetString("defaulttimesave"));
+        Debug.Log("Load");
+    }
     public void SavePlayer(PlayerData Player)
     {
         PlayerPrefs.SetString("jsonplayersave", JsonUtility.ToJson(Player));
