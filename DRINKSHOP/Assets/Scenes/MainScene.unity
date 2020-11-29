@@ -14370,7 +14370,7 @@ MonoBehaviour:
       isactive: 1
       isreach: 0
       isrewarded: 0
-      type: 2
+      type: 3
       needamount: 20
       reward: 2000
     - name: "\u6025\u96E3\u6551\u52A9\u91D1"
