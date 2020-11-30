@@ -178,8 +178,8 @@ MonoBehaviour:
     NormalMax: 25
     ManualMin: 8
     ManualMax: 15
-    ADMin: 5
-    ADMax: 6
+    ADMin: 6
+    ADMax: 7
     Leave: 10
     adpromoteTime: 60
     manualpromoteTime: 20

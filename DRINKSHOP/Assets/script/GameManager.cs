@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
-    private float eventmin = 120f, eventmax = 180f;
+    private float eventmin = 60f, eventmax = 120f;
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;

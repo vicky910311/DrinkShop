@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
 
     public void EventNotify()
     {
-        EventBtn.transform.DOLocalMoveX(-300,0.5f).OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
+        EventBtn.transform.DOLocalMoveX(-350, 0.5f);//.OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
     }
     public void shutdownLittle()
     {
@@ -334,6 +334,9 @@ public class UIManager : MonoBehaviour
             EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);
         }
-
+        if (EventBtn.transform.localPosition.x > -550)
+        {
+            EventBtn.transform.DOLocalMoveX(-550, 0.5f);
+        }
     }
 }
