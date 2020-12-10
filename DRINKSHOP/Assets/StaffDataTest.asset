@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StaffData:
   - Name: "\u871C\u67D1"
-    Chara: "\u624B\u6416\u5E97\u7684\u5E97\u9577"
-    Info: "\u539F\u672C\u5728\u4EBA\u985E\u958B\u7684\u624B\u6416\u5E97\u64D4\u7576\u5E97\u8C93\uFF0C\u5C07\u624B\u6416\u676F\u7684\u7F8E\u597D\u5E36\u5230\u52D5\u7269\u4E16\u754C\u3002"
+    Chara: "\u6A58\u767D\u8C93\u5E97\u9577 "
+    Info: "\u871C\u67D1\u662F\u5728\u4EBA\u985E\u4E16\u754C\u5F97\u5230\u7684\u540D\u5B57\uFF0C\u66FE\u7D93\u662F\u88AB\u7A31\u70BA\u300C\u5E97\u9577\u300D\u7684\u624B\u6416\u5E97\u5E97\u8C93\uFF0C\u5E7E\u5E74\u524D\u642C\u4F86\u52D5\u7269\u4E16\u754C\u751F\u6D3B\uFF0C\u73FE\u5728\u771F\u7684\u7576\u4E0A\u4E86\u624B\u6416\u5E97\u5E97\u9577\u3002 "
     Story: {fileID: 4900000, guid: 6b32334c6b3a7ed478abc932a6ac2aac, type: 3}
     StoryImage: {fileID: 21300000, guid: 26323655fcef24e4e951080504e873e5, type: 3}
     Image: {fileID: 21300000, guid: a0a0b857df55a524897c6b10980cc2f5, type: 3}
@@ -25,8 +25,8 @@ MonoBehaviour:
     UnlockLevel: 0
     UnlockTime: 0
   - Name: "\u5E03\u62C9\u591A"
-    Chara: 
-    Info: 
+    Chara: "\u4EBA\u985E\u6587\u5316\u5B85 "
+    Info: "\u5E74\u8F15\u6642\u5F85\u904E\u4EBA\u985E\u4E16\u754C\uFF0C\u5728\u52D5\u7269\u4E16\u754C\u6210\u5BB6\uFF0C\u559C\u6B61\u7814\u7A76\u4EBA\u985E\u6587\u5316\uFF0C\u5BB6\u4E2D\u6709\u8A31\u591A\u76F8\u95DC\u85CF\u66F8\u3002 "
     Story: {fileID: 4900000, guid: 0d5b7542705e9e142ba9cc8da5941bfa, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: 4d9025cc2e8aacb45badeb81b63b9f43, type: 3}
@@ -36,8 +36,8 @@ MonoBehaviour:
     UnlockLevel: 1
     UnlockTime: 3600
   - Name: "\u5B89\u742A"
-    Chara: 
-    Info: 
+    Chara: "\u90FD\u6703\u5973\u5B50 "
+    Info: "\u66FE\u7D93\u611B\u4E0A\u4E00\u500B\u4EBA\u985E\uFF0C\u4E26\u70BA\u6B64\u6240\u82E6\uFF0C\u4F46\u73FE\u5728\u5DF2\u7D93\u653E\u4E0B\u4E86\uFF0C\u5728\u624B\u6416\u5E97\u5F97\u5230\u4E86\u4E00\u500B\u65B0\u7684\u5BC4\u8A17\u3002"
     Story: {fileID: 4900000, guid: 4c25dc83b09f60f4392091db5d195fa1, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

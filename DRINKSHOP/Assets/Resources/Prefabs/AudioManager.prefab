@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6911443362328528667
+--- !u!1 &3653284404140598798
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6911443362328528669}
-  - component: {fileID: 6911443362328528666}
-  - component: {fileID: 6911443362328528668}
+  - component: {fileID: 3653284404140598792}
+  - component: {fileID: 3653284404140598799}
+  - component: {fileID: 3653284404140598793}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6911443362328528669
+--- !u!4 &3653284404140598792
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6911443362328528667}
+  m_GameObject: {fileID: 3653284404140598798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9581449, y: 0.20917444, z: -1.109115}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6911443362328528666
+--- !u!114 &3653284404140598799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6911443362328528667}
+  m_GameObject: {fileID: 3653284404140598798}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8067ea2c174605f4d93f03888b048a43, type: 3}
@@ -49,41 +49,63 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f12fcae09bb4c1e449b9b8ff1a8d5184, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
   - name: YURE
     clip: {fileID: 8300000, guid: 0a9d502c14d513045b1b35445344ea01, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
   - name: Pong
     clip: {fileID: 8300000, guid: ef721784a5595c84c8638f07e5ed1eb7, type: 3}
     volume: 1
     pitch: 1.19
+    loop: 0
   - name: Replenish
     clip: {fileID: 8300000, guid: 096715cda1d37a244954c7dbceb7d53c, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
   - name: Developdone
     clip: {fileID: 8300000, guid: e9e8ff6a8ab19fc49a6429eedc70bcf0, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
   - name: Promote
     clip: {fileID: 8300000, guid: 3769bb357ff48104e94717a058a0a976, type: 3}
     volume: 1
     pitch: 1.5
+    loop: 0
   - name: Drop
     clip: {fileID: 8300000, guid: 3f756922fdf017a41bfdff5a7b5f95c8, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+  - name: Meow
+    clip: {fileID: 8300000, guid: 59ebbd1c67818f349a7d6407fd96533d, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+  - name: Wong
+    clip: {fileID: 8300000, guid: 8e39411e0d507ec4e9c08880edf79075, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+  - name: Clap
+    clip: {fileID: 8300000, guid: 55aaf70f601f6ce48bb4a72e49e6fea4, type: 3}
+    volume: 1
+    pitch: 1.2
+    loop: 1
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1
---- !u!81 &6911443362328528668
+--- !u!81 &3653284404140598793
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6911443362328528667}
+  m_GameObject: {fileID: 3653284404140598798}
   m_Enabled: 1

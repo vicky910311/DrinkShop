@@ -503,6 +503,7 @@ public class GameManager : MonoBehaviour
             ui.staffNotify.SetActive(true);
         }
         pm.Player.setHavetheStaff(i, true);
+        pm.Player.StaffSum++;
         Destroy(staffs[i].gameObject);
         staffs[i] = Instantiate(Resources.Load("Prefabs/unlockstaff"), StaffContent.transform) as GameObject;
         staffs[i].transform.SetSiblingIndex(i);

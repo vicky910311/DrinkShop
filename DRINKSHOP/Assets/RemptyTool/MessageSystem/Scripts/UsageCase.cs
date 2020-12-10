@@ -50,7 +50,11 @@ public class UsageCase : MonoBehaviour
         //add special chars and functions in other component.
         msgSys.AddSpecialCharToFuncMap("UsageCase", CustomizedFunction);
         msgSys.AddSpecialCharToFuncMap("end", End);
-       // Reading = false;
+        msgSys.AddSpecialCharToFuncMap("meow",Meow);
+        msgSys.AddSpecialCharToFuncMap("wong", Wong);
+        msgSys.AddSpecialCharToFuncMap("clap", Clap);
+        msgSys.AddSpecialCharToFuncMap("Pclap", PauseClap);
+        // Reading = false;
     }
     
 
@@ -66,7 +70,24 @@ public class UsageCase : MonoBehaviour
         Destroy(this.gameObject);
         
     }
+    private void Meow()
+    {
+        AudioManager.self.PlaySound("Meow");
+    }
 
+    private void Wong()
+    {
+        AudioManager.self.PlaySound("Wong");
+    }
+
+    private void Clap()
+    {
+        AudioManager.self.PlaySound("Clap");
+    }
+    private void PauseClap()
+    {
+        AudioManager.self.PauseSound("Clap");
+    }
     private void ReadTextDataFromAsset(TextAsset _textAsset)
     {
         textList.Clear();

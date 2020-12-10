@@ -12,6 +12,7 @@ public class Sounds
     public float volume = 1f;
     [Range(0.5f, 1.5f)]
     public float pitch = 1f;
+    public bool loop;
     public void SetSource(AudioSource _source)
     {
         source = _source;
@@ -21,10 +22,14 @@ public class Sounds
     {
         source.volume = volume;
         source.pitch = pitch;
+        source.loop = loop;
         source.Play();
     }
+    public void Pause()
+    {
+        source.Pause();
+    }
 
-    
 }
 [System.Serializable]
 public class BGM
@@ -96,6 +101,17 @@ public class AudioManager : MonoBehaviour
             if (sounds[i].name == _name)
             {
                 sounds[i].Play();
+                return;
+            }
+        }
+    }
+    public void PauseSound(string _name)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == _name)
+            {
+                sounds[i].Pause();
                 return;
             }
         }
