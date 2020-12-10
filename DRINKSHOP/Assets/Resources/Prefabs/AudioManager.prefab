@@ -94,7 +94,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 55aaf70f601f6ce48bb4a72e49e6fea4, type: 3}
     volume: 1
     pitch: 1.2
-    loop: 1
+    loop: 0
+  - name: Clean
+    clip: {fileID: 8300000, guid: 463ac1e9c163d7c4288c27f57f684dce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Stole
+    clip: {fileID: 8300000, guid: bc8884e2dfc6e034994fe0efde51cac3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Sleep
+    clip: {fileID: 8300000, guid: 8218af6feeab8b840bd4a81786e76dd1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}

@@ -124,6 +124,7 @@ public class EventControl
             if (SellingAnime.self.selling == false)
             {
                 SellingAnime.self.Staffgosleep();
+                AudioManager.self.PlaySound("Sleep");
                 Narrate = "店員睡著了";
             }
             else
@@ -149,6 +150,7 @@ public class EventControl
                 int buy = Player.getDrinkinStock(Select);
                 if(buy > 0)
                 {
+                    AudioManager.self.PlaySound("Clean");
                     Narrate = Drink.DrinkData[Select].Name + "被買光了";
                     Player.setDrinkinStock(Select, 0);
                     Player.Money += Drink.DrinkData[Select].Price * buy;
@@ -163,6 +165,7 @@ public class EventControl
             }
             else
             {
+                AudioManager.self.PlaySound("Clean");
                 Narrate = "全店被買光了";
                 for (int i = 0; i < Drink.DrinkData.Count; i++)
                 {
@@ -182,6 +185,7 @@ public class EventControl
         {
             if (Player.Money >= 1000)
             {
+                AudioManager.self.PlaySound("Stole");
                 int stole = ((int)Random.Range(1, 3)) * 100;
                 Player.Money -= stole;
                 Narrate = "被偷了" + stole + "元";
