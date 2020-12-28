@@ -117,8 +117,8 @@ public class GameManager : MonoBehaviour
         DrinkMakeMenu();
         ClientMenu();
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
-        rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
-        rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
+        rt.localPosition = new Vector3(-405, pm.Player.DrinkSum / 3 * 270, 0);
+        rt.sizeDelta = new Vector2(0, 510 + pm.Player.DrinkSum / 3 * 510);
         coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
         /*ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
         Debug.Log("少賺：" + TempMoney);
@@ -869,8 +869,8 @@ public class GameManager : MonoBehaviour
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(i); });
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
-        rt.localPosition = new Vector3(-451, pm.Player.DrinkSum / 3 * 270, 0);
-        rt.sizeDelta = new Vector2(0, 580 + pm.Player.DrinkSum / 3 * 580);
+        rt.localPosition = new Vector3(-405, pm.Player.DrinkSum / 3 * 270, 0);
+        rt.sizeDelta = new Vector2(0, 510 + pm.Player.DrinkSum / 3 * 510);
     }
     public void DrinkMakeOnClick(int i)
     {

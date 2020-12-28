@@ -42,6 +42,11 @@ public class UIManager : MonoBehaviour
     {
 
     }
+    public void SHUT()
+    {
+        shutdownAll();
+        shutdownLittle();
+    }
     public bool checkLittleActive()
     {
         if (noticeWindow.activeSelf)

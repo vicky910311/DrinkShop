@@ -15,7 +15,7 @@ MonoBehaviour:
   DrinkData:
   - Chara: 0
     Name: "\u7D05\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: afbd8e02583ecf44ba04ef04515d2f1e, type: 3}
     Cost: 10
     Price: 30
     DevelopTime: 600
@@ -23,7 +23,7 @@ MonoBehaviour:
     Narrate: "\u624B\u6416\u676F\u7684\u7D93\u5178\u4EE3\u8868\u4F5C"
   - Chara: 0
     Name: "\u7DA0\u8336"
-    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: c9fa7afe7e4647247805d66010f5cf19, type: 3}
     Cost: 10
     Price: 30
     DevelopTime: 600
@@ -31,7 +31,7 @@ MonoBehaviour:
     Narrate: "\u4E0A\u597D\u8336\u8449\u6C96\u6CE1\u800C\u6210 "
   - Chara: 0
     Name: "\u70CF\u9F8D\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 6a614136a65db18448364843f7c00fa3, type: 3}
     Cost: 10
     Price: 30
     DevelopTime: 600
@@ -39,7 +39,7 @@ MonoBehaviour:
     Narrate: "\u7518\u751C\u6E05\u9187\u7684\u9078\u64C7"
   - Chara: 0
     Name: "\u9EA5\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 8d5d730f628ae984ca546ef6e377fb3f, type: 3}
     Cost: 10
     Price: 30
     DevelopTime: 600
@@ -47,7 +47,7 @@ MonoBehaviour:
     Narrate: "\u98A8\u5473\u4F73\u3001\u7121\u5496\u5561\u56E0"
   - Chara: 1
     Name: "\u5976\u84CB\u7D05"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 024fefa37d995884fa9e355800518712, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1080
@@ -55,7 +55,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 1
     Name: "\u5976\u84CB\u7DA0"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: e8a59e1d85d4fa6488400cb0f5b05502, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1080
@@ -63,7 +63,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 1
     Name: "\u5976\u84CB\u70CF\u9F8D"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 98326ea72f5740149a233c29e817b6f8, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1080
@@ -71,7 +71,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 2
     Name: "\u9BAE\u5976\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: d1496f16ee4de7c47b628fb179dbe676, type: 3}
     Cost: 12
     Price: 35
     DevelopTime: 900
@@ -79,7 +79,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 2
     Name: "\u9BAE\u5976\u7DA0"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 8121cceb51a4f51409d15492b3979a45, type: 3}
     Cost: 12
     Price: 35
     DevelopTime: 900
@@ -87,7 +87,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 2
     Name: "\u73CD\u73E0\u5976\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 70ce1ae7d6cb0a7469ddbc0dd0c78400, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1080
@@ -95,7 +95,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 2
     Name: "\u4ED9\u8349\u51CD\u5976\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 8b027dd0be5fc0446aa63a5a1a138bb7, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1080
@@ -103,7 +103,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 3
     Name: "\u5DE7\u514B\u529B\u725B\u5976"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: c60f3ee2adfbc9e4badef3b025e0e465, type: 3}
     Cost: 18
     Price: 55
     DevelopTime: 1800
@@ -111,7 +111,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 3
     Name: "\u829D\u9EBB\u725B\u5976"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 08937b41ff914654cbe92b9bb3b77826, type: 3}
     Cost: 18
     Price: 55
     DevelopTime: 1800
@@ -119,7 +119,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 3
     Name: "\u5730\u74DC\u725B\u5976"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 9ab7fd20048beb845aae1fb674eac47c, type: 3}
     Cost: 18
     Price: 55
     DevelopTime: 1800
@@ -127,7 +127,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 3
     Name: "\u6728\u74DC\u725B\u5976"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 15b070fedc4369a4888254f4c1b2f3db, type: 3}
     Cost: 18
     Price: 55
     DevelopTime: 1800
@@ -135,7 +135,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 4
     Name: "\u897F\u74DC\u6C41"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 7a3aa1647dcb40946a9a42c3fe9f0d9c, type: 3}
     Cost: 12
     Price: 35
     DevelopTime: 1200
@@ -143,7 +143,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 4
     Name: "\u767E\u9999\u679C\u6C41"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 8a10195f3e77312409957d9483608b78, type: 3}
     Cost: 12
     Price: 35
     DevelopTime: 1200
@@ -151,7 +151,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 4
     Name: "\u6AB8\u6AAC\u6C41"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 8b9929564ec05174388c462d72fcbfad, type: 3}
     Cost: 12
     Price: 35
     DevelopTime: 1200
@@ -159,7 +159,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 4
     Name: "\u6AB8\u6AAC\u611B\u7389"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: d82cf6d27b15a0f4a93dffbfbdfa0436, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1200
@@ -167,7 +167,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 4
     Name: "\u706B\u9F8D\u679C\u591A\u591A"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: a5149e6ed7afbde439a69fd0043969e0, type: 3}
     Cost: 18
     Price: 55
     DevelopTime: 1200
@@ -175,7 +175,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 5
     Name: "\u8292\u679C\u7DA0\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 1788a157060ca57479d0c68c8769b11b, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1500
@@ -183,7 +183,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 5
     Name: "\u8354\u679D\u7D05\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 3bea2ba9e6f89264195b0f73367a46cc, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1500
@@ -191,7 +191,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 5
     Name: "\u6D1B\u795E\u82B1\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 79951da851cd9a24cb42eb3f4486719a, type: 3}
     Cost: 15
     Price: 45
     DevelopTime: 1500
@@ -199,7 +199,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 5
     Name: "\u85CD\u8393\u82B1\u679C\u8336"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: b66ece13d2771544eb38180906d57504, type: 3}
     Cost: 20
     Price: 60
     DevelopTime: 1800
@@ -207,7 +207,7 @@ MonoBehaviour:
     Narrate: 
   - Chara: 5
     Name: "\u6AB8\u6AAC\u99AC\u97AD\u8349"
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 1740938481838dc439786336cf88d9f6, type: 3}
     Cost: 20
     Price: 60
     DevelopTime: 1800
