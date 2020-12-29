@@ -368,7 +368,7 @@ public class GameManager : MonoBehaviour
     {
         ui.OpenLookAD();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
-        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); ad.PlayAD("rewardedVideo", "adpromote",0); });
+        ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {/* ui.shutdownLittle();*/ ad.PlayAD("rewardedVideo", "adpromote",0); });
     }
     public void adpromote() 
     {
@@ -556,7 +556,7 @@ public class GameManager : MonoBehaviour
         {
             ui.OpenLookAD();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
-            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle(); /*unlockstaffFast(i);*/ad.PlayAD("rewardedVideo", "unlockstaffFast(i)", i); });
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {/* ui.shutdownLittle();*/ /*unlockstaffFast(i);*/ad.PlayAD("rewardedVideo", "unlockstaffFast(i)", i); });
         }
         else
         {
@@ -607,7 +607,7 @@ public class GameManager : MonoBehaviour
         AudioManager.self.PlaySound("Click");
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate 
-        { ui.shutdownNotice(); ui.shutdownLittle();/* pm.Player.Money += TempMoney;*/ ad.PlayAD("rewardedVideo", "Recapture", TempMoney); });
+        { /*ui.shutdownNotice(); ui.shutdownLittle();*//* pm.Player.Money += TempMoney;*/ ad.PlayAD("rewardedVideo", "Recapture", TempMoney); });
         ui.OpenLookAD();
         
     }
@@ -707,7 +707,7 @@ public class GameManager : MonoBehaviour
         {
             ui.OpenLookAD();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
-            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle();if (tm.TimeData.DevelopTime > 30) ad.PlayAD("rewardedVideo", "developFast", 0);});
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { /*ui.shutdownLittle()*/;if (tm.TimeData.DevelopTime > 30) ad.PlayAD("rewardedVideo", "developFast", 0);});
            // int T = tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
            // DevelopBtn.GetComponentInChildren<Text>().text = (T / 3600).ToString("00") + ":" + (T % 3600 / 60).ToString("00") + ":" + (T % 3600 % 60).ToString("00");
 

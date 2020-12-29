@@ -31,7 +31,9 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     {
         Reward = r;
         I = i;
-        Advertisement.Show(p);
+        if (Advertisement.IsReady(p))
+            Advertisement.Show(p);
+        //    Advertisement.Show(p);
     }
     public void OnUnityAdsDidError(string message)
     {
@@ -44,18 +46,23 @@ public class ADs : MonoBehaviour, IUnityAdsListener
         {
             if (Reward == "adpromote")
             {
+                UIManager.self.shutdownLittle();
                 GameManager.self.adpromote();
             }
             else if (Reward == "unlockstaffFast(i)")
             {
+                UIManager.self.shutdownLittle();
                 GameManager.self.unlockstaffFast(I);
             }
             else if (Reward == "Recapture")
             {
+                UIManager.self.shutdownNotice();
+                UIManager.self.shutdownLittle();
                 PlayerDataManager.self.Player.Money += I;
             }
             else if(Reward == "developFast")
             {
+                UIManager.self.shutdownLittle();
                 GameManager.self.developFast();
             }
         }
