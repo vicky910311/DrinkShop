@@ -110,6 +110,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: fast
+    clip: {fileID: 8300000, guid: c18e30351af934d468d53b71f2262f6e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}

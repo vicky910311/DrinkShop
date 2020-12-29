@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     int[] UST;
     private int replenishamount = 25;
     bool star = false;
+    public Sprite DrinkDefault;
     public int ReplenishAmount
     {
         set
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
         sellbetweenTime = 5f;
         EventUseTime = UnityEngine.Random.Range(eventmin, eventmax);
         NowTime = EventHappenTime = Time.time;
+        CoinChange();
         pm.Player.OnCoinChange += CoinChange;
         drinks = new GameObject[gm.Drink.DrinkData.Count];
         clients = new GameObject[gm.Client.ClientData.Count];
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(-405, pm.Player.DrinkSum / 3 * 270, 0);
         rt.sizeDelta = new Vector2(0, 510 + pm.Player.DrinkSum / 3 * 510);
-        coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
+        
         /*ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
         Debug.Log("少賺：" + TempMoney);
         ui.OpenNotice();*/
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
         pm.Player.OnAddStockLimitChanged += CanReplenish;
         RAColor();
         OnRAChange += RAColor;
-        if (tm.TimeData.DevelopTime > 30)
+        if (tm.TimeData.DevelopTime > 0)
         {
             ui.developfastBtn.SetActive(true);
         }
@@ -152,6 +154,8 @@ public class GameManager : MonoBehaviour
         pm.Player.OnSEChange += SEContent;
         BGMContent();
         pm.Player.OnBGMChange += BGMContent;
+        fastButtonColor();
+        tm.TimeData.OnDTChanged += fastButtonColor;
         //saveandLoad.saveDefault(pm.Player, ms.Mission, tm.TimeData);
     }
 
@@ -255,7 +259,7 @@ public class GameManager : MonoBehaviour
                 int T = tm.TimeData.DevelopTime;
                 DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");
                 ui.developfastBtn.SetActive(true);
-                if (tm.TimeData.DevelopTime <= 30)
+                if (tm.TimeData.DevelopTime <= 0)
                 {
                     ui.developfastBtn.SetActive(false);
                 }
@@ -680,7 +684,7 @@ public class GameManager : MonoBehaviour
             csText.GetComponent<Text>().text = "";
             DevelopBtn.GetComponentInChildren<Text>().text = "研發";
             DoneDevelopText.GetComponent<Text>().text = "？？？？？";
-            DrinkDevelop.GetComponent<Image>().sprite = null;
+            DrinkDevelop.GetComponent<Image>().sprite = DrinkDefault;
             star = false;
         }
     }
@@ -699,27 +703,50 @@ public class GameManager : MonoBehaviour
     }
     public void pressDevelopFast()
     {
-        if (pm.Player.DeleteAD == false)
+        if (pm.Player.DeleteAD == false && tm.TimeData.DevelopTime > 30)
         {
             ui.OpenLookAD();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
-            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle();if (tm.TimeData.DevelopTime > 30) ad.PlayAD("rewardedVideo", "developFast", 0);/*developFast();*/ });
+            ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ui.shutdownLittle();if (tm.TimeData.DevelopTime > 30) ad.PlayAD("rewardedVideo", "developFast", 0);});
            // int T = tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 120;
            // DevelopBtn.GetComponentInChildren<Text>().text = (T / 3600).ToString("00") + ":" + (T % 3600 / 60).ToString("00") + ":" + (T % 3600 % 60).ToString("00");
 
         }
         else
         {
+            AudioManager.self.PlaySound("fast");
             developFast();
         }
     }
     public void developFast()
     {
         //ad
-        Debug.Log("未加速" + tm.TimeData.DevelopTime);
-        tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 60;
-        Debug.Log("加速"+tm.TimeData.DevelopTime);
-        ui.developfastBtn.SetActive(false);
+        if (tm.TimeData.DevelopTime > 30) {
+            Debug.Log("未加速" + tm.TimeData.DevelopTime);
+            tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 60;
+            Debug.Log("加速" + tm.TimeData.DevelopTime);
+        }
+        else if(tm.TimeData.DevelopTime > 0)
+        {
+            tm.TimeData.DevelopTime = Mathf.Clamp(tm.TimeData.DevelopTime-2,0,30);
+        }
+        
+    }
+    public void fastButtonColor()
+    {
+        if (tm.TimeData.DevelopTime > 30)
+        {
+            ui.developfastBtn.GetComponent<Image>().sprite = ui.SBlueBtn;
+        }
+        else if (tm.TimeData.DevelopTime > 0)
+        {
+            ui.developfastBtn.GetComponent<Image>().sprite = ui.SPinkBtn;
+        }
+        else
+        {
+            ui.developfastBtn.SetActive(false);
+        }
+       
     }
     public void HaveDevelop()
     {
@@ -754,7 +781,31 @@ public class GameManager : MonoBehaviour
     }
     public void CoinChange()
     {
-        coinText.GetComponent<Text>().text = "代幣數量：" + pm.Player.Coin;
+        coinText.GetComponent<Text>().text = "代幣：";
+        if (pm.Player.Coin == 3)
+        {
+            coinText.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            coinText.transform.GetChild(1).GetComponent<Image>().color = Color.white;
+            coinText.transform.GetChild(2).GetComponent<Image>().color = Color.white;
+        }
+        if (pm.Player.Coin == 2)
+        {
+            coinText.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            coinText.transform.GetChild(1).GetComponent<Image>().color = Color.white;
+            coinText.transform.GetChild(2).GetComponent<Image>().color = Color.gray;
+        }
+        if (pm.Player.Coin == 1)
+        {
+            coinText.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+            coinText.transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+            coinText.transform.GetChild(2).GetComponent<Image>().color = Color.gray;
+        }
+        if (pm.Player.Coin == 0)
+        {
+            coinText.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
+            coinText.transform.GetChild(1).GetComponent<Image>().color = Color.gray;
+            coinText.transform.GetChild(2).GetComponent<Image>().color = Color.gray;
+        }
     }
     public void MakeAll()
     {

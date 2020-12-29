@@ -38,9 +38,16 @@ public class TimeState
     private int developtime;
     public int DevelopTime
     {
-        set { developtime = value; }
+        set {
+            developtime = value;
+            if (OnDTChanged != null)
+            {
+                OnDTChanged();
+            }
+        }
         get { return developtime; }
     }
+    public Action OnDTChanged;
     [SerializeField]
     private List<int> maketemp;
     public void setMakeTemp(int i, int t)

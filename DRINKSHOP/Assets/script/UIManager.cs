@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
     public GameObject drinkNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
+    public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn;  
 
     private void Awake()
     {
