@@ -11,8 +11,9 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     public static ADs self;
     string P = "rewardedVideo";
     string Reward;
-    int I;
-
+    int I,J;
+    bool D = true;
+    public bool ADback = false;
     private void Awake()
     {
         self = this;
@@ -22,18 +23,58 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     {
         Advertisement.AddListener(this);
         Advertisement.Initialize("3939969", false);
-      //while (!Advertisement.IsReady(play))
-       //   yield return null;
-        
+        //while (!Advertisement.IsReady(play))
+        //   yield return null;
+        ADback = false;
     }
 
     public void PlayAD(string p,string r,int i)
     {
         Reward = r;
         I = i;
+        P = p;
+        D = false;
+        J = 0;
         if (Advertisement.IsReady(p))
+        {
+            D = true;
             Advertisement.Show(p);
+            
+        }
+        else
+        {
+            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = false;
+            for (int j= 1;j<=10;j++)
+            {
+                Invoke("play",j);
+            }
+            
+        }
         //    Advertisement.Show(p);
+    }
+    public void play()
+    {
+        if(D == false)
+        {
+            J++;
+        }
+        
+        if (Advertisement.IsReady(P) && D == false)
+        {
+            D = true;
+            Advertisement.Show(P);
+            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+        }
+        else if (J >= 10)
+        {
+            D = true;
+            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+        }
+
+        if (D == true)
+        {
+            J = 0;
+        }
     }
     public void OnUnityAdsDidError(string message)
     {
@@ -66,7 +107,8 @@ public class ADs : MonoBehaviour, IUnityAdsListener
                 GameManager.self.developFast();
             }
         }
-   //   throw new System.NotImplementedException();
+        ADback = true;
+        //   throw new System.NotImplementedException();
     }
 
     public void OnUnityAdsDidStart(string placementId)

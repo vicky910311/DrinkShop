@@ -192,6 +192,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        
         if (Back == true)
             Back = false;
         if (Input.GetKeyDown(KeyCode.S))
@@ -1023,13 +1024,20 @@ public class GameManager : MonoBehaviour
         {
             pm.Player.FirstTime = false;
         }
-        if (Back == false)
+        if (Back == false && ad.ADback == false)
         {
             pm.Player.LastEndTime = DateTime.Now;
             pm.Player.Endtimestring = pm.Player.LastEndTime.ToString();
             saveandLoad.Save(pm.Player, ms.Mission, tm.TimeData);
         }
-        Back = true;
+        if (ad.ADback == true)
+        {
+            Back = false;
+        }
+        else 
+        {
+            Back = true;
+        }
         ui.shutdownLittle();
         ui.shutdownAll();
         ui.shutdownLevelup();
