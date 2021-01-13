@@ -30,12 +30,12 @@ MonoBehaviour:
     SellSum: 2500
   LuckyData:
   - PairLevel: 1
-    Image: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 0dd09678217ba7440b39682798f1be56, type: 3}
   - PairLevel: 2
-    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 3597d69ab3eca284b9328ebea7b5dd64, type: 3}
   - PairLevel: 3
-    Image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: 451a2bb073923d84a87ebdb84eb25df0, type: 3}
   - PairLevel: 4
-    Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    Image: {fileID: 21300000, guid: fc04498da543fc4409aa6648db89dd29, type: 3}
   - PairLevel: 5
-    Image: {fileID: 21300000, guid: 26323655fcef24e4e951080504e873e5, type: 3}
+    Image: {fileID: 21300000, guid: d40d1a352a0774246a10074ec62af65c, type: 3}
