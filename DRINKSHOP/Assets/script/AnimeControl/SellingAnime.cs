@@ -61,7 +61,7 @@ public class SellingAnime : MonoBehaviour
         Client.transform.GetChild(0).gameObject.SetActive(false);
         Client.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
         Drink.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
-        Speak.GetComponent<Text>().text = havestock ? GameDataManager.self.Drink.DrinkData[D].Name + "好囉~" : GameDataManager.self.Drink.DrinkData[D].Name + "沒貨了";
+        Speak.GetComponentInChildren<Text>().text = havestock ? GameDataManager.self.Drink.DrinkData[D].Name + "好囉~" : GameDataManager.self.Drink.DrinkData[D].Name + "沒貨了";
     }
     public void SellBegin()
     {

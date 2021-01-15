@@ -81,6 +81,7 @@ public class ADs : MonoBehaviour, IUnityAdsListener
         else
         {
             D = true;
+            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
             J = 0;
         }
         

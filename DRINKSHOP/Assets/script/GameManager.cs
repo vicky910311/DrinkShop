@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     private int replenishamount = 25;
     bool star = false;
     public Sprite DrinkDefault;
+    public GameObject stars;
     public int ReplenishAmount
     {
         set
@@ -360,9 +361,38 @@ public class GameManager : MonoBehaviour
     }
     public void headerInfo()
     {
-        moneytext.text = "資金：" + pm.Player.Money;
-        selltext.text = "已賣出 " + pm.Player.DrinkSell;
-        leveltext.text = "等級：" + pm.Player.Level;
+        moneytext.text = "資金 " + pm.Player.Money.ToString("000000");
+        if(pm.Player.Money > 999999)
+        {
+            moneytext.text = "資金 " + 999999 + "+";
+        }
+        selltext.text = "已賣出 " + pm.Player.DrinkSell.ToString("000000");
+        if (pm.Player.DrinkSell > 999999)
+        {
+            moneytext.text = "已賣出 " + 999999 + "+";
+        }
+        leveltext.text = "等級";
+        if (pm.Player.Level >= 1)
+        {
+            stars.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
+        }
+        if (pm.Player.Level >= 2)
+        {
+            stars.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
+        }
+        if (pm.Player.Level >= 3)
+        {
+            stars.transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
+        }
+        if (pm.Player.Level >= 4)
+        {
+            stars.transform.GetChild(3).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
+        }
+        if (pm.Player.Level >= 5)
+        {
+            stars.transform.GetChild(4).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
+        }
+
     }
    
     public void PressADpromote()
@@ -600,9 +630,13 @@ public class GameManager : MonoBehaviour
     public void leaveback()
     {
         pm.Player.ThisOpenTime = DateTime.Now;
-        Debug.Log(pm.Player.ThisOpenTime);
-        ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
-        ui.OpenNotice();
+        Debug.Log(pm.Player.ThisOpenTime);    
+        if ((pm.Player.ThisOpenTime - pm.Player.LastEndTime).TotalMinutes >=10)
+        {
+            ClientControl.WhenNotPlayingSell(pm.Player, ref TempMoney, ref LeaveNarrate);
+            ui.OpenNotice();
+        }
+        
     }
     public void Recapture()
     {
