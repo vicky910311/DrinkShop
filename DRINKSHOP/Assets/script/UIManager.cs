@@ -87,7 +87,8 @@ public class UIManager : MonoBehaviour
         //quitWindow.SetActive(false);
         //noticeWindow.SetActive(false);
         //levelupWindow.SetActive(false);
-        if (storyWindow.transform.childCount > 0)
+        storyWindow.SetActive(false);
+        if (storyWindow.transform.childCount > 1)
             Destroy(storyWindow.transform.GetChild(0).gameObject);
         AudioManager.self.PlaySound("Click");
 
@@ -122,6 +123,7 @@ public class UIManager : MonoBehaviour
         shutdownLittle();
         storyWindow.SetActive(true);
         GameObject STORY = Instantiate(Resources.Load("Prefabs/story"), storyWindow.transform) as GameObject ;
+        STORY.transform.SetSiblingIndex(0);
     }
     public void OpenNotice()
     {

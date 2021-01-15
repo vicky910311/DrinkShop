@@ -54,27 +54,36 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     }
     public void play()
     {
-        if(D == false)
+        if(UIManager.self.lookadWindow.activeSelf == true)
         {
-            J++;
-        }
-        
-        if (Advertisement.IsReady(P) && D == false)
-        {
-            D = true;
-            Advertisement.Show(P);
-            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
-        }
-        else if (J >= 10)
-        {
-            D = true;
-            UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
-        }
+            if (D == false)
+            {
+                J++;
+            }
 
-        if (D == true)
+            if (Advertisement.IsReady(P) && D == false)
+            {
+                D = true;
+                Advertisement.Show(P);
+                UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+            }
+            else if (J >= 10)
+            {
+                D = true;
+                UIManager.self.lookadWindow.transform.GetChild(1).GetComponent<Button>().interactable = true;
+            }
+
+            if (D == true)
+            {
+                J = 0;
+            }
+        }
+        else
         {
+            D = true;
             J = 0;
         }
+        
     }
     public void OnUnityAdsDidError(string message)
     {

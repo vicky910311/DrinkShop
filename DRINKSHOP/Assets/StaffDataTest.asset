@@ -19,6 +19,7 @@ MonoBehaviour:
     Story: {fileID: 4900000, guid: 6b32334c6b3a7ed478abc932a6ac2aac, type: 3}
     StoryImage: {fileID: 21300000, guid: 26323655fcef24e4e951080504e873e5, type: 3}
     Image: {fileID: 21300000, guid: d6e9caf9fb191234fa84f6fdf274d23a, type: 3}
+    UnImage: {fileID: 0}
     sleepImage: {fileID: 21300000, guid: cc0fc913b19077c479243e9a0bf70b27, type: 3}
     ArmImage: {fileID: 21300000, guid: 95ddae73ce0a9744a862ac5d38153a9d, type: 3}
     UnlockCost: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
     Story: {fileID: 4900000, guid: 0d5b7542705e9e142ba9cc8da5941bfa, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: 2fc43252a5e376a4b94e87b585726209, type: 3}
+    UnImage: {fileID: 21300000, guid: 4283ee9af2f63ef4fb3cb7ae252aa63f, type: 3}
     sleepImage: {fileID: 21300000, guid: 17ed46dfa9f2791439c117a875c17f7a, type: 3}
     ArmImage: {fileID: 21300000, guid: ac8673172f5d89b4d87b63928e634424, type: 3}
     UnlockCost: 1000
@@ -41,17 +43,19 @@ MonoBehaviour:
     Story: {fileID: 4900000, guid: 4c25dc83b09f60f4392091db5d195fa1, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: 29bc7ef4c984bd940b140d9c147f3742, type: 3}
+    UnImage: {fileID: 21300000, guid: 1adcbf6569abee648ae80037a9a4b672, type: 3}
     sleepImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     ArmImage: {fileID: 21300000, guid: 022e7d7a3bc563042ae7b481c63bc3b5, type: 3}
     UnlockCost: 3000
     UnlockLevel: 3
     UnlockTime: 7200
   - Name: "\u963F\u5317"
-    Chara: 
-    Info: 
+    Chara: "\u52D5\u7269\u7684\u524D\u7E3D\u7D71 "
+    Info: "\u7E3D\u662F\u8003\u616E\u5468\u906D\u4EBA\u7684\u5E78\u798F\u512A\u5148\u65BC\u81EA\u5DF1\uFF0C\u5BCC\u6709\u8CAC\u4EFB\u5FC3\uFF0C\u5F88\u4EAB\u53D7\u9000\u4F11\u5F8C\u7576\u624B\u6416\u5E97\u5E97\u54E1\u7684\u751F\u6D3B\u3002"
     Story: {fileID: 4900000, guid: a4a0d83074a280e489114c6687972f93, type: 3}
     StoryImage: {fileID: 0}
     Image: {fileID: 21300000, guid: ff52ee85d73fca64eaa2fc3f1c5ec469, type: 3}
+    UnImage: {fileID: 21300000, guid: 6f998d0758785c8409ad6d083c85e306, type: 3}
     sleepImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     ArmImage: {fileID: 21300000, guid: df9eb6ad152d49c4a94e58b157b34d58, type: 3}
     UnlockCost: 5000

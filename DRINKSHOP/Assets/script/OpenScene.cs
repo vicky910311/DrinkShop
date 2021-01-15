@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class OpenScene : MonoBehaviour
 {
     private SaveandLoad saveandLoad = new SaveandLoad();
+    public GameObject staff;
     // Start is called before the first frame update
     void Start()
     {
+        int NUM = PlayerDataManager.self.Player.FrontStaff + 1;
+        staff.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Image/staff/角色立繪_00"+ NUM.ToString());
         if (PlayerDataManager.self.Player.BGMswitch)
             AudioManager.self.BGMon();
     }

@@ -493,6 +493,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 staffs[i] = Instantiate(Resources.Load("Prefabs/lockstaff"), StaffContent.transform) as GameObject;
+                staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].UnImage;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().interactable = false;
                 int a = i;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { pressUnlockfast(a); });
