@@ -101,7 +101,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - name: Stole
-    clip: {fileID: 8300000, guid: bc8884e2dfc6e034994fe0efde51cac3, type: 3}
+    clip: {fileID: 8300000, guid: ef721784a5595c84c8638f07e5ed1eb7, type: 3}
     volume: 1
     pitch: 1
     loop: 0

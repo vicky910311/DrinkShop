@@ -109,7 +109,7 @@ public class ClientControl
         Player.DrinkSell += newsell;
         Player.Money += newearn;
         Player.ClientSum += newc;
-        narrate = "在離開期間\n賣出" + newsell +"杯，賺了"+ newearn + "，新客人" + newc +"位\n因為庫存不足少賺"+ TempMoney;
+        narrate = "在離開期間賣出" + newsell +"杯，\n賺了"+ newearn + "，新客人" + newc +"位\n因為庫存不足少賺"+ TempMoney;
         Debug.Log(narrate);
     }
     public void PromoteSell(ref int Min,ref int Max,PromoteType p)
