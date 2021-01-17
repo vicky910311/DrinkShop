@@ -190,6 +190,15 @@ public class GameManager : MonoBehaviour
                 {
                     tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
                     tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
+                    
+                }
+                for(int i =0; i < gm.Staff.StaffData.Count ; i++)
+                {
+                    if(tm.TimeData.getStaffUnlockTime(i) >0 && (int)(During).TotalSeconds > 0)
+                    {
+                        tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
+                        tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
+                    }
                 }
             }
         }
