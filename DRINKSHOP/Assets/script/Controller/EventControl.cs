@@ -158,7 +158,7 @@ public class EventControl
                 }
                 else
                 {
-                    Narrate = "有人想買下全部的" + Drink.DrinkData[Select].Name + "但沒貨了";
+                    Narrate = "有人想買全部的" + Drink.DrinkData[Select].Name + "但沒貨了";
                 }
                 
                 

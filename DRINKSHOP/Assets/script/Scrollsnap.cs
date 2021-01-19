@@ -7,12 +7,15 @@ public class Scrollsnap : MonoBehaviour
 {
     bool Move = false;
     public GameObject Xbtn;
-    
-    
+    RectTransform rt;
+    bool arrowMove = false;
+    bool TM = false;
+    Tweener T;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        rt = GetComponent<RectTransform>();
         Xbtn.SetActive(true);
     }
 
@@ -20,48 +23,75 @@ public class Scrollsnap : MonoBehaviour
     void Update()
     {
 
-        RectTransform rt = GetComponent<RectTransform>();
+       
         
         if (Input.GetMouseButtonDown(0))
         {
-            Move = true;
+            if (arrowMove == false)
+            {
+                Move = true;
+            }
+            else
+            {
+                Move = false;
+            }
+            Debug.Log("move "+ Move);
            
         }
         if (Input.GetMouseButtonUp(0))
         {
             Move = false;
-            
+            Debug.Log("move " + Move);
+
         }
-        if (Move == false )
+        if (Move == false && arrowMove == false && !TM)
         {
 
             if (rt.localPosition.x > 1080)
             {
                 if (rt.localPosition.x != 1620)
                 {
+                    
                     transform.DOLocalMoveX(1620, 0.5f);
+                    TM = true;
+                    Invoke("finish",0.5f);
                 }
 
             }
-            else if (rt.localPosition.x <= 1080 && rt.localPosition.x > 0)
+            if (rt.localPosition.x <= 1080 && rt.localPosition.x > 0)
             {
                 if (rt.localPosition.x != 540)
+                {
                     transform.DOLocalMoveX(540, 0.5f);
+                    TM = true;
+                    Invoke("finish", 0.5f);
+                }
+                    
             }
-            else if (rt.localPosition.x <= 0 && rt.localPosition.x > -1080)
+            if (rt.localPosition.x <= 0 && rt.localPosition.x > -1080)
             {
                 if (rt.localPosition.x != -540)
+                {
                     transform.DOLocalMoveX(-540, 0.5f);
+                    TM = true;
+                    Invoke("finish", 0.5f);
+                }
+                   
 
             }
-            else if (rt.localPosition.x <= -1080)
+            if (rt.localPosition.x <= -1080)
             {
                 if (rt.localPosition.x != -1620)
+                {
                     transform.DOLocalMoveX(-1620, 0.5f);
+                    TM = true;
+                    Invoke("finish", 0.5f);
+                }
+                
             }
 
         }
-        if(Mathf.Abs(rt.localPosition.x -540)%1080 <= 80 || Mathf.Abs(rt.localPosition.x - 540) % 1080 >= 1000)
+        if(Mathf.Abs(rt.localPosition.x -540)%1080 <= 120 || Mathf.Abs(rt.localPosition.x - 540) % 1080 >= 960)
         {
             Xbtn.SetActive(true);
         }
@@ -71,22 +101,39 @@ public class Scrollsnap : MonoBehaviour
         }
         
     }
+    void finish()
+    {
+        TM = false;
+    }
     public void RClick()
     {
-        RectTransform Rt = GetComponent<RectTransform>();
-        if (Rt.localPosition.x >= -580)
+        Debug.Log("RClick");
+        
+        
+        if (rt.localPosition.x >= -580)
         {
-            float X = Rt.localPosition.x - 1080;
-            Rt.localPosition = new Vector3(X, Rt.localPosition.y, Rt.localPosition.z);
+            arrowMove = true;
+            float X = rt.localPosition.x - 1080;
+            transform.DOLocalMoveX(X, 0.5f);
+            //rt.localPosition = new Vector3(X, rt.localPosition.y, rt.localPosition.z);
+            Invoke("AMF", 0.5f);
         }
     }
     public void LClick()
     {
-        RectTransform Rt = GetComponent<RectTransform>();
-        if (Rt.localPosition.x <= 580)
+        Debug.Log("LClick");
+        
+        if (rt.localPosition.x <= 580)
         {
-            float X = Rt.localPosition.x + 1080;
-            Rt.localPosition = new Vector3(X, Rt.localPosition.y, Rt.localPosition.z);
+            arrowMove = true;
+            float X = rt.localPosition.x + 1080;
+            transform.DOLocalMoveX(X, 0.5f);
+            //rt.localPosition = new Vector3(X, rt.localPosition.y, rt.localPosition.z);
+            Invoke("AMF",0.5f);
         }
+    }
+    void AMF()
+    {
+        arrowMove = false;
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Assets\script\GameData\GameDataManager.cs" />
     <Compile Include="Assets\script\OpenScene.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\script\open000.cs" />
     <Compile Include="Assets\script\AudioManager.cs" />
     <Compile Include="Assets\script\AnimeControl\ArmUse.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
-    <Compile Include="Assets\script\open000.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />

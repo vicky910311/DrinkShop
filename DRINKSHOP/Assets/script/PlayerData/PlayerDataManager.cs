@@ -26,6 +26,10 @@ public class PlayerDataManager : MonoBehaviour
            Player = saveandLoad.Player;
            Debug.Log("Loading");
        }
+        /*if (JsonUtility.FromJson<PlayerData>(PlayerPrefs.GetString("notsave")) == null)
+        {
+            Debug.Log("NoFound");
+        }*/
     }
     public void Default()
     {

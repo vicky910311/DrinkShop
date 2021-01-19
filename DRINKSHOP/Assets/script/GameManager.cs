@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
-    private float eventmin = 60f, eventmax = 120f;
+    private float eventmin = 30f, eventmax = 60f;
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
@@ -266,7 +266,6 @@ public class GameManager : MonoBehaviour
             if (tm.TimeData.DevelopTime > 0)
             {
                 tm.TimeData.DevelopTime--;
-                Debug.Log(tm.TimeData.DevelopTime);
                 int T = tm.TimeData.DevelopTime;
                 DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");
                 ui.developfastBtn.SetActive(true);
@@ -370,17 +369,17 @@ public class GameManager : MonoBehaviour
     }
     public void headerInfo()
     {
-        moneytext.text = "資金 " + pm.Player.Money.ToString("000000");
+        moneytext.text =  pm.Player.Money.ToString("000000");
         if(pm.Player.Money > 999999)
         {
-            moneytext.text = "資金 " + 999999 + "+";
+            moneytext.text = 999999 + "+";
         }
-        selltext.text = "已賣出 " + pm.Player.DrinkSell.ToString("000000");
+        selltext.text =  pm.Player.DrinkSell.ToString("000000");
         if (pm.Player.DrinkSell > 999999)
         {
-            moneytext.text = "已賣出 " + 999999 + "+";
+            moneytext.text = 999999 + "+";
         }
-        leveltext.text = "等級";
+        leveltext.text = "Lv.";
         if (pm.Player.Level >= 1)
         {
             stars.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/starA_c");
@@ -423,6 +422,7 @@ public class GameManager : MonoBehaviour
     public void manualpromote()
     {
         AudioManager.self.PlaySound("Promote");
+        sellbetweenTime = gm.Client.ComeTime.ManualMin;
         promoteTime = Time.time;
         promotelasting = gm.Client.ComeTime.manualpromoteTime;
         ClientControl.PromoteSell(ref ComeTimeMin, ref ComeTimeMax, ClientControl.PromoteType.Manual);
@@ -1017,7 +1017,7 @@ public class GameManager : MonoBehaviour
         Replenishment.transform.GetChild(2).GetComponent<Image>().color = Color.white;
         Replenishment.transform.GetChild(3).GetComponent<Image>().color = Color.white;
         int a = ReplenishAmount / 25 - 1;
-        Replenishment.transform.GetChild(a).GetComponent<Image>().color = Color.yellow;
+        Replenishment.transform.GetChild(a).GetComponent<Image>().color = new Color32(255,200,0,255);
        
     }
     public void SEContent()
