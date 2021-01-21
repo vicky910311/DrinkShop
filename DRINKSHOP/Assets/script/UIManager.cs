@@ -19,7 +19,13 @@ public class UIManager : MonoBehaviour
     public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
     public GameObject drinkNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
-    public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn;  
+    public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn,TabA,TabAon,TabB,TabBon;
+    public GameObject StaffBtn, ClientBtn, DrinkBtn, ShopBtn;
+    public GameObject DevelopBtn, MakeBtn, MenuBtn;
+    public GameObject SpecialBtn, NormalBtn;
+    public GameObject MissionBtn, IncidentBtn;
+    private Color32 OriColor = new Color32(230,200,200,255);
+    private Color32 DarkColor = new Color32(80,60,60,255);
 
     private void Awake()
     {
@@ -92,6 +98,13 @@ public class UIManager : MonoBehaviour
             Destroy(storyWindow.transform.GetChild(0).gameObject);
         AudioManager.self.PlaySound("Click");
 
+    }
+    public void shutdownStory()
+    {
+        storyWindow.SetActive(false);
+        if (storyWindow.transform.childCount > 1)
+            Destroy(storyWindow.transform.GetChild(0).gameObject);
+        AudioManager.self.PlaySound("Click");
     }
     public void shutdownLevelup()
     {
@@ -176,7 +189,14 @@ public class UIManager : MonoBehaviour
         EventWindow.SetActive(false);
         PurchaseWindow.SetActive(false);
         SettingWindow.SetActive(false);
-        
+        StaffBtn.GetComponent<Image>().sprite = TabA;
+        StaffBtn.GetComponentInChildren<Text>().color = OriColor;
+        ClientBtn.GetComponent<Image>().sprite = TabA;
+        ClientBtn.GetComponentInChildren<Text>().color = OriColor;
+        DrinkBtn.GetComponent<Image>().sprite = TabA;
+        DrinkBtn.GetComponentInChildren<Text>().color = OriColor;
+        ShopBtn.GetComponent<Image>().sprite = TabA;
+        ShopBtn.GetComponentInChildren<Text>().color = OriColor;
     }
     public void OpenSettingWindow()
     {
@@ -198,12 +218,16 @@ public class UIManager : MonoBehaviour
         {
             shutdownLittle();
             PurchaseWindow.SetActive(false);
+            ShopBtn.GetComponent<Image>().sprite = TabA;
+            ShopBtn.GetComponentInChildren<Text>().color = OriColor;
         }
         else
         {
             shutdownLittle();
             shutdownAll();
             PurchaseWindow.SetActive(true);
+            ShopBtn.GetComponent<Image>().sprite = TabAon;
+            ShopBtn.GetComponentInChildren<Text>().color = DarkColor;
         }
 
     }
@@ -213,6 +237,9 @@ public class UIManager : MonoBehaviour
         {
             shutdownLittle();
             StaffWindow.SetActive(false);
+            StaffBtn.GetComponent<Image>().sprite = TabA;
+            StaffBtn.GetComponentInChildren<Text>().color = OriColor;
+
         }
         else
         {
@@ -220,6 +247,8 @@ public class UIManager : MonoBehaviour
             shutdownLittle();
             shutdownAll();
             StaffWindow.SetActive(true);
+            StaffBtn.GetComponent<Image>().sprite = TabAon;
+            StaffBtn.GetComponentInChildren<Text>().color = DarkColor;
         }
 
     }
@@ -229,6 +258,10 @@ public class UIManager : MonoBehaviour
         {
             shutdownLittle();
             ClientWindow.SetActive(false);
+            ClientBtn.GetComponent<Image>().sprite = TabA;
+            ClientBtn.GetComponentInChildren<Text>().color = OriColor;
+            SpecialBtn.GetComponent<Image>().sprite = TabB;
+            NormalBtn.GetComponent<Image>().sprite = TabB;
         }
         else
         {
@@ -237,6 +270,10 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             ClientWindow.SetActive(true);
             NormalWindow.SetActive(true);
+            ClientBtn.GetComponent<Image>().sprite = TabAon;
+            ClientBtn.GetComponentInChildren<Text>().color = DarkColor;
+            SpecialBtn.GetComponent<Image>().sprite = TabB;
+            NormalBtn.GetComponent<Image>().sprite = TabBon;
         }
 
     }
@@ -248,6 +285,8 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             ClientWindow.SetActive(true);
             NormalWindow.SetActive(true);
+            SpecialBtn.GetComponent<Image>().sprite = TabB;
+            NormalBtn.GetComponent<Image>().sprite = TabBon;
         }
     }
     public void OpenSpecialWindow()
@@ -258,6 +297,8 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             ClientWindow.SetActive(true);
             SpecialWindow.SetActive(true);
+            SpecialBtn.GetComponent<Image>().sprite = TabBon;
+            NormalBtn.GetComponent<Image>().sprite = TabB;
         }
     }
     public void OpenDrinkWindow()
@@ -266,6 +307,11 @@ public class UIManager : MonoBehaviour
         {
             shutdownLittle();
             DrinkWindow.SetActive(false);
+            DrinkBtn.GetComponent<Image>().sprite = TabA;
+            DrinkBtn.GetComponentInChildren<Text>().color = OriColor;
+            MakeBtn.GetComponent<Image>().sprite = TabB;
+            DevelopBtn.GetComponent<Image>().sprite = TabB;
+            MenuBtn.GetComponent<Image>().sprite = TabB;
         }
         else
         {
@@ -273,6 +319,11 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             DrinkWindow.SetActive(true);
             MenuWindow.SetActive(true);
+            DrinkBtn.GetComponent<Image>().sprite = TabAon;
+            DrinkBtn.GetComponentInChildren<Text>().color = DarkColor;
+            MakeBtn.GetComponent<Image>().sprite = TabB;
+            DevelopBtn.GetComponent<Image>().sprite = TabB;
+            MenuBtn.GetComponent<Image>().sprite = TabBon;
         }
 
     }
@@ -285,6 +336,9 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             DrinkWindow.SetActive(true);
             DevelopWindow.SetActive(true);
+            MakeBtn.GetComponent<Image>().sprite = TabB;
+            DevelopBtn.GetComponent<Image>().sprite = TabBon;
+            MenuBtn.GetComponent<Image>().sprite = TabB;
         }
     }
     public void OpenMenuWindow()
@@ -295,6 +349,9 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             DrinkWindow.SetActive(true);
             MenuWindow.SetActive(true);
+            MakeBtn.GetComponent<Image>().sprite = TabB;
+            DevelopBtn.GetComponent<Image>().sprite = TabB;
+            MenuBtn.GetComponent<Image>().sprite = TabBon;
         }
     }
     public void OpenMakeWindow()
@@ -305,6 +362,9 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             DrinkWindow.SetActive(true);
             MakeWindow.SetActive(true);
+            MakeBtn.GetComponent<Image>().sprite = TabBon;
+            DevelopBtn.GetComponent<Image>().sprite = TabB;
+            MenuBtn.GetComponent<Image>().sprite = TabB;
         }
     }
     public void OpenIncidentWindow()
@@ -315,6 +375,8 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);
+            IncidentBtn.GetComponent<Image>().sprite = TabBon;
+            MissionBtn.GetComponent<Image>().sprite = TabB;
         }
 
     }
@@ -326,6 +388,8 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             EventWindow.SetActive(true);
             MissionWindow.SetActive(true);
+            IncidentBtn.GetComponent<Image>().sprite = TabB;
+            MissionBtn.GetComponent<Image>().sprite = TabBon;
         }
 
     }
@@ -334,6 +398,8 @@ public class UIManager : MonoBehaviour
         if (EventWindow.activeSelf == true)
         {
             EventWindow.SetActive(false);
+            IncidentBtn.GetComponent<Image>().sprite = TabB;
+            MissionBtn.GetComponent<Image>().sprite = TabB;
         }
         else
         {
@@ -341,6 +407,8 @@ public class UIManager : MonoBehaviour
             shutdownAll();
             EventWindow.SetActive(true);
             IncidentWindow.SetActive(true);
+            IncidentBtn.GetComponent<Image>().sprite = TabBon;
+            MissionBtn.GetComponent<Image>().sprite = TabB;
         }
         if (EventBtn.transform.localPosition.x > -550)
         {

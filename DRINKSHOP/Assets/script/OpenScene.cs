@@ -14,6 +14,8 @@ public class OpenScene : MonoBehaviour
         staff.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Image/staff/角色立繪_00"+ NUM.ToString());
         if (PlayerDataManager.self.Player.BGMswitch)
             AudioManager.self.BGMon();
+        if (PlayerDataManager.self.Player.SEswitch)
+            AudioManager.self.SEon();
     }
 
     // Update is called once per frame

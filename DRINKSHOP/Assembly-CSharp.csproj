@@ -124,6 +124,7 @@
     <Compile Include="Assets\script\GameData\LevelUpData.cs" />
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
+    <Compile Include="Assets\script\FirstScene.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />

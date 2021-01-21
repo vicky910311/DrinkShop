@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RemptyTool.ES_MessageSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ES_MessageSystem))]
 public class UsageCase : MonoBehaviour
@@ -33,7 +34,15 @@ public class UsageCase : MonoBehaviour
 
     void Start()
     {
-        number = GameManager.self.storynum;
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            number = GameManager.self.storynum;
+        }
+        else if (SceneManager.GetActiveScene().name == "FirstScene")
+        {
+            SceneFade.self.Fadein();
+            number = 0;
+        }
         storyimage.GetComponent<Image>().sprite = GameDataManager.self.Staff.StaffData[number].StoryImage;
         msgSys = this.GetComponent<ES_MessageSystem>();
         if (uiText == null)
@@ -66,13 +75,25 @@ public class UsageCase : MonoBehaviour
     private void End()
     {
         Reading = false;
-        UIManager.self.storyWindow.SetActive(false);
-        Destroy(this.gameObject);
+        if (PlayerDataManager.self.Player.FirstTime == true)
+        {
+            if (PlayerDataManager.self.Player.SEswitch)
+                AudioManager.self.PlaySound("Click");
+            SceneFade.self.Fadeout();
+           
+        }
+        else
+        {
+            UIManager.self.storyWindow.SetActive(false);
+            Destroy(this.gameObject);
+        }
+       
         
     }
     private void Meow()
     {
         AudioManager.self.PlaySound("Meow");
+        Debug.Log("Meow");
     }
 
     private void Wong()

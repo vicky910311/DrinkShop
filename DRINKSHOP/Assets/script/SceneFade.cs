@@ -40,10 +40,30 @@ public class SceneFade : MonoBehaviour
     }
     public void LoadScene()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            SceneManager.LoadScene("MainScene");
-        }
-
+            if (PlayerDataManager.self.Player.FirstTime == true)
+            {
+                if (SceneManager.GetActiveScene().name == "OpenScene")
+                {
+                    AudioManager.self.BGMoff();
+                    SceneManager.LoadScene("FirstScene");
+                }
+                
+            }
+            else
+            {
+                SceneManager.LoadScene("MainScene");
+            }
+            if (SceneManager.GetActiveScene().name == "FirstScene")
+            {
+                if (PlayerDataManager.self.Player.BGMswitch)
+                {
+                AudioManager.self.BGMon();
+                }
+                
+                Debug.Log("firstsceneend");
+                SceneManager.LoadScene("MainScene");
+                
+            }
+            
     }
 }
