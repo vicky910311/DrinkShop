@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
     public GameObject drinkNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
-    public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn,TabA,TabAon,TabB,TabBon;
+    public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn,TabA,TabAon,TabB,TabBon,DarkDBtn,BrightDBtn,RRedBtn,RYellowBtn;
     public GameObject StaffBtn, ClientBtn, DrinkBtn, ShopBtn;
     public GameObject DevelopBtn, MakeBtn, MenuBtn;
     public GameObject SpecialBtn, NormalBtn;

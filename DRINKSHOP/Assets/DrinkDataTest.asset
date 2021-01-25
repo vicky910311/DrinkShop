@@ -52,7 +52,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1080
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6FC3\u6FC3\u5976\u84CB\u914D\u4E0A\u7D05\u8336"
   - Chara: 1
     Name: "\u5976\u84CB\u7DA0"
     Image: {fileID: 21300000, guid: e8a59e1d85d4fa6488400cb0f5b05502, type: 3}
@@ -60,7 +60,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1080
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6FC3\u6FC3\u5976\u84CB\u914D\u4E0A\u7DA0\u8336"
   - Chara: 1
     Name: "\u5976\u84CB\u70CF\u9F8D"
     Image: {fileID: 21300000, guid: 98326ea72f5740149a233c29e817b6f8, type: 3}
@@ -68,7 +68,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1080
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6FC3\u6FC3\u5976\u84CB\u914D\u4E0A\u70CF\u9F8D\u8336"
   - Chara: 2
     Name: "\u9BAE\u5976\u8336"
     Image: {fileID: 21300000, guid: d1496f16ee4de7c47b628fb179dbe676, type: 3}
@@ -76,7 +76,7 @@ MonoBehaviour:
     Price: 35
     DevelopTime: 900
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u9BAE\u3001\u9999\u3001\u9187"
   - Chara: 2
     Name: "\u9BAE\u5976\u7DA0"
     Image: {fileID: 21300000, guid: 8121cceb51a4f51409d15492b3979a45, type: 3}
@@ -84,7 +84,7 @@ MonoBehaviour:
     Price: 35
     DevelopTime: 900
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u9BAE\u3001\u9999\u3001\u9187"
   - Chara: 2
     Name: "\u73CD\u73E0\u5976\u8336"
     Image: {fileID: 21300000, guid: 70ce1ae7d6cb0a7469ddbc0dd0c78400, type: 3}
@@ -92,7 +92,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1080
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u53E3\u611F\u98A8\u5473\u517C\u5177"
   - Chara: 2
     Name: "\u4ED9\u8349\u51CD\u5976\u8336"
     Image: {fileID: 21300000, guid: 8b027dd0be5fc0446aa63a5a1a138bb7, type: 3}
@@ -100,7 +100,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1080
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u53E3\u611F\u98A8\u5473\u517C\u5177"
   - Chara: 3
     Name: "\u5DE7\u514B\u529B\u725B\u5976"
     Image: {fileID: 21300000, guid: c60f3ee2adfbc9e4badef3b025e0e465, type: 3}
@@ -108,7 +108,7 @@ MonoBehaviour:
     Price: 55
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6FC3\u90C1\u7684\u5DE7\u514B\u529B\u6ECB\u5473"
   - Chara: 3
     Name: "\u829D\u9EBB\u725B\u5976"
     Image: {fileID: 21300000, guid: 08937b41ff914654cbe92b9bb3b77826, type: 3}
@@ -116,7 +116,7 @@ MonoBehaviour:
     Price: 55
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u990A\u751F\u7684\u597D\u9078\u64C7"
   - Chara: 3
     Name: "\u5730\u74DC\u725B\u5976"
     Image: {fileID: 21300000, guid: 9ab7fd20048beb845aae1fb674eac47c, type: 3}
@@ -124,7 +124,7 @@ MonoBehaviour:
     Price: 55
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u990A\u751F\u7684\u597D\u9078\u64C7"
   - Chara: 3
     Name: "\u6728\u74DC\u725B\u5976"
     Image: {fileID: 21300000, guid: 15b070fedc4369a4888254f4c1b2f3db, type: 3}
@@ -132,7 +132,7 @@ MonoBehaviour:
     Price: 55
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u9BAE\u5976\u53CA\u6728\u74DC\u662F\u597D\u642D\u6A94"
   - Chara: 4
     Name: "\u897F\u74DC\u6C41"
     Image: {fileID: 21300000, guid: 7a3aa1647dcb40946a9a42c3fe9f0d9c, type: 3}
@@ -140,7 +140,7 @@ MonoBehaviour:
     Price: 35
     DevelopTime: 1200
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u89E3\u6E34\u4E00\u590F"
   - Chara: 4
     Name: "\u767E\u9999\u679C\u6C41"
     Image: {fileID: 21300000, guid: 8a10195f3e77312409957d9483608b78, type: 3}
@@ -148,7 +148,7 @@ MonoBehaviour:
     Price: 35
     DevelopTime: 1200
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u9178\u751C\u597D\u6ECB\u5473"
   - Chara: 4
     Name: "\u6AB8\u6AAC\u6C41"
     Image: {fileID: 21300000, guid: 8b9929564ec05174388c462d72fcbfad, type: 3}
@@ -156,7 +156,7 @@ MonoBehaviour:
     Price: 35
     DevelopTime: 1200
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u9178\u6E9C\u6E9C~"
   - Chara: 4
     Name: "\u6AB8\u6AAC\u611B\u7389"
     Image: {fileID: 21300000, guid: d82cf6d27b15a0f4a93dffbfbdfa0436, type: 3}
@@ -164,7 +164,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1200
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u5165\u53E3\u5373\u5316\u7684\u611B\u7389\u642D\u4E0A\u6AB8\u6AAC"
   - Chara: 4
     Name: "\u706B\u9F8D\u679C\u591A\u591A"
     Image: {fileID: 21300000, guid: a5149e6ed7afbde439a69fd0043969e0, type: 3}
@@ -172,7 +172,7 @@ MonoBehaviour:
     Price: 55
     DevelopTime: 1200
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u5922\u5E7B\u597D\u6ECB\u5473"
   - Chara: 5
     Name: "\u8292\u679C\u7DA0\u8336"
     Image: {fileID: 21300000, guid: 1788a157060ca57479d0c68c8769b11b, type: 3}
@@ -180,7 +180,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1500
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u590F\u5B63\u7684\u6ECB\u5473"
   - Chara: 5
     Name: "\u8354\u679D\u7D05\u8336"
     Image: {fileID: 21300000, guid: 3bea2ba9e6f89264195b0f73367a46cc, type: 3}
@@ -188,7 +188,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1500
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u8CB4\u5983\u7684\u611B\u597D\u54C1"
   - Chara: 5
     Name: "\u6D1B\u795E\u82B1\u8336"
     Image: {fileID: 21300000, guid: 79951da851cd9a24cb42eb3f4486719a, type: 3}
@@ -196,7 +196,7 @@ MonoBehaviour:
     Price: 45
     DevelopTime: 1500
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u964D\u8840\u8102\u795E\u54C1"
   - Chara: 5
     Name: "\u85CD\u8393\u82B1\u679C\u8336"
     Image: {fileID: 21300000, guid: b66ece13d2771544eb38180906d57504, type: 3}
@@ -204,7 +204,7 @@ MonoBehaviour:
     Price: 60
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6709\u6A5F\u82B1\u679C\u8336"
   - Chara: 5
     Name: "\u6AB8\u6AAC\u99AC\u97AD\u8349"
     Image: {fileID: 21300000, guid: 1740938481838dc439786336cf88d9f6, type: 3}
@@ -212,7 +212,7 @@ MonoBehaviour:
     Price: 60
     DevelopTime: 1800
     isSpecial: 0
-    Narrate: 
+    Narrate: "\u6709\u6A5F\u82B1\u8349\u8336"
   - Chara: 100
     Name: "\u5C0F\u7C73\u9152"
     Image: {fileID: 21300000, guid: 644e3878146d05d499711843e63bb29f, type: 3}
@@ -220,7 +220,7 @@ MonoBehaviour:
     Price: 100
     DevelopTime: 3600
     isSpecial: 1
-    Narrate: 
+    Narrate: "\u9AD4\u9A57\u5FAE\u91BA\u98A8\u60C5"
   - Chara: 100
     Name: "\u9E79\u9B5A\u725B\u5976"
     Image: {fileID: 21300000, guid: fe62c8a6c0392d74db1f01ae03014493, type: 3}
@@ -228,7 +228,7 @@ MonoBehaviour:
     Price: 100
     DevelopTime: 3600
     isSpecial: 1
-    Narrate: 
+    Narrate: "\u9E79\u9B5A\u5EA6\u7834\u8868"
   - Chara: 100
     Name: "\u80FD\u91CF\u6930\u5976"
     Image: {fileID: 21300000, guid: c83eb4164ef596549b1c13a6b57b9f28, type: 3}
@@ -236,7 +236,7 @@ MonoBehaviour:
     Price: 100
     DevelopTime: 3600
     isSpecial: 1
-    Narrate: 
+    Narrate: "\u559D\u4E86\u518D\u4E0A"
   - Chara: 100
     Name: "\u6D77\u9E7D\u5496\u5561"
     Image: {fileID: 21300000, guid: 17de3c1bfa1450345958df848abcce2a, type: 3}
@@ -244,7 +244,7 @@ MonoBehaviour:
     Price: 100
     DevelopTime: 3600
     isSpecial: 1
-    Narrate: 
+    Narrate: "\u6587\u85DD\u9752\u5E74\u7684\u611B\u597D"
   - Chara: 100
     Name: "\u795E\u4ED9\u6C34"
     Image: {fileID: 21300000, guid: fb29f01a6949cad47a7d66482d69c386, type: 3}
@@ -252,7 +252,7 @@ MonoBehaviour:
     Price: 100
     DevelopTime: 3600
     isSpecial: 1
-    Narrate: 
+    Narrate: "\u4ED9\u6C23\u903C\u4EBA"
   DrinkUse:
     StockLimit: 25
     MakeTime: 0

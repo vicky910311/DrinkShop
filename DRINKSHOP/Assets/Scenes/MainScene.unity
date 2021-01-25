@@ -17414,7 +17414,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 810, y: 1740}
+  m_SizeDelta: {x: 810, y: 1770}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1643785509
 MonoBehaviour:
@@ -19315,7 +19315,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 810, y: 4640}
+  m_SizeDelta: {x: 810, y: 4720}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1866266580
 MonoBehaviour:
@@ -19338,7 +19338,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 395, y: 580}
-  m_Spacing: {x: 20, y: 0}
+  m_Spacing: {x: 20, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!1 &1871550177
@@ -19831,6 +19831,10 @@ MonoBehaviour:
   TabAon: {fileID: 21300000, guid: ed3da5d7a48aa8d4ab8d8aa923ba2fe3, type: 3}
   TabB: {fileID: 21300000, guid: 91ece42ad59bf2a4db9cf1b6caab84db, type: 3}
   TabBon: {fileID: 21300000, guid: 47c8ce9cefe6e4c4399bb0ef58dac13b, type: 3}
+  DarkDBtn: {fileID: 21300000, guid: 09892de32bd1b70428f44310bc4675e2, type: 3}
+  BrightDBtn: {fileID: 21300000, guid: a9c347adac4f7304292e3b9da24a44bf, type: 3}
+  RRedBtn: {fileID: 21300000, guid: 15b8f501066a2ff4f8e275206fc26927, type: 3}
+  RYellowBtn: {fileID: 21300000, guid: 0217c280141aca64db9017c1b2f1ef39, type: 3}
   StaffBtn: {fileID: 570980675}
   ClientBtn: {fileID: 2078620946}
   DrinkBtn: {fileID: 994902438}
@@ -21784,7 +21788,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 29662ca4b2fe2ba43830cd73afcfebb8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 05b3bef874a960b4aa114986a2e928ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

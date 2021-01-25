@@ -295,6 +295,9 @@ public class GameManager : MonoBehaviour
                     tm.TimeData.setMakeTime(pm.Player.getCanMake(i), tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) - 1);
                     drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作中";
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = false;
+                    drinksmake[i].transform.GetChild(3).GetComponent<Image>().sprite = ui.RRedBtn;
+                    drinksmake[i].transform.GetChild(5).gameObject.SetActive(true);
+                    drinksmake[i].transform.GetChild(5).GetComponentInChildren<Text>().text = tm.TimeData.getMakeTime(pm.Player.getCanMake(i)).ToString();
                 }
                 else if (tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) == 0)
                 {
@@ -302,7 +305,9 @@ public class GameManager : MonoBehaviour
                     pm.Player.setDrinkinStock(a, tm.TimeData.getMakeTemp(a) + pm.Player.getDrinkinStock(a));
                     drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作";
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
+                    drinksmake[i].transform.GetChild(3).GetComponent<Image>().sprite = ui.RYellowBtn;
                     tm.TimeData.setMakeTime(a, -1);
+                    drinksmake[i].transform.GetChild(5).gameObject.SetActive(false);
                     //drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(i).ToString();
                 }
             }
@@ -468,7 +473,9 @@ public class GameManager : MonoBehaviour
             {
                 missions[i].transform.SetSiblingIndex(0);
                 missions[i].transform.GetChild(2).GetComponent<Button>().enabled = true;
+               
             }
+            
             MissionBtnText(i);
         }
     }
@@ -479,6 +486,7 @@ public class GameManager : MonoBehaviour
             EventControl.GetReward(i,ms.Mission,pm.Player);
             missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
             missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
+            missions[i].transform.GetChild(2).GetComponent<Image>().sprite = ui.DarkDBtn;
         }
     }
         
@@ -490,6 +498,7 @@ public class GameManager : MonoBehaviour
             {
                 missions[i].transform.SetSiblingIndex(0);
                 missions[i].transform.GetChild(2).GetComponent<Button>().enabled = true;
+                
             }
             MissionBtnText(i);
         }
@@ -502,14 +511,17 @@ public class GameManager : MonoBehaviour
             if (EventControl.CanReward(i, ms.Mission))
             {
                 missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "領獎";
+                missions[i].transform.GetChild(2).GetComponent<Image>().sprite = ui.BrightDBtn;
             }
             else if (ms.Mission.Missions[i].isActive == false && ms.Mission.Missions[i].isRewarded == true)
             {
                 missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
+                missions[i].transform.GetChild(2).GetComponent<Image>().sprite = ui.DarkDBtn;
             }
             else
             {
                 missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "未完成";
+                missions[i].transform.GetChild(2).GetComponent<Image>().sprite = ui.DarkDBtn;
             }
         }
             
@@ -900,7 +912,7 @@ public class GameManager : MonoBehaviour
                 drinks[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(a, objectType.Drink); });
                 drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
                 drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
-                drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
+                drinks[i].transform.GetChild(2).GetComponent<Text>().text = "售價 " + gm.Drink.DrinkData[i].Price.ToString();
             }
 
         }
@@ -910,7 +922,7 @@ public class GameManager : MonoBehaviour
         drinks[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Drink); });
         drinks[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinks[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
-        drinks[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Price.ToString();
+        drinks[i].transform.GetChild(2).GetComponent<Text>().text = "售價 " + gm.Drink.DrinkData[i].Price.ToString();
     }
     public void PressObject(int i,objectType T)
     {
@@ -940,7 +952,7 @@ public class GameManager : MonoBehaviour
             int a = pm.Player.getCanMake(i);
             drinksmake[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[a].Image;
             drinksmake[i].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[a].Name;
-            drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[a].Cost.ToString();
+            drinksmake[i].transform.GetChild(2).GetComponent<Text>().text = "成本 "+gm.Drink.DrinkData[a].Cost.ToString();
             drinksmake[i].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(a); });
             Debug.Log(pm.Player.getCanMake(i));
             drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(a).ToString();
@@ -962,7 +974,7 @@ public class GameManager : MonoBehaviour
         drinksmake.Add(Instantiate(Resources.Load("Prefabs/drinkcanmake"), MakeContent.transform) as GameObject);
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(0).GetComponent<Image>().sprite = gm.Drink.DrinkData[i].Image;
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(1).GetComponent<Text>().text = gm.Drink.DrinkData[i].Name;
-        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = gm.Drink.DrinkData[i].Cost.ToString();
+        drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(2).GetComponent<Text>().text = "成本 " + gm.Drink.DrinkData[i].Cost.ToString();
         drinksmake[pm.Player.DrinkSum - 1].transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { DrinkMakeOnClick(i); });
         RectTransform rt = MakeContent.GetComponent<RectTransform>();
         rt.localPosition = new Vector3(-405, pm.Player.DrinkSum / 3 * 270, 0);

@@ -15,7 +15,7 @@ public class EventControl
         {
             if(Mission.Missions[i].isActive == true)
             {
-                if (Mission.Missions[i].Type == 0 )
+                if (Mission.Missions[i].Type == MissionType.GhostHunt)
                 {
                     if (Player.CatchGhost >= Mission.Missions[i].NeedAmount)
                     {
@@ -24,7 +24,7 @@ public class EventControl
                         Mission.Missions[i].isReach = true;
                     }                 
                 }
-                if (Mission.Missions[i].Type == MissionType.GhostHunt)
+                if (Mission.Missions[i].Type == MissionType.WakeUp)
                 {
                     if (Player.CatchSleep >= Mission.Missions[i].NeedAmount)
                     {
