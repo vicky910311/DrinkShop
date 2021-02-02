@@ -115,6 +115,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: notify
+    clip: {fileID: 8300000, guid: 741a69927f43a4049b511d0b8423e03e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}

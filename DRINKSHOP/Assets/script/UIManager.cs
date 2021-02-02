@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject staffcostWindow;
     public GameObject levelupWindow, storyWindow, quitWindow;
     public GameObject manualBtn, adBtn, developfastBtn, SEBtn, BGMBtn;
-    public GameObject drinkNotify, clientNotify, staffNotify;
+    public GameObject drinkNotify,dNotify, clientNotify, staffNotify;
     public GameObject EventBtn;
     public Sprite SBlueBtn, SPinkBtn, SWhiteBtn, SYellowBtn,TabA,TabAon,TabB,TabBon,DarkDBtn,BrightDBtn,RRedBtn,RYellowBtn;
     public GameObject StaffBtn, ClientBtn, DrinkBtn, ShopBtn;
@@ -331,6 +331,7 @@ public class UIManager : MonoBehaviour
     {
         if (DevelopWindow.activeSelf != true)
         {
+            dNotify.SetActive(false);
             drinkNotify.SetActive(false);
             shutdownLittle();
             shutdownAll();

@@ -158,6 +158,8 @@ public class GameManager : MonoBehaviour
         fastButtonColor();
         tm.TimeData.OnDTChanged += fastButtonColor;
         //saveandLoad.saveDefault(pm.Player, ms.Mission, tm.TimeData);
+        frontBtnChange();
+        pm.Player.OnFrontStaffChange += frontBtnChange;
     }
 
     // Update is called once per frame
@@ -282,6 +284,8 @@ public class GameManager : MonoBehaviour
                 if (ui.DrinkWindow.activeSelf == false || ui.DevelopWindow.activeSelf == false)
                 {
                     ui.drinkNotify.SetActive(true);
+                    AudioManager.self.PlaySound("notify");
+                    ui.dNotify.SetActive(true);
                 }
             }
             else if (tm.TimeData.DevelopTime < 0)
@@ -344,6 +348,27 @@ public class GameManager : MonoBehaviour
             EventUseTime = UnityEngine.Random.Range(eventmin, eventmax);
         }
 
+    }
+    public void frontBtnChange()
+    {
+        if (pm.Player.getHavetheStaff(0) == true)
+        {
+            staffs[0].transform.GetChild(2).GetComponent<Image>().sprite = ui.SYellowBtn;
+        }
+        if (pm.Player.getHavetheStaff(1) == true)
+        {
+            staffs[1].transform.GetChild(2).GetComponent<Image>().sprite = ui.SYellowBtn;
+        }
+        if (pm.Player.getHavetheStaff(2) == true)
+        {
+            staffs[2].transform.GetChild(2).GetComponent<Image>().sprite = ui.SYellowBtn;
+        }
+        if (pm.Player.getHavetheStaff(3) == true)
+        {
+            staffs[3].transform.GetChild(2).GetComponent<Image>().sprite = ui.SYellowBtn;
+        }
+        int f = pm.Player.FrontStaff;
+        staffs[f].transform.GetChild(2).GetComponent<Image>().sprite = ui.SPinkBtn;
     }
     public void LoadDefaultMT()
     {
@@ -559,6 +584,7 @@ public class GameManager : MonoBehaviour
         if (ui.StaffWindow.activeSelf == false)
         {
             ui.staffNotify.SetActive(true);
+            AudioManager.self.PlaySound("notify");
         }
         pm.Player.setHavetheStaff(i, true);
         pm.Player.StaffSum++;
@@ -893,9 +919,11 @@ public class GameManager : MonoBehaviour
         if (ui.ClientWindow.activeSelf == false && pm.Player.getHavetheClient(i) == false)
         {
             ui.clientNotify.SetActive(true);
+            AudioManager.self.PlaySound("notify");
+            clients[i].transform.GetChild(2).gameObject.SetActive(true);
             Debug.Log( i + "客來了");
         }
-        clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Client); });
+        clients[i].GetComponent<Button>().onClick.AddListener(delegate { PressObject(i, objectType.Client); clients[i].transform.GetChild(2).gameObject.SetActive(false); });
         clients[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Client.ClientData[i].Image;
         clients[i].transform.GetChild(1).GetComponent<Text>().text = gm.Client.ClientData[i].Name;
     }
