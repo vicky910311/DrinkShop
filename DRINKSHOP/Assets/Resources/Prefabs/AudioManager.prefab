@@ -120,6 +120,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: cash
+    clip: {fileID: 8300000, guid: 35fe8ecc1821c474284fedbc2d3497eb, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
+  - name: lucky
+    clip: {fileID: 8300000, guid: 4ef3beacae77a144dbd0ed5f4b2dcaa5, type: 3}
+    volume: 1
+    pitch: 1.5
+    loop: 0
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}

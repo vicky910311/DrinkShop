@@ -1,0 +1,32 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class levelinfo : MonoBehaviour
+{
+    public GameObject infowindow;
+    public int level;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnMouseDown()
+    {
+        infowindow.transform.GetComponentInChildren<Text>().text = "解鎖" +GameDataManager.self.Level.LevelUpData[level-1].DrinkSum+ "款飲料，賣出量"+GameDataManager.self.Level.LevelUpData[level-1].SellSum+"杯";
+        infowindow.SetActive(true);
+        Debug.Log("downstar");
+    }
+    private void OnMouseUp()
+    {
+        infowindow.SetActive(false);
+    }
+}

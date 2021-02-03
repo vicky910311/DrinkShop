@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject MissionBtn, IncidentBtn;
     private Color32 OriColor = new Color32(230,200,200,255);
     private Color32 DarkColor = new Color32(80,60,60,255);
+    public GameObject rewardWindow;
 
     private void Awake()
     {
@@ -74,6 +75,8 @@ public class UIManager : MonoBehaviour
             return true;
         else if (staffcostWindow.activeSelf)
             return true;
+        else if (rewardWindow.activeSelf)
+            return true;
         else
             return false;
     }
@@ -111,6 +114,11 @@ public class UIManager : MonoBehaviour
         levelupWindow.SetActive(false);
         AudioManager.self.PlaySound("Click");
     }
+    public void shutdownReward()
+    {
+        rewardWindow.SetActive(false);
+        AudioManager.self.PlaySound("Click");
+    }
     public void shutdownNotice()
     {
         noticeWindow.SetActive(false);
@@ -130,6 +138,10 @@ public class UIManager : MonoBehaviour
     {
         levelupWindow.SetActive(true);
         
+    }
+    public void OpenReward()
+    {
+        rewardWindow.SetActive(true);
     }
     public void OpenStory()
     {

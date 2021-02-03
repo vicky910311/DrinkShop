@@ -509,6 +509,8 @@ public class GameManager : MonoBehaviour
         if (EventControl.CanReward(i, ms.Mission))
         {
             EventControl.GetReward(i,ms.Mission,pm.Player);
+            ui.rewardWindow.GetComponentInChildren<Text>().text = "獲得獎金" + ms.Mission.Missions[i].Reward;
+            ui.OpenReward();
             missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
             missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
             missions[i].transform.GetChild(2).GetComponent<Image>().sprite = ui.DarkDBtn;
