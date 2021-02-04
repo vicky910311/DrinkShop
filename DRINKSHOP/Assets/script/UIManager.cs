@@ -55,6 +55,21 @@ public class UIManager : MonoBehaviour
         shutdownAll();
         shutdownLittle();
     }
+    public bool checkBigActive()
+    {
+        if (StaffWindow.activeSelf)
+            return true;
+        else if (DrinkWindow.activeSelf)
+            return true;
+        else if (ClientWindow.activeSelf)
+            return true;
+        else if (EventWindow.activeSelf)
+            return true;
+        else if (PurchaseWindow.activeSelf)
+            return true;
+        else
+            return false;
+    }
     public bool checkLittleActive()
     {
         if (noticeWindow.activeSelf)
