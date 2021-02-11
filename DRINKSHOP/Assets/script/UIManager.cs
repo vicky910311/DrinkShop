@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     private Color32 OriColor = new Color32(230,200,200,255);
     private Color32 DarkColor = new Color32(80,60,60,255);
     public GameObject rewardWindow;
+    public GameObject BuyInfoWindow;
 
     private void Awake()
     {
@@ -92,6 +93,8 @@ public class UIManager : MonoBehaviour
             return true;
         else if (rewardWindow.activeSelf)
             return true;
+        else if (BuyInfoWindow.activeSelf)
+            return true;
         else
             return false;
     }
@@ -129,6 +132,11 @@ public class UIManager : MonoBehaviour
         levelupWindow.SetActive(false);
         AudioManager.self.PlaySound("Click");
     }
+    public void shutdownBuyInfo()
+    {
+        BuyInfoWindow.SetActive(false);
+        AudioManager.self.PlaySound("Click");
+    }
     public void shutdownReward()
     {
         rewardWindow.SetActive(false);
@@ -153,6 +161,10 @@ public class UIManager : MonoBehaviour
     {
         levelupWindow.SetActive(true);
         
+    }
+    public void OpenBuyInfo()
+    {
+        BuyInfoWindow.SetActive(true);
     }
     public void OpenReward()
     {

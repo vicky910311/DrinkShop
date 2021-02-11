@@ -144,7 +144,7 @@ public class EventControl
             }
             int a = UnityEngine.Random.Range(0, CanSell.Count);
             Select = CanSell[a];
-            if ((int)Random.Range(0,10)>0)
+            if ((int)Random.Range(0,100)>0)
             {
                 
                 int buy = Player.getDrinkinStock(Select);
