@@ -23,7 +23,7 @@ public class IAPManager : MonoBehaviour,IStoreListener
     private static IStoreController m_StoreController;      
     private static IExtensionProvider m_StoreExtensionProvider;
 
-
+    private bool bedone = false;
 
     public void InitializePurchasing()
      {
@@ -40,29 +40,47 @@ public class IAPManager : MonoBehaviour,IStoreListener
         builder.AddProduct(AddStock, ProductType.Consumable);
         UnityPurchasing.Initialize(this, builder);
     }
+
+    public void Buy(string BuyThing)
+    {
+        bedone = false;
+        for (int j = 0; j <= 5; j++)
+        {
+          Invoke(BuyThing, j);
+        }
+    }
+
     public void BuyMoney10000()
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        BuyProductID(Money10000);
+        if (bedone == false)
+        {
+            BuyProductID(Money10000);
+           
+        }
+        
     }
     public void BuyMoney30000()
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        BuyProductID(Money30000);
+        //if (bedone == false)
+            BuyProductID(Money30000);
     }
     public void BuyMoney50000()
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        BuyProductID(Money50000);
+        //if (bedone == false)
+            BuyProductID(Money50000);
     }
     public void BuyMoney100000()
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        BuyProductID(Money100000);
+        //if (bedone == false)
+            BuyProductID(Money100000);
     }
     public void BuyRemoveADs()
     {
@@ -75,7 +93,8 @@ public class IAPManager : MonoBehaviour,IStoreListener
         }
         else
         {
-            BuyProductID(RemoveADs);
+           // if (bedone == false)
+                BuyProductID(RemoveADs);
         }
        
     }
@@ -90,7 +109,8 @@ public class IAPManager : MonoBehaviour,IStoreListener
         }
         else
         {
-            BuyProductID(AddStock);
+           // if (bedone == false)
+                BuyProductID(AddStock);
         }
     
     }
@@ -99,6 +119,7 @@ public class IAPManager : MonoBehaviour,IStoreListener
         // If Purchasing has been initialized ...
         if (IsInitialized())
         {
+            bedone = true;
             // ... look up the Product reference with the general product identifier and the Purchasing 
             // system's products collection.
             Product product = m_StoreController.products.WithID(productId);
