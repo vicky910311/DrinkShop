@@ -1124,9 +1124,9 @@ public class GameManager : MonoBehaviour
         {
             Back = true;
         }
-        ui.shutdownLittle();
+       /* ui.shutdownLittle();
         ui.shutdownAll();
-        ui.shutdownLevelup();
+        ui.shutdownLevelup();*/
 
         Debug.Log("save");
     }

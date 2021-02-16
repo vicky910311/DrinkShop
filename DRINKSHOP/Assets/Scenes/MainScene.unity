@@ -18479,8 +18479,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1799150157}
         m_TargetAssemblyTypeName: IAPManager, Assembly-CSharp
-        m_MethodName: Buy
-        m_Mode: 5
+        m_MethodName: BuyMoney10000
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -41,24 +41,22 @@ public class IAPManager : MonoBehaviour,IStoreListener
         UnityPurchasing.Initialize(this, builder);
     }
 
-    public void Buy(string BuyThing)
+    /*public void Buy(string BuyThing)
     {
         bedone = false;
         for (int j = 0; j <= 5; j++)
         {
           Invoke(BuyThing, j);
         }
-    }
+    }*/
 
     public void BuyMoney10000()
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        if (bedone == false)
-        {
+        
             BuyProductID(Money10000);
-           
-        }
+      
         
     }
     public void BuyMoney30000()

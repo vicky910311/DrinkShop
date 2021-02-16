@@ -98,11 +98,13 @@ public class ADs : MonoBehaviour, IUnityAdsListener
             if (Reward == "adpromote")
             {
                 UIManager.self.shutdownLittle();
+               
                 GameManager.self.adpromote();
             }
             else if (Reward == "unlockstaffFast(i)")
             {
                 UIManager.self.shutdownLittle();
+                //UIManager.self.OpenStaffWindow();
                 GameManager.self.unlockstaffFast(I);
             }
             else if (Reward == "Recapture")
@@ -114,6 +116,8 @@ public class ADs : MonoBehaviour, IUnityAdsListener
             else if(Reward == "developFast")
             {
                 UIManager.self.shutdownLittle();
+                //UIManager.self.OpenDrinkWindow();
+                //UIManager.self.OpenDevelopWindow();
                 GameManager.self.developFast();
             }
         }
