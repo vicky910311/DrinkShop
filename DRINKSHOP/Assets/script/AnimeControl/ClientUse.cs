@@ -27,7 +27,7 @@ public class ClientUse : MonoBehaviour
     
     public void Speaknostock()
     {
-        if (!SellingAnime.self.havestock)
+        if (!SellingAnime.self.havestock&& !SellingAnime.self.sleeping)
         {
             SellingAnime.self.Speak.SetActive(true);
         }

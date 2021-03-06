@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
-    private float eventmin = 30f, eventmax = 60f;
+    private float eventmin = 10f, eventmax = 11f;
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
@@ -161,7 +161,31 @@ public class GameManager : MonoBehaviour
         frontBtnChange();
         pm.Player.OnFrontStaffChange += frontBtnChange;
     }
+    void OnApplicationFocus()
+    {
+        if (pm.Player.LastEndTime > pm.Player.ThisOpenTime)//也許改記開始時候
+        {
+            if (Back == true && pm.Player.FirstTime == false)
+            {
+                leaveback();
+                TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
+                if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
+                {
+                    tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
+                    tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
 
+                }
+                for (int i = 0; i < gm.Staff.StaffData.Count; i++)
+                {
+                    if (tm.TimeData.getStaffUnlockTime(i) > 0 && (int)(During).TotalSeconds > 0)
+                    {
+                        tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
+                        tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
+                    }
+                }
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -182,28 +206,7 @@ public class GameManager : MonoBehaviour
             ui.adBtn.GetComponent<Button>().interactable = true;
             ui.manualBtn.GetComponent<Button>().interactable = true;
         }
-        if (pm.Player.LastEndTime > pm.Player.ThisOpenTime)
-        {
-            if (Back == true && pm.Player.FirstTime == false)
-            {
-                leaveback();
-                TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
-                if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
-                {
-                    tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
-                    tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
-                    
-                }
-                for(int i =0; i < gm.Staff.StaffData.Count ; i++)
-                {
-                    if(tm.TimeData.getStaffUnlockTime(i) >0 && (int)(During).TotalSeconds > 0)
-                    {
-                        tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
-                        tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
-                    }
-                }
-            }
-        }
+        
         
         if (Back == true)
             Back = false;
@@ -563,7 +566,7 @@ public class GameManager : MonoBehaviour
                 staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
                 int a = i;
                 staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(a); });
-                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(a); });
+                staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(a); ui.shutdownAll(); });
                 staffs[i].transform.GetChild(3).GetComponent<Text>().text =gm.Staff.StaffData[i].Info;
                 staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
                 staffs[i].transform.GetChild(5).GetComponent<Text>().text = gm.Staff.StaffData[i].Name;
@@ -595,7 +598,7 @@ public class GameManager : MonoBehaviour
         staffs[i].transform.SetSiblingIndex(i);
         staffs[i].transform.GetChild(0).GetComponent<Image>().sprite = gm.Staff.StaffData[i].Image;
         staffs[i].transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { ReadStory(i); });
-        staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(i); });
+        staffs[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click"); SellingAnime.self.ChangeStaff(i); ui.shutdownAll(); });
         staffs[i].transform.GetChild(3).GetComponent<Text>().text = gm.Staff.StaffData[i].Info;
         staffs[i].transform.GetChild(4).GetComponent<Text>().text = gm.Staff.StaffData[i].Chara;
         staffs[i].transform.GetChild(5).GetComponent<Text>().text = gm.Staff.StaffData[i].Name;
@@ -646,7 +649,8 @@ public class GameManager : MonoBehaviour
     }
     public void unlockstaffFast(int i)
     {
-        tm.TimeData.setStaffUnlockTime(i,tm.TimeData.getStaffUnlockTime(i)/60);
+        //tm.TimeData.setStaffUnlockTime(i,tm.TimeData.getStaffUnlockTime(i)/60);
+        tm.TimeData.setStaffUnlockTime(i, 0);
     }
     
     public void Purchase(int type)
@@ -702,7 +706,7 @@ public class GameManager : MonoBehaviour
         {
             ui.EventNotify();
         }
-        int i = UnityEngine.Random.Range(1, 5);
+        int i = UnityEngine.Random.Range(1, 6);
         string n = "沒事";
         EventControl.IncidentHappen(i, ref n, pm.Player);
         if (i == 1)
@@ -806,16 +810,17 @@ public class GameManager : MonoBehaviour
     public void developFast()
     {
         //ad
-        if (tm.TimeData.DevelopTime > 30) {
-            Debug.Log("未加速" + tm.TimeData.DevelopTime);
+        /*if (tm.TimeData.DevelopTime > 30) {
+            
             tm.TimeData.DevelopTime = tm.TimeData.DevelopTime / 60;
-            Debug.Log("加速" + tm.TimeData.DevelopTime);
+           
         }
         else if(tm.TimeData.DevelopTime > 0)
         {
             tm.TimeData.DevelopTime = Mathf.Clamp(tm.TimeData.DevelopTime-2,0,30);
-        }
-        
+        }*/
+        tm.TimeData.DevelopTime = 0;
+
     }
     public void fastButtonColor()
     {

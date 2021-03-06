@@ -112,24 +112,38 @@ public class EventControl
             Debug.Log("未完成");
         }
     }
+    public string Short;
     public void IncidentHappen(int j,ref string Narrate,PlayerData Player)
     {
         if (j == 1)
         {
             Narrate = "鬧鬼了";
+            Short = "鬧鬼中";
+            if (SellingAnime.self.sleeping == false)
+            {
+                SellingAnime.self.StaffAfraid();
+            }
+           
             //GameObject ghost = Instantiate(Resources.Load("Prefabs/yure"), transform) as GameObject;
         }
         if (j == 2)
         {
-            if (SellingAnime.self.selling == false)
+            if (SellingAnime.self.sleeping == true)
+            {
+                Narrate = "店員呼呼大睡";
+                Short = "呼呼大睡";
+            }
+            else if (SellingAnime.self.selling == false && SellingAnime.self.afraiding == false)
             {
                 SellingAnime.self.Staffgosleep();
                 AudioManager.self.PlaySound("Sleep");
                 Narrate = "店員睡著了";
+                Short = "店員睡著了";
             }
             else
             {
                 Narrate = "店員想睡覺";
+                Short = "店員想睡覺";
             }
            
         }
@@ -152,13 +166,15 @@ public class EventControl
                 {
                     AudioManager.self.PlaySound("Clean");
                     Narrate = Drink.DrinkData[Select].Name + "被買光了";
+                    Short = Drink.DrinkData[Select].Name + "賣光了";
                     Player.setDrinkinStock(Select, 0);
                     Player.Money += Drink.DrinkData[Select].Price * buy;
                     Player.DrinkSell += buy;
                 }
                 else
                 {
-                    Narrate = "有人想買全部的" + Drink.DrinkData[Select].Name + "但沒貨了";
+                    Narrate = "有人想買缺貨的" + Drink.DrinkData[Select].Name ;
+                    Short = Drink.DrinkData[Select].Name + "沒貨了";
                 }
                 
                 
@@ -166,7 +182,8 @@ public class EventControl
             else
             {
                 AudioManager.self.PlaySound("Clean");
-                Narrate = "全店被買光了";
+                Narrate = "全部飲料被買光了";
+                Short = "全部賣光光";
                 for (int i = 0; i < Drink.DrinkData.Count; i++)
                 {
                     if (Player.getHavetheDrink(i))
@@ -183,17 +200,46 @@ public class EventControl
         }
         if (j == 4)
         {
-            if (Player.Money >= 1000)
+            if (Player.Money >= 2000)
             {
                 AudioManager.self.PlaySound("Stole");
                 int stole = ((int)Random.Range(1, 3)) * 100;
                 Player.Money -= stole;
                 Narrate = "被偷了" + stole + "元";
+                Short = "遭小偷";
             }
             else
             {
                 Narrate = "小偷不偷窮人";
+                Short = "沒被偷";
             }
+        }
+        if(j == 5)
+        {
+            int drinking = 0;
+            int drinkinstocksum = 0;
+            for (int i=0;i< Player.DrinkSum;i++)
+            {
+                drinkinstocksum += Player.getDrinkinStock(Player.getCanMake(i));
+            }
+            if (drinkinstocksum > 0)
+            {
+                AudioManager.self.PlaySound("Clean");
+                for (int i = 0; i < Player.DrinkSum; i++)
+                {
+                    int onedrink = Mathf.Clamp(5,0, Player.getDrinkinStock(Player.getCanMake(i)));
+                    Player.setDrinkinStock(i,Player.getDrinkinStock(Player.getCanMake(i)) - onedrink);
+                    drinking += onedrink;
+                }
+                Narrate = "店員偷喝"+drinking+"杯飲料";
+                Short = "店員偷喝";
+            }
+            else
+            {
+                Narrate = "店員口渴了";
+                Short = "店員口渴";
+            }
+           
         }
         Debug.Log(Narrate);
     }

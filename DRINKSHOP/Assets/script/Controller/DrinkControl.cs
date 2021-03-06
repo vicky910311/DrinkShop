@@ -70,7 +70,16 @@ public class DrinkControl
                 Player.Money -= Make * Drink.DrinkData[i].Cost;
             }
         }
-         MakeTime = (int)(Make/(Player.StaffSum + 10) + 1);
+         int g =GameManager.self.ghostin.transform.childCount;
+        if(g == 0)
+        {
+            MakeTime = (int)(Drink.DrinkUse.normalmakePara * 5 * Make / (Player.StaffSum + 8) + 1);
+        }
+        else
+        {
+            MakeTime = (int)(g* Drink.DrinkUse.afraidmakePara * 5 * Make / (Player.StaffSum + 8) + 1);
+        }
+         
     }
     
 }

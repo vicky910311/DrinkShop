@@ -73,7 +73,11 @@ public class GhostUse : MonoBehaviour
             Invoke("dissapear",0.3f);
             AudioManager.self.PlaySound("Pong");
             Debug.Log(name.ToString() + "被點了一下");
-            
+            if (GameManager.self.ghostin.transform.childCount == 1)
+            {
+                SellingAnime.self.StaffDontAfraid();
+                SellingAnime.self.StaffWakeup();
+            }
         }
         //PerformRaycast();
         

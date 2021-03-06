@@ -8,5 +8,7 @@ public struct DrinkUse
 {
     public int StockLimit;
     public int MakeTime;
+    public float normalmakePara;
+    public float afraidmakePara;
     public int DevelopCost;
 }

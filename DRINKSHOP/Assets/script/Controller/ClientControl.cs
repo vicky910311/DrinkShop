@@ -31,7 +31,7 @@ public class ClientControl
         }
         Debug.Log(c + "來");
         havestock = false;
-        if (Player.getDrinkinStock(Select) > 0)
+        if (Player.getDrinkinStock(Select) > 0 && SellingAnime.self.sleeping == false)
         {
             havestock = true;
             Player.setDrinkinStock(Select, Player.getDrinkinStock(Select) - 1);
@@ -109,7 +109,7 @@ public class ClientControl
         Player.DrinkSell += newsell;
         Player.Money += newearn;
         Player.ClientSum += newc;
-        narrate = "在離開期間賣出" + newsell +"杯，\n賺了"+ newearn + "，新客人" + newc +"位\n因為庫存不足少賺"+ TempMoney;
+        narrate = "賣出" + newsell +"杯\n賺了"+ newearn + "\n因缺貨少賺"+ TempMoney;
         Debug.Log(narrate);
     }
     public void PromoteSell(ref int Min,ref int Max,PromoteType p)

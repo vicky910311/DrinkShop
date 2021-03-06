@@ -15,6 +15,7 @@ public struct StaffData
     public Sprite UnImage;
     public Sprite sleepImage;
     public Sprite ArmImage;
+    public Sprite AfraidImage;
     public int UnlockCost;
     public int UnlockLevel;
     public int UnlockTime;

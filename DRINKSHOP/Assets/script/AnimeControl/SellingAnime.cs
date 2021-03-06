@@ -10,7 +10,7 @@ public class SellingAnime : MonoBehaviour
     public bool havestock;
     public int D, C, S;
     public GameObject Drink, Client, Staff, Speak, Arm;
-    public bool selling,sleeping;
+    public bool selling,sleeping,afraiding;
     private void Awake()
     {
         self = this;
@@ -24,6 +24,7 @@ public class SellingAnime : MonoBehaviour
         Speak.SetActive(false);
         selling = false;
         sleeping = false;
+        afraiding = false;
         //Staffgosleep();
     }
 
@@ -32,31 +33,57 @@ public class SellingAnime : MonoBehaviour
     {
         
     }
+    public void StaffAfraid()
+    {
+        afraiding = true;
+        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].AfraidImage;
+        StaffAni.SetTrigger("afraid");
+    }
+    public void StaffDontAfraid()
+    {
+        afraiding = false;
+        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+    }
     public void ChangeStaff(int i)
     {
-        S = PlayerDataManager.self.Player.FrontStaff = i;
-        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
-        Arm.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].ArmImage;
+        if (i != S)
+        {
+            S = PlayerDataManager.self.Player.FrontStaff = i;
+            Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+            Arm.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].ArmImage;
+            sleeping = false;
+            if (afraiding == true)
+            {
+                StaffAfraid();
+            }
+        }
+        
     }
     public void Staffgosleep()
     {
         sleeping = true;
         Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].sleepImage;
+        Speak.SetActive(false);
     }
     public void StaffWakeup()
     {
+        if (sleeping == true)
+        {
+            Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+
+            sleeping = false;
+        }
         StaffAni.SetTrigger("wake");
-        sleeping = false;
-        Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
+
     }
     
     public void Come()
     {
         ClientAni.SetTrigger("come");
-        if (sleeping == true)
+       /* if (sleeping == true)
         {
             Invoke("StaffWakeup",1f);
-        }
+        }*/
         Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].backImage;
         Client.transform.GetChild(0).gameObject.SetActive(false);
         Client.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Drink.DrinkData[D].Image;
@@ -65,36 +92,47 @@ public class SellingAnime : MonoBehaviour
     }
     public void SellBegin()
     {
-        selling = true;
-        if (sleeping == true)
+        
+        /*   if (sleeping == true)
+           {
+               StaffWakeup();
+           }*/
+        if (sleeping == false)
         {
-            StaffWakeup();
+            selling = true;
+            Speak.SetActive(true);
+            DrinkAni.SetTrigger("appear");
+            ArmAni.SetTrigger("appear");
         }
-        Speak.SetActive(true);
-        DrinkAni.SetTrigger("appear");
-        ArmAni.SetTrigger("appear");
+
     }
     public void SellDone()
     {
-        selling = false;
-        DrinkAni.SetTrigger("disappear");
-        ArmAni.SetTrigger("disappear");
+        if (sleeping == false)
+        {
+            selling = false;
+            DrinkAni.SetTrigger("disappear");
+            ArmAni.SetTrigger("disappear");
+        }
+        
     }
     public void Go()
     {
-        if (havestock)
+        bool havesell = false;
+        if (havestock && sleeping == false)
         {
+            havesell = true;
             Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].happyImage;
         }
         else
         {
-            if (sleeping == true)
+            /*if (sleeping == true)
             {
                 StaffWakeup();
-            }
+            }*/
             Client.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Client.ClientData[C].angryImage;
         }
-        Client.transform.GetChild(0).gameObject.SetActive(havestock ? true : false);
+        Client.transform.GetChild(0).gameObject.SetActive(havesell ? true : false);
         ClientAni.SetTrigger("go");
     }
 }

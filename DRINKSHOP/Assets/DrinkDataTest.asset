@@ -256,4 +256,6 @@ MonoBehaviour:
   DrinkUse:
     StockLimit: 25
     MakeTime: 0
+    normalmakePara: 1
+    afraidmakePara: 1.5
     DevelopCost: 2000
