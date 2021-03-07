@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class SellingAnime : MonoBehaviour
 {
     public static SellingAnime self;
-    public Animator DrinkAni, ClientAni, ArmAni, StaffAni;
+    public Animator DrinkAni, ClientAni, ArmAni, StaffAni, InfoAni;
     public bool havestock;
     public int D, C, S;
-    public GameObject Drink, Client, Staff, Speak, Arm;
+    public GameObject Drink, Client, Staff, Speak, Arm, Info;
     public bool selling,sleeping,afraiding;
     private void Awake()
     {
@@ -32,6 +32,11 @@ public class SellingAnime : MonoBehaviour
     void Update()
     {
         
+    }
+    public void SellInfo()
+    {
+        //數字
+        InfoAni.SetTrigger("sell");
     }
     public void StaffAfraid()
     {

@@ -77,7 +77,7 @@ public class DrinkControl
         }
         else
         {
-            MakeTime = (int)(g* Drink.DrinkUse.afraidmakePara * 5 * Make / (Player.StaffSum + 8) + 1);
+            MakeTime = (int)( Drink.DrinkUse.afraidmakePara * 5 * Make / (Player.StaffSum + 8) + g);
         }
          
     }

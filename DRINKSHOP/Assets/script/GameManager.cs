@@ -161,12 +161,15 @@ public class GameManager : MonoBehaviour
         //saveandLoad.saveDefault(pm.Player, ms.Mission, tm.TimeData);
         frontBtnChange();
         pm.Player.OnFrontStaffChange += frontBtnChange;
+        DevelopTime();
+        tm.TimeData.OnDTChanged += DevelopTime;
+        LeaveTimeCaculator();
     }
     void OnApplicationFocus()
     {
-        if (pm.Player.LastEndTime > pm.Player.ThisOpenTime)//也許改記開始時候
-        {
-            if (Back == true && pm.Player.FirstTime == false)
+       // if (pm.Player.LastEndTime > pm.Player.ThisOpenTime)//也許改記開始時候
+       // {
+           /* if (Back == true && pm.Player.FirstTime == false)
             {
                 leaveback();
                 TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
@@ -184,6 +187,35 @@ public class GameManager : MonoBehaviour
                         tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
                     }
                 }
+            }*/
+       // }
+    }
+    void DevelopTime()
+    {
+        int T = tm.TimeData.DevelopTime;
+        if ( T  >= 0){
+            DevelopBtn.GetComponentInChildren<Text>().text = (T / 3600).ToString("00") + ":" + (T % 3600 / 60).ToString("00") + ":" + (T % 3600 % 60).ToString("00");
+            DevelopBtn.GetComponent<Button>().enabled = false;
+        }
+        
+        
+    }
+    void LeaveTimeCaculator()
+    {
+        leaveback();
+        TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
+        if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
+        {
+            tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
+            tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
+
+        }
+        for (int i = 0; i < gm.Staff.StaffData.Count; i++)
+        {
+            if (tm.TimeData.getStaffUnlockTime(i) > 0 && (int)(During).TotalSeconds > 0)
+            {
+                tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
+                tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
             }
         }
     }
@@ -272,8 +304,8 @@ public class GameManager : MonoBehaviour
             if (tm.TimeData.DevelopTime > 0)
             {
                 tm.TimeData.DevelopTime--;
-                int T = tm.TimeData.DevelopTime;
-                DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");
+               /* int T = tm.TimeData.DevelopTime;
+                DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");*/
                 ui.developfastBtn.SetActive(true);
                 if (tm.TimeData.DevelopTime <= 0)
                 {
@@ -439,6 +471,7 @@ public class GameManager : MonoBehaviour
    
     public void PressADpromote()
     {
+        ui.lookadWindow.transform.GetChild(0).GetComponent<Text>().text = "大量吸引顧客";
         ui.OpenLookAD();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {/* ui.shutdownLittle();*/ ad.PlayAD("rewardedVideo", "adpromote",0); });
@@ -641,6 +674,7 @@ public class GameManager : MonoBehaviour
     {
         if (pm.Player.DeleteAD == false)
         {
+            ui.lookadWindow.transform.GetChild(0).GetComponent<Text>().text = "減少等待時間";
             ui.OpenLookAD();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate {/* ui.shutdownLittle();*/ /*unlockstaffFast(i);*/ad.PlayAD("rewardedVideo", "unlockstaffFast(i)", i); });
@@ -700,6 +734,7 @@ public class GameManager : MonoBehaviour
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
         ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate 
         { /*ui.shutdownNotice(); ui.shutdownLittle();*//* pm.Player.Money += TempMoney;*/ ad.PlayAD("rewardedVideo", "Recapture", TempMoney); });
+        ui.lookadWindow.transform.GetChild(0).GetComponent<Text>().text = "取回少賺的利益";
         ui.OpenLookAD();
         
     }
@@ -797,6 +832,7 @@ public class GameManager : MonoBehaviour
     {
         if (pm.Player.DeleteAD == false && tm.TimeData.DevelopTime > 30)
         {
+            ui.lookadWindow.transform.GetChild(0).GetComponent<Text>().text = "減少等待時間";
             ui.OpenLookAD();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.RemoveAllListeners();
             ui.lookadWindow.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate { /*ui.shutdownLittle()*/;if (tm.TimeData.DevelopTime > 30) ad.PlayAD("rewardedVideo", "developFast", 0);});
@@ -1114,6 +1150,10 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationPause()
     {
+        if (Back == true && pm.Player.FirstTime == false)
+        {
+            LeaveTimeCaculator();
+        }
         if (pm.Player.FirstTime == true && Back == false)
         {
             pm.Player.FirstTime = false;

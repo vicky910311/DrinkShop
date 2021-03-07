@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 
@@ -37,6 +38,9 @@ public class ClientControl
             Player.setDrinkinStock(Select, Player.getDrinkinStock(Select) - 1);
             Player.DrinkSell++;
             Player.Money += Drink.DrinkData[Select].Price;
+            
+            SellingAnime.self.Info.transform.GetChild(6).GetComponent<Text>().text = "+" + Drink.DrinkData[Select].Price;
+            SellingAnime.self.SellInfo();
             if (Player.getHavetheClient(c) == false)
             {
                 Player.ClientSum++;
