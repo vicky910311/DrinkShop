@@ -9,61 +9,67 @@ public class EventControl
     //public MissionList Mission;
     public DrinkDataList Drink;
     public LevelDataList Level;
+    public MissionAssetList MissionAsset;
     public void PlayerAchieveMission(PlayerData Player,MissionList Mission)
     {
         for (int i = 0;i< Mission.Missions.Count;i++)
         {
             if(Mission.Missions[i].isActive == true)
             {
-                if (Mission.Missions[i].Type == MissionType.GhostHunt)
+                if (MissionAsset.MissionInfo[i].Type == MissionType.GhostHunt)
                 {
-                    if (Player.CatchGhost >= Mission.Missions[i].NeedAmount)
+                    if (Player.CatchGhost >= MissionAsset.MissionInfo[i].NeedAmount)
                     {
-                        Debug.Log("完成抓鬼任務  抓 " + Mission.Missions[i].NeedAmount + " 次");
+                        Debug.Log("完成抓鬼任務  抓 " + MissionAsset.MissionInfo[i].NeedAmount + " 次");
                         Mission.Missions[i].isActive = false;
                         Mission.Missions[i].isReach = true;
+                        Short = "完成任務";
                     }                 
                 }
-                if (Mission.Missions[i].Type == MissionType.WakeUp)
+                if (MissionAsset.MissionInfo[i].Type == MissionType.WakeUp)
                 {
-                    if (Player.CatchSleep >= Mission.Missions[i].NeedAmount)
+                    if (Player.CatchSleep >= MissionAsset.MissionInfo[i].NeedAmount)
                     {
-                        Debug.Log("完成叫醒任務  叫 " + Mission.Missions[i].NeedAmount + " 次");
+                        Debug.Log("完成叫醒任務  叫 " + MissionAsset.MissionInfo[i].NeedAmount + " 次");
                         Mission.Missions[i].isActive = false;
                         Mission.Missions[i].isReach = true;
+                        Short = "完成任務";
                     }       
                 }
-                if (Mission.Missions[i].Type == MissionType.ReachSell)
+                if (MissionAsset.MissionInfo[i].Type == MissionType.ReachSell)
                 {
-                    if (Player.DrinkSell >= Mission.Missions[i].NeedAmount)
+                    if (Player.DrinkSell >= MissionAsset.MissionInfo[i].NeedAmount)
                     {
                         {
-                            Debug.Log("完成賣出任務  賣 " + Mission.Missions[i].NeedAmount + " 杯");
+                            Debug.Log("完成賣出任務  賣 " + MissionAsset.MissionInfo[i].NeedAmount + " 杯");
                             Mission.Missions[i].isActive = false;
                             Mission.Missions[i].isReach = true;
+                            Short = "完成任務";
                         }
                     }
                 }
                 
-                if (Mission.Missions[i].Type == MissionType.UnlockClient)
+                if (MissionAsset.MissionInfo[i].Type == MissionType.UnlockClient)
                 {
-                    if (Player.ClientSum >= Mission.Missions[i].NeedAmount)
+                    if (Player.ClientSum >= MissionAsset.MissionInfo[i].NeedAmount)
                     {
                         {
-                            Debug.Log("完成來客任務  來 " + Mission.Missions[i].NeedAmount + " 位");
+                            Debug.Log("完成來客任務  來 " + MissionAsset.MissionInfo[i].NeedAmount + " 位");
                             Mission.Missions[i].isActive = false;
                             Mission.Missions[i].isReach = true;
+                            Short = "完成任務";
                         }
                     }
                 }
-                if (Mission.Missions[i].Type == MissionType.Poor)
+                if (MissionAsset.MissionInfo[i].Type == MissionType.Poor)
                 {
-                    if (Player.Money <= Mission.Missions[i].NeedAmount)
+                    if (Player.Money <= MissionAsset.MissionInfo[i].NeedAmount)
                     {
                         {
-                            Debug.Log("急難救助金  財產低於 " + Mission.Missions[i].NeedAmount + " 元");
+                            Debug.Log("急難救助金  財產低於 " + MissionAsset.MissionInfo[i].NeedAmount + " 元");
                             Mission.Missions[i].isActive = false;
                             Mission.Missions[i].isReach = true;
+                            Short = "完成任務";
                         }
                     }
                 }

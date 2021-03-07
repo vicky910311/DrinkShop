@@ -28,8 +28,13 @@ public class levelinfo : MonoBehaviour
 
     private void OnMouseDown()
     {
-        infowindow.transform.GetComponentInChildren<Text>().text = "解鎖" +GameDataManager.self.Level.LevelUpData[level-1].DrinkSum+ "款飲料，賣出量"+GameDataManager.self.Level.LevelUpData[level-1].SellSum+"杯";
-        infowindow.SetActive(true);
+        level = PlayerDataManager.self.Player.Level;
+        if (level < 5)
+        {
+            infowindow.transform.GetComponentInChildren<Text>().text = "下一星：解鎖" + GameDataManager.self.Level.LevelUpData[level].DrinkSum + "款飲料，賣出量" + GameDataManager.self.Level.LevelUpData[level].SellSum + "杯";
+            infowindow.SetActive(true);
+        }
+        
         Debug.Log("downstar");
     }
     private void OnMouseUp()

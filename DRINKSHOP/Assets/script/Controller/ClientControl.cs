@@ -21,7 +21,7 @@ public class ClientControl
         int a = UnityEngine.Random.Range(0, CanSell.Count);
         Select = CanSell[a];
         Debug.Log(Select);
-        if (Drink.DrinkData[Select].isSpecial == true && (int)UnityEngine.Random.Range(0, 10) == 0)
+        if (Drink.DrinkData[Select].isSpecial == true && (int)UnityEngine.Random.Range(0, 50) == 0)
         {
             c = Select - (Drink.DrinkData.Count - Client.ClientData.Count);
         }

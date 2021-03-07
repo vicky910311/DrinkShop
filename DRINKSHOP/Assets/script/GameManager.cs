@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     private int replenishamount = 25;
     bool star = false;
     public Sprite DrinkDefault;
-    public GameObject stars;
+    public GameObject stars,promoteBtn;
     public int ReplenishAmount
     {
         set
@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         DrinkControl.Drink = ClientControl.Drink = EventControl.Drink = gm.Drink;
         ClientControl.Client = gm.Client;
         EventControl.Level = gm.Level;
+        EventControl.MissionAsset = gm.Mission;
         StaffControl.Staff = gm.Staff;
         ComeTimeMin = gm.Client.ComeTime.NormalMin;
         ComeTimeMax = gm.Client.ComeTime.NormalMax;
@@ -455,6 +456,8 @@ public class GameManager : MonoBehaviour
     public void manualpromote()
     {
         AudioManager.self.PlaySound("Promote");
+        Animator promoteBtnAni = promoteBtn.GetComponent<Animator>();
+        promoteBtnAni.SetTrigger("click");
         sellbetweenTime = gm.Client.ComeTime.ManualMin;
         promoteTime = Time.time;
         promotelasting = gm.Client.ComeTime.manualpromoteTime;
@@ -492,8 +495,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < ms.Mission.Missions.Count; i++)
         {
             missions[i] = Instantiate(Resources.Load("Prefabs/mission"), MissionContent.transform) as GameObject;
-            missions[i].transform.GetChild(0).GetComponent<Text>().text = ms.Mission.Missions[i].Name;
-            missions[i].transform.GetChild(1).GetComponent<Text>().text = ms.Mission.Missions[i].Narrate;
+            missions[i].transform.GetChild(0).GetComponent<Text>().text = gm.Mission.MissionInfo[i].Name;
+            missions[i].transform.GetChild(1).GetComponent<Text>().text = gm.Mission.MissionInfo[i].Narrate;
             int a = i;
             missions[i].transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate { AudioManager.self.PlaySound("Click");  missionreward(a); });
             missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
@@ -512,7 +515,7 @@ public class GameManager : MonoBehaviour
         if (EventControl.CanReward(i, ms.Mission))
         {
             EventControl.GetReward(i,ms.Mission,pm.Player);
-            ui.rewardWindow.GetComponentInChildren<Text>().text = "獲得獎金" + ms.Mission.Missions[i].Reward;
+            ui.rewardWindow.GetComponentInChildren<Text>().text = "獲得獎金" + gm.Mission.MissionInfo[i].Reward;
             ui.OpenReward();
             missions[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
             missions[i].transform.GetChild(2).GetComponentInChildren<Text>().text = "已領獎";
