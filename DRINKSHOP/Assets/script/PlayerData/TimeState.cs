@@ -21,7 +21,23 @@ public class TimeState
             return -1;
     }
     [SerializeField]
+    private List<string> staffunlockstring;
+    public void setStaffUnlockString(int i, string t)
+    {
+        if (i < staffunlockstring.Count && i >= 0)
+            staffunlockstring[i] = t;
+    }
+    public string getStaffUnlockString(int i)
+    {
+        if (i < staffunlockstring.Count && i >= 0)
+            return staffunlockstring[i];
+        else
+            return null;
+    }
+
+    [SerializeField]
     private List<int> staffunlocktime;
+    
     public void setStaffUnlockTime(int i,int t)
     {
         if (i < staffunlocktime.Count && i >= 0)
@@ -34,6 +50,21 @@ public class TimeState
         else
             return -1;
     }
+    [SerializeField]
+    private string developtimestring;
+    public string DevelopTimeString
+    {
+        set
+        {
+            developtimestring = value;
+            if (OnDTSChanged != null)
+            {
+                OnDTSChanged();
+            }
+        }
+        get { return developtimestring; }
+    }
+    public Action OnDTSChanged;
     [SerializeField]
     private int developtime;
     public int DevelopTime

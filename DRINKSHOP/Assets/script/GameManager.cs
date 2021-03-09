@@ -130,7 +130,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < gm.Drink.DrinkData.Count; i++)
         {
             pm.Player.OnDrinkinStockChanged[i] += StockAmount;
+            ///pm.Player.OnDrinkinStockChanged[i] += HavenoDrink;
         }
+        
         StockAmount();
         Back = true;
         checkMission();
@@ -164,6 +166,7 @@ public class GameManager : MonoBehaviour
         DevelopTime();
         tm.TimeData.OnDTChanged += DevelopTime;
         LeaveTimeCaculator();
+        HavenoDrinkStart();
     }
     void OnApplicationFocus()
     {
@@ -218,6 +221,49 @@ public class GameManager : MonoBehaviour
                 tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
             }
         }
+    }
+    void HavenoDrinkStart()
+    {
+        string n = null,s = null;
+        //
+        for (int i = 0; i <pm.Player.DrinkSum; i++)
+        {
+            int a = pm.Player.getCanMake(i);
+            if (pm.Player.getDrinkinStock(a) == 0)
+            {
+                // DrinkControl.havenoDrink(pm.Player, ref n, ref s);
+                n = gm.Drink.DrinkData[a].Name + "缺貨中";
+                s = "飲料缺貨中";
+                if (ui.EventWindow.activeSelf == false)
+                {
+                    ui.EventNotify();
+                }
+                GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
+                narrate.GetComponent<Text>().text = n;
+                narrate.transform.SetSiblingIndex(0);
+                RectTransform rt = Content.GetComponent<RectTransform>();
+                rt.position -= new Vector3(0, 100, 0);
+                rt.sizeDelta += new Vector2(0, 200);
+            
+            }
+
+        }
+       
+    }
+    public void HavenoDrink(string n)
+    {
+        if (ui.EventWindow.activeSelf == false)
+        {
+            ui.EventNotify();
+        }
+        GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
+        narrate.GetComponent<Text>().text = n;
+        narrate.transform.SetSiblingIndex(0);
+        RectTransform rt = Content.GetComponent<RectTransform>();
+        rt.position -= new Vector3(0, 100, 0);
+        rt.sizeDelta += new Vector2(0, 200);
+        string Short = "飲料缺貨";
+
     }
     // Update is called once per frame
     void Update()

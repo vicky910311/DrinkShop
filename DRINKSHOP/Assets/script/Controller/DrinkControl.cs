@@ -81,5 +81,17 @@ public class DrinkControl
         }
          
     }
-    
+    /*public void havenoDrink(PlayerData Player,ref string Narrate,ref string Short)
+    {
+        for(int i=0;i< Player.DrinkSum;i++)
+        {
+            int a = Player.getCanMake(i);
+            if(Player.getDrinkinStock(a) == 0)
+            {
+                Narrate = Drink.DrinkData[a].Name+"缺貨了";
+                Short = "飲料缺貨中";
+            }
+
+        }
+    }*/
 }

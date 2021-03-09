@@ -40,7 +40,9 @@ public class ClientControl
             Player.Money += Drink.DrinkData[Select].Price;
             
             SellingAnime.self.Info.transform.GetChild(6).GetComponent<Text>().text = "+" + Drink.DrinkData[Select].Price;
+            SellingAnime.self.Info.transform.GetChild(7).GetComponent<Text>().text = "+1";
             SellingAnime.self.SellInfo();
+            SellingAnime.self.selling = true;
             if (Player.getHavetheClient(c) == false)
             {
                 Player.ClientSum++;
@@ -50,6 +52,11 @@ public class ClientControl
                 Debug.Log("新顧客"+c );
             }
             Debug.Log(c + "買" + Select);
+        }
+        if (Player.getDrinkinStock(Select) <= 1 && SellingAnime.self.sleeping == false)
+        {
+            string n = Drink.DrinkData[Select].Name + "缺貨了";
+            GameManager.self.HavenoDrink(n);
         }
         d = Select;
         

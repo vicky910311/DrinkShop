@@ -155,7 +155,7 @@ public class EventControl
         }
         if (j == 3)
         {
-            int Select;
+            /*int Select;
             List<int> CanSell = new List<int>();
             for (int i = 0; i < Player.countHavetheDrink(); i++)
             {
@@ -201,8 +201,54 @@ public class EventControl
                     }
                         
                 }
+            }*/
+            int Select;
+            List<int> CanSell = new List<int>();
+            for (int i = 0; i < Player.countHavetheDrink(); i++)
+            {
+                if (Player.getHavetheDrink(i))
+                    CanSell.Add(i);
             }
-            
+            int a = UnityEngine.Random.Range(0, CanSell.Count);
+            Select = CanSell[a];
+            //if ((int)Random.Range(0, 100) > 0)
+            //{
+
+                int lose = Player.getDrinkinStock(Select);
+                if (lose > 3)
+                {
+                    AudioManager.self.PlaySound("Clean");
+                    Narrate = Drink.DrinkData[Select].Name + "被打翻"+ (int)(lose / 3)+"杯";
+                    Short = "飲料被打翻了";
+                    Player.setDrinkinStock(Select,Player.getDrinkinStock(Select)-(int)(lose / 3));
+                    //Player.Money += Drink.DrinkData[Select].Price * buy;
+                    //Player.DrinkSell += buy;
+                }
+                else
+                {
+                    Narrate = "店員差點打翻飲料" ;
+                    Short = "虛驚一場";
+                }
+
+
+            //}
+           /* else
+            {
+                AudioManager.self.PlaySound("Clean");
+                Narrate = "全部飲料被買光了";
+                Short = "全部賣光光";
+                for (int i = 0; i < Drink.DrinkData.Count; i++)
+                {
+                    if (Player.getHavetheDrink(i))
+                    {
+                        int buy = Player.getDrinkinStock(i);
+                        Player.setDrinkinStock(i, 0);
+                        Player.Money += Drink.DrinkData[i].Price * buy;
+                        Player.DrinkSell += buy;
+                    }
+
+                }
+            }*/
         }
         if (j == 4)
         {
@@ -213,6 +259,9 @@ public class EventControl
                 Player.Money -= stole;
                 Narrate = "被偷了" + stole + "元";
                 Short = "遭小偷";
+                SellingAnime.self.Info.transform.GetChild(6).GetComponent<Text>().text = "-" + stole;
+                SellingAnime.self.Info.transform.GetChild(7).GetComponent<Text>().text = "";
+                SellingAnime.self.SellInfo();
             }
             else
             {
@@ -233,12 +282,21 @@ public class EventControl
                 AudioManager.self.PlaySound("Clean");
                 for (int i = 0; i < Player.DrinkSum; i++)
                 {
-                    int onedrink = Mathf.Clamp(5,0, Player.getDrinkinStock(Player.getCanMake(i)));
+                    int onedrink = (int)Random.Range(0,3);
+                    onedrink = Mathf.Clamp(onedrink,0, Player.getDrinkinStock(Player.getCanMake(i)));
                     Player.setDrinkinStock(i,Player.getDrinkinStock(Player.getCanMake(i)) - onedrink);
                     drinking += onedrink;
                 }
-                Narrate = "店員偷喝"+drinking+"杯飲料";
-                Short = "店員偷喝";
+                if (drinking > 0)
+                {
+                    Narrate = "店員偷喝" + drinking + "杯飲料";
+                    Short = "店員偷喝";
+                }
+                else
+                {
+                    Narrate = "店員口渴了";
+                    Short = "店員口渴";
+                }
             }
             else
             {

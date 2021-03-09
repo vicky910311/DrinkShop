@@ -113,9 +113,10 @@ public class SellingAnime : MonoBehaviour
     }
     public void SellDone()
     {
+        selling = false;
         if (sleeping == false)
         {
-            selling = false;
+            
             DrinkAni.SetTrigger("disappear");
             ArmAni.SetTrigger("disappear");
         }
