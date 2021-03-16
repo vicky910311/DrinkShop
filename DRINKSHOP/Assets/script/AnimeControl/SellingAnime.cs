@@ -31,7 +31,7 @@ public class SellingAnime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
     public void SellInfo()
     {
@@ -72,13 +72,24 @@ public class SellingAnime : MonoBehaviour
     }
     public void StaffWakeup()
     {
-        if (sleeping == true)
+        sleeping = false;
+        if (sleeping == true && GameManager.self.ghostin.transform.childCount == 0)
         {
             Staff.GetComponent<SpriteRenderer>().sprite = GameDataManager.self.Staff.StaffData[S].Image;
 
-            sleeping = false;
         }
-        StaffAni.SetTrigger("wake");
+        if (GameManager.self.ghostin.transform.childCount >= 1)
+        {
+            StaffAfraid();
+            Debug.Log("怕怕");
+        }
+        else
+        {
+            StaffDontAfraid();
+            StaffAni.SetTrigger("wake");
+            Debug.Log("不怕怕");
+        }
+        
 
     }
     

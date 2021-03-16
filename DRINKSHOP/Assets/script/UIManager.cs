@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     private Color32 DarkColor = new Color32(80,60,60,255);
     public GameObject rewardWindow;
     public GameObject BuyInfoWindow;
+    public GameObject MakeAllWindow;
 
     private void Awake()
     {
@@ -67,6 +68,8 @@ public class UIManager : MonoBehaviour
         else if (EventWindow.activeSelf)
             return true;
         else if (PurchaseWindow.activeSelf)
+            return true;
+        else if (MakeAllWindow.activeSelf)
             return true;
         else
             return false;
@@ -228,6 +231,7 @@ public class UIManager : MonoBehaviour
         EventWindow.SetActive(false);
         PurchaseWindow.SetActive(false);
         SettingWindow.SetActive(false);
+        MakeAllWindow.SetActive(false);
         StaffBtn.GetComponent<Image>().sprite = TabA;
         StaffBtn.GetComponentInChildren<Text>().color = OriColor;
         ClientBtn.GetComponent<Image>().sprite = TabA;
@@ -236,6 +240,15 @@ public class UIManager : MonoBehaviour
         DrinkBtn.GetComponentInChildren<Text>().color = OriColor;
         ShopBtn.GetComponent<Image>().sprite = TabA;
         ShopBtn.GetComponentInChildren<Text>().color = OriColor;
+    }
+    public void OpenMakeAllWindow()
+    {
+        shutdownLittle();
+        MakeAllWindow.SetActive(true);
+    }
+    public void shutdownMakeAllWindow()
+    {
+        MakeAllWindow.SetActive(false);
     }
     public void OpenSettingWindow()
     {
