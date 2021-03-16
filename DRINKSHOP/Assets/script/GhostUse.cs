@@ -80,8 +80,12 @@ public class GhostUse : MonoBehaviour
     }
     void afterafraid()
     {
-        SellingAnime.self.StaffDontAfraid();
-        SellingAnime.self.StaffWakeup();
+        if (SellingAnime.self.sleeping == false)
+        {
+            SellingAnime.self.StaffDontAfraid();
+            SellingAnime.self.StaffAni.SetTrigger("wake");
+        }
+        
     }
     void dissapear()
     {

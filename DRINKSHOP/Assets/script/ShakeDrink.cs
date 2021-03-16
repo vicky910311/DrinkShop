@@ -52,7 +52,7 @@ public class ShakeDrink : MonoBehaviour
         {
             if (onit)
             {
-                transform.localPosition = 1.2f * (Input.mousePosition + new Vector3(-200, -200, 0));
+                transform.localPosition = 1.2f * (Input.mousePosition + new Vector3(-Screen.width/2f, -Screen.height/2f, 0));
             }
            
             if (Input.GetMouseButtonUp(0))

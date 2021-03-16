@@ -81,6 +81,16 @@ public class DrinkControl
         }
          
     }
+    public void makeAll(PlayerData Player)
+    {
+        for (int i = 0 ; i < Player.DrinkSum ; i++)
+        {
+            int a = Player.getCanMake(i);
+            int m=0, mt=0;
+            MakingDrink(a, Player, ref m, ref mt);
+            Player.setDrinkinStock(a, GameManager.self.ReplenishAmount);
+        }
+    }
     /*public void havenoDrink(PlayerData Player,ref string Narrate,ref string Short)
     {
         for(int i=0;i< Player.DrinkSum;i++)
