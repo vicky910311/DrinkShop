@@ -81,14 +81,49 @@ public class DrinkControl
         }
          
     }
-    public void makeAll(PlayerData Player)
+    public void makeAllcount(PlayerData Player,ref int t)
     {
+        int makeamount = 0;
         for (int i = 0 ; i < Player.DrinkSum ; i++)
         {
             int a = Player.getCanMake(i);
-            int m=0, mt=0;
-            MakingDrink(a, Player, ref m, ref mt);
-            Player.setDrinkinStock(a, GameManager.self.ReplenishAmount);
+            int Make = 0;
+            Make = GameManager.self.ReplenishAmount - Player.getDrinkinStock(a);
+            if(Make > 0)
+            {
+                makeamount += Make;
+            }
+
+        }
+        Debug.Log("makeamount" + makeamount);
+        t = makeamount /5 + 6;
+    }
+    public void makeAllcost(PlayerData Player)
+    {
+        for (int i = 0; i < Player.DrinkSum; i++)
+        {
+            int a = Player.getCanMake(i);
+            if(Player.getDrinkinStock(a)< GameManager.self.ReplenishAmount)
+            {
+                int Make = GameManager.self.ReplenishAmount - Player.getDrinkinStock(a);
+                if (Player.Money >=   Make* Drink.DrinkData[a].Cost)
+                {
+                    Player.setDrinkinStock(a, GameManager.self.ReplenishAmount);
+                    Player.Money -= Make * Drink.DrinkData[a].Cost;
+                }
+                else
+                {
+                    if (Drink.DrinkData[a].Cost != 0)
+                    {
+                        Make = Player.Money / Drink.DrinkData[a].Cost;
+                        // Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
+                        Player.Money -= Make * Drink.DrinkData[a].Cost;
+                        Player.setDrinkinStock(a, Player.getDrinkinStock(a) + Make) ;
+                    }
+                }
+                
+            }
+            
         }
     }
     /*public void havenoDrink(PlayerData Player,ref string Narrate,ref string Short)

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public Timer tm;
     public GameDataManager gm;
     public UIManager ui;
-    private DrinkControl DrinkControl = new DrinkControl();
+    public DrinkControl DrinkControl = new DrinkControl();
     private ClientControl ClientControl = new ClientControl();
     private StaffControl StaffControl = new StaffControl();
     private EventControl EventControl = new EventControl();
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public bool Back;
     public GameObject ghostin, Lucky;
     int[] UST;
-    private int replenishamount = 25;
+    private int replenishamount = 10;
     bool star = false;
     public Sprite DrinkDefault;
     public GameObject stars,promoteBtn;
@@ -1124,18 +1124,18 @@ public class GameManager : MonoBehaviour
         Replenishment.transform.GetChild(1).GetComponent<Button>().interactable = false;
         Replenishment.transform.GetChild(2).GetComponent<Button>().interactable = false;
         Replenishment.transform.GetChild(3).GetComponent<Button>().interactable = false;
-        if (pm.Player.AddStockLimit >= 25)
+        if (pm.Player.AddStockLimit >= 15)
         {
             Replenishment.transform.GetChild(1).GetComponent<Button>().interactable = true;
         }
-        if (pm.Player.AddStockLimit >= 50)
+        if (pm.Player.AddStockLimit >= 30)
         {
             Replenishment.transform.GetChild(2).GetComponent<Button>().interactable = true;
         }
-        if (pm.Player.AddStockLimit >= 75)
+       /* if (pm.Player.AddStockLimit >= 40)
         {
             Replenishment.transform.GetChild(3).GetComponent<Button>().interactable = true;
-        }
+        }*/
     }
     public void Setreplenish(int i)
     {
@@ -1148,7 +1148,7 @@ public class GameManager : MonoBehaviour
         Replenishment.transform.GetChild(1).GetComponent<Image>().color = Color.white;
         Replenishment.transform.GetChild(2).GetComponent<Image>().color = Color.white;
         Replenishment.transform.GetChild(3).GetComponent<Image>().color = Color.white;
-        int a = ReplenishAmount / 25 - 1;
+        int a = (ReplenishAmount+5) / 15 - 1;
         Replenishment.transform.GetChild(a).GetComponent<Image>().color = new Color32(255,200,0,255);
        
     }

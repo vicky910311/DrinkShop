@@ -100,7 +100,7 @@ public class IAPManager : MonoBehaviour,IStoreListener
     {
         // Buy the consumable product using its general identifier. Expect a response either 
         // through ProcessPurchase or OnPurchaseFailed asynchronously.
-        if (PlayerDataManager.self.Player.AddStockLimit >= 75)
+        if (PlayerDataManager.self.Player.AddStockLimit >= 30)
         {
             UIManager.self.BuyInfoWindow.GetComponentInChildren<Text>().text = "庫存上限已達最大值";
             UIManager.self.OpenBuyInfo();
@@ -230,9 +230,9 @@ public class IAPManager : MonoBehaviour,IStoreListener
         {
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
             // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
-            Moto = PlayerDataManager.self.Player.AddStockLimit +25;
-            PlayerDataManager.self.Player.AddStockLimit += 25;
-            int Now = Moto + 25;
+            Moto = PlayerDataManager.self.Player.AddStockLimit +10;
+            PlayerDataManager.self.Player.AddStockLimit += 15;
+            int Now = Moto +15;
             BuyNarrate = "庫存上限增加\n" + Moto + " > " + Now;
             UIManager.self.BuyInfoWindow.GetComponentInChildren<Text>().text = BuyNarrate;
             UIManager.self.OpenBuyInfo();

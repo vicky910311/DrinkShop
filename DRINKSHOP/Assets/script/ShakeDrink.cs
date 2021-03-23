@@ -2,18 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+using UnityEngine.UI;
 
 public class ShakeDrink : MonoBehaviour
 {
     bool Down = false;
-    public int Count = 0;
+    int count = 0;
+    public int Count
+    {
+        set
+        {
+            count = value;
+            if (OnCountChange != null)
+            {
+                OnCountChange();
+            }
+        }
+        get
+        { return count; }
+    }
+    public Action OnCountChange;
     bool up, uptemp;
     public bool shake;
-    bool onit = false;
+    public bool onit = false;
+    int countlast = -1;
+    public Text  shakecount;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        OnCountChange += counting;
     }
 
     // Update is called once per frame
@@ -26,6 +45,7 @@ public class ShakeDrink : MonoBehaviour
             {
                 shake = true;
                 Count++;
+                //AudioManager.self.PlaySound("shake");
             }
             else
             {
@@ -41,6 +61,7 @@ public class ShakeDrink : MonoBehaviour
             {
                 shake = true;
                 Count++;
+                AudioManager.self.PlaySound("shake");
             }
             else
             {
@@ -74,6 +95,38 @@ public class ShakeDrink : MonoBehaviour
     {
         UIManager.self.OpenMakeAllWindow();
         Count = 0;
+        GameManager.self.DrinkControl.makeAllcount(PlayerDataManager.self.Player,ref countlast);
+        Debug.Log("countlast" + countlast);
+        if(countlast > 0)
+        {
+            shakecount.text = "搖" + (countlast/2) + "下補滿";
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        }
+       
+    }
+    public void counting()
+    {
+        countlast --;
+        shakecount.text = "搖" + (countlast/2) + "下補滿";
+        if (countlast == 0)
+        {
+            shakecount.text = "已補滿";
+            AudioManager.self.PlaySound("Developdone");
+            onit = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            transform.DOMove(new Vector3(0, 0, 0), 0.5f);
+            GameManager.self.DrinkControl.makeAllcost(PlayerDataManager.self.Player);
+        }
+        if (countlast <= 0)
+        {
+            shakecount.text = "已補滿";
+            onit = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            transform.DOMove(new Vector3(0, 0, 0), 0.5f);
+        }
+       
+
     }
     public void close()
     {

@@ -218,37 +218,41 @@ public class EventControl
                 if (lose > 3)
                 {
                     AudioManager.self.PlaySound("Clean");
-                    Narrate = Drink.DrinkData[Select].Name + "被打翻"+ (int)(lose / 3)+"杯";
-                    Short = "飲料被打翻了";
-                    Player.setDrinkinStock(Select,Player.getDrinkinStock(Select)-(int)(lose / 3));
+                // Narrate = Drink.DrinkData[Select].Name + "被打翻"+ (int)(lose / 3)+"杯";
+                // Short = "飲料被打翻了";
+                    Narrate = "店員偷喝" + (int)(lose / 3) + "杯"+ Drink.DrinkData[Select].Name;
+                    Short = "店員偷喝";
+                Player.setDrinkinStock(Select,Player.getDrinkinStock(Select)-(int)(lose / 3));
                     //Player.Money += Drink.DrinkData[Select].Price * buy;
                     //Player.DrinkSell += buy;
                 }
                 else
                 {
-                    Narrate = "店員差點打翻飲料" ;
-                    Short = "虛驚一場";
-                }
+                // Narrate = "店員差點打翻飲料" ;
+                // Short = "虛驚一場";
+                    Narrate = "店員口渴了";
+                    Short = "店員口渴";
+            }
 
 
             //}
-           /* else
-            {
-                AudioManager.self.PlaySound("Clean");
-                Narrate = "全部飲料被買光了";
-                Short = "全部賣光光";
-                for (int i = 0; i < Drink.DrinkData.Count; i++)
-                {
-                    if (Player.getHavetheDrink(i))
-                    {
-                        int buy = Player.getDrinkinStock(i);
-                        Player.setDrinkinStock(i, 0);
-                        Player.Money += Drink.DrinkData[i].Price * buy;
-                        Player.DrinkSell += buy;
-                    }
+            /* else
+             {
+                 AudioManager.self.PlaySound("Clean");
+                 Narrate = "全部飲料被買光了";
+                 Short = "全部賣光光";
+                 for (int i = 0; i < Drink.DrinkData.Count; i++)
+                 {
+                     if (Player.getHavetheDrink(i))
+                     {
+                         int buy = Player.getDrinkinStock(i);
+                         Player.setDrinkinStock(i, 0);
+                         Player.Money += Drink.DrinkData[i].Price * buy;
+                         Player.DrinkSell += buy;
+                     }
 
-                }
-            }*/
+                 }
+             }*/
         }
         if (j == 4)
         {
@@ -289,19 +293,22 @@ public class EventControl
                 }
                 if (drinking > 0)
                 {
-                    Narrate = "店員偷喝" + drinking + "杯飲料";
-                    Short = "店員偷喝";
+
+                    Narrate = "店員打翻" + drinking + "杯飲料";
+                    Short = "飲料打翻了";
                 }
                 else
                 {
-                    Narrate = "店員口渴了";
-                    Short = "店員口渴";
+                    Narrate = "店員差點打翻飲料";
+                    Short = "虛驚一場";
+                    //Narrate = "店員口渴了";
+                    // Short = "店員口渴";
                 }
             }
             else
             {
-                Narrate = "店員口渴了";
-                Short = "店員口渴";
+                Narrate = "店裡沒有飲料庫存" ;
+                Short = "該補貨了";
             }
            
         }
