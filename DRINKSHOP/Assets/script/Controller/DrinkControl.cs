@@ -103,7 +103,7 @@ public class DrinkControl
         for (int i = 0; i < Player.DrinkSum; i++)
         {
             int a = Player.getCanMake(i);
-            if(Player.getDrinkinStock(a)< GameManager.self.ReplenishAmount)
+            if(Player.getDrinkinStock(a)< GameManager.self.ReplenishAmount && GameManager.self.tm.TimeData.getMakeTemp(a) ==0)
             {
                 int Make = GameManager.self.ReplenishAmount - Player.getDrinkinStock(a);
                 if (Player.Money >=   Make* Drink.DrinkData[a].Cost)
@@ -122,6 +122,36 @@ public class DrinkControl
                     }
                 }
                 
+            }
+            else if(GameManager.self.tm.TimeData.getMakeTemp(a) > 0)
+            {
+                if (GameManager.self.tm.TimeData.getMakeTemp(a)+ Player.getDrinkinStock(a) >= GameManager.self.ReplenishAmount)
+                {
+                    GameManager.self.tm.TimeData.setMakeTime(a, 0);
+                }
+                else
+                {
+                    GameManager.self.tm.TimeData.setMakeTime(a, -1);
+                    int Make = GameManager.self.ReplenishAmount - Player.getDrinkinStock(a)-GameManager.self.tm.TimeData.getMakeTemp(a);
+                    GameManager.self.tm.TimeData.setMakeTemp(a, 0);
+                    GameManager.self.makedefault();
+                    if (Player.Money >= Make * Drink.DrinkData[a].Cost)
+                    {
+                        Player.setDrinkinStock(a, GameManager.self.ReplenishAmount);
+                        Player.Money -= Make * Drink.DrinkData[a].Cost;
+                    }
+                    else
+                    {
+                        if (Drink.DrinkData[a].Cost != 0)
+                        {
+                            Make = Player.Money / Drink.DrinkData[a].Cost;
+                            // Player.setDrinkinStock(i, Player.getDrinkinStock(i) + Make);
+                            Player.Money -= Make * Drink.DrinkData[a].Cost;
+                            Player.setDrinkinStock(a, Player.getDrinkinStock(a) + Make);
+                        }
+                    }
+                }
+               
             }
             
         }

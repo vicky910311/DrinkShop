@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public GameObject rewardWindow;
     public GameObject BuyInfoWindow;
     public GameObject MakeAllWindow;
+    
 
     private void Awake()
     {
@@ -104,6 +105,7 @@ public class UIManager : MonoBehaviour
 
     public void EventNotify()
     {
+        //EventBtn.GetComponentInChildren<Text>().gameObject.SetActive(true);
         EventBtn.transform.DOLocalMoveX(-350, 0.5f);//.OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
     }
     public void shutdownLittle()
@@ -456,6 +458,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+            EventBtn.GetComponentInChildren<Text>().text = "";
             shutdownLittle();
             shutdownAll();
             EventWindow.SetActive(true);
@@ -466,6 +469,8 @@ public class UIManager : MonoBehaviour
         if (EventBtn.transform.localPosition.x > -550)
         {
             EventBtn.transform.DOLocalMoveX(-550, 0.5f);
+            //EventBtn.GetComponentInChildren<Text>().gameObject.SetActive(false);
+            EventBtn.GetComponentInChildren<Text>().text = "";
         }
     }
 }

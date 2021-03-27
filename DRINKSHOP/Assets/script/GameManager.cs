@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float sellTime,promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
-    private float eventmin = 10f, eventmax = 11f;
+    private float eventmin = 30f, eventmax = 60f;
     public int storynum;
     public float NowTime;
     public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
                 s = "飲料缺貨中";
                 if (ui.EventWindow.activeSelf == false)
                 {
+                    ui.EventBtn.GetComponentInChildren<Text>().text = s;
                     ui.EventNotify();
                 }
                 GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
@@ -263,7 +264,18 @@ public class GameManager : MonoBehaviour
         rt.position -= new Vector3(0, 100, 0);
         rt.sizeDelta += new Vector2(0, 200);
         string Short = "飲料缺貨";
+        ui.EventBtn.GetComponentInChildren<Text>().text = Short;
 
+    }
+    public void makedefault()
+    {
+        for (int i = 0;i < pm.Player.DrinkSum; i++)
+        {
+            drinksmake[i].transform.GetChild(3).GetComponentInChildren<Text>().text = "製作";
+            drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
+            drinksmake[i].transform.GetChild(3).GetComponent<Image>().sprite = ui.RYellowBtn;
+            drinksmake[i].transform.GetChild(5).gameObject.SetActive(false);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -393,9 +405,11 @@ public class GameManager : MonoBehaviour
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = true;
                     drinksmake[i].transform.GetChild(3).GetComponent<Image>().sprite = ui.RYellowBtn;
                     tm.TimeData.setMakeTime(a, -1);
+                    tm.TimeData.setMakeTemp(a, 0);
                     drinksmake[i].transform.GetChild(5).gameObject.SetActive(false);
                     //drinksmake[i].transform.GetChild(4).GetComponent<Text>().text = pm.Player.getDrinkinStock(i).ToString();
                 }
+                
             }
             for(int i = 0; i < gm.Staff.StaffData.Count; i++)
             {
@@ -561,6 +575,8 @@ public class GameManager : MonoBehaviour
                 if (ui.EventWindow.activeSelf == false)
                 {
                     ui.EventNotify();
+                    string missionshort = "完成任務";
+                    ui.EventBtn.GetComponentInChildren<Text>().text = missionshort;
                 }
                 ms.Mission.Missions[i].isReach = false;
                 ChangeMissionMenu(i);

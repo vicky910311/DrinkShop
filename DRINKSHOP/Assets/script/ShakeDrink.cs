@@ -9,6 +9,7 @@ public class ShakeDrink : MonoBehaviour
 {
     bool Down = false;
     int count = 0;
+    
     public int Count
     {
         set
@@ -28,7 +29,9 @@ public class ShakeDrink : MonoBehaviour
     public bool onit = false;
     int countlast = -1;
     public Text  shakecount;
-    
+    public Sprite shaking;
+    public Sprite open;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,6 +96,7 @@ public class ShakeDrink : MonoBehaviour
     }
     public void countstart()
     {
+        GetComponent<Image>().sprite = shaking;
         UIManager.self.OpenMakeAllWindow();
         Count = 0;
         GameManager.self.DrinkControl.makeAllcount(PlayerDataManager.self.Player,ref countlast);
@@ -117,9 +121,11 @@ public class ShakeDrink : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.DOMove(new Vector3(0, 0, 0), 0.5f);
             GameManager.self.DrinkControl.makeAllcost(PlayerDataManager.self.Player);
+            GetComponent<Image>().sprite = open;
         }
         if (countlast <= 0)
         {
+            
             shakecount.text = "已補滿";
             onit = false;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;

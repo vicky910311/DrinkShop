@@ -310,8 +310,9 @@ public class EventControl
                 Narrate = "店裡沒有飲料庫存" ;
                 Short = "該補貨了";
             }
-           
+            
         }
+        UIManager.self.EventBtn.GetComponentInChildren<Text>().text = Short;
         Debug.Log(Narrate);
     }
     public bool LevelUp(PlayerData Player)

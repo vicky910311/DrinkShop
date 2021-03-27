@@ -75,6 +75,7 @@
     <Compile Include="Assets\script\MissionData\MissionA.cs" />
     <Compile Include="Assets\script\Controller\PurchaseControl.cs" />
     <Compile Include="Assets\script\GameFace.cs" />
+    <Compile Include="Assets\script\ShakeDrink.cs" />
     <Compile Include="Assets\script\Controller\SaveandLoad.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\script\Controller\EventControl.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="Assets\script\GameData\ClientDataList.cs" />
     <Compile Include="Assets\RemptyTool\MessageSystem\Scripts\ES_MessageSystem.cs" />
     <Compile Include="Assets\script\levelinfo.cs" />
-    <Compile Include="Assets\script\ShakeDrink.cs" />
+    <Compile Include="Assets\script\makeinfo.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />

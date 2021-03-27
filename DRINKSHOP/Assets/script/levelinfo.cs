@@ -7,6 +7,7 @@ public class levelinfo : MonoBehaviour
 {
     public GameObject infowindow;
     public int level;
+
     // Start is called before the first frame update
     void Start()
     {
