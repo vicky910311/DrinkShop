@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     bool star = false;
     public Sprite DrinkDefault;
     public GameObject stars,promoteBtn;
+    DateTime developstarttime ;
+    DateTime[] stuffunlockstart;
     public int ReplenishAmount
     {
         set
@@ -83,6 +85,8 @@ public class GameManager : MonoBehaviour
         Back = true;
         if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
             pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
+         stuffunlockstart = new DateTime[4];
+        
        
     }
     void Start()
@@ -167,6 +171,38 @@ public class GameManager : MonoBehaviour
         tm.TimeData.OnDTChanged += DevelopTime;
         LeaveTimeCaculator();
         HavenoDrinkStart();
+       /* if(tm.TimeData.DevelopTimeString != null)
+        {
+            developstarttime = DateTime.Parse(tm.TimeData.DevelopTimeString);
+            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime-(int)(DateTime.Now - developstarttime).TotalSeconds;
+            if(tm.TimeData.DevelopTime <= 0)
+            {
+                tm.TimeData.DevelopTime = 0;
+                tm.TimeData.DevelopTimeString = null;
+            }
+        }
+        else
+        {
+            tm.TimeData.DevelopTime = -1;
+        }
+        
+        for (int i =0; i<= gm.Staff.StaffData.Count; i++)
+        {
+            if(tm.TimeData.getStaffUnlockString(i) != null)
+            {
+                stuffunlockstart[i] = DateTime.Parse(tm.TimeData.getStaffUnlockString(i));
+                tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime -(int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
+                if (tm.TimeData.getStaffUnlockTime(i)<= 0)
+                {
+                    tm.TimeData.setStaffUnlockTime(i, 0);
+                    tm.TimeData.setStaffUnlockString(i,null);
+                }
+            }
+            else
+            {
+                tm.TimeData.setStaffUnlockTime(i,-1);
+            } 
+        }*/
     }
     void OnApplicationFocus()
     {
@@ -209,18 +245,125 @@ public class GameManager : MonoBehaviour
         TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
         if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
         {
-            tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
-            tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
+           // tm.TimeData.DevelopTime -= (int)During.TotalSeconds;
+           // tm.TimeData.DevelopTime = (int)Mathf.Clamp(tm.TimeData.DevelopTime, 0, 36000f);
 
         }
         for (int i = 0; i < gm.Staff.StaffData.Count; i++)
         {
             if (tm.TimeData.getStaffUnlockTime(i) > 0 && (int)(During).TotalSeconds > 0)
             {
-                tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
-                tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
+                // tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - (int)During.TotalSeconds);
+                // tm.TimeData.setStaffUnlockTime(i, (int)Mathf.Clamp(tm.TimeData.getStaffUnlockTime(i), 0, 36000f));
+                
             }
         }
+        if (tm.TimeData.DevelopTimeString != null)
+        {
+            developstarttime = DateTime.Parse(tm.TimeData.DevelopTimeString);
+            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
+            if (tm.TimeData.DevelopTime <= 0)
+            {
+                tm.TimeData.DevelopTime = 0;
+                tm.TimeData.DevelopTimeString = null;
+            }
+        }
+        else
+        {
+            tm.TimeData.DevelopTime = -1;
+        }
+
+         for (int i = 0; i < gm.Staff.StaffData.Count; i++)
+         {
+             Debug.Log("staffunlocktest" + i);
+             if (tm.TimeData.getStaffUnlockString(i) != null)
+             {
+                 string a = tm.TimeData.getStaffUnlockString(i);
+                Debug.Log(a);
+                stuffunlockstart[i] = DateTime.Parse(a);
+                 Debug.Log(stuffunlockstart[i]);
+                 tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
+                 if (tm.TimeData.getStaffUnlockTime(i) <= 0)
+                 {
+                     tm.TimeData.setStaffUnlockTime(i, 0);
+                     tm.TimeData.setStaffUnlockString(i, null);
+                 }
+                 Debug.Log("staffunlocktest");
+             }
+             else
+             {
+                 tm.TimeData.setStaffUnlockTime(i, -1);
+             }
+         }
+        /*if (tm.TimeData.getStaffUnlockString(0) != null)
+        {
+            string a = tm.TimeData.getStaffUnlockString(0);
+            stuffunlockstart[0] = DateTime.Parse(a);
+            Debug.Log(stuffunlockstart[0]);
+            tm.TimeData.setStaffUnlockTime(0, gm.Staff.StaffData[0].UnlockTime - (int)(DateTime.Now - stuffunlockstart[0]).TotalSeconds);
+            if (tm.TimeData.getStaffUnlockTime(0) <= 0)
+            {
+                tm.TimeData.setStaffUnlockTime(0, 0);
+                tm.TimeData.setStaffUnlockString(0, null);
+            }
+            Debug.Log("staffunlocktest");
+        }
+        else
+        {
+            tm.TimeData.setStaffUnlockTime(0, -1);
+        }
+        if (tm.TimeData.getStaffUnlockString(1) != null)
+        {
+            string a = tm.TimeData.getStaffUnlockString(1);
+            stuffunlockstart[1] = DateTime.Parse(a);
+            Debug.Log(stuffunlockstart[1]);
+            tm.TimeData.setStaffUnlockTime(1, gm.Staff.StaffData[1].UnlockTime - (int)(DateTime.Now - stuffunlockstart[1]).TotalSeconds);
+            if (tm.TimeData.getStaffUnlockTime(1) <= 0)
+            {
+                tm.TimeData.setStaffUnlockTime(1, 0);
+                tm.TimeData.setStaffUnlockString(1, null);
+            }
+            Debug.Log("staffunlocktest");
+        }
+        else
+        {
+            tm.TimeData.setStaffUnlockTime(1, -1);
+        }
+        if (tm.TimeData.getStaffUnlockString(2) != null)
+        {
+            string a = tm.TimeData.getStaffUnlockString(2);
+            stuffunlockstart[2] = DateTime.Parse(a);
+            Debug.Log(stuffunlockstart[2]);
+            tm.TimeData.setStaffUnlockTime(2, gm.Staff.StaffData[2].UnlockTime - (int)(DateTime.Now - stuffunlockstart[2]).TotalSeconds);
+            if (tm.TimeData.getStaffUnlockTime(2) <= 0)
+            {
+                tm.TimeData.setStaffUnlockTime(2, 0);
+                tm.TimeData.setStaffUnlockString(2, null);
+            }
+            Debug.Log("staffunlocktest");
+        }
+        else
+        {
+            tm.TimeData.setStaffUnlockTime(2, -1);
+        }
+        if (tm.TimeData.getStaffUnlockString(3) != null)
+        {
+            string a = tm.TimeData.getStaffUnlockString(3);
+            stuffunlockstart[3] = DateTime.Parse(a);
+            Debug.Log(stuffunlockstart[3]);
+            tm.TimeData.setStaffUnlockTime(3, gm.Staff.StaffData[3].UnlockTime - (int)(DateTime.Now - stuffunlockstart[3]).TotalSeconds);
+            if (tm.TimeData.getStaffUnlockTime(3) <= 0)
+            {
+                tm.TimeData.setStaffUnlockTime(3, 0);
+                tm.TimeData.setStaffUnlockString(3, null);
+            }
+            Debug.Log("staffunlocktest");
+        }
+        else
+        {
+            tm.TimeData.setStaffUnlockTime(3, -1);
+        }*/
+        
     }
     void HavenoDrinkStart()
     {
@@ -361,9 +504,11 @@ public class GameManager : MonoBehaviour
         {
             if (tm.TimeData.DevelopTime > 0)
             {
-                tm.TimeData.DevelopTime--;
-               /* int T = tm.TimeData.DevelopTime;
-                DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");*/
+               // tm.TimeData.DevelopTime--;
+                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
+
+                /* int T = tm.TimeData.DevelopTime;
+                 DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");*/
                 ui.developfastBtn.SetActive(true);
                 if (tm.TimeData.DevelopTime <= 0)
                 {
@@ -416,7 +561,8 @@ public class GameManager : MonoBehaviour
                 
                 if (tm.TimeData.getStaffUnlockTime(i) > 0)
                 {
-                    tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
+                    tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
+                    //tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
                     UST[i] = tm.TimeData.getStaffUnlockTime(i);
                     staffs[i].transform.GetChild(2).GetComponentInChildren<Text>().text = (UST[i] / 3600).ToString("00") + ":" + (UST[i] % 3600 / 60).ToString("00") + ":" + (UST[i] % 3600 % 60).ToString("00");
                     staffs[i].transform.GetChild(2).GetComponent<Button>().enabled = false;
@@ -428,7 +574,10 @@ public class GameManager : MonoBehaviour
                 }
                 else if(tm.TimeData.getStaffUnlockTime(i) == 0)
                 {
+
+                    
                     tm.TimeData.setStaffUnlockTime(i, -1);
+                    tm.TimeData.setStaffUnlockString(i, null);
                     AddStaffMenu(i);
                     
                 }
@@ -722,9 +871,13 @@ public class GameManager : MonoBehaviour
     {
         bool b = false;
         StaffControl.UnlockStaff(i, pm.Player,ref b);
+
         if (b == true)
         {
+            tm.TimeData.setStaffUnlockString(i, DateTime.Now.ToString());
+            stuffunlockstart[i] = DateTime.Now;
             tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime);
+            //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime);
             tm.TimeData.setStaffUnlockTemp(i,true);
         }
         else
@@ -884,7 +1037,12 @@ public class GameManager : MonoBehaviour
         {
             tm.TimeData.DevelopTemp = DrinkControl.DevelopDrink(pm.Player);
             if (tm.TimeData.DevelopTemp != -1)
-                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
+            {
+                tm.TimeData.DevelopTimeString = (DateTime.Now).ToString() ;
+                developstarttime =DateTime.Now;
+                tm.TimeData.DevelopTime =gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
+            }
+               
             DevelopBtn.GetComponent<Button>().enabled = false;
         }
 
@@ -966,6 +1124,7 @@ public class GameManager : MonoBehaviour
         DrinkDevelop.GetComponent<Image>().sprite = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Image;
         DoneDevelopText.GetComponent<Text>().text = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Name;
         tm.TimeData.DevelopTime = -1;
+        tm.TimeData.DevelopTimeString = null;
         //DevelopBtn.GetComponentInChildren<Text>().text = "完成";
         //DevelopBtn.GetComponent<Button>().enabled = true;
 

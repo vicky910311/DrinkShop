@@ -96,7 +96,7 @@ public class DrinkControl
 
         }
         Debug.Log("makeamount" + makeamount);
-        t = makeamount /5 + 6;
+        t = makeamount /8 + 6;
     }
     public void makeAllcost(PlayerData Player)
     {

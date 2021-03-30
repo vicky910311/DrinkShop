@@ -130,6 +130,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1.5
     loop: 0
+  - name: shake
+    clip: {fileID: 8300000, guid: 83ce5a43021570a47a20221acc8adce7, type: 3}
+    volume: 0.48
+    pitch: 1.5
+    loop: 0
+  - name: ALL
+    clip: {fileID: 8300000, guid: 49184e42c92dfe343ac82367ac0fd222, type: 3}
+    volume: 0.519
+    pitch: 1.022
+    loop: 0
   bgm:
     name: 
     clip: {fileID: 8300000, guid: ab025793e7f191944a45c5b5a6e39dae, type: 3}
