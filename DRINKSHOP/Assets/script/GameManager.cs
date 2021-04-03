@@ -21,17 +21,17 @@ public class GameManager : MonoBehaviour
     private EventControl EventControl = new EventControl();
     private SaveandLoad saveandLoad = new SaveandLoad();
     private PurchaseControl PurchaseControl = new PurchaseControl();
-    public GameObject[] staffs,missions;
-    public GameObject StaffContent,MissionContent;
+    public GameObject[] staffs, missions;
+    public GameObject StaffContent, MissionContent;
     public Text moneytext, selltext, leveltext;
-    public float sellTime,promoteTime, promotelasting, sellbetweenTime;
+    public float sellTime, promoteTime, promotelasting, sellbetweenTime;
     public int ComeTimeMin, ComeTimeMax;
     public float TimerTime, EventHappenTime, EventUseTime;
     private float eventmin = 30f, eventmax = 60f;
     public int storynum;
     public float NowTime;
-    public GameObject Content,  MenuContent, MakeContent, ClientContent, SCContent;
-    public GameObject DevelopBtn, DrinkDevelop, DoneDevelopText, csText,  coinText;
+    public GameObject Content, MenuContent, MakeContent, ClientContent, SCContent;
+    public GameObject DevelopBtn, DrinkDevelop, DoneDevelopText, csText, coinText;
     public bool DrinkhaveDevelop;
     public GameObject[] drinks, clients;
     public List<GameObject> drinksmake = new List<GameObject>();
@@ -43,9 +43,12 @@ public class GameManager : MonoBehaviour
     private int replenishamount = 10;
     bool star = false;
     public Sprite DrinkDefault;
-    public GameObject stars,promoteBtn;
-    DateTime developstarttime ;
-    DateTime[] stuffunlockstart;
+    public GameObject stars, promoteBtn;
+    public long developduring; 
+    //DateTime developstarttime;
+    public long[] stuffunlockduring = new long[4];
+    TimeSpan[] TS = new TimeSpan[4];
+    //DateTime[] stuffunlockstart = new DateTime[4];
     public int ReplenishAmount
     {
         set
@@ -85,7 +88,7 @@ public class GameManager : MonoBehaviour
         Back = true;
         if (pm.Player.FirstTime == false && pm.Player.Endtimestring != null)
             pm.Player.LastEndTime = DateTime.Parse(pm.Player.Endtimestring);
-         stuffunlockstart = new DateTime[4];
+        
         
        
     }
@@ -260,8 +263,12 @@ public class GameManager : MonoBehaviour
         }
         if (tm.TimeData.DevelopTimeString != null)
         {
-            developstarttime = DateTime.Parse(tm.TimeData.DevelopTimeString);
-            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
+            //developstarttime = DateTime.Parse(tm.TimeData.DevelopTimeString);
+            //tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
+            string b = tm.TimeData.DevelopTimeString;
+            developduring = DateTime.Now.Ticks - DateTime.Parse(b).Ticks;
+            TimeSpan TSD = new TimeSpan(developduring);
+            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)TSD.TotalSeconds;
             if (tm.TimeData.DevelopTime <= 0)
             {
                 tm.TimeData.DevelopTime = 0;
@@ -280,10 +287,13 @@ public class GameManager : MonoBehaviour
              {
                  string a = tm.TimeData.getStaffUnlockString(i);
                 Debug.Log(a);
-                stuffunlockstart[i] = DateTime.Parse(a);
-                 Debug.Log(stuffunlockstart[i]);
-                 tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
-                 if (tm.TimeData.getStaffUnlockTime(i) <= 0)
+                // stuffunlockstart[i] = DateTime.Parse(a);
+                //  Debug.Log(stuffunlockstart[i]);
+                //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
+                stuffunlockduring[i] = DateTime.Now.Ticks - DateTime.Parse(a).Ticks;
+                TS[i] = new TimeSpan(stuffunlockduring[i]);
+                tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i]).TotalSeconds);
+                if (tm.TimeData.getStaffUnlockTime(i) <= 0)
                  {
                      tm.TimeData.setStaffUnlockTime(i, 0);
                      tm.TimeData.setStaffUnlockString(i, null);
@@ -420,7 +430,7 @@ public class GameManager : MonoBehaviour
             drinksmake[i].transform.GetChild(5).gameObject.SetActive(false);
         }
     }
-    // Update is called once per frame
+    // Update is called once per frametm.TimeData.DevelopTimeString;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -504,9 +514,12 @@ public class GameManager : MonoBehaviour
         {
             if (tm.TimeData.DevelopTime > 0)
             {
-               // tm.TimeData.DevelopTime--;
-                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
-
+                // tm.TimeData.DevelopTime--;
+                // tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
+                string b = tm.TimeData.DevelopTimeString;
+                developduring = DateTime.Now.Ticks - DateTime.Parse(b).Ticks;
+                TimeSpan TSD = new TimeSpan(developduring);
+                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)TSD.TotalSeconds;
                 /* int T = tm.TimeData.DevelopTime;
                  DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");*/
                 ui.developfastBtn.SetActive(true);
@@ -561,7 +574,11 @@ public class GameManager : MonoBehaviour
                 
                 if (tm.TimeData.getStaffUnlockTime(i) > 0)
                 {
-                    tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
+                    string a = tm.TimeData.getStaffUnlockString(i);
+                    stuffunlockduring[i] = DateTime.Now.Ticks - DateTime.Parse(a).Ticks;
+                    TS[i] = new TimeSpan(stuffunlockduring[i]);
+                    tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i]).TotalSeconds);
+                    //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
                     //tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
                     UST[i] = tm.TimeData.getStaffUnlockTime(i);
                     staffs[i].transform.GetChild(2).GetComponentInChildren<Text>().text = (UST[i] / 3600).ToString("00") + ":" + (UST[i] % 3600 / 60).ToString("00") + ":" + (UST[i] % 3600 % 60).ToString("00");
@@ -875,7 +892,7 @@ public class GameManager : MonoBehaviour
         if (b == true)
         {
             tm.TimeData.setStaffUnlockString(i, DateTime.Now.ToString());
-            stuffunlockstart[i] = DateTime.Now;
+            //stuffunlockstart[i] = DateTime.Now;
             tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime);
             //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime);
             tm.TimeData.setStaffUnlockTemp(i,true);
@@ -1039,7 +1056,7 @@ public class GameManager : MonoBehaviour
             if (tm.TimeData.DevelopTemp != -1)
             {
                 tm.TimeData.DevelopTimeString = (DateTime.Now).ToString() ;
-                developstarttime =DateTime.Now;
+                //developstarttime =DateTime.Now;
                 tm.TimeData.DevelopTime =gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime;
             }
                
