@@ -176,8 +176,8 @@ MonoBehaviour:
   ComeTime:
     NormalMin: 10
     NormalMax: 15
-    ManualMin: 8
-    ManualMax: 10
+    ManualMin: 7
+    ManualMax: 8
     ADMin: 6
     ADMax: 7
     Leave: 10

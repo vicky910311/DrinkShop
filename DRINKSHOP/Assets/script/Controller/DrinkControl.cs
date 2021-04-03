@@ -96,7 +96,7 @@ public class DrinkControl
 
         }
         Debug.Log("makeamount" + makeamount);
-        t = makeamount /8 + 6;
+        t = (int)(6*Mathf.Pow((float)(makeamount /10 + 6),0.5f));
     }
     public void makeAllcost(PlayerData Player)
     {

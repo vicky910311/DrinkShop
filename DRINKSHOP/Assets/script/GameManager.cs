@@ -261,19 +261,19 @@ public class GameManager : MonoBehaviour
                 
             }
         }
-        if (tm.TimeData.DevelopTimeString != null)
+        if (tm.TimeData.DevelopTimeString !="")
         {
             //developstarttime = DateTime.Parse(tm.TimeData.DevelopTimeString);
             //tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(DateTime.Now - developstarttime).TotalSeconds;
             string b = tm.TimeData.DevelopTimeString;
-            developduring = DateTime.Now.Ticks - DateTime.Parse(b).Ticks;
+            /*developduring = DateTime.Now.Ticks - DateTime.Parse(b).Ticks;
             TimeSpan TSD = new TimeSpan(developduring);
-            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)TSD.TotalSeconds;
+            tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(TSD.TotalSeconds);
             if (tm.TimeData.DevelopTime <= 0)
             {
                 tm.TimeData.DevelopTime = 0;
                 tm.TimeData.DevelopTimeString = null;
-            }
+            }*/
         }
         else
         {
@@ -283,22 +283,24 @@ public class GameManager : MonoBehaviour
          for (int i = 0; i < gm.Staff.StaffData.Count; i++)
          {
              Debug.Log("staffunlocktest" + i);
-             if (tm.TimeData.getStaffUnlockString(i) != null)
+             if (tm.TimeData.getStaffUnlockString(i) != "")
              {
                  string a = tm.TimeData.getStaffUnlockString(i);
-                Debug.Log(a);
+                Debug.Log("getStaffUnlockString"+a);
                 // stuffunlockstart[i] = DateTime.Parse(a);
                 //  Debug.Log(stuffunlockstart[i]);
                 //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
-                stuffunlockduring[i] = DateTime.Now.Ticks - DateTime.Parse(a).Ticks;
+                /*stuffunlockduring[i] = DateTime.Now.Ticks - DateTime.Parse(a).Ticks;
                 TS[i] = new TimeSpan(stuffunlockduring[i]);
-                tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i]).TotalSeconds);
+                tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i].TotalSeconds));
+                Debug.Log("UNLOCK"+ tm.TimeData.getStaffUnlockTime(i));
                 if (tm.TimeData.getStaffUnlockTime(i) <= 0)
                  {
+                     Debug.Log("UNLOCK");
                      tm.TimeData.setStaffUnlockTime(i, 0);
                      tm.TimeData.setStaffUnlockString(i, null);
                  }
-                 Debug.Log("staffunlocktest");
+                 Debug.Log("staffunlocktest");*/
              }
              else
              {
@@ -519,7 +521,7 @@ public class GameManager : MonoBehaviour
                 string b = tm.TimeData.DevelopTimeString;
                 developduring = DateTime.Now.Ticks - DateTime.Parse(b).Ticks;
                 TimeSpan TSD = new TimeSpan(developduring);
-                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)TSD.TotalSeconds;
+                tm.TimeData.DevelopTime = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].DevelopTime - (int)(TSD.TotalSeconds);
                 /* int T = tm.TimeData.DevelopTime;
                  DevelopBtn.GetComponentInChildren<Text>().text = (T/3600).ToString("00") + ":" + (T%3600/60).ToString("00") + ":" + (T%3600%60).ToString("00");*/
                 ui.developfastBtn.SetActive(true);
@@ -542,6 +544,11 @@ public class GameManager : MonoBehaviour
             }
             else if (tm.TimeData.DevelopTime < 0)
             {
+                if (tm.TimeData.DevelopTimeString != "")
+                {
+                    tm.TimeData.DevelopTime = 0;
+                    tm.TimeData.DevelopTimeString ="";
+                }
                 ui.developfastBtn.SetActive(false);
             }
             for (int i = 0; i < pm.Player.DrinkSum; i++)
@@ -577,7 +584,7 @@ public class GameManager : MonoBehaviour
                     string a = tm.TimeData.getStaffUnlockString(i);
                     stuffunlockduring[i] = DateTime.Now.Ticks - DateTime.Parse(a).Ticks;
                     TS[i] = new TimeSpan(stuffunlockduring[i]);
-                    tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i]).TotalSeconds);
+                    tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(TS[i].TotalSeconds));
                     //tm.TimeData.setStaffUnlockTime(i, gm.Staff.StaffData[i].UnlockTime - (int)(DateTime.Now - stuffunlockstart[i]).TotalSeconds);
                     //tm.TimeData.setStaffUnlockTime(i, tm.TimeData.getStaffUnlockTime(i) - 1);
                     UST[i] = tm.TimeData.getStaffUnlockTime(i);
@@ -594,9 +601,18 @@ public class GameManager : MonoBehaviour
 
                     
                     tm.TimeData.setStaffUnlockTime(i, -1);
-                    tm.TimeData.setStaffUnlockString(i, null);
+                    tm.TimeData.setStaffUnlockString(i, "");
                     AddStaffMenu(i);
                     
+                }
+                else if (tm.TimeData.getStaffUnlockTime(i) < 0)
+                {
+                    if (tm.TimeData.getStaffUnlockString(i) != "")
+                    {
+                        Debug.Log("UNLOCK");
+                        tm.TimeData.setStaffUnlockTime(i, 0);
+                        tm.TimeData.setStaffUnlockString(i, "");
+                    }
                 }
             }
 
@@ -1141,7 +1157,7 @@ public class GameManager : MonoBehaviour
         DrinkDevelop.GetComponent<Image>().sprite = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Image;
         DoneDevelopText.GetComponent<Text>().text = gm.Drink.DrinkData[tm.TimeData.DevelopTemp].Name;
         tm.TimeData.DevelopTime = -1;
-        tm.TimeData.DevelopTimeString = null;
+        tm.TimeData.DevelopTimeString = "";
         //DevelopBtn.GetComponentInChildren<Text>().text = "完成";
         //DevelopBtn.GetComponent<Button>().enabled = true;
 
