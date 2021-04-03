@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
 
     public void EventNotify()
     {
-        //EventBtn.GetComponentInChildren<Text>().gameObject.SetActive(true);
+        EventBtn.transform.GetChild(0).GetComponent<Text>().gameObject.SetActive(true);
         EventBtn.transform.DOLocalMoveX(-350, 0.5f);//.OnComplete(() => { EventBtn.transform.DOLocalMoveX(-350, 0.5f); });
     }
     public void shutdownLittle()
@@ -458,7 +458,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            EventBtn.GetComponentInChildren<Text>().text = "";
+            EventBtn.transform.GetChild(0).GetComponent<Text>().gameObject.SetActive(false);
+            EventBtn.transform.GetChild(0).GetComponent<Text>().text = "";
             shutdownLittle();
             shutdownAll();
             EventWindow.SetActive(true);
@@ -470,7 +471,7 @@ public class UIManager : MonoBehaviour
         {
             EventBtn.transform.DOLocalMoveX(-550, 0.5f);
             //EventBtn.GetComponentInChildren<Text>().gameObject.SetActive(false);
-            EventBtn.GetComponentInChildren<Text>().text = "";
+            EventBtn.transform.GetChild(0).GetComponent<Text>().text = "";
         }
     }
 }

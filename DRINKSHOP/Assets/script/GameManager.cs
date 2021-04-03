@@ -244,7 +244,11 @@ public class GameManager : MonoBehaviour
     }
     void LeaveTimeCaculator()
     {
-        leaveback();
+        if (pm.Player.FirstTime == false)
+        {
+            leaveback();
+        }
+       
         TimeSpan During = pm.Player.ThisOpenTime - pm.Player.LastEndTime;
         if ((int)(During).TotalSeconds > 0 && tm.TimeData.DevelopTime > 0)
         {
@@ -391,7 +395,7 @@ public class GameManager : MonoBehaviour
                 s = "飲料缺貨中";
                 if (ui.EventWindow.activeSelf == false)
                 {
-                    ui.EventBtn.GetComponentInChildren<Text>().text = s;
+                    ui.EventBtn.transform.GetChild(0).GetComponent< Text>().text = s;
                     ui.EventNotify();
                 }
                 GameObject narrate = Instantiate(Resources.Load("Prefabs/Text"), Content.transform) as GameObject;
@@ -419,7 +423,7 @@ public class GameManager : MonoBehaviour
         rt.position -= new Vector3(0, 100, 0);
         rt.sizeDelta += new Vector2(0, 200);
         string Short = "飲料缺貨";
-        ui.EventBtn.GetComponentInChildren<Text>().text = Short;
+        ui.EventBtn.transform.GetChild(0).GetComponent<Text>().text = Short;
 
     }
     public void makedefault()
@@ -544,7 +548,7 @@ public class GameManager : MonoBehaviour
             }
             else if (tm.TimeData.DevelopTime < 0)
             {
-                if (tm.TimeData.DevelopTimeString != "")
+                if (tm.TimeData.DevelopTimeString != "" && tm.TimeData.DevelopTimeString != null)
                 {
                     tm.TimeData.DevelopTime = 0;
                     tm.TimeData.DevelopTimeString ="";
@@ -607,7 +611,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (tm.TimeData.getStaffUnlockTime(i) < 0)
                 {
-                    if (tm.TimeData.getStaffUnlockString(i) != "")
+                    if (tm.TimeData.getStaffUnlockString(i) != "" && tm.TimeData.getStaffUnlockString(i) != null)
                     {
                         Debug.Log("UNLOCK");
                         tm.TimeData.setStaffUnlockTime(i, 0);
@@ -758,7 +762,7 @@ public class GameManager : MonoBehaviour
                 {
                     ui.EventNotify();
                     string missionshort = "完成任務";
-                    ui.EventBtn.GetComponentInChildren<Text>().text = missionshort;
+                    ui.EventBtn.transform.GetChild(0).GetComponent<Text>().text = missionshort;
                 }
                 ms.Mission.Missions[i].isReach = false;
                 ChangeMissionMenu(i);

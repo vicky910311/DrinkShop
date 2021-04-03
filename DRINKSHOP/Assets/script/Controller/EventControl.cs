@@ -312,7 +312,7 @@ public class EventControl
             }
             
         }
-        UIManager.self.EventBtn.GetComponentInChildren<Text>().text = Short;
+        UIManager.self.EventBtn.transform.GetChild(0).GetComponent<Text>().text = Short;
         Debug.Log(Narrate);
     }
     public bool LevelUp(PlayerData Player)
