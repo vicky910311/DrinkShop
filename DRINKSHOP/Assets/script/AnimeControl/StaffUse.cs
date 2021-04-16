@@ -23,7 +23,7 @@ public class StaffUse : MonoBehaviour
         {
             Debug.Log("Cancelled OnMouseDown! A UI element has override this object!");
         }
-        else if(SellingAnime.self.selling == false)
+        else 
         {
             AudioManager.self.PlaySound("Drop");
             if (SellingAnime.self.sleeping == true)
