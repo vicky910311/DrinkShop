@@ -220,7 +220,7 @@ public class EventControl
                     AudioManager.self.PlaySound("Clean");
                 // Narrate = Drink.DrinkData[Select].Name + "被打翻"+ (int)(lose / 3)+"杯";
                 // Short = "飲料被打翻了";
-                    int losingcup = Random.Range(0,4);
+                    int losingcup = Random.Range(1,4);
                     Narrate = "店員偷喝" + losingcup + "杯"+ Drink.DrinkData[Select].Name;
                     Short = "店員偷喝";
                 Player.setDrinkinStock(Select,Player.getDrinkinStock(Select)- losingcup);
