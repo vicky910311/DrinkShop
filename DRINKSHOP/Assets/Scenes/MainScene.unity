@@ -4889,6 +4889,8 @@ MonoBehaviour:
   DrinkDefault: {fileID: 21300000, guid: 6ab29a7b43962fe43bcb8469bc11bd6a, type: 3}
   stars: {fileID: 1928560330}
   promoteBtn: {fileID: 847673704}
+  developduring: 0
+  stuffunlockduring: 0000000000000000000000000000000000000000000000000000000000000000
   Replenishment: {fileID: 1583748119}
 --- !u!4 &396331566
 Transform:
@@ -15547,7 +15549,7 @@ PrefabInstance:
     - target: {fileID: 5207033529042278563, guid: 02ae905fdc2003f43a3029d559b01d74,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5207033529042278564, guid: 02ae905fdc2003f43a3029d559b01d74,
         type: 3}

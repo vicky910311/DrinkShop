@@ -996,7 +996,7 @@ public class GameManager : MonoBehaviour
         {
             ui.EventNotify();
         }
-        int i = UnityEngine.Random.Range(1, 6);
+        int i = UnityEngine.Random.Range(1, 7);
         string n = "沒事";
         EventControl.IncidentHappen(i, ref n, pm.Player);
         if (i == 1)

@@ -22,7 +22,7 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     void Start()
     {
         Advertisement.AddListener(this);
-        Advertisement.Initialize("3939969", false);
+        Advertisement.Initialize("4092601", false);
         //while (!Advertisement.IsReady(play))
         //   yield return null;
         ADback = false;

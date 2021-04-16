@@ -313,6 +313,15 @@ public class EventControl
             }
             
         }
+        if (j == 6)
+        {
+            int earn = ((int)Random.Range(1, 4))*150;
+            string From = Random.Range(0f,1f) < 0.5f ? "民間":"政府" ;
+            Narrate = "獲得"+From+"贊助" + earn + "元";
+            Short = "獲得贊助";
+            Player.Money += earn;
+
+        }
         UIManager.self.EventBtn.transform.GetChild(0).GetComponent<Text>().text = Short;
         Debug.Log(Narrate);
     }
