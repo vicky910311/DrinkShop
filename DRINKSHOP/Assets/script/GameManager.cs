@@ -564,7 +564,7 @@ public class GameManager : MonoBehaviour
                     drinksmake[i].transform.GetChild(3).GetComponent<Button>().enabled = false;
                     drinksmake[i].transform.GetChild(3).GetComponent<Image>().sprite = ui.RRedBtn;
                     drinksmake[i].transform.GetChild(5).gameObject.SetActive(true);
-                    drinksmake[i].transform.GetChild(5).GetComponentInChildren<Text>().text = tm.TimeData.getMakeTime(pm.Player.getCanMake(i)).ToString();
+                    drinksmake[i].transform.GetChild(5).GetComponentInChildren<Text>().text = (tm.TimeData.getMakeTime(pm.Player.getCanMake(i))+1).ToString();
                 }
                 else if (tm.TimeData.getMakeTime(pm.Player.getCanMake(i)) == 0)
                 {

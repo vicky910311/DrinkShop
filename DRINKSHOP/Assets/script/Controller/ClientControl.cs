@@ -77,7 +77,7 @@ public class ClientControl
             if (Player.getHavetheDrink(j))
                 CanSell.Add(j);
         }
-        int LeaveSell = Mathf.Clamp((int)(T.TotalMinutes/Client.ComeTime.Leave),0,500);
+        int LeaveSell = Mathf.Clamp((int)(T.TotalMinutes/Client.ComeTime.Leave),0,150);
         Debug.Log("離開測試" + LeaveSell);
         for (int i = 0; i < LeaveSell; i++)
         {
