@@ -841,11 +841,11 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Analytics: 1
+    Analytics: 0
     Build: 0
     Collab: 0
     Game Performance: 0
-    Purchasing: 1
+    Purchasing: 0
     UNet: 1
     Unity Ads: 1
   luminIcon:
@@ -860,10 +860,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 32ba60df-64ae-4e92-b4c9-37917a0a7e6d
+  cloudProjectId: 8a03b681-0b40-47e9-80d0-643c5e912205
   framebufferDepthMemorylessMode: 0
-  projectName: DRINKSHOP
-  organizationId: vicky910311
+  projectName: DrinkCupFriends
+  organizationId: daybreakersstudio
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
