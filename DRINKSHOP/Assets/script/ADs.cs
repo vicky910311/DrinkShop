@@ -22,7 +22,12 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     void Start()
     {
         Advertisement.AddListener(this);
+ 
+#if UNITY_ANDROID
         Advertisement.Initialize("4092601", false);
+#elif UNITY_IOS
+        Advertisement.Initialize("4092600", false);
+#endif
         //while (!Advertisement.IsReady(play))
         //   yield return null;
         ADback = false;
@@ -32,7 +37,11 @@ public class ADs : MonoBehaviour, IUnityAdsListener
     {
         Reward = r;
         I = i;
-        P = p;
+#if UNITY_ANDROID
+        P = "Rewarded_Android";
+#elif UNITY_IOS
+        P= "Rewarded_iOS";
+#endif
         D = false;
         J = 0;
         if (Advertisement.IsReady(p))
