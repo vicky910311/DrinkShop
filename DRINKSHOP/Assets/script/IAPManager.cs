@@ -24,6 +24,20 @@ public class IAPManager : MonoBehaviour,IStoreListener
     private static IExtensionProvider m_StoreExtensionProvider;
 
     private bool bedone = false;
+    public Text addstock, freead, money10k, money30k, money50k, money100k;
+
+#if UNITY_ANDROID
+      int Price1 = 30;
+      int Price2 = 60;
+      int Price3 = 90;
+      int Price4 = 150;
+      
+#elif UNITY_IOS
+    int Price1 = 33;
+    int Price2 = 70;
+    int Price3 = 100;
+    int Price4 = 130;
+#endif
 
     public void InitializePurchasing()
      {
@@ -242,7 +256,15 @@ public class IAPManager : MonoBehaviour,IStoreListener
         throw new System.NotImplementedException();
     }
     
-
+    void Pricing()
+    {
+        addstock.text = "NT" + Price1.ToString();
+        freead.text = "NT" + Price2.ToString();
+        money10k.text = "NT" + Price1.ToString();
+        money30k.text = "NT" + Price2.ToString();
+        money50k.text = "NT" + Price3.ToString();
+        money100k.text = "NT" + Price4.ToString();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -253,6 +275,7 @@ public class IAPManager : MonoBehaviour,IStoreListener
             Debug.Log("m_StoreController == null");
             InitializePurchasing();
         }
+        Pricing();
     }
 
     // Update is called once per frame

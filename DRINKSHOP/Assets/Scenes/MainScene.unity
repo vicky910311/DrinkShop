@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 17691700}
   - component: {fileID: 17691699}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 100kText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,7 +859,7 @@ GameObject:
   - component: {fileID: 48228704}
   - component: {fileID: 48228703}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 10kText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3713,7 +3713,7 @@ GameObject:
   - component: {fileID: 337401451}
   - component: {fileID: 337401450}
   m_Layer: 5
-  m_Name: Text
+  m_Name: freeadText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6814,7 +6814,7 @@ GameObject:
   - component: {fileID: 586426829}
   - component: {fileID: 586426828}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 50kText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12094,7 +12094,7 @@ GameObject:
   - component: {fileID: 1063730151}
   - component: {fileID: 1063730150}
   m_Layer: 5
-  m_Name: Text
+  m_Name: 30kText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20144,7 +20144,7 @@ GameObject:
   - component: {fileID: 1687801419}
   - component: {fileID: 1687801418}
   m_Layer: 5
-  m_Name: Text
+  m_Name: addstockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21638,6 +21638,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cc2b59bc3d8cf4d86181d10c4519fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addstock: {fileID: 1687801418}
+  freead: {fileID: 337401450}
+  money10k: {fileID: 48228703}
+  money30k: {fileID: 1063730150}
+  money50k: {fileID: 586426828}
+  money100k: {fileID: 17691699}
 --- !u!1 &1809922080
 GameObject:
   m_ObjectHideFlags: 0
